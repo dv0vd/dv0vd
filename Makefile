@@ -47,7 +47,7 @@ start-socks5:
 		--network podman_network \
 		-p 60010:1080 \
 		--sysctl net.ipv4.ip_forward=1 \
-		-e PROXY_USER=$(SOCKS5_USER) \
+		-e PROXY_USER=$(SOCKS5_USERNAME) \
 		-e PROXY_PASSWORD=$(SOCKS5_PASSWORD) \
 		--restart unless-stopped \
 		--memory=128M \
