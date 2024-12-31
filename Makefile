@@ -78,8 +78,8 @@ fail2ban-unban-all:
 
 podman-cleanup:
 	@-podman system prune --all -f
-	@-podman load < /root/deployment/images/xkuma-socks5_latest.tar
-	@-podman load < /root/deployment/images/wernight-dante_latest.tar
+	@-podman load < /root/dv0vd.xyz/deployment/images/xkuma-socks5_latest.tar
+	@-podman load < /root/dv0vd.xyz/deployment/images/wernight-dante_latest.tar
 
 podman-create-network:
 	@podman network create --ipv6 podman_network

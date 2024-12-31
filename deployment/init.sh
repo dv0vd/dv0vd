@@ -5,11 +5,12 @@ timedatectl set-timezone UTC &&
 apt update &&
 apt upgrade &&
 apt install -y make &&
+apt install -y git && 
 #apt install -y net-tools &&
 #apt install -y cron &&
 
 #ssh
-cat /root/deployment/configs/linux/ssh.pub >> /root/.ssh/authorized_keys &&
+cat /root/dv0vd.xyz/deployment/configs/linux/ssh.pub >> /root/.ssh/authorized_keys &&
 echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config &&
 echo 'Port 60000' >> /etc/ssh/sshd_config &&
 
@@ -19,8 +20,8 @@ echo 'Port 60000' >> /etc/ssh/sshd_config &&
 
 # fail2ban
 apt install fail2ban -y &&
-cat /root/deployment/configs/fail2ban/jail.local >> /etc/fail2ban/jail.local &&
-cat /root/deployment/configs/fail2ban/fail2ban.local >> /etc/fail2ban/fail2ban.local &&
+cat /root/dv0vd.xyz/deployment/configs/fail2ban/jail.local >> /etc/fail2ban/jail.local &&
+cat /root/dv0vd.xyz/deployment/configs/fail2ban/fail2ban.local >> /etc/fail2ban/fail2ban.local &&
 systemctl enable fail2ban &&
 systemctl start fail2ban &&
 
@@ -103,7 +104,7 @@ reboot
 # openvpn
 # mkdir /root/_data/openvpn -p &&
 # mkdir /root/_data/openvpn/certificates &&
-# podman load < /root/deployment/openvpn/kylemanna-openvpn_edge.tar &&
+# podman load < /root/dv0vd.xyz/deployment/openvpn/kylemanna-openvpn_edge.tar &&
 #podman run \
 #    -v /root/_data/openvpn:/etc/openvpn \
 #    --name=ovpn_genconfig \
