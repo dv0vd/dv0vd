@@ -56,7 +56,7 @@ start-socks5:
 		--restart unless-stopped \
 		--memory=128M \
 		--cpus=0.25 \
-		xkuma/socks5:latest
+		socks5
 
 stop-socks5:
 	@-podman stop socks5
