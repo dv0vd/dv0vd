@@ -5,6 +5,7 @@ include .env
 MAKEFLAGS += --no-print-directory
 
 start-containers:
+	@-$(MAKE) build-socks5
 	@-$(MAKE) start-socks5
 	@-$(MAKE) start-socks4
 
@@ -41,8 +42,12 @@ restart-socks4:
 	@-$(MAKE) start-socks4
 
 build-socks5:
-# @-$(MAKE) podman-cleanup
-	@-podman build -t socks5 . -f ./deployment/containers/socks5.containerfile --build-arg SOCKS5_USERNAME=$(SOCKS5_USERNAME) --build-arg SOCKS5_PASSWORD=$(SOCKS5_PASSWORD) --no-cache
+	@-$(MAKE) podman-cleanup
+	@-podman build \
+		-t socks5 . 
+		-f ./deployment/containers/socks5.containerfile 
+		--build-arg SOCKS5_USERNAME=$(SOCKS5_USERNAME) 
+		--build-arg SOCKS5_PASSWORD=$(SOCKS5_PASSWORD) 
 
 start-socks5:
 	@-podman run \
@@ -84,6 +89,7 @@ podman-cleanup:
 	@-podman system prune --all -f
 	@-podman load < /root/dv0vd.xyz/deployment/images/xkuma-socks5_latest.tar
 	@-podman load < /root/dv0vd.xyz/deployment/images/wernight-dante_latest.tar
+	@-podman load < /root/dv0vd.xyz/deployment/images/debian_bookworm.tar
 
 podman-create-network:
 	@podman network create --ipv6 podman_network
@@ -96,6 +102,7 @@ help:
 	@echo stop-containers'                            '—' 'stop' 'all' 'containers
 	@echo restart-containers'                            '—' 'restart' 'all' 'containers
 	@echo issue-cert' 'name=client_name'            '—' 'issue' 'OpenVPN' 'client' 'certificate
+	@echo build-socks5'                            '—' 'build' 'socks5' 'server
 	@echo start-socks5'                            '—' 'start' 'socks5' 'server
 	@echo stop-socks5'                            '—' 'stop' 'socks5' 'server
 	@echo restart-socks5'                            '—' 'restart' 'socks5' 'server
