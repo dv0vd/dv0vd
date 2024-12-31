@@ -1,0 +1,9 @@
+[DEFAULT]
+findtime = 1h
+maxretry = 3
+bantime  = -1
+
+[sshd]
+backend = systemd
+enabled  = true
+port=60000
