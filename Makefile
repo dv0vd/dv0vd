@@ -40,6 +40,10 @@ restart-socks4:
 	@-$(MAKE) stop-socks4
 	@-$(MAKE) start-socks4
 
+build-socks5:
+# @-$(MAKE) podman-cleanup
+	@-podman build -t socks5 . -f ./deployment/containers/socks5.containerfile --build-arg SOCKS5_USERNAME=$(SOCKS5_USERNAME) --build-arg SOCKS5_PASSWORD=$(SOCKS5_PASSWORD) --no-cache
+
 start-socks5:
 	@-podman run \
 		-d \
