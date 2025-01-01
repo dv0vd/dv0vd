@@ -100,8 +100,8 @@ fail2ban-unban-all:
 	@-fail2ban-client unban --all
 
 podman-load:
-	@-podman load < /root/dv0vd.xyz/deployment/images/$(SOCKS5_IMAGE_NAME)_$(SOCKS5_IMAGE_TAG).tar
-	@-podman load < /root/dv0vd.xyz/deployment/images/$(SOCKS4_IMAGE_NAME)_$(SOCKS4_IMAGE_TAG).tar
+	@-podman load < /root/dv0vd.xyz/deployment/images/$(VENDOR)-$(SOCKS5_IMAGE_NAME)_$(SOCKS5_IMAGE_TAG).tar
+	@-podman load < /root/dv0vd.xyz/deployment/images/$(VENDOR)-$(SOCKS4_IMAGE_NAME)_$(SOCKS4_IMAGE_TAG).tar
 
 podman-cleanup:
 	@-podman system prune --all -f
