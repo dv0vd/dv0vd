@@ -4,6 +4,9 @@ include .env
 .ONESHELL:
 MAKEFLAGS += --no-print-directory
 
+SOCKS5_IMAGE_NAME = dv0vd/socks5
+SOCKS5_IMAGE_TAG = 1.0.0
+
 start-containers:
 	@-$(MAKE) start-socks5
 	@-$(MAKE) start-socks4
@@ -43,11 +46,11 @@ restart-socks4:
 build-socks5:
 	@-$(MAKE) podman-cleanup
 	@-podman build \
-		-t dv0vd/socks5:1.0.0 . \
+		-t $(SOCKS5_IMAGE_NAME):$(SOCKS5_IMAGE_TAG) . \
 		-f ./deployment/containers/socks5.containerfile \
 		--build-arg SOCKS5_USERNAME=$(SOCKS5_USERNAME) \
 		--build-arg SOCKS5_PASSWORD=$(SOCKS5_PASSWORD)
-	@-podman save socks5 > ./deployment/images/dv0vd-socks5_1.0.0.tar
+	@-podman save socks5 > ./deployment/images/$(SOCKS5_IMAGE_NAME)_$(SOCKS5_IMAGE_TAG).tar
 
 start-socks5:
 	@-podman run \
@@ -90,7 +93,7 @@ podman-cleanup:
 	@-podman load < /root/dv0vd.xyz/deployment/images/xkuma-socks5_latest.tar
 	@-podman load < /root/dv0vd.xyz/deployment/images/wernight-dante_latest.tar
 	@-podman load < /root/dv0vd.xyz/deployment/images/debian_bookworm.tar
-	@-podman load < /root/dv0vd.xyz/deployment/images/dv0vd-socks5_1.0.0.tar
+	@-podman load < /root/dv0vd.xyz/deployment/images/$(SOCKS5_IMAGE_NAME)_$(SOCKS5_IMAGE_TAG).tar
 
 podman-create-network:
 	@podman network create --ipv6 podman_network

@@ -10,7 +10,7 @@ RUN apt update
 RUN apt install -y dante-server
 
 RUN mkdir -p /etc/dante
-COPY ./deployment/configs/dante/dante.conf /etc/dante/dante.conf
+COPY ./deployment/configs/socks5/dante.conf /etc/dante/dante.conf
 
 RUN useradd -m "$USERNAME" && \
     echo "$USERNAME:$PASSWORD" | chpasswd && \
