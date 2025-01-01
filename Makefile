@@ -44,10 +44,11 @@ restart-socks4:
 build-socks5:
 	@-$(MAKE) podman-cleanup
 	@-podman build \
-		-t socks5 . 
-		-f ./deployment/containers/socks5.containerfile 
-		--build-arg SOCKS5_USERNAME=$(SOCKS5_USERNAME) 
-		--build-arg SOCKS5_PASSWORD=$(SOCKS5_PASSWORD) 
+		-t dv0vd/socks5:1.0.0 . \
+		-f ./deployment/containers/socks5.containerfile \
+		--build-arg SOCKS5_USERNAME=$(SOCKS5_USERNAME) \
+		--build-arg SOCKS5_PASSWORD=$(SOCKS5_PASSWORD)
+	@-podman save socks5 > ./deployment/images/dv0vd-socks5_1.0.0.tar
 
 start-socks5:
 	@-podman run \
