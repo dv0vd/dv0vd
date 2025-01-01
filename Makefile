@@ -5,7 +5,6 @@ include .env
 MAKEFLAGS += --no-print-directory
 
 start-containers:
-	@-$(MAKE) build-socks5
 	@-$(MAKE) start-socks5
 	@-$(MAKE) start-socks4
 
@@ -91,6 +90,7 @@ podman-cleanup:
 	@-podman load < /root/dv0vd.xyz/deployment/images/xkuma-socks5_latest.tar
 	@-podman load < /root/dv0vd.xyz/deployment/images/wernight-dante_latest.tar
 	@-podman load < /root/dv0vd.xyz/deployment/images/debian_bookworm.tar
+	@-podman load < /root/dv0vd.xyz/deployment/images/dv0vd-socks5_1.0.0.tar
 
 podman-create-network:
 	@podman network create --ipv6 podman_network
