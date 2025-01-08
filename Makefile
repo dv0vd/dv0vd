@@ -53,6 +53,7 @@ build-socks4:
 		-t $(VENDOR)/$(SOCKS4_IMAGE_NAME):$(SOCKS4_IMAGE_TAG) . \
 		-f ./deployment/containers/socks4.containerfile
 	@-podman save $(VENDOR)/$(SOCKS4_IMAGE_NAME):$(SOCKS4_IMAGE_TAG) > ./deployment/images/$(VENDOR)-$(SOCKS4_IMAGE_NAME)_$(SOCKS4_IMAGE_TAG).tar
+	@-podman save docker.io/debian:bookworm > ./deployment/images/debian_bookworm.tar
 
 build-socks5:
 	@-$(MAKE) podman-cleanup
@@ -62,6 +63,7 @@ build-socks5:
 		--build-arg SOCKS5_USERNAME=$(SOCKS5_USERNAME) \
 		--build-arg SOCKS5_PASSWORD=$(SOCKS5_PASSWORD)
 	@-podman save $(VENDOR)/$(SOCKS5_IMAGE_NAME):$(SOCKS5_IMAGE_TAG) > ./deployment/images/$(VENDOR)-$(SOCKS5_IMAGE_NAME)_$(SOCKS5_IMAGE_TAG).tar
+	@-podman save docker.io/debian:bookworm > ./deployment/images/debian_bookworm.tar
 
 start-socks5:
 	@-podman run \
