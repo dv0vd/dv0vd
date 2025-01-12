@@ -26,7 +26,7 @@ start-socks4:
 		-d \
 		--name socks4 \
 		--network podman_network \
-		-p 60030:1080 \
+		-p ${SOCKS4_PORT}:1080 \
 		--restart unless-stopped \
 		--memory=128M \
 		--cpus=0.25 \
@@ -47,7 +47,9 @@ start-socks5:
 		-d \
 		--name socks5 \
 		--network podman_network \
-		-p 60010:1080 \
+		-p ${SOCKS5_PORT}:1080 \
+		-e SOCKS_USERNAME=${SOCKS5_USERNAME}
+		-e SOCKS_PASSWORD=${SOCKS5_PASSWORD}
 		--restart unless-stopped \
 		--memory=128M \
 		--cpus=0.25 \
@@ -78,7 +80,6 @@ fail2ban-unban-all:
 
 podman-cleanup:
 	@-podman system prune --all -f
-	@-podman load < /root/dv0vd.xyz/deployment/images/debian_bookworm.tar
 
 podman-create-network:
 	@podman network create --ipv6 podman_network
