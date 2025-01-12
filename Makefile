@@ -48,8 +48,8 @@ start-socks5:
 		--name socks5 \
 		--network podman_network \
 		-p ${SOCKS5_PORT}:1080 \
-		-e SOCKS_USERNAME=${SOCKS5_USERNAME}
-		-e SOCKS_PASSWORD=${SOCKS5_PASSWORD}
+		-e SOCKS_USERNAME=${SOCKS5_USERNAME} \
+		-e SOCKS_PASSWORD=${SOCKS5_PASSWORD} \
 		--restart unless-stopped \
 		--memory=128M \
 		--cpus=0.25 \
