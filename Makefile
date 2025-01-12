@@ -5,9 +5,7 @@ include .env
 MAKEFLAGS += --no-print-directory
 
 VENDOR = dv0vd
-SOCKS4_IMAGE_NAME = socks4
 SOCKS5_IMAGE_NAME = socks5
-SOCKS4_IMAGE_TAG = 1.0.0
 SOCKS5_IMAGE_TAG = 1.0.0
 
 start-containers:
@@ -34,26 +32,18 @@ start-socks4:
 		--network podman_network \
 		-p 60030:1080 \
 		--restart unless-stopped \
-		--sysctl net.ipv4.ip_forward=1 \
 		--memory=128M \
 		--cpus=0.25 \
-		$(VENDOR)/$(SOCKS4_IMAGE_NAME):$(SOCKS4_IMAGE_TAG)
+		docker.io/dv0vd/socks4
 
 stop-socks4:
 	@-podman stop socks4
 	@-podman rm socks4
 
-restart-socks4:
-	@-$(MAKE) stop-socks4
-	@-$(MAKE) start-socks4
+restart-socks4: stop-socks4 start-socks4
 
-build-socks4:
-	@-$(MAKE) podman-cleanup
-	@-podman build \
-		-t $(VENDOR)/$(SOCKS4_IMAGE_NAME):$(SOCKS4_IMAGE_TAG) . \
-		-f ./deployment/containers/socks4.containerfile
-	@-podman save $(VENDOR)/$(SOCKS4_IMAGE_NAME):$(SOCKS4_IMAGE_TAG) > ./deployment/images/$(VENDOR)-$(SOCKS4_IMAGE_NAME)_$(SOCKS4_IMAGE_TAG).tar
-	@-podman save docker.io/debian:bookworm > ./deployment/images/debian_bookworm.tar
+logs-socks4:
+	@-podman logs -f socks4
 
 build-socks5:
 	@-$(MAKE) podman-cleanup
