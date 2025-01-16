@@ -13,7 +13,8 @@ stop-containers:
 
 restart-containers:
 	- $(MAKE) stop-containers
-	- $(MAKE) podman-cleanup
+# - $(MAKE) podman-cleanup
+	- $(MAKE) clean-containers
 	- $(MAKE) podman-create-network
 	- $(MAKE) start-containers
 
@@ -64,19 +65,22 @@ restart-socks5: stop-socks5 start-socks5
 logs-socks5:
 	podman logs -f socks5
 
-stop-email:
-	- podman stop email
-	- podman rm email
+# stop-email:
+# 	- podman stop email
+# 	- podman rm email
 
-restart-email:
-	- $(MAKE) stop-email
-	- $(MAKE) start-email
+# restart-email:
+# 	- $(MAKE) stop-email
+# 	- $(MAKE) start-email
 
 # fail2ban-status-ssh:
 # 	fail2ban-client status sshd
 
 # fail2ban-unban-all:
 # 	@-fail2ban-client unban --all
+
+clean-containers:
+	podman rm -a
 
 podman-cleanup:
 	podman system prune --all -f
@@ -91,12 +95,15 @@ help:
 	@echo start-containers'                            '—' 'start' 'all' 'containers
 	@echo stop-containers'                            '—' 'stop' 'all' 'containers
 	@echo restart-containers'                            '—' 'restart' 'all' 'containers
-	@echo issue-cert' 'name=client_name'            '—' 'issue' 'OpenVPN' 'client' 'certificate
+	@echo clean-containers'                            '—' 'clean' 'dangling' 'containers
 	@echo start-socks5'                            '—' 'start' 'socks5' 'server
 	@echo stop-socks5'                            '—' 'stop' 'socks5' 'server
 	@echo restart-socks5'                            '—' 'restart' 'socks5' 'server
+	@echo start-socks4'                            '—' 'start' 'socks4' 'server
+	@echo stop-socks4'                            '—' 'stop' 'socks4' 'server
+	@echo restart-socks4'                            '—' 'restart' 'socks4' 'server
 # @echo fail2ban-ssh'                            '—' 'ssh' 'blocked' 'ips
-	@echo podman-cleanup'                            '—' 'podman' 'cleaning
+# @echo podman-cleanup'                            '—' 'podman' 'cleaning
 	@echo podman-create-network'                            '—' 'podman' 'network' 'creating' 'with' 'ipv6' 'support
 	@echo schedule-midnight-reboot'                            '—' 'reboot' 'server' 'at' 'midnight
 
