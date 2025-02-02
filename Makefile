@@ -29,8 +29,8 @@ start-socks4:
 		--network podman_network \
 		-p ${SOCKS4_PORT}:1080 \
 		--restart unless-stopped \
-		--memory=128M \
-		--cpus=0.25 \
+		--memory=${SOCKS4_MEMORY} \
+		--cpus=${SOCKS5_CPUS} \
 		docker.io/dv0vd/socks4
 
 stop-socks4:
@@ -52,8 +52,8 @@ start-socks5:
 		-e SOCKS_USERNAME=${SOCKS5_USERNAME} \
 		-e SOCKS_PASSWORD=${SOCKS5_PASSWORD} \
 		--restart unless-stopped \
-		--memory=128M \
-		--cpus=0.25 \
+		--memory=${SOCKS5_MEMORY} \
+		--cpus=${SOCKS5_CPUS} \
 		docker.io/dv0vd/socks5
 
 stop-socks5:

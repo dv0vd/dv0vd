@@ -10,7 +10,7 @@ apt install -y git &&
 #ssh
 cat /root/dv0vd.xyz/deployment/configs/linux/ssh.pub >> /root/.ssh/authorized_keys &&
 echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config &&
-echo 'Port 60000' >> /etc/ssh/sshd_config &&
+echo Port $SSH_PORT >> /etc/ssh/sshd_config &&
 
 # fail2ban
 # apt install fail2ban -y &&
