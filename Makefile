@@ -65,6 +65,27 @@ restart-socks5: stop-socks5 start-socks5
 logs-socks5:
 	podman logs -f socks5
 
+start-nginx:
+	- podman run \
+	-d \
+	--name nginx \
+	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
+	-v ./src:/app \
+	-p 80:80 \
+	--restart unless-stopped \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
+	docker.io/nginx:1.27.3
+
+stop-nginx:
+	- podman stop nginx
+	- podman rm nginx
+
+restart-nginx: stop-nginx start-nginx
+
+logs-nginx:
+	podman logs -f nginx
+
 # stop-email:
 # 	- podman stop email
 # 	- podman rm email
