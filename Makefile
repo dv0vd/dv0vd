@@ -74,6 +74,7 @@ start-nginx:
 	-v ./deployment/configs/nginx:/app/nginx:ro \
 	-v ./src:/app \
 	-p 443:443 \
+	-p 80:80 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
