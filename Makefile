@@ -71,7 +71,7 @@ start-nginx:
 	-d \
 	--name nginx \
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/configs/nginx:/app/nginx:ro \
+	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./src:/app \
 	-p 443:443 \
 	-p 80:80 \
