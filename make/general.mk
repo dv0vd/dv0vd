@@ -5,7 +5,7 @@ clean-containers:
 	podman rm -a
 
 podman-cleanup:
-	podman system prune --all -f
+	podman system reset
 
 podman-create-network:
 	podman network create --ipv6 podman_network
