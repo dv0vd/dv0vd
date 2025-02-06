@@ -21,6 +21,9 @@ echo Port $SSH_PORT >> /etc/ssh/sshd_config &&
 
 #podman
 apt install podman -y && 
+apt install -y pipx && 
+pipx install podman-compose &&
+pipx ensurepath &&
 systemctl enable podman &&
 systemctl start podman &&
 podman system prune --all -f &&
