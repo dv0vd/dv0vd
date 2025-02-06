@@ -11,6 +11,6 @@ restart-socks5: stop-socks5 start-socks5
 
 restart-nginx: stop-nginx start-nginx
 
-restart-demo: stop-demo start-demo
+restart-demo: stop-demo start-demo restart-nginx
 
-restart-timers: stop-timers start-timers
+restart-timers: stop-timers start-timers restart-nginx
