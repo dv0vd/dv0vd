@@ -35,12 +35,11 @@ start-nginx:
 	-d \
 	--name nginx \
 	--network podman_network \
-	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./demo:/demo:ro \
-	-v ./src:/app \
-	-p 443:443 \
-	-p 80:80 \
+	-v ./src:/app:ro \
+	-p 33333:80 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
