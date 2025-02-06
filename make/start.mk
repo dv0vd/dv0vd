@@ -40,7 +40,7 @@ start-nginx:
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
 	-p 80:80 \
-	-p 443:80 \
+	-p 443:443 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
