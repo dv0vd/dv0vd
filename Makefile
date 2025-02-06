@@ -89,6 +89,40 @@ restart-nginx: stop-nginx start-nginx
 logs-nginx:
 	podman logs -f nginx
 
+init-demo:
+	$(MAKE) init-timers
+
+init-timers:
+	mkdir ./demo
+	cd ./demo
+	git clone git@github.com:dv0vd/demo-timers.git
+	cp ../.env ./demo-timers/.env
+	cd ./demo-timers
+	make init
+
+refresh-demo:
+	rm ./demo -rf
+	$(MAKE) init-demo
+
+start-demo:
+	$(MAKE) start-timers
+
+stop-demo:
+	$(MAKE) stop-timers
+
+restart-demo: stop-demo start-demo
+
+start-timers:
+	cp ./.env ./demo/demo-timers/.env
+	cd ./demo/demo-timers
+	make start
+
+stop-timers:
+	cd ./demo/demo-timers
+	make stop
+
+restart-timers: stop-timers start-timers
+
 # stop-email:
 # 	- podman stop email
 # 	- podman rm email
@@ -126,6 +160,9 @@ help:
 	@echo start-socks4'                            '—' 'start' 'socks4' 'server
 	@echo stop-socks4'                            '—' 'stop' 'socks4' 'server
 	@echo restart-socks4'                            '—' 'restart' 'socks4' 'server
+	@echo start-nginx'                            '—' 'start' 'nginx' 'server
+	@echo stop-nginx'                            '—' 'stop' 'nginx' 'server
+	@echo restart-nginx'                            '—' 'restart' 'nginx' 'server
 # @echo fail2ban-ssh'                            '—' 'ssh' 'blocked' 'ips
 # @echo podman-cleanup'                            '—' 'podman' 'cleaning
 	@echo podman-create-network'                            '—' 'podman' 'network' 'creating' 'with' 'ipv6' 'support
