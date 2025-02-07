@@ -1,1 +1,6 @@
 .env
+*.crt
+*.key
+*.csr
+
+deployment/configs/nginx/local.conf
