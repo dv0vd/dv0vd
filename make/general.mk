@@ -2,7 +2,7 @@ status-containers:
 	podman stats
 
 clean-containers:
-	podman rm -a
+	podman rm -af
 
 podman-cleanup:
 	podman system reset
