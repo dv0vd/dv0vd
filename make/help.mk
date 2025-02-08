@@ -21,7 +21,7 @@ help:
 	@echo "logs-socks5                  — get socks5 server logs"
 	@echo "logs-nginx                   — get nginx logs"
 	@echo "status-containers            — get containers stats"
-	@echo "clean-containers             — clean dangling containers"
+	@echo "podman-load-images           — load images from local copy"
 	@echo "podman-cleanup               — clean all podman resources"
 	@echo "podman-create-network        — create custom podman network with ipv6 support"
 	@echo "schedule-midnight-reboot     — reboot server at midnight"

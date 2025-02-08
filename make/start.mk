@@ -1,4 +1,5 @@
 start-containers:
+	- $(MAKE) podman-load-images
 	- $(MAKE) start-nginx
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
@@ -35,12 +36,11 @@ start-nginx:
 	-d \
 	--name nginx \
 	--network podman_network \
-	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
-	-p 80:80 \
-	-p 443:443 \
+	-p 33333:80 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \

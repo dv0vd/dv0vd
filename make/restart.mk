@@ -1,7 +1,7 @@
 restart-containers:
 	- $(MAKE) stop-containers
-# - $(MAKE) podman-cleanup
-	- $(MAKE) clean-containers
+	- $(MAKE) podman-cleanup
+# - $(MAKE) clean-containers
 	- $(MAKE) podman-create-network
 	- $(MAKE) start-containers
 
