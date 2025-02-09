@@ -30,7 +30,7 @@ podman system prune --all -f &&
 rm /etc/rc.local -f &&
 touch /etc/rc.local &&
 echo '#!/bin/bash' >> /etc/rc.local &&
-echo 'cd /root' >> /etc/rc.local &&
+echo 'cd /root/dv0vd.xyz' >> /etc/rc.local &&
 echo 'make restart-containers' >> /etc/rc.local &&
 echo 'make schedule-midnight-reboot' >> /etc/rc.local &&
 echo 'exit 0' >> /etc/rc.local &&
