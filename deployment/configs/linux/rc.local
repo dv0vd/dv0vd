@@ -1,0 +1,6 @@
+#!/bin/bash
+export PATH=$PATH:/root/.local/bin:/root/.local/bin
+cd /root/dv0vd.xyz
+make restart-containers
+make schedule-midnight-reboot
+exit 0

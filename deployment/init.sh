@@ -28,12 +28,7 @@ systemctl enable podman &&
 systemctl start podman &&
 podman system prune --all -f &&
 rm /etc/rc.local -f &&
-touch /etc/rc.local &&
-echo '#!/bin/bash' >> /etc/rc.local &&
-echo 'cd /root/dv0vd.xyz' >> /etc/rc.local &&
-echo 'make restart-containers' >> /etc/rc.local &&
-echo 'make schedule-midnight-reboot' >> /etc/rc.local &&
-echo 'exit 0' >> /etc/rc.local &&
+cp /root/dv0vd.xyz/deployment/configs/linux/rc.local /etc/rc.local
 chmod a+x /etc/rc.local &&
 
 reboot
