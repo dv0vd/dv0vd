@@ -25,5 +25,4 @@ stop-demo:
 
 stop-timers:
 	cd ./demo/demo-timers
-	- podman stop timers_app
-	- podman rm timers_app
+	- make stop

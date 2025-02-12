@@ -67,4 +67,4 @@ start-demo:
 start-timers:
 	cp ./.env ./demo/demo-timers/.env
 	cd ./demo/demo-timers
-	- podman start timers_app
+	- make start-app
