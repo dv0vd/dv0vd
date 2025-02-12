@@ -11,6 +11,12 @@ restart-socks5: stop-socks5 start-socks5
 
 restart-nginx: stop-nginx start-nginx
 
+restart-db:
+	- $(MAKE) stop-mongo
+	- $(MAKE) start-mongo
+
+restart-mongo: stop-mongo start-mongo
+
 restart-demo: stop-demo start-demo restart-nginx
 
 restart-timers: stop-timers start-timers restart-nginx

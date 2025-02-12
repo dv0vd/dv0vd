@@ -13,6 +13,13 @@ stop-nginx:
 	- podman stop nginx
 	- podman rm nginx
 
+stop-db:
+	- $(MAKE) stop-mongo
+
+stop-mongo:
+	- podman stop mongo
+	- podman rm mongo
+
 stop-demo:
 	$(MAKE) stop-timers
 

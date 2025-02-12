@@ -47,6 +47,19 @@ start-nginx:
 	--cpus=${NGINX_CPUS} \
 	docker.io/nginx:1.27.3
 
+start-mongo:
+	- podman run \
+	-d \
+	--name mongo \
+	--network podman_network \
+	--restart unless-stopped \
+	--memory=${MONGO_MEMORY} \
+	--cpus=${MONGO_CPUS} \
+	docker.io/mongo:7.0.16
+
+start-db:
+	- $(MAKE) start-mongo
+
 start-demo:
 	$(MAKE) start-timers
 

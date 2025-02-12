@@ -6,3 +6,6 @@ logs-socks5:
 
 logs-nginx:
 	podman logs -f nginx
+
+logs-mongo:
+	podman logs -f mongo
