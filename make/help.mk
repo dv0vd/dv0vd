@@ -27,6 +27,7 @@ help:
 	@echo "logs-socks5                  — get socks5 server logs"
 	@echo "logs-nginx                   — get nginx logs"
 	@echo "logs-mongo                   — get mongo logs"
+	@echo "logs-timers                  — get timers demo project logs"
 	@echo "status-containers            — get containers stats"
 	@echo "podman-load-images           — load images from local copy"
 	@echo "podman-cleanup               — clean all podman resources"

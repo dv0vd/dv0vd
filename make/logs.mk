@@ -9,3 +9,6 @@ logs-nginx:
 
 logs-mongo:
 	podman logs -f mongo
+
+logs-timers:
+	podman logs -f timers_app
