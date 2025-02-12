@@ -3,6 +3,7 @@ start-containers:
 	- $(MAKE) start-nginx
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
+	- $(MAKE) start-db
 	- $(MAKE) start-demo
 
 start-socks4:
