@@ -1,41 +1,43 @@
+GREEN='\033[1;32m'
+WHITE='\033[1;37m'
 help:
-	@echo "start-containers             — start all containers"
-	@echo "start-socks4                 — start socks4 server"
-	@echo "start-socks5                 — start socks5 server"
-	@echo "start-nginx                  — start nginx server"
-	@echo "start-db                     — start databases"
-	@echo "start-mongo                  — start mongo"
-	@echo "start-demo                   — start all demo projects"
-	@echo "start-timers                 — start timers demo project"
-	@echo "stop-containers              — stop all containers"
-	@echo "stop-socks4                  — stop socks4 server"
-	@echo "stop-socks5                  — stop socks5 server"
-	@echo "stop-nginx                   — stop nginx server"
-	@echo "stop-db                      — stop databases"
-	@echo "stop-mongo                   — stop mongo"
-	@echo "stop-demo                    — stop all demo projects"
-	@echo "stop-timers                  — stop timers demo project"
-	@echo "restart-containers           — restart all containers"
-	@echo "restart-socks4               — restart socks4 server"
-	@echo "restart-socks5               — restart socks5 server"
-	@echo "restart-nginx                — restart nginx server"
-	@echo "restart-db                   — restart databases"
-	@echo "restart-mongo                — restart mongo"
-	@echo "restart-demo                 — restart all demo projects"
-	@echo "restart-timers               — restart timers demo project"
-	@echo "logs-socks4                  — get socks4 server logs"
-	@echo "logs-socks5                  — get socks5 server logs"
-	@echo "logs-nginx                   — get nginx logs"
-	@echo "logs-mongo                   — get mongo logs"
-	@echo "logs-timers                  — get timers demo project logs"
-	@echo "status-containers            — get containers stats"
-	@echo "podman-load-images           — load images from local copy"
-	@echo "podman-cleanup               — clean all podman resources"
-	@echo "podman-create-network        — create custom podman network with ipv6 support"
-	@echo "schedule-midnight-reboot     — reboot server at midnight"
-	@echo "init-demo                    — clone demo projects and install dependencies"
-	@echo "refresh-demo                 — completely remove demo projects and reinit them"
-	@echo "init-demo                    — clone timers demo project and install dependencies"
+	@echo ${GREEN}start-containers'             '${WHITE}— start all containers
+	@echo ${GREEN}start-socks4'                 '${WHITE}— start socks4 server
+	@echo ${GREEN}start-socks5'                 '${WHITE}— start socks5 server
+	@echo ${GREEN}start-nginx'                  '${WHITE}— start nginx server
+	@echo ${GREEN}start-db'                     '${WHITE}— start databases
+	@echo ${GREEN}start-mongo'                  '${WHITE}— start mongo
+	@echo ${GREEN}start-demo'                   '${WHITE}— start all demo projects
+	@echo ${GREEN}start-timers'                 '${WHITE}— start timers demo project
+	@echo ${GREEN}stop-containers'              '${WHITE}— stop all containers
+	@echo ${GREEN}stop-socks4'                  '${WHITE}— stop socks4 server
+	@echo ${GREEN}stop-socks5'                  '${WHITE}— stop socks5 server
+	@echo ${GREEN}stop-nginx'                   '${WHITE}— stop nginx server
+	@echo ${GREEN}stop-db'                      '${WHITE}— stop databases
+	@echo ${GREEN}stop-mongo'                   '${WHITE}— stop mongo
+	@echo ${GREEN}stop-demo'                    '${WHITE}— stop all demo projects
+	@echo ${GREEN}stop-timers'                  '${WHITE}— stop timers demo project
+	@echo ${GREEN}restart-containers'           '${WHITE}— restart all containers
+	@echo ${GREEN}restart-socks4'               '${WHITE}— restart socks4 server
+	@echo ${GREEN}restart-socks5'               '${WHITE}— restart socks5 server
+	@echo ${GREEN}restart-nginx'                '${WHITE}— restart nginx server
+	@echo ${GREEN}restart-db'                   '${WHITE}— restart databases
+	@echo ${GREEN}restart-mongo'                '${WHITE}— restart mongo
+	@echo ${GREEN}restart-demo'                 '${WHITE}— restart all demo projects
+	@echo ${GREEN}restart-timers'               '${WHITE}— restart timers demo project
+	@echo ${GREEN}logs-socks4'                  '${WHITE}— get socks4 server logs
+	@echo ${GREEN}logs-socks5'                  '${WHITE}— get socks5 server logs
+	@echo ${GREEN}logs-nginx'                   '${WHITE}— get nginx logs
+	@echo ${GREEN}logs-mongo'                   '${WHITE}— get mongo logs
+	@echo ${GREEN}logs-timers'                  '${WHITE}— get timers demo project logs
+	@echo ${GREEN}status-containers'            '${WHITE}— get containers stats
+	@echo ${GREEN}podman-load-images'           '${WHITE}— load images from local copy
+	@echo ${GREEN}podman-cleanup'               '${WHITE}— clean all podman resources
+	@echo ${GREEN}podman-create-network'        '${WHITE}— create custom podman network with ipv6 support
+	@echo ${GREEN}schedule-midnight-reboot'     '${WHITE}— reboot server at midnight
+	@echo ${GREEN}init-demo'                    '${WHITE}— clone demo projects and install dependencies
+	@echo ${GREEN}refresh-demo'                 '${WHITE}— completely remove demo projects and reinit them
+	@echo ${GREEN}init-demo'                    '${WHITE}— clone timers demo project and install dependencies
 
-# @echo " fail2ban-ssh                            — ssh blocked ips
-# @echo " podman-cleanup                            — podman cleaning
+# @echo ${GREEN} fail2ban-ssh                            '${WHITE}— ssh blocked ips
+# @echo ${GREEN} podman-cleanup                            '${WHITE}— podman cleaning
