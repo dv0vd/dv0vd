@@ -1,1 +1,1 @@
-CREATE DATABASE IF NOT EXISTS skillnotes;
+CREATE DATABASE skillnotes;
