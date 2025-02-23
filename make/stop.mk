@@ -31,3 +31,7 @@ stop-demo:
 stop-timers:
 	cd ./demo/demo-timers
 	- make stop
+
+stop-skillnotes:
+	cd ./demo/demo-skillnotes
+	- make stop
