@@ -23,6 +23,7 @@ schedule-midnight-reboot:
 
 init-demo:
 	$(MAKE) init-timers
+	$(MAKE) init-skillnotes
 
 refresh-demo:
 	rm ./demo -rf
