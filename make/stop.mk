@@ -15,10 +15,15 @@ stop-nginx:
 
 stop-db:
 	- $(MAKE) stop-mongo
+	- $(MAKE) stop-postgres
 
 stop-mongo:
 	- podman stop mongo
 	- podman rm mongo
+
+stop-postgres:
+	- podman stop postgres
+	- podman rm postgres
 
 stop-demo:
 	$(MAKE) stop-timers

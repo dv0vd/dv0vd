@@ -58,13 +58,31 @@ start-mongo:
 	--cpus=${MONGO_CPUS} \
 	docker.io/mongo:7.0.16
 
+start-postgres:
+	- podman run \
+	-d \
+	--name postgres \
+	-e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
+	--network podman_network \
+	--restart unless-stopped \
+	--memory=${POSTGRES_MEMORY} \
+	--cpus=${POSTGRES_CPUS} \
+	docker.io/postgres:15.10-bookworm
+
 start-db:
 	- $(MAKE) start-mongo
+	- $(MAKE) start-postgres
 
 start-demo:
 	$(MAKE) start-timers
+	$(MAKE) start-skillnotes
 
 start-timers:
 	cp ./.env ./demo/demo-timers/.env
 	cd ./demo/demo-timers
+	- make start-app
+
+start-skillnotes:
+	cp ./.env ./demo/demo-skillnotes/.env
+	cd ./demo/demo-skillnotes
 	- make start-app

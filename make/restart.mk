@@ -13,10 +13,16 @@ restart-nginx: stop-nginx start-nginx
 
 restart-db:
 	- $(MAKE) stop-mongo
+	- $(MAKE) stop-postgres
 	- $(MAKE) start-mongo
+	- $(MAKE) start-postgres
 
 restart-mongo: stop-mongo start-mongo
+
+restart-postgres: stop-postgres start-postgres
 
 restart-demo: stop-demo start-demo restart-nginx
 
 restart-timers: stop-timers start-timers restart-nginx
+
+restart-skillnotes: stop-skillnotes start-skillnotes restart-nginx

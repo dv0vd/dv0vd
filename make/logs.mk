@@ -10,5 +10,11 @@ logs-nginx:
 logs-mongo:
 	podman logs -f mongo
 
+logs-postgres:
+	podman logs -f postgres
+
 logs-timers:
 	podman logs -f timers_app
+
+logs-skillnotes:
+	podman logs -f skillnotes_app

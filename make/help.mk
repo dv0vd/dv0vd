@@ -7,29 +7,37 @@ help:
 	@echo ${GREEN}start-nginx'                  '${WHITE}— start nginx server
 	@echo ${GREEN}start-db'                     '${WHITE}— start databases
 	@echo ${GREEN}start-mongo'                  '${WHITE}— start mongo
+	@echo ${GREEN}start-postgres'               '${WHITE}— start postgres
 	@echo ${GREEN}start-demo'                   '${WHITE}— start all demo projects
 	@echo ${GREEN}start-timers'                 '${WHITE}— start timers demo project
+	@echo ${GREEN}start-skillnotes'             '${WHITE}— start skillnotes demo project
 	@echo ${GREEN}stop-containers'              '${WHITE}— stop all containers
 	@echo ${GREEN}stop-socks4'                  '${WHITE}— stop socks4 server
 	@echo ${GREEN}stop-socks5'                  '${WHITE}— stop socks5 server
 	@echo ${GREEN}stop-nginx'                   '${WHITE}— stop nginx server
 	@echo ${GREEN}stop-db'                      '${WHITE}— stop databases
 	@echo ${GREEN}stop-mongo'                   '${WHITE}— stop mongo
+	@echo ${GREEN}stop-postgres'                '${WHITE}— stop postgres
 	@echo ${GREEN}stop-demo'                    '${WHITE}— stop all demo projects
 	@echo ${GREEN}stop-timers'                  '${WHITE}— stop timers demo project
+	@echo ${GREEN}stop-skillnotes'              '${WHITE}— stop skillnotes demo project
 	@echo ${GREEN}restart-containers'           '${WHITE}— restart all containers
 	@echo ${GREEN}restart-socks4'               '${WHITE}— restart socks4 server
 	@echo ${GREEN}restart-socks5'               '${WHITE}— restart socks5 server
 	@echo ${GREEN}restart-nginx'                '${WHITE}— restart nginx server
 	@echo ${GREEN}restart-db'                   '${WHITE}— restart databases
 	@echo ${GREEN}restart-mongo'                '${WHITE}— restart mongo
+	@echo ${GREEN}restart-postgres'             '${WHITE}— restart postgres
 	@echo ${GREEN}restart-demo'                 '${WHITE}— restart all demo projects
 	@echo ${GREEN}restart-timers'               '${WHITE}— restart timers demo project
+	@echo ${GREEN}restart-skillnotes'           '${WHITE}— restart skillnotes demo project
 	@echo ${GREEN}logs-socks4'                  '${WHITE}— get socks4 server logs
 	@echo ${GREEN}logs-socks5'                  '${WHITE}— get socks5 server logs
 	@echo ${GREEN}logs-nginx'                   '${WHITE}— get nginx logs
 	@echo ${GREEN}logs-mongo'                   '${WHITE}— get mongo logs
+	@echo ${GREEN}logs-postgres'                '${WHITE}— get postgres logs
 	@echo ${GREEN}logs-timers'                  '${WHITE}— get timers demo project logs
+	@echo ${GREEN}logs-skillnotes'              '${WHITE}— get skillnotes demo project logs
 	@echo ${GREEN}status-containers'            '${WHITE}— get containers stats
 	@echo ${GREEN}podman-load-images'           '${WHITE}— load images from local copy
 	@echo ${GREEN}podman-cleanup'               '${WHITE}— clean all podman resources
