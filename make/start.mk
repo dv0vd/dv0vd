@@ -62,6 +62,7 @@ start-postgres:
 	- podman run \
 	-d \
 	--name postgres \
+	-v ./deployment/configs/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql \
 	-e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
 	--network podman_network \
 	--restart unless-stopped \
