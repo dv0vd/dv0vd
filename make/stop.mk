@@ -27,6 +27,7 @@ stop-postgres:
 
 stop-demo:
 	$(MAKE) stop-timers
+	$(MAKE) stop-skillnotes
 
 stop-timers:
 	cd ./demo/demo-timers
