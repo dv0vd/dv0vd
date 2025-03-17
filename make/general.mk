@@ -1,5 +1,5 @@
 status-containers:
-	podman stats
+	podman stats -i 1
 
 # clean-containers:
 # 	podman rm -af
