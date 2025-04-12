@@ -6,6 +6,10 @@ refresh-demo:
 	rm ./demo -rf
 	$(MAKE) init-demo
 
+refresh-lagoona:
+	rm ./demo/lagoona -rf
+	$(MAKE) init-lagoona
+
 init-timers:
 	mkdir ./demo
 	cd ./demo
