@@ -11,6 +11,7 @@ include ./make/start.mk
 include ./make/stop.mk
 include ./make/general.mk
 include ./make/enter.mk
+include ./make/demo.mk
 
 # stop-email:
 # 	- podman stop email
