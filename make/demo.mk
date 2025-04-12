@@ -21,3 +21,8 @@ init-skillnotes:
 	cp ../.env ./demo-skillnotes/.env
 	cd ./demo-skillnotes
 	make init
+
+init-lagoona:
+	mkdir ./demo
+	cd ./demo
+	git clone git@github.com:dv0vd/lagoona.git
