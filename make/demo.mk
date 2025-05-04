@@ -29,4 +29,4 @@ init-skillnotes:
 init-lagoona:
 	mkdir ./demo
 	cd ./demo
-	git clone git@github.com:dv0vd/lagoona.git
+	git clone git@github.com:dv0vd/demo-lagoona.git
