@@ -3,6 +3,7 @@ start-containers:
 	- $(MAKE) start-nginx
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
+	- $(MAKE) start-https-proxy
 	- $(MAKE) start-db
 	- $(MAKE) start-demo
 
@@ -31,6 +32,18 @@ start-socks5:
 		--memory=${SOCKS5_MEMORY} \
 		--cpus=${SOCKS5_CPUS} \
 		docker.io/dv0vd/socks5
+
+start-https-proxy:
+	- podman pull docker.io/dv0vd/https-proxy
+	- podman run \
+		-d \
+		--name https-proxy \
+		--network podman_network \
+		-p ${HTTPS_PROXY_PORT}:3128 \
+		--restart unless-stopped \
+		--memory=${HTTPS_PROXY_MEMORY} \
+		--cpus=${HTTPS_PROXY_CPUS} \
+		docker.io/dv0vd/https-proxy
 
 start-nginx:
 	- podman run \

@@ -9,6 +9,8 @@ restart-socks4: stop-socks4 start-socks4
 
 restart-socks5: stop-socks5 start-socks5
 
+restart-https-proxy: stop-https-proxy start-https-proxy
+
 restart-nginx: stop-nginx start-nginx
 
 restart-db:

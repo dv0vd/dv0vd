@@ -4,6 +4,9 @@ logs-socks4:
 logs-socks5:
 	podman logs -f socks5
 
+logs-https-proxy:
+	podman logs -f https-proxy
+
 logs-nginx:
 	podman logs -f nginx
 

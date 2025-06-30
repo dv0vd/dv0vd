@@ -9,6 +9,10 @@ stop-socks5:
 	- podman stop socks5
 	- podman rm socks5
 
+stop-https-proxy:
+	- podman stop https-proxy
+	- podman rm https-proxy
+
 stop-nginx:
 	- podman stop nginx
 	- podman rm nginx
