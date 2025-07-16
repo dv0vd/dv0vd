@@ -51,7 +51,6 @@ start-nginx:
 	--name nginx \
 	--network podman_network \
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/configs/nginx/nginx_blocks.conf:/etc/nginx/blocks.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
