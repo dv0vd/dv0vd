@@ -3,5 +3,5 @@
 *.key
 *.csr
 *.tar
-
+*.log
 deployment/configs/nginx/local.conf

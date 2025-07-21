@@ -46,12 +46,15 @@ start-https-proxy:
 		docker.io/dv0vd/https-proxy
 
 start-nginx:
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
 	-d \
 	--name nginx \
 	--network podman_network \
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
 	-p 80:80 \
