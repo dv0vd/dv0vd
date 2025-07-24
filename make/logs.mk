@@ -10,6 +10,12 @@ logs-https-proxy:
 logs-nginx:
 	podman logs -f nginx
 
+logs-nginx-access:
+	tail -f deployment/data/nginx/logs/access.log
+
+logs-nginx-error:
+	tail -f deployment/data/nginx/logs/error.log
+
 logs-mongo:
 	podman logs -f mongo
 

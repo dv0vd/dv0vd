@@ -38,6 +38,8 @@ help:
 	@echo ${GREEN}logs-socks5'                  '${WHITE}— get socks5 server logs
 	@echo ${GREEN}logs-https-proxy'             '${WHITE}— get https proxy server logs
 	@echo ${GREEN}logs-nginx'                   '${WHITE}— get nginx logs
+	@echo ${GREEN}logs-nginx-access'            '${WHITE}— get nginx access logs
+	@echo ${GREEN}logs-nginx-error'             '${WHITE}— get nginx error logs
 	@echo ${GREEN}logs-mongo'                   '${WHITE}— get mongo logs
 	@echo ${GREEN}logs-postgres'                '${WHITE}— get postgres logs
 	@echo ${GREEN}logs-timers'                  '${WHITE}— get timers demo project logs
