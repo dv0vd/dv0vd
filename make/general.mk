@@ -1,6 +1,14 @@
 status-containers:
 	podman stats -i 1
 
+status-fail2ban:
+	fail2ban-client status
+	fail2ban-client status sshd
+	fail2ban-client status nginx-http-auth
+	fail2ban-client status nginx-limit-req
+	fail2ban-client status nginx-botsearch
+	fail2ban-client status nginx-bad-request
+
 # clean-containers:
 # 	podman rm -af
 
@@ -27,11 +35,3 @@ logs-auth:
 
 clear-logs:
 	journalctl --vacuum-time=1d
-
-fail2ban-status:
-	fail2ban-client status
-	fail2ban-client status sshd
-	fail2ban-client status nginx-http-auth
-	fail2ban-client status nginx-limit-req
-	fail2ban-client status nginx-botsearch
-	fail2ban-client status nginx-bad-request
