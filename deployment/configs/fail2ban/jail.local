@@ -1,13 +1,13 @@
 [DEFAULT]
+enabled           = true
 findtime          = 1h
 maxretry          = 3
 bantime           = 1d
 bantime.increment = true
-nginx_access_log = /root/dv0vd.xyz/deployment/data/nginx/logs/access.log
+nginx_access_log  = /root/dv0vd.xyz/deployment/data/nginx/logs/access.log
 
 [sshd]
 backend  = systemd
-enabled  = true
 port     = 60000
 
 [nginx-http-auth]
