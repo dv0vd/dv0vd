@@ -1,9 +1,28 @@
 [DEFAULT]
-findtime = 1h
-maxretry = 3
-bantime  = -1
+findtime          = 1h
+maxretry          = 3
+bantime           = 1d
+bantime.increment = true
+nginx_access_log = /root/dv0vd.xyz/deployment/data/nginx/logs/access.log
 
 [sshd]
-backend = systemd
+backend  = systemd
 enabled  = true
-port=60000
+port     = 60000
+
+[nginx-http-auth]
+mode    = aggressive
+port    = http,https
+logpath = %(nginx_error_log)s
+
+[nginx-limit-req]
+port    = http,https
+logpath = %(nginx_error_log)s
+
+[nginx-botsearch]
+port     = http,https
+logpath  = %(nginx_error_log)s
+
+[nginx-bad-request]
+port    = http,https
+logpath = %(nginx_access_log)s

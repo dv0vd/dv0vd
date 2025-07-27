@@ -14,11 +14,11 @@ echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config.d/00-dv0vd.conf &&
 echo Port $SSH_PORT >> /etc/ssh/sshd_config.d/00-dv0vd.conf &&
 
 # fail2ban
-# apt install fail2ban -y &&
-# cat /root/dv0vd.xyz/deployment/configs/fail2ban/jail.local >> /etc/fail2ban/jail.local &&
-# cat /root/dv0vd.xyz/deployment/configs/fail2ban/fail2ban.local >> /etc/fail2ban/fail2ban.local &&
-# systemctl enable fail2ban &&
-# systemctl start fail2ban &&
+apt install fail2ban -y &&
+cat /root/dv0vd.xyz/deployment/configs/fail2ban/jail.local >> /etc/fail2ban/jail.local &&
+cat /root/dv0vd.xyz/deployment/configs/fail2ban/fail2ban.local >> /etc/fail2ban/fail2ban.local &&
+systemctl enable fail2ban &&
+systemctl start fail2ban &&
 
 #podman
 apt install podman -y && 
