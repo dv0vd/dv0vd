@@ -40,3 +40,7 @@ stop-timers:
 stop-skillnotes:
 	cd ./demo/demo-skillnotes
 	- make stop
+
+stop-fail2ban:
+	systemctl disable fail2ban
+	systemctl stop fail2ban

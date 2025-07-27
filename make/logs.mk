@@ -27,3 +27,6 @@ logs-timers:
 
 logs-skillnotes:
 	podman logs -f skillnotes_app
+
+logs-fail2ban:
+	tail -f /var/log/fail2ban.log

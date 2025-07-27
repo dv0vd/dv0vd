@@ -104,3 +104,7 @@ start-skillnotes:
 	cp ./.env ./demo/demo-skillnotes/.env
 	cd ./demo/demo-skillnotes
 	- make start-app
+
+start-fail2ban:
+	systemctl enable fail2ban
+	systemctl start fail2ban

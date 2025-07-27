@@ -28,3 +28,7 @@ restart-demo: stop-demo start-demo restart-nginx
 restart-timers: stop-timers start-timers restart-nginx
 
 restart-skillnotes: stop-skillnotes start-skillnotes restart-nginx
+
+restart-fail2ban: 
+	systemctl restart fail2ban
+	fail2ban-client reload
