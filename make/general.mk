@@ -24,3 +24,6 @@ schedule-midnight-reboot:
 
 logs-auth:
 	journalctl -u ssh
+
+clear-logs:
+	journalctl --vacuum-time=1d

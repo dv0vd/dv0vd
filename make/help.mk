@@ -54,6 +54,7 @@ help:
 	@echo ${GREEN}refresh-demo'                 '${WHITE}— completely remove demo projects and reinit them
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone timers demo project and install dependencies
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone timers demo project and install dependencies
+	@echo ${GREEN}clear-logs'                   '${WHITE}— clear journalctl logs olden then 1 day
 
 # @echo ${GREEN} fail2ban-ssh                            '${WHITE}— ssh blocked ips
 # @echo ${GREEN} podman-cleanup                            '${WHITE}— podman cleaning
