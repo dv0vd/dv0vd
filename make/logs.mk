@@ -30,3 +30,6 @@ logs-skillnotes:
 
 logs-fail2ban:
 	tail -f /var/log/fail2ban.log
+
+logs-auth:
+	journalctl -u ssh

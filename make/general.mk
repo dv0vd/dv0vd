@@ -30,8 +30,5 @@ podman-load-images:
 schedule-midnight-reboot:
 	shutdown -r 0:00
 
-logs-auth:
-	journalctl -u ssh
-
 clear-logs:
 	journalctl --vacuum-time=1d
