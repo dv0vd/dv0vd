@@ -11,10 +11,10 @@ logs-nginx:
 	podman logs -f nginx
 
 logs-nginx-access:
-	tail -f deployment/data/nginx/logs/access.log
+	tail -f -n +1 deployment/data/nginx/logs/access.log
 
 logs-nginx-error:
-	tail -f deployment/data/nginx/logs/error.log
+	tail -f -n +1 deployment/data/nginx/logs/error.log
 
 logs-mongo:
 	podman logs -f mongo
@@ -29,7 +29,7 @@ logs-skillnotes:
 	podman logs -f skillnotes_app
 
 logs-fail2ban:
-	tail -f /var/log/fail2ban.log
+	tail -f -n +1 /var/log/fail2ban.log
 
 logs-auth:
 	journalctl -u ssh
