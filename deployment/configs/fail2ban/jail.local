@@ -7,9 +7,9 @@ nginx_access_log  = /root/dv0vd.xyz/deployment/data/nginx/logs/access.log
 nginx_error_log  = /root/dv0vd.xyz/deployment/data/nginx/logs/error.log
 
 [sshd]
-enabled  = true
-backend  = systemd
-port     = 60000
+enabled      = true
+backend      = systemd
+mode         = aggressive
 
 [nginx-http-auth]
 enabled = true
