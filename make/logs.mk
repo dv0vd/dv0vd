@@ -32,4 +32,4 @@ logs-fail2ban:
 	tail -f -n +1 /var/log/fail2ban.log
 
 logs-auth:
-	journalctl -u ssh
+	journalctl -u ssh -n 10000 -f
