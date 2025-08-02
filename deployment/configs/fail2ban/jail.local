@@ -5,6 +5,7 @@ bantime           = 1d
 bantime.increment = true
 nginx_access_log  = /root/dv0vd.xyz/deployment/data/nginx/logs/access.log
 nginx_error_log   = /root/dv0vd.xyz/deployment/data/nginx/logs/error.log
+banaction         = iptables-allports
 
 [sshd]
 enabled      = true
