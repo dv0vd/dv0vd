@@ -8,6 +8,7 @@ status-fail2ban:
 	fail2ban-client status nginx-limit-req
 	fail2ban-client status nginx-botsearch
 	fail2ban-client status nginx-bad-request
+	fail2ban-client status danted
 
 # clean-containers:
 # 	podman rm -af
@@ -20,7 +21,7 @@ podman-create-network:
 
 podman-load-images:
 	podman load < ./deployment/images/dv0vd-socks4_1.0.4.tar
-	podman load < ./deployment/images/dv0vd-socks5_1.0.10.tar
+	podman load < ./deployment/images/dv0vd-socks5_1.0.11.tar
 	podman load < ./deployment/images/dv0vd-https-proxy_1.0.0.tar
 	podman load < ./deployment/images/mongo_7.0.16.tar
 	podman load < ./deployment/images/nginx_1.27.3.tar

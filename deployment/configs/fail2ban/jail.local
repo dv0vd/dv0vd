@@ -32,3 +32,9 @@ logpath  = %(nginx_access_log)s
 enabled = true
 port    = http,https
 logpath = %(nginx_access_log)s
+
+[danted]
+enabled = true
+filter  = danted
+logpath = /root/dv0vd.xyz/deployment/data/socks5/logs/danted.log
+backend = auto
