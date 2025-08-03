@@ -8,9 +8,9 @@ nginx_error_log   = /root/dv0vd.xyz/deployment/data/nginx/logs/error.log
 banaction         = iptables-allports
 
 [sshd]
-enabled      = true
-backend      = systemd
-mode         = aggressive
+enabled = true
+backend = systemd
+mode    = aggressive
 
 [nginx-http-auth]
 enabled = true
