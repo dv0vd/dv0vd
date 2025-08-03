@@ -68,31 +68,31 @@ start-nginx:
 	--cpus=${NGINX_CPUS} \
 	docker.io/nginx:1.27.3
 
-start-mongo:
+start-mongo-demo:
 	- podman run \
 	-d \
-	--name mongo \
+	--name mongo-demo \
 	--network podman_network \
 	--restart unless-stopped \
-	--memory=${MONGO_MEMORY} \
-	--cpus=${MONGO_CPUS} \
+	--memory=${MONGO_DEMO_MEMORY} \
+	--cpus=${MONGO_DEMO_CPUS} \
 	docker.io/mongo:7.0.16
 
-start-postgres:
+start-postgres-demo:
 	- podman run \
 	-d \
-	--name postgres \
+	--name postgres-demo \
 	-v ./deployment/configs/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql \
-	-e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
+	-e POSTGRES_PASSWORD=${POSTGRES_DEMO_PASSWORD} \
 	--network podman_network \
 	--restart unless-stopped \
-	--memory=${POSTGRES_MEMORY} \
-	--cpus=${POSTGRES_CPUS} \
+	--memory=${POSTGRES_DEMO_MEMORY} \
+	--cpus=${POSTGRES_DEMO_CPUS} \
 	docker.io/postgres:15.10-bookworm
 
 start-db:
-	- $(MAKE) start-mongo
-	- $(MAKE) start-postgres
+	- $(MAKE) start-mongo-demo
+	- $(MAKE) start-postgres-demo
 
 start-demo:
 	$(MAKE) start-timers

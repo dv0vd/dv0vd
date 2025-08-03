@@ -7,8 +7,8 @@ help:
 	@echo ${GREEN}start-https-proxy'            '${WHITE}— start https proxy server
 	@echo ${GREEN}start-nginx'                  '${WHITE}— start nginx server
 	@echo ${GREEN}start-db'                     '${WHITE}— start databases
-	@echo ${GREEN}start-mongo'                  '${WHITE}— start mongo
-	@echo ${GREEN}start-postgres'               '${WHITE}— start postgres
+	@echo ${GREEN}start-mongo-demo'             '${WHITE}— start mongo database for demo projects
+	@echo ${GREEN}start-postgres-demo'          '${WHITE}— start postgres database for demo projects
 	@echo ${GREEN}start-demo'                   '${WHITE}— start all demo projects
 	@echo ${GREEN}start-timers'                 '${WHITE}— start timers demo project
 	@echo ${GREEN}start-skillnotes'             '${WHITE}— start skillnotes demo project
@@ -19,8 +19,8 @@ help:
 	@echo ${GREEN}stop-https-proxy'             '${WHITE}— stop https proxy server
 	@echo ${GREEN}stop-nginx'                   '${WHITE}— stop nginx server
 	@echo ${GREEN}stop-db'                      '${WHITE}— stop databases
-	@echo ${GREEN}stop-mongo'                   '${WHITE}— stop mongo
-	@echo ${GREEN}stop-postgres'                '${WHITE}— stop postgres
+	@echo ${GREEN}stop-mongo-demo'              '${WHITE}— stop mongo database for demo projects
+	@echo ${GREEN}stop-postgres-demo'           '${WHITE}— stop postgres database for demo projects
 	@echo ${GREEN}stop-demo'                    '${WHITE}— stop all demo projects
 	@echo ${GREEN}stop-timers'                  '${WHITE}— stop timers demo project
 	@echo ${GREEN}stop-skillnotes'              '${WHITE}— stop skillnotes demo project
@@ -31,8 +31,8 @@ help:
 	@echo ${GREEN}restart-https-proxy'          '${WHITE}— restart https proxy server
 	@echo ${GREEN}restart-nginx'                '${WHITE}— restart nginx server
 	@echo ${GREEN}restart-db'                   '${WHITE}— restart databases
-	@echo ${GREEN}restart-mongo'                '${WHITE}— restart mongo
-	@echo ${GREEN}restart-postgres'             '${WHITE}— restart postgres
+	@echo ${GREEN}restart-mongo-demo'           '${WHITE}— restart mongo database for demo projects
+	@echo ${GREEN}restart-postgres-demo'        '${WHITE}— restart postgres database for demo projects
 	@echo ${GREEN}restart-demo'                 '${WHITE}— restart all demo projects
 	@echo ${GREEN}restart-timers'               '${WHITE}— restart timers demo project
 	@echo ${GREEN}restart-skillnotes'           '${WHITE}— restart skillnotes demo project
@@ -43,8 +43,8 @@ help:
 	@echo ${GREEN}logs-nginx'                   '${WHITE}— get nginx logs
 	@echo ${GREEN}logs-nginx-access'            '${WHITE}— get nginx access logs
 	@echo ${GREEN}logs-nginx-error'             '${WHITE}— get nginx error logs
-	@echo ${GREEN}logs-mongo'                   '${WHITE}— get mongo logs
-	@echo ${GREEN}logs-postgres'                '${WHITE}— get postgres logs
+	@echo ${GREEN}logs-mongo-demo'              '${WHITE}— get mongo database for demo projects logs 
+	@echo ${GREEN}logs-postgres-demo'           '${WHITE}— get postgres database for demo projects logs 
 	@echo ${GREEN}logs-timers'                  '${WHITE}— get timers demo project logs
 	@echo ${GREEN}logs-skillnotes'              '${WHITE}— get skillnotes demo project logs
 	@echo ${GREEN}logs-auth'                    '${WHITE}— get SSH connection attemps logs

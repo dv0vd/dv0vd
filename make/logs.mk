@@ -16,11 +16,11 @@ logs-nginx-access:
 logs-nginx-error:
 	tail -f -n +1 deployment/data/nginx/logs/error.log
 
-logs-mongo:
-	podman logs -f mongo
+logs-mongo-demo:
+	podman logs -f mongo-demo
 
-logs-postgres:
-	podman logs -f postgres
+logs-postgres-demo:
+	podman logs -f postgres-demo
 
 logs-timers:
 	podman logs -f timers_app

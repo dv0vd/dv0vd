@@ -14,14 +14,14 @@ restart-https-proxy: stop-https-proxy start-https-proxy
 restart-nginx: stop-nginx start-nginx
 
 restart-db:
-	- $(MAKE) stop-mongo
-	- $(MAKE) stop-postgres
-	- $(MAKE) start-mongo
-	- $(MAKE) start-postgres
+	- $(MAKE) stop-mongo-demo
+	- $(MAKE) stop-postgres-demo
+	- $(MAKE) start-mongo-demo
+	- $(MAKE) start-postgres-demo
 
-restart-mongo: stop-mongo start-mongo
+restart-mongo-demo: stop-mongo-demo start-mongo-demo
 
-restart-postgres: stop-postgres start-postgres
+restart-postgres-demo: stop-postgres-demo start-postgres-demo
 
 restart-demo: stop-demo start-demo restart-nginx
 
