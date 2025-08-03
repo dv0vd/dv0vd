@@ -22,6 +22,7 @@ start-socks4:
 
 start-socks5:
 	-@ rm ./deployment/data/socks5/logs/danted.log
+	- touch ./deployment/data/socks5/logs/danted.log
 	- podman pull docker.io/dv0vd/socks5
 	- podman run \
 		-d \
