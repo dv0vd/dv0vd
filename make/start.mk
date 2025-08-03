@@ -21,6 +21,7 @@ start-socks4:
 		docker.io/dv0vd/socks4
 
 start-socks5:
+	-@ rm ./deployment/data/socks5/logs/danted.log
 	- podman pull docker.io/dv0vd/socks5
 	- podman run \
 		-d \
@@ -29,6 +30,7 @@ start-socks5:
 		-p ${SOCKS5_PORT}:1080 \
 		-e SOCKS_USERNAME=${SOCKS5_USERNAME} \
 		-e SOCKS_PASSWORD=${SOCKS5_PASSWORD} \
+		-v ./deployment/data/socks5/logs/danted.log:/var/log/danted.log \
 		--restart unless-stopped \
 		--memory=${SOCKS5_MEMORY} \
 		--cpus=${SOCKS5_CPUS} \

@@ -2,7 +2,7 @@ logs-socks4:
 	podman logs -f socks4
 
 logs-socks5:
-	podman logs -f socks5
+	tail -f -n +1 deployment/data/socks5/logs/danted.log
 
 logs-https-proxy:
 	podman logs -f https-proxy
