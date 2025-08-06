@@ -90,6 +90,19 @@ start-postgres-demo:
 	--cpus=${POSTGRES_DEMO_CPUS} \
 	docker.io/postgres:15.10-bookworm
 
+start-postgres-synapse:
+	- podman run \
+	-d \
+	--name postgres-synapse \
+	-e POSTGRES_USER=${SYNAPSE_DB_USERNAME} \
+	-e POSTGRES_PASSWORD=${SYNAPSE_DB_PASSWORD} \
+	-e POSTGRES_DB=${SYNAPSE_DB_NAME} \
+	--network podman_network \
+	--restart unless-stopped \
+	--memory=${SYNAPSE_DB_MEMORY} \
+	--cpus=${SYNAPSE_DB_CPUS} \
+	docker.io/postgres:15.10-bookworm
+
 start-db:
 	- $(MAKE) start-mongo-demo
 	- $(MAKE) start-postgres-demo

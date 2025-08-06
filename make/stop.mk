@@ -18,16 +18,20 @@ stop-nginx:
 	- podman rm nginx
 
 stop-db:
-	- $(MAKE) stop-mongo
-	- $(MAKE) stop-postgres
+	- $(MAKE) stop-mongo-demo
+	- $(MAKE) stop-postgres-demo
 
-stop-mongo:
-	- podman stop mongo
-	- podman rm mongo
+stop-mongo-demo:
+	- podman stop mongo-demo
+	- podman rm mongo-demo
 
-stop-postgres:
-	- podman stop postgres
-	- podman rm postgres
+stop-postgres-demo:
+	- podman stop postgres-demo
+	- podman rm postgres-demo
+
+stop-postgres-synapse:
+	- podman stop postgres-synapse
+	- podman rm postgres-synapse
 
 stop-demo:
 	$(MAKE) stop-timers

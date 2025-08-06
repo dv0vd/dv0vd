@@ -22,6 +22,9 @@ logs-mongo-demo:
 logs-postgres-demo:
 	podman logs -f postgres-demo
 
+logs-postgres-synapse:
+	podman logs -f postgres-synapse
+
 logs-timers:
 	podman logs -f timers_app
 

@@ -9,6 +9,7 @@ help:
 	@echo ${GREEN}start-db'                     '${WHITE}— start databases
 	@echo ${GREEN}start-mongo-demo'             '${WHITE}— start mongo database for demo projects
 	@echo ${GREEN}start-postgres-demo'          '${WHITE}— start postgres database for demo projects
+	@echo ${GREEN}start-postgres-synapse'       '${WHITE}— start postgres database for synapse server
 	@echo ${GREEN}start-demo'                   '${WHITE}— start all demo projects
 	@echo ${GREEN}start-timers'                 '${WHITE}— start timers demo project
 	@echo ${GREEN}start-skillnotes'             '${WHITE}— start skillnotes demo project
@@ -21,6 +22,7 @@ help:
 	@echo ${GREEN}stop-db'                      '${WHITE}— stop databases
 	@echo ${GREEN}stop-mongo-demo'              '${WHITE}— stop mongo database for demo projects
 	@echo ${GREEN}stop-postgres-demo'           '${WHITE}— stop postgres database for demo projects
+	@echo ${GREEN}stop-postgres-synapse'        '${WHITE}— stop postgres database for synapse server
 	@echo ${GREEN}stop-demo'                    '${WHITE}— stop all demo projects
 	@echo ${GREEN}stop-timers'                  '${WHITE}— stop timers demo project
 	@echo ${GREEN}stop-skillnotes'              '${WHITE}— stop skillnotes demo project
@@ -33,6 +35,7 @@ help:
 	@echo ${GREEN}restart-db'                   '${WHITE}— restart databases
 	@echo ${GREEN}restart-mongo-demo'           '${WHITE}— restart mongo database for demo projects
 	@echo ${GREEN}restart-postgres-demo'        '${WHITE}— restart postgres database for demo projects
+	@echo ${GREEN}restart-postgres-synapse'     '${WHITE}— restart postgres database for synapse server
 	@echo ${GREEN}restart-demo'                 '${WHITE}— restart all demo projects
 	@echo ${GREEN}restart-timers'               '${WHITE}— restart timers demo project
 	@echo ${GREEN}restart-skillnotes'           '${WHITE}— restart skillnotes demo project
@@ -43,10 +46,11 @@ help:
 	@echo ${GREEN}logs-nginx'                   '${WHITE}— get nginx logs
 	@echo ${GREEN}logs-nginx-access'            '${WHITE}— get nginx access logs
 	@echo ${GREEN}logs-nginx-error'             '${WHITE}— get nginx error logs
-	@echo ${GREEN}logs-mongo-demo'              '${WHITE}— get mongo database for demo projects logs 
-	@echo ${GREEN}logs-postgres-demo'           '${WHITE}— get postgres database for demo projects logs 
-	@echo ${GREEN}logs-timers'                  '${WHITE}— get timers demo project logs
-	@echo ${GREEN}logs-skillnotes'              '${WHITE}— get skillnotes demo project logs
+	@echo ${GREEN}logs-mongo-demo'              '${WHITE}— get logs of mongo database for demo projects  
+	@echo ${GREEN}logs-postgres-demo'           '${WHITE}— get logs of postgres database for demo projects 
+	@echo ${GREEN}logs-postgres-synapse'        '${WHITE}— get logs of postgres database for synapse server 
+	@echo ${GREEN}logs-timers'                  '${WHITE}— get logs of timers demo project
+	@echo ${GREEN}logs-skillnotes'              '${WHITE}— get logs of skillnotes demo project
 	@echo ${GREEN}logs-auth'                    '${WHITE}— get SSH connection attemps logs
 	@echo ${GREEN}logs-fail2ban'                '${WHITE}— get fail2ban logs
 	@echo ${GREEN}status-containers'            '${WHITE}— get containers stats

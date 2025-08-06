@@ -23,6 +23,8 @@ restart-mongo-demo: stop-mongo-demo start-mongo-demo
 
 restart-postgres-demo: stop-postgres-demo start-postgres-demo
 
+restart-postgres-synapse: stop-postgres-synapse start-postgres-synapse
+
 restart-demo: stop-demo start-demo restart-nginx
 
 restart-timers: stop-timers start-timers restart-nginx
