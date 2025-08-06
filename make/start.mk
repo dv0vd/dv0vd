@@ -97,6 +97,7 @@ start-postgres-synapse:
 	-e POSTGRES_USER=${SYNAPSE_DB_USERNAME} \
 	-e POSTGRES_PASSWORD=${SYNAPSE_DB_PASSWORD} \
 	-e POSTGRES_DB=${SYNAPSE_DB_NAME} \
+	-p 127.0.0.1:${SYNAPSE_DB_HOST_PORT}:${SYNAPSE_DB_PORT} \
 	--network podman_network \
 	--restart unless-stopped \
 	--memory=${SYNAPSE_DB_MEMORY} \
