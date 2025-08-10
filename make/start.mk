@@ -38,7 +38,7 @@ start-socks5:
 		docker.io/dv0vd/socks5
 
 start-https-proxy:
-	- podman pull docker.io/dv0vd/https-proxy:1.0.3
+	- podman pull docker.io/dv0vd/https-proxy:1.0.4
 	- podman run \
 		-d \
 		--name https-proxy \
