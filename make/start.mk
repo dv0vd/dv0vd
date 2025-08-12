@@ -1,12 +1,14 @@
 start-containers:
 	- $(MAKE) clear-logs
 	- $(MAKE) podman-load-images
-	- $(MAKE) start-nginx
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-db
 	- $(MAKE) start-demo
+	- $(MAKE) start-synapse
+	- $(MAKE) start-element
+	- $(MAKE) start-nginx
 
 start-socks4:
 	- podman pull docker.io/dv0vd/socks4:1.0.5
@@ -68,6 +70,26 @@ start-nginx:
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
 	docker.io/nginx:1.27.3
+
+# start-nginx:
+# 	-@ rm ./deployment/data/nginx/logs/access.log
+# 	-@ rm ./deployment/data/nginx/logs/error.log
+# 	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
+# 	- podman run \
+# 	-d \
+# 	--name nginx \
+# 	--network podman_network \
+# 	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
+# 	-v ./deployment/configs/nginx/.htpasswd:/app/.htpasswd:ro \
+# 	-v ./deployment/data/nginx/logs:/var/log/nginx \
+# 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+# 	-v ./demo:/demo:ro \
+# 	-v ./src:/app:ro \
+# 	-p 33333:80 \
+# 	--restart unless-stopped \
+# 	--memory=${NGINX_MEMORY} \
+# 	--cpus=${NGINX_CPUS} \
+# 	docker.io/nginx:1.27.3
 
 start-mongo-demo:
 	- podman run \
