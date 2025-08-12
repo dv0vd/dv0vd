@@ -12,6 +12,7 @@ include ./make/stop.mk
 include ./make/general.mk
 include ./make/enter.mk
 include ./make/demo.mk
+include ./make/synapse.mk
 
 # stop-email:
 # 	- podman stop email

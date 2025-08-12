@@ -1,7 +1,12 @@
 .env
+.htpasswd
 *.crt
 *.key
 *.csr
 *.tar
-*.log
+*.log*
 deployment/configs/nginx/local.conf
+deployment/configs/nginx/nginx.conf
+deployment/configs/synapse/homeserver.yaml
+deployment/configs/postgres/synapse.sql
+deployment/configs/element/config.json

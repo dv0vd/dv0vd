@@ -6,6 +6,7 @@ apt update &&
 apt upgrade &&
 apt install -y make &&
 apt install -y git && 
+#apt install -y apache2-utils && # for nginx basic auth
 
 #ssh
 cat /root/dv0vd.xyz/deployment/configs/linux/ssh.pub >> /root/.ssh/authorized_keys &&

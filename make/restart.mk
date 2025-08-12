@@ -33,3 +33,9 @@ restart-skillnotes: stop-skillnotes start-skillnotes restart-nginx
 
 restart-fail2ban: 
 	systemctl restart fail2ban
+
+restart-synapse: stop-synapse start-synapse restart-nginx
+
+# restart-synapse-admin: stop-synapse-admin start-synapse-admin restart-nginx
+
+restart-element: stop-element start-element restart-nginx

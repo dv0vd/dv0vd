@@ -1,0 +1,30 @@
+{
+    "default_server_config": {
+        "m.homeserver": {
+            "base_url": "${SYNAPSE_PUBLIC_BASE_URL}"
+        },
+        "m.identity_server": {
+            "base_url": "${SYNAPSE_PUBLIC_BASE_URL}"
+        }
+    },
+    "disable_custom_urls": true,
+    "room_directory": {
+        "servers": ["${SYNAPSE_PUBLIC_BASE_URL}"]
+    },
+    "default_theme": "light",
+    "default_federate": false,
+    "features": {},
+    "brand": "Dv0vD",
+    "permalink_prefix": "${SYNAPSE_PUBLIC_BASE_URL}",
+    "mobile_guide_toast": true,
+    "disable_guests": true,
+    "disable_login_language_selector": false,
+    "disable_3pid_login": true,
+    "integrations_ui_url": null,
+    "integrations_rest_url": null,
+    "integrations_widgets_urls": null,
+    "show_labs_settings": false,
+    "enable_presence_by_hs_url": {
+        "${SYNAPSE_PUBLIC_BASE_URL}": true
+    }
+}

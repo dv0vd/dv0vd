@@ -48,3 +48,15 @@ stop-skillnotes:
 stop-fail2ban:
 	systemctl disable fail2ban
 	systemctl stop fail2ban
+
+stop-synapse:
+	- podman stop synapse
+	- podman rm synapse
+
+# stop-synapse-admin:
+# 	- podman stop synapse-admin
+# 	- podman rm synapse-admin
+
+stop-element:
+	- podman stop element
+	- podman rm element

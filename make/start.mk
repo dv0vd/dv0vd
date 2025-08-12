@@ -52,6 +52,7 @@ start-https-proxy:
 start-nginx:
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
+	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/nginx_env.conf > ./deployment/configs/nginx/nginx.conf"
 	- podman run \
 	-d \
 	--name nginx \
@@ -82,7 +83,7 @@ start-postgres-demo:
 	- podman run \
 	-d \
 	--name postgres-demo \
-	-v ./deployment/configs/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql \
+	-v ./deployment/configs/postgres/demo.sql:/docker-entrypoint-initdb.d/demo.sql \
 	-e POSTGRES_PASSWORD=${POSTGRES_DEMO_PASSWORD} \
 	--network podman_network \
 	--restart unless-stopped \
@@ -91,12 +92,14 @@ start-postgres-demo:
 	docker.io/postgres:15.10-bookworm
 
 start-postgres-synapse:
+	- mkdir ./deployment/data/postgres-synapse/data
 	- podman run \
 	-d \
 	--name postgres-synapse \
+	-v ./deployment/configs/postgres/synapse.sql:/docker-entrypoint-initdb.d/synapse.sql \
+	-v ./deployment/data/postgres-synapse/data:/var/lib/postgresql/data \
 	-e POSTGRES_USER=${SYNAPSE_DB_USERNAME} \
 	-e POSTGRES_PASSWORD=${SYNAPSE_DB_PASSWORD} \
-	-e POSTGRES_DB=${SYNAPSE_DB_NAME} \
 	-p 127.0.0.1:${SYNAPSE_DB_HOST_PORT}:${SYNAPSE_DB_PORT} \
 	--network podman_network \
 	--restart unless-stopped \
@@ -107,6 +110,7 @@ start-postgres-synapse:
 start-db:
 	- $(MAKE) start-mongo-demo
 	- $(MAKE) start-postgres-demo
+	- $(MAKE) start-postgres-synapse
 
 start-demo:
 	$(MAKE) start-timers
@@ -125,3 +129,40 @@ start-skillnotes:
 start-fail2ban:
 	systemctl enable fail2ban
 	systemctl start fail2ban
+
+start-synapse:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/synapse/homeserver_env.yaml > ./deployment/configs/synapse/homeserver.yaml"
+	chmod 666 ./deployment/configs/synapse/homeserver.yaml
+	chmod 777 ./deployment/data/synapse/logs
+	- podman run \
+	-d \
+	--name synapse \
+	-v ./deployment/data/synapse/logs:/var/log/synapse \
+	-v ./deployment/data/synapse/data:/data \
+	-v ./deployment/configs/synapse:/config \
+	-e SYNAPSE_CONFIG_DIR=/config \
+	--network podman_network \
+	--memory=${SYNAPSE_APP_MEMORY} \
+	--cpus=${SYNAPSE_APP_CPUS} \
+	docker.io/matrixdotorg/synapse:v1.135.0
+
+# start-synapse-admin:
+# 	- podman run \
+# 	-d \
+# 	--name synapse-admin \
+# 	--network podman_network \
+# 	--memory=${SYNAPSE_ADMIN_APP_MEMORY} \
+# 	--cpus=${SYNAPSE_ADMIN_APP_CPUS} \
+# 	docker.io/awesometechnologies/synapse-admin:0.11.1
+
+start-element:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/element/config_env.json > ./deployment/configs/element/config.json"
+	- podman run \
+	-d \
+	--name element \
+	-v ./deployment/configs/element/config.json:/app/config.json \
+	--cap-add=NET_BIND_SERVICE \
+	--network podman_network \
+	--memory=${ELEMENT_APP_MEMORY} \
+	--cpus=${ELEMENT_APP_CPUS} \
+	docker.io/vectorim/element-web:v1.11.108
