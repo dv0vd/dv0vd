@@ -9,6 +9,8 @@ synapse-init:
 	-e SYNAPSE_CONFIG_DIR=/config \
 	--network podman_network \
 	docker.io/matrixdotorg/synapse:v1.135.0 generate
+	- chmod +r deployment/configs/synapse/signing.key
+	- chmod 777 deployment/data/synapse/data
 
 synapse-create-user:
 	podman exec -it synapse bash -c 'register_new_matrix_user -c /config/homeserver.yaml'
