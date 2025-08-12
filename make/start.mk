@@ -92,6 +92,7 @@ start-postgres-demo:
 	docker.io/postgres:15.10-bookworm
 
 start-postgres-synapse:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/postgres/synapse_env.sql > ./deployment/configs/postgres/synapse.sql"
 	- mkdir ./deployment/data/postgres-synapse/data
 	- podman run \
 	-d \
