@@ -161,7 +161,6 @@ start-synapse:
 	- podman run \
 	-d \
 	--name synapse \
-	-p 8448:8448 \
 	-v ./deployment/data/synapse/logs:/var/log/synapse \
 	-v ./deployment/data/synapse/data:/data \
 	-v ./deployment/configs/synapse:/config \
