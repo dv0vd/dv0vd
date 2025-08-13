@@ -7,7 +7,7 @@ start-containers:
 	- $(MAKE) start-db
 	- $(MAKE) start-demo
 	- $(MAKE) start-synapse
-	- $(MAKE) start-element
+# - $(MAKE) start-element
 	- $(MAKE) start-nginx
 
 start-socks4:
