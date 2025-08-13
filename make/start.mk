@@ -5,9 +5,10 @@ start-containers:
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-db
-	- $(MAKE) start-demo
+	- $(MAKE) start-coturn
 	- $(MAKE) start-synapse
 # - $(MAKE) start-element
+	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
 
 start-socks4:
