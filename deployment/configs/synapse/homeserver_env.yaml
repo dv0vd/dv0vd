@@ -84,7 +84,10 @@ media_retention:
   local_media_lifetime: 45d
   remote_media_lifetime: 45d
 url_preview_enabled: false
-# turn
+turn_uris: [ "turn:${COTURN_HOST}:${COTURN_UDP_PORT}?transport=udp", "turn:${COTURN_HOST}:${COTURN_TCP_PORT}?transport=tcp" ]
+turn_shared_secret: ${COTURN_SECRET}
+turn_user_lifetime: 1h
+turn_allow_guests: false
 enable_registration: false
 registration_shared_secret: ${SYNAPSE_REGISTRATION_SHARED_SECRET}
 allow_guest_access: false

@@ -53,6 +53,10 @@ stop-synapse:
 	- podman stop synapse
 	- podman rm synapse
 
+stop-coturn:
+	- podman stop coturn
+	- podman rm coturn
+
 # stop-synapse-admin:
 # 	- podman stop synapse-admin
 # 	- podman rm synapse-admin

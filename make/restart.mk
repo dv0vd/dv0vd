@@ -36,6 +36,8 @@ restart-fail2ban:
 
 restart-synapse: stop-synapse start-synapse restart-nginx
 
+restart-coturn: stop-coturn start-coturn
+
 # restart-synapse-admin: stop-synapse-admin start-synapse-admin restart-nginx
 
 restart-element: stop-element start-element restart-nginx

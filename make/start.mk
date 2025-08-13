@@ -160,6 +160,7 @@ start-synapse:
 	- podman run \
 	-d \
 	--name synapse \
+	-p 8448:8448 \
 	-v ./deployment/data/synapse/logs:/var/log/synapse \
 	-v ./deployment/data/synapse/data:/data \
 	-v ./deployment/configs/synapse:/config \
@@ -189,3 +190,19 @@ start-element:
 	--memory=${ELEMENT_APP_MEMORY} \
 	--cpus=${ELEMENT_APP_CPUS} \
 	docker.io/vectorim/element-web:v1.11.108
+
+start-coturn:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/coturn/turnserver_env.conf > ./deployment/configs/coturn/turnserver.conf"
+	- podman run \
+	-d \
+	--name coturn \
+	-p ${COTURN_UDP_PORT}:3478 \
+	-p ${COTURN_UDP_PORT}:3478/udp \
+	-p ${COTURN_TCP_PORT}:5349 \
+	-p ${COTURN_TCP_PORT}:5349/udp \
+	-p ${COTURN_MIN_PORT}-${COTURN_MAX_PORT}:${COTURN_MIN_PORT}-${COTURN_MAX_PORT}/udp \
+	-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
+	--network podman_network \
+	--memory=${ELEMENT_APP_MEMORY} \
+	--cpus=${ELEMENT_APP_CPUS} \
+	docker.io/coturn/coturn:4.7.0
