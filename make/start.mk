@@ -202,6 +202,8 @@ start-coturn:
 	-p ${COTURN_TCP_PORT}:5349 \
 	-p ${COTURN_TCP_PORT}:5349/udp \
 	-p ${COTURN_MIN_PORT}-${COTURN_MAX_PORT}:${COTURN_MIN_PORT}-${COTURN_MAX_PORT}/udp \
+	-e DETECT_EXTERNAL_IP=yes \
+	-e DETECT_RELAY_IP=yes \
 	-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
 	--network podman_network \
 	--memory=${ELEMENT_APP_MEMORY} \
