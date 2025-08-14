@@ -40,6 +40,7 @@ help:
 	@echo ${GREEN}restart-timers'               '${WHITE}— restart timers demo project
 	@echo ${GREEN}restart-skillnotes'           '${WHITE}— restart skillnotes demo project
 	@echo ${GREEN}restart-fail2ban'             '${WHITE}— restart fail2ban and reload fail2ban-client
+	@echo ${GREEN}logs-clear'                   '${WHITE}— clear journalctl logs olden then 1 day
 	@echo ${GREEN}logs-socks4'                  '${WHITE}— get socks4 server logs
 	@echo ${GREEN}logs-socks5'                  '${WHITE}— get socks5 server logs
 	@echo ${GREEN}logs-https-proxy'             '${WHITE}— get https proxy server logs
@@ -65,7 +66,5 @@ help:
 	@echo ${GREEN}refresh-demo'                 '${WHITE}— completely remove demo projects and reinit them
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone timers demo project and install dependencies
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone timers demo project and install dependencies
-	@echo ${GREEN}clear-logs'                   '${WHITE}— clear journalctl logs olden then 1 day
-
 # @echo ${GREEN} fail2ban-ssh                            '${WHITE}— ssh blocked ips
 # @echo ${GREEN} podman-cleanup                            '${WHITE}— podman cleaning

@@ -1,5 +1,5 @@
 start-containers:
-	- $(MAKE) clear-logs
+	- $(MAKE) logs-clear
 	- $(MAKE) podman-load-images
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4

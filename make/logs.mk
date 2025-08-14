@@ -1,3 +1,6 @@
+logs-clear:
+	journalctl --vacuum-time=1d
+
 logs-socks4:
 	podman logs -f socks4
 
