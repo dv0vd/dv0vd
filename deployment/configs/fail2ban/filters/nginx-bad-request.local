@@ -1,0 +1,2 @@
+[Definition]
+ignoreregex = ^<HOST>.*"GET /(?:_matrix|_synapse/client).*"

@@ -33,6 +33,18 @@ enabled = true
 port    = http,https
 logpath = %(nginx_access_log)s
 
+[nginx-not-found]
+enabled  = true
+port     = http,https
+logpath  = %(nginx_access_log)s
+maxretry = 10
+
+[nginx-redirected]
+enabled  = true
+port     = http,https
+logpath  = %(nginx_access_log)s
+maxretry = 10
+
 [danted]
 enabled = true
 filter  = danted
