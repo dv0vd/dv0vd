@@ -7,6 +7,6 @@ datepattern = {^LN-BEG}%%ExY(?P<_sep>[-/.])%%m(?P=_sep)%%d[T ]%%H:%%M:%%S(?:[.,]
 
 journalmatch = _SYSTEMD_UNIT=nginx.service + _COMM=nginx
 
-ignoreregex = ^<HOST>.*"GET /(?:_matrix|_synapse/client).*"
+ignoreregex = ^<HOST>.*"GET /(?:_matrix|_synapse/client|\.well-known/matrix/client).*"
 
 # Author: Viacheslav Davydov <dv0vd@dv0vd.xyz>
