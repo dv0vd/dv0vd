@@ -14,6 +14,7 @@ include ./make/enter.mk
 include ./make/demo.mk
 include ./make/synapse.mk
 include ./make/fail2ban.mk
+include ./make/podman.mk
 
 # stop-email:
 # 	- podman stop email
