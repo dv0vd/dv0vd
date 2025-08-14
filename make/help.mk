@@ -54,7 +54,8 @@ help:
 	@echo ${GREEN}logs-auth'                    '${WHITE}— get SSH connection attemps logs
 	@echo ${GREEN}logs-fail2ban'                '${WHITE}— get fail2ban logs
 	@echo ${GREEN}status-containers'            '${WHITE}— get containers stats
-	@echo ${GREEN}status-fail2ban'              '${WHITE}— get fail2ban jails status
+	@echo ${GREEN}fail2ban-status'              '${WHITE}— get fail2ban jails status
+	@echo ${GREEN}fail2ban-unban-all'           '${WHITE}— unban all IPs in fail2ban
 	@echo ${GREEN}podman-load-images'           '${WHITE}— load images from local copy
 	@echo ${GREEN}podman-cleanup'               '${WHITE}— clean all podman resources
 	@echo ${GREEN}podman-create-network'        '${WHITE}— create custom podman network with ipv6 support

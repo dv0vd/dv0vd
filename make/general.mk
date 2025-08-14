@@ -1,17 +1,6 @@
 status-containers:
 	podman stats -i 1
 
-status-fail2ban:
-	fail2ban-client status
-	fail2ban-client status sshd
-	fail2ban-client status nginx-http-auth
-	fail2ban-client status nginx-limit-req
-	fail2ban-client status nginx-botsearch
-	fail2ban-client status nginx-bad-request
-	fail2ban-client status nginx-not-found
-	fail2ban-client status nginx-redirected
-	fail2ban-client status danted
-
 # clean-containers:
 # 	podman rm -af
 
