@@ -7,7 +7,6 @@ start-containers:
 	- $(MAKE) start-db
 	- $(MAKE) start-coturn
 	- $(MAKE) start-synapse
-# - $(MAKE) start-element
 	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
 
@@ -170,27 +169,6 @@ start-synapse:
 	--memory=${SYNAPSE_APP_MEMORY} \
 	--cpus=${SYNAPSE_APP_CPUS} \
 	docker.io/matrixdotorg/synapse:v1.135.0
-
-# start-synapse-admin:
-# 	- podman run \
-# 	-d \
-# 	--name synapse-admin \
-# 	--network podman_network \
-# 	--memory=${SYNAPSE_ADMIN_APP_MEMORY} \
-# 	--cpus=${SYNAPSE_ADMIN_APP_CPUS} \
-# 	docker.io/awesometechnologies/synapse-admin:0.11.1
-
-start-element:
-	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/element/config_env.json > ./deployment/configs/element/config.json"
-	- podman run \
-	-d \
-	--name element \
-	-v ./deployment/configs/element/config.json:/app/config.json \
-	--cap-add=NET_BIND_SERVICE \
-	--network podman_network \
-	--memory=${ELEMENT_APP_MEMORY} \
-	--cpus=${ELEMENT_APP_CPUS} \
-	docker.io/vectorim/element-web:v1.11.108
 
 start-coturn:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/coturn/turnserver_env.conf > ./deployment/configs/coturn/turnserver.conf"

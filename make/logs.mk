@@ -45,9 +45,3 @@ logs-synapse:
 
 logs-coturn:
 	podman logs -f coturn
-
-logs-element:
-	podman logs -f element
-
-# logs-synapse-admin:
-# 	podman logs -f synapse-admin

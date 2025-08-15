@@ -13,9 +13,7 @@ podman-load-images:
 	podman load < ./deployment/images/node_20.18.1-bookworm.tar
 	podman load < ./deployment/images/postgres_15.10-bookworm.tar
 	podman load < ./deployment/images/synapse_1.135.0.tar
-	podman load < ./deployment/images/element_1.11.108.tar
 	podman load < ./deployment/images/coturn_4.7.0.tar
-# podman load < ./deployment/images/synapse-admin_0.11.1.tar
 
 podman-info:
 	podman ps -w 1
