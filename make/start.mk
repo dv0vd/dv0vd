@@ -112,7 +112,7 @@ start-postgres-demo:
 	--restart unless-stopped \
 	--memory=${POSTGRES_DEMO_MEMORY} \
 	--cpus=${POSTGRES_DEMO_CPUS} \
-	docker.io/postgres:15.10-bookworm
+	docker.io/postgres:15.14-alpine
 
 start-postgres-synapse:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/postgres/synapse_env.sql > ./deployment/configs/postgres/synapse.sql"
