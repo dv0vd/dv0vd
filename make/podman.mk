@@ -5,7 +5,7 @@ podman-create-network:
 	podman network create --ipv6 podman_network
 
 podman-load-images:
-	podman load < ./deployment/images/dv0vd-socks4_1.1.0.tar
+	podman load < ./deployment/images/dv0vd-socks4_1.1.1.tar
 	podman load < ./deployment/images/dv0vd-socks5_1.0.11.tar
 	podman load < ./deployment/images/dv0vd-https-proxy_1.1.0.tar
 	podman load < ./deployment/images/mongo_7.0.16.tar
