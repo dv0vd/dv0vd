@@ -129,7 +129,7 @@ start-postgres-synapse:
 	--restart unless-stopped \
 	--memory=${SYNAPSE_DB_MEMORY} \
 	--cpus=${SYNAPSE_DB_CPUS} \
-	docker.io/postgres:15.10-bookworm
+	docker.io/postgres:15.14-alpine
 
 start-db:
 	- $(MAKE) start-mongo-demo

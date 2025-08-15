@@ -11,7 +11,8 @@ podman-load-images:
 	podman load < ./deployment/images/mongo_7.0.16.tar
 	podman load < ./deployment/images/nginx_1.27.3.tar
 	podman load < ./deployment/images/node_20.18.1-bookworm.tar
-	podman load < ./deployment/images/postgres_15.10-bookworm.tar
+	podman load < ./deployment/images/node_24.5.0-alpine.tar
+	podman load < ./deployment/images/postgres_15.14-alpine.tar
 	podman load < ./deployment/images/synapse_1.135.0.tar
 	podman load < ./deployment/images/coturn_4.7.0.tar
 
