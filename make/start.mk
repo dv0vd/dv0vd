@@ -148,6 +148,7 @@ start-timers:
 start-skillnotes:
 	cp ./.env ./demo/demo-skillnotes/.env
 	cd ./demo/demo-skillnotes
+	- make build
 	- make start-app
 
 start-fail2ban:
