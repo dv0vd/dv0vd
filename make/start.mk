@@ -11,7 +11,7 @@ start-containers:
 	- $(MAKE) start-nginx
 
 start-socks4:
-	- podman pull docker.io/dv0vd/socks4:1.1.2
+	- podman pull docker.io/dv0vd/socks4:1.1.3
 	- podman run \
 		-d \
 		--name socks4 \
