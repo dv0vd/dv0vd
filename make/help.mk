@@ -69,5 +69,6 @@ help:
 	@echo ${GREEN}refresh-demo'                 '${WHITE}— completely remove demo projects and reinit them${RESET}
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone timers demo project and install dependencies${RESET}
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone timers demo project and install dependencies${RESET}
+	@echo ${GREEN}postgres-vacuum-clean'        '${WHITE}— reclaims synapse postgres space${RESET}
 # @echo ${GREEN} fail2ban-ssh                            '${WHITE}— ssh blocked ips
 # @echo ${GREEN} podman-cleanup                            '${WHITE}— podman cleaning
