@@ -69,6 +69,10 @@ help:
 	@echo ${GREEN}refresh-demo'                 '${WHITE}— completely remove demo projects and reinit them${RESET}
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone timers demo project and install dependencies${RESET}
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone timers demo project and install dependencies${RESET}
+	@echo ${GREEN}synapse-init'                 '${WHITE}— init synapse server${RESET}
+	@echo ${GREEN}synapse-create-user'          '${WHITE}— create synapse user${RESET}
 	@echo ${GREEN}synapse-vacuum-clean'         '${WHITE}— reclaims synapse postgres space${RESET}
+	@echo ${GREEN}synapse-backup-database'      '${WHITE}— backup synapse postgres databas${RESET}
+	@echo ${GREEN}synapse-restore-database'     '${WHITE}— restore synapse postgres databas${RESET}
 # @echo ${GREEN} fail2ban-ssh                            '${WHITE}— ssh blocked ips
 # @echo ${GREEN} podman-cleanup                            '${WHITE}— podman cleaning

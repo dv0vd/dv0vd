@@ -5,6 +5,7 @@
 *.csr
 *.tar
 *.log*
+*.dump
 deployment/configs/nginx/local.conf
 deployment/configs/nginx/nginx.conf
 deployment/configs/synapse/homeserver.yaml

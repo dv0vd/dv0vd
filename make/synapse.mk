@@ -14,3 +14,16 @@ synapse-init:
 
 synapse-create-user:
 	podman exec -it synapse bash -c 'register_new_matrix_user -c /config/homeserver.yaml'
+
+synapse-vacuum-clean:
+	podman exec -it postgres-synapse sh -c 'psql -U ${SYNAPSE_DB_USERNAME} -d ${SYNAPSE_DB_NAME} -c "VACUUM FULL;"'
+
+synapse-backup-database:
+	- cp ./deployment/data/postgres-synapse/backups/1.dump ./deployment/data/postgres-synapse/backups/2.dump
+	- rm ./deployment/data/postgres-synapse/backups/1.dump
+	- cp ./deployment/data/postgres-synapse/backups/0.dump ./deployment/data/postgres-synapse/backups/1.dump
+	podman exec -it postgres-synapse sh -c 'pg_dump -U ${SYNAPSE_DB_USERNAME} -v -Fc --exclude-table-data e2e_one_time_keys_json ${SYNAPSE_DB_NAME} > /backups/0.dump'
+	- rm ./deployment/data/postgres-synapse/backups/2.dump
+
+synapse-restore-database:
+	podman exec -it postgres-synapse sh -c 'pg_restore -U ${SYNAPSE_DB_USERNAME} -v -d ${SYNAPSE_DB_NAME} < /backups/0.dump'
