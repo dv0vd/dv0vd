@@ -91,10 +91,10 @@ turn_allow_guests: false
 enable_registration: false
 registration_shared_secret: ${SYNAPSE_REGISTRATION_SHARED_SECRET}
 allow_guest_access: false
-session_lifetime: 5w
+session_lifetime: infinity
 refreshable_access_token_lifetime: 1h
 refresh_token_lifetime: 5w
-nonrefreshable_access_token_lifetime: 24h
+nonrefreshable_access_token_lifetime: infinity
 enable_metrics: false
 report_stats: false
 macaroon_secret_key: ${SYNAPSE_MACAROON_SHARED_SECRET}
