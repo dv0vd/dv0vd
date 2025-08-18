@@ -1,5 +1,12 @@
 stop-containers:
-	podman stop -a
+	- stop-nginx
+	- stop-demo
+	- stop-socks4
+	- stop-socks5
+	- stop-https-proxy
+	- stop-coturn
+	- stop-synapse
+	- stop-db
 
 stop-socks4:
 	- podman stop socks4
@@ -20,6 +27,7 @@ stop-nginx:
 stop-db:
 	- $(MAKE) stop-mongo-demo
 	- $(MAKE) stop-postgres-demo
+	- $(MAKE) stop-postgres-synapse
 
 stop-mongo-demo:
 	- podman stop mongo-demo
