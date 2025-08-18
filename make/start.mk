@@ -5,6 +5,7 @@ start-containers:
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-db
+	- $(MAKE) postgres-vacuum-clean
 	- $(MAKE) start-coturn
 	- $(MAKE) start-synapse
 	- $(MAKE) start-demo
