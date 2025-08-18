@@ -55,6 +55,8 @@ help:
 	@echo ${GREEN}logs-skillnotes'              '${WHITE}— get logs of skillnotes demo project${RESET}
 	@echo ${GREEN}logs-auth'                    '${WHITE}— get SSH connection attemps logs${RESET}
 	@echo ${GREEN}logs-fail2ban'                '${WHITE}— get fail2ban logs${RESET}
+	@echo ${GREEN}logs-synapse'                 '${WHITE}— get synapse homerver logs${RESET}
+	@echo ${GREEN}logs-synapse-container'       '${WHITE}— get synapse container logs${RESET}
 	@echo ${GREEN}fail2ban-status'              '${WHITE}— get fail2ban jails status${RESET}
 	@echo ${GREEN}fail2ban-unban-all'           '${WHITE}— unban all IPs in fail2ban${RESET}
 	@echo ${GREEN}podman-load-images'           '${WHITE}— load images from local copy${RESET}

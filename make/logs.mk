@@ -43,5 +43,8 @@ logs-auth:
 logs-synapse:
 	tail -f -n +1 deployment/data/synapse/logs/homeserver.log
 
+logs-synapse-container:
+	podman logs -f synapse
+
 logs-coturn:
 	podman logs -f coturn
