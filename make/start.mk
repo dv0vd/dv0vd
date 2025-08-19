@@ -83,7 +83,6 @@ start-nginx:
 # 	--name nginx \
 # 	--network podman_network \
 # 	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
-# 	-v ./deployment/configs/nginx/.htpasswd:/app/.htpasswd:ro \
 # 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 # 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 # 	-v ./demo:/demo:ro \
