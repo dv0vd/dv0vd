@@ -40,6 +40,7 @@ podman system prune --all -f &&
 cgcreate -g memory,cpu:/podman-group &&
 echo $((512*1024*1024)) | sudo tee /sys/fs/cgroup/mygroup/memory.max &&
 echo "50000 100000" | sudo tee /sys/fs/cgroup/mygroup/cpu.max && # quota period, period = 100000 ms
+# systemctl set-property podman-group.slice MemoryMax=512M CPUQuota=50% ???
 
 # restart
 rm /etc/rc.local -f &&
