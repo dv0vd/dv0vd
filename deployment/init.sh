@@ -6,6 +6,7 @@ apt update &&
 apt upgrade &&
 apt install -y make &&
 apt install -y git && 
+apt install -y cgroup-tools &&
 #apt install -y apache2-utils && # for nginx basic auth
 #apt install -y telnet &&
 
@@ -34,6 +35,13 @@ pipx ensurepath &&
 systemctl enable podman &&
 systemctl start podman &&
 podman system prune --all -f &&
+
+# cgroup
+cgcreate -g memory,cpu:/podman-group &&
+echo $((512*1024*1024)) | sudo tee /sys/fs/cgroup/mygroup/memory.max &&
+echo "50000 100000" | sudo tee /sys/fs/cgroup/mygroup/cpu.max && # quota period, period = 100000 ms
+
+# restart
 rm /etc/rc.local -f &&
 cp /root/dv0vd.xyz/deployment/configs/linux/rc.local /etc/rc.local
 chmod a+x /etc/rc.local &&
