@@ -22,7 +22,7 @@ start-socks4:
 		--restart unless-stopped \
 		--memory=${SOCKS4_MEMORY} \
 		--cpus=${SOCKS5_CPUS} \
-		--cgroup-parent=/podman-group \
+		--cgroup-parent=/podman-group.slice \
 		docker.io/dv0vd/socks4
 
 start-socks5:
@@ -40,7 +40,7 @@ start-socks5:
 		--restart unless-stopped \
 		--memory=${SOCKS5_MEMORY} \
 		--cpus=${SOCKS5_CPUS} \
-		--cgroup-parent=/podman-group \
+		--cgroup-parent=/podman-group.slice \
 		docker.io/dv0vd/socks5
 
 start-https-proxy:
@@ -53,7 +53,7 @@ start-https-proxy:
 		--restart unless-stopped \
 		--memory=${HTTPS_PROXY_MEMORY} \
 		--cpus=${HTTPS_PROXY_CPUS} \
-		--cgroup-parent=/podman-group \
+		--cgroup-parent=/podman-group.slice \
 		docker.io/dv0vd/https-proxy
 
 start-nginx:
@@ -75,7 +75,7 @@ start-nginx:
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
-	--cgroup-parent=/podman-group \
+	--cgroup-parent=/podman-group.slice \
 	docker.io/nginx:1.27.3
 
 # start-nginx:
@@ -105,7 +105,7 @@ start-mongo-demo:
 	--restart unless-stopped \
 	--memory=${MONGO_DEMO_MEMORY} \
 	--cpus=${MONGO_DEMO_CPUS} \
-	--cgroup-parent=/podman-group \
+	--cgroup-parent=/podman-group.slice \
 	docker.io/mongo:7.0.16
 
 start-postgres-demo:
@@ -118,7 +118,7 @@ start-postgres-demo:
 	--restart unless-stopped \
 	--memory=${POSTGRES_DEMO_MEMORY} \
 	--cpus=${POSTGRES_DEMO_CPUS} \
-	--cgroup-parent=/podman-group \
+	--cgroup-parent=/podman-group.slice \
 	docker.io/postgres:15.14-alpine
 
 start-postgres-synapse:
@@ -137,7 +137,7 @@ start-postgres-synapse:
 	--restart unless-stopped \
 	--memory=${SYNAPSE_DB_MEMORY} \
 	--cpus=${SYNAPSE_DB_CPUS} \
-	--cgroup-parent=/podman-group \
+	--cgroup-parent=/podman-group.slice \
 	docker.io/postgres:15.14-alpine
 
 start-db:
@@ -178,7 +178,7 @@ start-synapse:
 	--network podman_network \
 	--memory=${SYNAPSE_APP_MEMORY} \
 	--cpus=${SYNAPSE_APP_CPUS} \
-	--cgroup-parent=/podman-group \
+	--cgroup-parent=/podman-group.slice \
 	docker.io/matrixdotorg/synapse:v1.135.0
 
 start-coturn:
@@ -197,5 +197,5 @@ start-coturn:
 	--network podman_network \
 	--memory=${ELEMENT_APP_MEMORY} \
 	--cpus=${ELEMENT_APP_CPUS} \
-	--cgroup-parent=/podman-group \
+	--cgroup-parent=/podman-group.slice \
 	docker.io/coturn/coturn:4.7.0
