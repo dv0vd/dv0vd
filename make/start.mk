@@ -1,10 +1,10 @@
 start-containers:
+	- $(MAKE) start-db
 	- $(MAKE) logs-clear
 	- $(MAKE) podman-load-images
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
-	- $(MAKE) start-db
 	- $(MAKE) synapse-vacuum-clean
 	- $(MAKE) synapse-backup-database
 	- $(MAKE) start-coturn
