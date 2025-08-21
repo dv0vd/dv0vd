@@ -195,7 +195,7 @@ start-coturn:
 	-e DETECT_RELAY_IP=yes \
 	-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
 	--network podman_network \
-	--memory=${ELEMENT_APP_MEMORY} \
-	--cpus=${ELEMENT_APP_CPUS} \
+	--memory=${COTURN_MEMORY} \
+	--cpus=${COTURN_CPUS} \
 	--cgroup-parent=/podman-group.slice \
 	docker.io/coturn/coturn:4.7.0
