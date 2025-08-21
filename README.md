@@ -18,4 +18,4 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 - node_24.5.0-alpine.tar
 - postgres_15.14-alpine.tar
 - synapse_1.135.0.tar
-7) Run the initialization script `./deployment/init.sh`.
+7) Run the initialization script `bash ./deployment/init.sh`.
