@@ -1,3 +1,8 @@
+# env
+set -a &&
+source .env &&
+set + a &&
+
 # timezone
 timedatectl set-timezone UTC &&
 
