@@ -1,6 +1,6 @@
 # Dv0vD
 ## https://dv0vd.xyz
-My personal website to showcase my portfolio, skills, hobbies, and contact information. Additionally, the site features deployed servers for SOCKS4, SOCKS5, HTTPS proxy, Synapse, Coturn, Matrix, Pi-hole (Ad Blocking), and Email services.
+My personal website to showcase my portfolio, skills, hobbies, and contact information. Additionally, the site features deployed servers for SOCKS4, SOCKS5, HTTPS proxy, Synapse, TURN, Matrix, Pi-hole (Ad Blocking), and Email services.
 
 ## Getting started  
 1) Update packages index: `apt update`.
