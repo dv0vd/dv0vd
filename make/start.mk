@@ -1,7 +1,5 @@
 start-containers:
 	- $(MAKE) start-db
-	- $(MAKE) logs-clear
-	- $(MAKE) podman-load-images
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
