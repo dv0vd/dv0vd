@@ -64,7 +64,7 @@ help:
 	@echo ${GREEN}podman-create-network'        '${WHITE}— create custom podman network with ipv6 support${RESET}
 	@echo ${GREEN}podman-stats'                 '${WHITE}— get containers stats${RESET}
 	@echo ${GREEN}podman-info'                  '${WHITE}— get containers list with info${RESET}
-	@echo ${GREEN}schedule-midnight-reboot'     '${WHITE}— reboot server at midnight${RESET}
+	@echo ${GREEN}on-startup'                   '${WHITE}— commands to execute immediately after server startup${RESET}
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone demo projects and install dependencies${RESET}
 	@echo ${GREEN}refresh-demo'                 '${WHITE}— completely remove demo projects and reinit them${RESET}
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone timers demo project and install dependencies${RESET}
@@ -74,5 +74,3 @@ help:
 	@echo ${GREEN}synapse-vacuum-clean'         '${WHITE}— reclaims synapse postgres space${RESET}
 	@echo ${GREEN}synapse-backup-database'      '${WHITE}— backup synapse postgres databas${RESET}
 	@echo ${GREEN}synapse-restore-database'     '${WHITE}— restore synapse postgres databas${RESET}
-# @echo ${GREEN} fail2ban-ssh                            '${WHITE}— ssh blocked ips
-# @echo ${GREEN} podman-cleanup                            '${WHITE}— podman cleaning

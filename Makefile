@@ -9,12 +9,12 @@ include ./make/logs.mk
 include ./make/restart.mk
 include ./make/start.mk
 include ./make/stop.mk
-include ./make/general.mk
 include ./make/enter.mk
 include ./make/demo.mk
 include ./make/synapse.mk
 include ./make/fail2ban.mk
 include ./make/podman.mk
+include ./make/hooks.mk
 
 # stop-email:
 # 	- podman stop email
