@@ -64,6 +64,7 @@ help:
 	@echo ${GREEN}podman-create-network'        '${WHITE}— create custom podman network with ipv6 support${RESET}
 	@echo ${GREEN}podman-stats'                 '${WHITE}— get containers stats${RESET}
 	@echo ${GREEN}podman-info'                  '${WHITE}— get containers list with info${RESET}
+	@echo ${GREEN}podman-resources'             '${WHITE}— get podman consumed resources with tasks{RESET}
 	@echo ${GREEN}on-startup'                   '${WHITE}— commands to execute immediately after server startup${RESET}
 	@echo ${GREEN}init-demo'                    '${WHITE}— clone demo projects and install dependencies${RESET}
 	@echo ${GREEN}refresh-demo'                 '${WHITE}— completely remove demo projects and reinit them${RESET}

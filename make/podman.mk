@@ -21,3 +21,6 @@ podman-info:
 
 podman-stats:
 	podman stats -i 1
+
+podman-resources:
+	systemctl status podman-group.slice
