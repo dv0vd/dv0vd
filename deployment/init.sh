@@ -46,6 +46,8 @@ systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuot
 
 #rclone
 envsubst < ./deployment/configs/linux/rclone_env.conf > /root/.config/rclone/rclone.conf &&
+ssh-keygen -R $RCLONE_HOST &&
+ssh-keyscan -p $RCLONE_HOST $RCLONE_PORT >> /root/.ssh/known_hosts &&
 
 # restart
 rm /etc/rc.local -f &&
