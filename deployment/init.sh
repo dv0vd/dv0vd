@@ -43,7 +43,7 @@ podman system prune --all -f &&
 systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS &&
 
 #rclone
-set -a; . .env; set +a; envsubst < ./deployment/configs/linux/rclone_env.conf > ./root/.config/rclone/rclone.conf &&
+set -a; . .env; set +a; envsubst < ./deployment/configs/linux/rclone_env.conf > /root/.config/rclone/rclone.conf &&
 
 # restart
 rm /etc/rc.local -f &&
