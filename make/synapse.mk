@@ -32,6 +32,6 @@ synapse-backup-to-storage-vps:
 	- rclone sync -v '/root/dv0vd.xyz/deployment/data/postgres-synapse/backups' 'vps-storage-bg-encrypted:/postgres-synapse'
 	- rclone sync -v '/root/dv0vd.xyz/deployment/data/synapse/data/media_store' 'vps-storage-bg-encrypted:/synapse'
 
-synapse restore-from-storage-vps:
+synapse-restore-from-storage-vps:
 	- rclone sync -v 'vps-storage-bg-encrypted:/postgres-synapse' '/root/dv0vd.xyz/deployment/data/postgres-synapse/restored_backups'
 	- rclone sync -v 'vps-storage-bg-encrypted:/synapse' '/root/dv0vd.xyz/deployment/data/synapse/restored_backups'
