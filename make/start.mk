@@ -5,6 +5,7 @@ start-containers:
 	- $(MAKE) start-https-proxy
 	- $(MAKE) synapse-vacuum-clean
 	- $(MAKE) synapse-backup-database
+	- $(MAKE) synapse-backup-to-storage-vps
 	- $(MAKE) start-coturn
 	- $(MAKE) start-synapse
 	- $(MAKE) start-demo

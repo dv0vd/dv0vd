@@ -12,3 +12,4 @@ deployment/configs/synapse/homeserver.yaml
 deployment/configs/postgres/synapse.sql
 deployment/configs/element/config.json
 deployment/configs/coturn/turnserver.conf
+deployment/configs/linux/rclone.conf
