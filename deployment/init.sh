@@ -20,6 +20,8 @@ cat /root/dv0vd.xyz/deployment/configs/linux/ssh.pub >> /root/.ssh/authorized_ke
 touch /etc/ssh/sshd_config.d/00-dv0vd.conf &&
 echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config.d/00-dv0vd.conf &&
 echo Port $SSH_PORT >> /etc/ssh/sshd_config.d/00-dv0vd.conf &&
+envsubst < ./deployment/configs/linux/ssh_env.conf > /root/.ssh/config &&
+chmod 600 /root/.ssh/config &&
 
 # fail2ban
 apt install fail2ban -y &&
@@ -43,7 +45,7 @@ podman system prune --all -f &&
 systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS &&
 
 #rclone
-set -a; . .env; set +a; envsubst < ./deployment/configs/linux/rclone_env.conf > /root/.config/rclone/rclone.conf &&
+envsubst < ./deployment/configs/linux/rclone_env.conf > /root/.config/rclone/rclone.conf &&
 
 # restart
 rm /etc/rc.local -f &&
