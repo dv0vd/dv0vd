@@ -45,6 +45,8 @@ podman system prune --all -f &&
 systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS &&
 
 #rclone
+mkdir -p /root/.config/rclone &&
+touch /root/.config/rclone/rclone.conf &&
 envsubst < ./deployment/configs/linux/rclone_env.conf > /root/.config/rclone/rclone.conf &&
 ssh-keygen -R $RCLONE_HOST &&
 ssh-keyscan -p $RCLONE_HOST $RCLONE_PORT >> /root/.ssh/known_hosts &&
