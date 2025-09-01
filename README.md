@@ -5,10 +5,11 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 ## Getting started  
 1) Update packages index: `apt update`.
 2) Install git: `apt install git`.
-3) Configure the `.env` file.
-4) Copy vps SSH private key to `/root/.ssh` for GitHub.
-5) Copy storage-vps SSH private key to `/root/.ssh` for storage vps backups.
-6) Copy Podman images to `./deployment/images`:
+3) Copy vps SSH private key to `/root/.ssh` for GitHub.
+4) Copy storage-vps SSH private key to `/root/.ssh` for storage vps backups.
+5) Clone repo: `git@github.com:dv0vd/dv0vd.xyz.git`.
+6) Configure the `.env` file.
+7) Copy Podman images to `./deployment/images`:
 - coturn_4.7.0.tar
 - dv0vd-https-proxy_1.1.0.tar
 - dv0vd-socks4_1.1.3.tar
