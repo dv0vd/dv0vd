@@ -2,7 +2,7 @@ podman-cleanup:
 	podman system reset -f
 
 podman-create-network:
-	podman network create --ipv6 podman_network
+	podman network create --ipv6 --dns=127.0.0.1 podman_network
 
 podman-load-images:
 	podman load < ./deployment/images/dv0vd-socks4_1.1.3.tar
