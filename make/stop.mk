@@ -4,7 +4,6 @@ stop-containers:
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
 	- $(MAKE) stop-https-proxy
-	- $(MAKE) stop-pihole
 	- $(MAKE) stop-coturn
 	- $(MAKE) stop-synapse
 	- $(MAKE) stop-db

@@ -10,7 +10,6 @@ start-containers:
 	- $(MAKE) start-synapse
 	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
-	- $(MAKE) start-pihole
 
 start-socks4:
 	- podman pull docker.io/dv0vd/socks4:1.1.3
