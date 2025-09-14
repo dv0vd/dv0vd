@@ -60,7 +60,6 @@ start-nginx:
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
-	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
 	-p 80:80 \
 	-p 443:443 \
