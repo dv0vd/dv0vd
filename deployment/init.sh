@@ -43,6 +43,8 @@ systemctl enable podman &&
 systemctl start podman &&
 podman system prune --all -f &&
 systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS &&
+systemctl stop systemd-resolved && # for Pi-hole
+systemctl disable systemd-resolved && # for Pi-hole
 
 #rclone
 mkdir -p /root/.config/rclone &&
