@@ -15,6 +15,7 @@ podman-load-images:
 	podman load < ./deployment/images/postgres_15.14-alpine.tar
 	podman load < ./deployment/images/synapse_1.135.0.tar
 	podman load < ./deployment/images/coturn_4.7.0.tar
+	podman load < ./deployment/images/pihole_2025.08.0.tar
 
 podman-info:
 	podman ps -w 1

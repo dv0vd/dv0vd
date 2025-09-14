@@ -7,6 +7,7 @@ help:
 	@echo ${GREEN}start-socks5'                            '${WHITE}— start socks5 server${RESET}
 	@echo ${GREEN}start-https-proxy'                       '${WHITE}— start https proxy server${RESET}
 	@echo ${GREEN}start-nginx'                             '${WHITE}— start nginx server${RESET}
+	@echo ${GREEN}start-pihone'                            '${WHITE}— start Pi-hole${RESET}
 	@echo ${GREEN}start-db'                                '${WHITE}— start databases${RESET}
 	@echo ${GREEN}start-mongo-demo'                        '${WHITE}— start mongo database for demo projects${RESET}
 	@echo ${GREEN}start-postgres-demo'                     '${WHITE}— start postgres database for demo projects${RESET}
@@ -19,6 +20,7 @@ help:
 	@echo ${GREEN}stop-socks4'                             '${WHITE}— stop socks4 server${RESET}
 	@echo ${GREEN}stop-socks5'                             '${WHITE}— stop socks5 server${RESET}
 	@echo ${GREEN}stop-https-proxy'                        '${WHITE}— stop https proxy server${RESET}
+	@echo ${GREEN}stop-pihole'                             '${WHITE}— stop Pi-hole${RESET}
 	@echo ${GREEN}stop-nginx'                              '${WHITE}— stop nginx server${RESET}
 	@echo ${GREEN}stop-db'                                 '${WHITE}— stop databases${RESET}
 	@echo ${GREEN}stop-mongo-demo'                         '${WHITE}— stop mongo database for demo projects${RESET}
@@ -33,6 +35,7 @@ help:
 	@echo ${GREEN}restart-socks5'                          '${WHITE}— restart socks5 server${RESET}
 	@echo ${GREEN}restart-https-proxy'                     '${WHITE}— restart https proxy server${RESET}
 	@echo ${GREEN}restart-nginx'                           '${WHITE}— restart nginx server${RESET}
+	@echo ${GREEN}restart-pihole'                          '${WHITE}— restart Pi-hole${RESET}
 	@echo ${GREEN}restart-db'                              '${WHITE}— restart databases${RESET}
 	@echo ${GREEN}restart-mongo-demo'                      '${WHITE}— restart mongo database for demo projects${RESET}
 	@echo ${GREEN}restart-postgres-demo'                   '${WHITE}— restart postgres database for demo projects${RESET}
@@ -48,6 +51,7 @@ help:
 	@echo ${GREEN}logs-nginx'                              '${WHITE}— get nginx logs${RESET}
 	@echo ${GREEN}logs-nginx-access'                       '${WHITE}— get nginx access logs${RESET}
 	@echo ${GREEN}logs-nginx-error'                        '${WHITE}— get nginx error logs${RESET}
+	@echo ${GREEN}logs-pihole'                             '${WHITE}— get Pi-hole logs${RESET}
 	@echo ${GREEN}logs-mongo-demo'                         '${WHITE}— get logs of mongo database for demo projects${RESET}
 	@echo ${GREEN}logs-postgres-demo'                      '${WHITE}— get logs of postgres database for demo projects${RESET}
 	@echo ${GREEN}logs-postgres-synapse'                   '${WHITE}— get logs of postgres database for synapse server${RESET}

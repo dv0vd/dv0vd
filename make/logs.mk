@@ -48,3 +48,6 @@ logs-synapse-container:
 
 logs-coturn:
 	podman logs -f coturn
+
+logs-pihole:
+	podman logs -f pihole

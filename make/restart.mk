@@ -11,6 +11,8 @@ restart-socks5: stop-socks5 start-socks5
 
 restart-https-proxy: stop-https-proxy start-https-proxy
 
+restart-pihole: stop-pihole start-pihole
+
 restart-nginx: stop-nginx start-nginx
 
 restart-db:

@@ -10,6 +10,7 @@ start-containers:
 	- $(MAKE) start-synapse
 	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
+	- $(MAKE) start-pihole
 
 start-socks4:
 	- podman pull docker.io/dv0vd/socks4:1.1.3
@@ -55,46 +56,62 @@ start-https-proxy:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/dv0vd/https-proxy
 
-start-nginx:
-	-@ rm ./deployment/data/nginx/logs/access.log
-	-@ rm ./deployment/data/nginx/logs/error.log
-	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/nginx_env.conf > ./deployment/configs/nginx/nginx.conf"
-	- podman run \
-	-d \
-	--name nginx \
-	--network podman_network \
-	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/configs/nginx:/deployment/nginx:ro \
-	-v ./deployment/data/nginx/logs:/var/log/nginx \
-	-v ./demo:/demo:ro \
-	-v ./src:/app:ro \
-	-p 80:80 \
-	-p 443:443 \
-	-p 8448:8448 \
-	--restart unless-stopped \
-	--memory=${NGINX_MEMORY} \
-	--cpus=${NGINX_CPUS} \
-	--cgroup-parent=/podman-group.slice \
-	docker.io/nginx:1.27.3
-
 # start-nginx:
 # 	-@ rm ./deployment/data/nginx/logs/access.log
 # 	-@ rm ./deployment/data/nginx/logs/error.log
-# 	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
+# 	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX \$$PIHOLE_ADMIN_URL_PATH' < ./deployment/configs/nginx/nginx_env.conf > ./deployment/configs/nginx/nginx.conf"
 # 	- podman run \
 # 	-d \
 # 	--name nginx \
 # 	--network podman_network \
-# 	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
-# 	-v ./deployment/data/nginx/logs:/var/log/nginx \
+# 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 # 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+# 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 # 	-v ./demo:/demo:ro \
 # 	-v ./src:/app:ro \
-# 	-p 33333:80 \
+# 	-p 80:80 \
+# 	-p 443:443 \
+# 	-p 8448:8448 \
 # 	--restart unless-stopped \
 # 	--memory=${NGINX_MEMORY} \
 # 	--cpus=${NGINX_CPUS} \
+# 	--cgroup-parent=/podman-group.slice \
 # 	docker.io/nginx:1.27.3
+
+start-nginx:
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
+	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
+	- podman run \
+	-d \
+	--name nginx \
+	--network podman_network \
+	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./demo:/demo:ro \
+	-v ./src:/app:ro \
+	-p 33333:80 \
+	--restart unless-stopped \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
+	docker.io/nginx:1.27.3
+
+start-pihole:
+	- podman run \
+		-d \
+		--name pihole \
+		--network podman_network \
+		-p 5353:53 \
+		-e TZ=UTC \
+		-e FTLCONF_dns_upstreams='1.1.1.1;8.8.8.8' \
+		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
+		-v ./deployment/data/pihole/data:/etc/pihole \
+		--restart unless-stopped \
+		--memory=${PIHOLE_MEMORY} \
+		--cpus=${PIHOLE_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/pihole/pihole:2025.08.0
 
 start-mongo-demo:
 	- podman run \
