@@ -112,6 +112,22 @@ start-pihole:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/pihole/pihole:2025.08.0
 
+# start-pihole:
+# 	- podman run \
+# 		-d \
+# 		--name pihole \
+# 		--network host \
+# 		-e TZ=UTC \
+# 		-e FTLCONF_dns_upstreams='1.1.1.1;8.8.8.8' \
+# 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
+# 		-e FTLCONF_dns_listeningMode=all \
+# 		-v ./deployment/data/pihole/data:/etc/pihole \
+# 		--restart unless-stopped \
+# 		--memory=${PIHOLE_MEMORY} \
+# 		--cpus=${PIHOLE_CPUS} \
+# 		--cgroup-parent=/podman-group.slice \
+# 		docker.io/pihole/pihole:2025.08.0
+
 start-mongo-demo:
 	- podman run \
 	-d \
