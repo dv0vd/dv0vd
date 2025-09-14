@@ -112,7 +112,6 @@ start-pihole:
 		--cpus=${PIHOLE_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/pihole/pihole:2025.08.0
-	- podman network connect podman_network pihole
 
 start-mongo-demo:
 	- podman run \
