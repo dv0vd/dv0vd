@@ -56,46 +56,46 @@ start-https-proxy:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/dv0vd/https-proxy
 
-# start-nginx:
-# 	-@ rm ./deployment/data/nginx/logs/access.log
-# 	-@ rm ./deployment/data/nginx/logs/error.log
-# 	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX \$$PIHOLE_ADMIN_URL_PATH' < ./deployment/configs/nginx/nginx_env.conf > ./deployment/configs/nginx/nginx.conf"
-# 	- podman run \
-# 	-d \
-# 	--name nginx \
-# 	--network podman_network \
-# 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-# 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
-# 	-v ./deployment/data/nginx/logs:/var/log/nginx \
-# 	-v ./demo:/demo:ro \
-# 	-v ./src:/app:ro \
-# 	-p 80:80 \
-# 	-p 443:443 \
-# 	-p 8448:8448 \
-# 	--restart unless-stopped \
-# 	--memory=${NGINX_MEMORY} \
-# 	--cpus=${NGINX_CPUS} \
-# 	--cgroup-parent=/podman-group.slice \
-# 	docker.io/nginx:1.27.3
-
 start-nginx:
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
-	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX \$$PIHOLE_ADMIN_URL_PATH' < ./deployment/configs/nginx/nginx_env.conf > ./deployment/configs/nginx/nginx.conf"
 	- podman run \
 	-d \
 	--name nginx \
 	--network podman_network \
-	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
-	-p 33333:80 \
+	-p 80:80 \
+	-p 443:443 \
+	-p 8448:8448 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
+	--cgroup-parent=/podman-group.slice \
 	docker.io/nginx:1.27.3
+
+# start-nginx:
+# 	-@ rm ./deployment/data/nginx/logs/access.log
+# 	-@ rm ./deployment/data/nginx/logs/error.log
+# 	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
+# 	- podman run \
+# 	-d \
+# 	--name nginx \
+# 	--network podman_network \
+# 	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
+# 	-v ./deployment/data/nginx/logs:/var/log/nginx \
+# 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+# 	-v ./demo:/demo:ro \
+# 	-v ./src:/app:ro \
+# 	-p 33333:80 \
+# 	--restart unless-stopped \
+# 	--memory=${NGINX_MEMORY} \
+# 	--cpus=${NGINX_CPUS} \
+# 	docker.io/nginx:1.27.3
 
 start-pihole:
 	- podman run \
