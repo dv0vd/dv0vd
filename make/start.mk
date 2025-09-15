@@ -37,11 +37,13 @@ start-socks5:
 		docker.io/dv0vd/socks5
 
 start-https-proxy:
-	- podman pull docker.io/dv0vd/https-proxy:1.1.0
+	- podman pull docker.io/dv0vd/https-proxy:1.2.0
 	- podman run \
 		-d \
 		--name https-proxy \
 		--network podman_network \
+		-e DNS1=${DNS1}
+		-e DNS2=${DNS2}
 		-p ${HTTPS_PROXY_PORT}:3128 \
 		--restart unless-stopped \
 		--memory=${HTTPS_PROXY_MEMORY} \
