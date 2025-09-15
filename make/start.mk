@@ -48,8 +48,8 @@ start-https-proxy:
 		-d \
 		--name https-proxy \
 		--network podman_network \
-		-e DNS1=${DNS1}
-		-e DNS2=${DNS2}
+		-e DNS1=${DNS1} \
+		-e DNS2=${DNS2} \
 		-p ${HTTPS_PROXY_PORT}:3128 \
 		--restart unless-stopped \
 		--memory=${HTTPS_PROXY_MEMORY} \
