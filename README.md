@@ -11,7 +11,7 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 6) Configure the `.env` file.
 7) Copy Podman images to `./deployment/images`:
 - coturn_4.7.0.tar
-- dv0vd-https-proxy_1.1.0.tar
+- dv0vd-https-proxy_1.2.0.tar
 - dv0vd-socks4_1.1.3.tar
 - dv0vd-socks5_1.1.1.tar
 - mongo_7.0.16.tar
