@@ -2,8 +2,7 @@ podman-cleanup:
 	podman system reset -f
 
 podman-create-network:
-	podman network create --ipv6 podman_network
-	podman network create --ipv6 --disable-dns pihole_network
+	podman network create --ipv6 --disable-dns podman_network
 
 podman-load-images:
 	podman load < ./deployment/images/dv0vd-socks4_1.1.3.tar
