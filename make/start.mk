@@ -61,12 +61,33 @@ start-nginx:
 	--network podman_network \
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./src:/app:ro \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
 	--cgroup-parent=/podman-group.slice \
+	docker.io/nginx:1.27.3
+
+start-nginx-local:
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
+	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
+	- podman run \
+	-d \
+	--name nginx \
+	--network podman_network \
+	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
+	-v ./demo:/demo:ro \
+	-v ./src:/app:ro \
+	-p ${NGINX_LOCAL_PORT:-8080}:80 \
+	--restart unless-stopped \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
 	docker.io/nginx:1.27.3
 
 start-pihole:
@@ -82,25 +103,6 @@ start-pihole:
 		--cpus=${PIHOLE_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/pihole/pihole:2025.08.0
-
-# start-nginx:
-# 	-@ rm ./deployment/data/nginx/logs/access.log
-# 	-@ rm ./deployment/data/nginx/logs/error.log
-# 	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
-# 	- podman run \
-# 	-d \
-# 	--name nginx \
-# 	--network podman_network \
-# 	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
-# 	-v ./deployment/data/nginx/logs:/var/log/nginx \
-# 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
-# 	-v ./demo:/demo:ro \
-# 	-v ./src:/app:ro \
-# 	-p 33333:80 \
-# 	--restart unless-stopped \
-# 	--memory=${NGINX_MEMORY} \
-# 	--cpus=${NGINX_CPUS} \
-# 	docker.io/nginx:1.27.3
 
 start-mongo-demo:
 	- podman run \

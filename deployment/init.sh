@@ -12,7 +12,7 @@ apt upgrade -y &&
 apt install -y make &&
 apt install -y git && 
 apt install -y cgroup-tools &&
-#apt install -y apache2-utils && # for nginx basic auth
+apt install -y apache2-utils && # for nginx basic auth
 #apt install -y telnet &&
 
 #ssh
@@ -52,6 +52,9 @@ touch /root/.config/rclone/rclone.conf &&
 envsubst < ./deployment/configs/linux/rclone_env.conf > /root/.config/rclone/rclone.conf &&
 ssh-keygen -R $RCLONE_HOST &&
 ssh-keyscan -p $RCLONE_HOST $RCLONE_PORT >> /root/.ssh/known_hosts &&
+
+# nginx
+htpasswd -cb /root/dv0vd.xyz/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
 
 # restart
 rm /etc/rc.local -f &&
