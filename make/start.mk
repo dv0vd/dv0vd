@@ -96,7 +96,7 @@ start-pihole:
 		--name pihole \
 		--network podman_network \
 		-p 53:53 \
-		-p 5353:5353 \
+		-p 127.0.0.1:443:443 \
 		-e TZ=UTC \
 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
 		-v ./deployment/data/pihole/data:/etc/pihole \
