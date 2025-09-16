@@ -84,7 +84,7 @@ start-nginx-local:
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
-	-p ${NGINX_LOCAL_PORT:-8080}:80 \
+	-p ${NGINX_LOCAL_PORT}:443 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
