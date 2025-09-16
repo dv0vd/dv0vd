@@ -7,7 +7,7 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 2) Install git: `apt install git`.
 3) Copy vps SSH private key to `/root/.ssh/vps` for GitHub.
 4) Copy storage-vps SSH private key to `/root/.ssh/vps-storage` for storage vps backups.
-5) Clone repo: `git clone git@github.com:dv0vd/dv0vd.xyz.git`.
+5) Clone repo: `git clone https://github.com/dv0vd/dv0vd.xyz.git`.
 6) Copy Nginx certificates to `./deployment/configs/nginx`:
 - dv0vd_xyz.crt
 - dv0vd_xyz.key
