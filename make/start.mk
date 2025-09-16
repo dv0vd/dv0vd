@@ -58,7 +58,7 @@ start-nginx:
 	- podman run \
 	-d \
 	--name nginx \
-	--network podman_network \
+	--network host \
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
@@ -96,7 +96,7 @@ start-pihole:
 		--name pihole \
 		--network podman_network \
 		-p 53:53 \
-		-p 127.0.0.1:443:443 \
+		-p 127.0.0.1:80:80 \
 		-e TZ=UTC \
 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
 		-v ./deployment/data/pihole/data:/etc/pihole \
