@@ -13,6 +13,8 @@ apt install -y make &&
 apt install -y git && 
 apt install -y cgroup-tools &&
 apt install -y apache2-utils && # for nginx basic auth
+apt install -y fail2ban &&
+apt install -y podman && 
 #apt install -y telnet &&
 
 #ssh
@@ -24,7 +26,6 @@ envsubst < ./deployment/configs/linux/ssh_env.conf > /root/.ssh/config &&
 chmod 600 /root/.ssh/config &&
 
 # fail2ban
-apt install fail2ban -y &&
 cat /root/dv0vd.xyz/deployment/configs/fail2ban/jail.local >> /etc/fail2ban/jail.local &&
 cat /root/dv0vd.xyz/deployment/configs/fail2ban/fail2ban.local >> /etc/fail2ban/fail2ban.local &&
 cp /root/dv0vd.xyz/deployment/configs/fail2ban/filters/danted.conf /etc/fail2ban/filter.d && 
@@ -35,10 +36,9 @@ systemctl enable fail2ban &&
 systemctl start fail2ban &&
 
 #podman
-apt install podman -y && 
-apt install -y pipx && 
-pipx install podman-compose &&
-pipx ensurepath &&
+# apt install -y pipx && 
+# pipx install podman-compose &&
+# pipx ensurepath &&
 systemctl enable podman &&
 systemctl start podman &&
 podman system prune --all -f &&
