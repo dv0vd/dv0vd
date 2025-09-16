@@ -55,7 +55,6 @@ ssh-keyscan -p $RCLONE_HOST $RCLONE_PORT >> /root/.ssh/known_hosts &&
 
 # nginx
 htpasswd -cb /root/dv0vd.xyz/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /root/dv0vd.xyz/deployment/configs/nginx/nginx.key -out /root/dv0vd.xyz/deployment/configs/nginx/nginx.crt -subj "/CN=localhost" &&
 
 # restart
 rm /etc/rc.local -f &&
