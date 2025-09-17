@@ -26,12 +26,15 @@ envsubst < ./deployment/configs/linux/ssh_env.conf > /root/.ssh/config &&
 chmod 600 /root/.ssh/config &&
 
 # fail2ban
-cat /root/dv0vd.xyz/deployment/configs/fail2ban/jail.local >> /etc/fail2ban/jail.local &&
-cat /root/dv0vd.xyz/deployment/configs/fail2ban/fail2ban.local >> /etc/fail2ban/fail2ban.local &&
+cp /root/dv0vd.xyz/deployment/configs/fail2ban/jail.local /etc/fail2ban/jail.local &&
+cp /root/dv0vd.xyz/deployment/configs/fail2ban/fail2ban.local /etc/fail2ban/fail2ban.local &&
 cp /root/dv0vd.xyz/deployment/configs/fail2ban/filters/danted.conf /etc/fail2ban/filter.d && 
 cp /root/dv0vd.xyz/deployment/configs/fail2ban/filters/nginx-bad-request.local /etc/fail2ban/filter.d && 
 cp /root/dv0vd.xyz/deployment/configs/fail2ban/filters/nginx-not-found.local /etc/fail2ban/filter.d && 
 cp /root/dv0vd.xyz/deployment/configs/fail2ban/filters/nginx-redirected.local /etc/fail2ban/filter.d && 
+touch /root/dv0vd.xyz/deployment/data/nginx/logs/error.log &&
+touch /root/dv0vd.xyz/deployment/data/nginx/logs/access.log &&
+touch /root/dv0vd.xyz/deployment/data/socks5/logs/danted.log &&
 systemctl enable fail2ban &&
 systemctl start fail2ban &&
 
@@ -51,15 +54,14 @@ mkdir -p /root/.config/rclone &&
 touch /root/.config/rclone/rclone.conf &&
 envsubst < ./deployment/configs/linux/rclone_env.conf > /root/.config/rclone/rclone.conf &&
 ssh-keygen -R $RCLONE_HOST &&
-ssh-keyscan -p $RCLONE_HOST $RCLONE_PORT >> /root/.ssh/known_hosts &&
+ssh-keyscan -p $RCLONE_PORT $RCLONE_HOST >> /root/.ssh/known_hosts &&
 
 # nginx
 htpasswd -cb /root/dv0vd.xyz/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
 
 # restart
 rm /etc/rc.local -f &&
-cp /root/dv0vd.xyz/deployment/configs/linux/rc.local /etc/rc.local
+cp /root/dv0vd.xyz/deployment/configs/linux/rc.local /etc/rc.local &&
 chmod a+x /etc/rc.local &&
 
 reboot
-
