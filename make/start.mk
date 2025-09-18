@@ -70,6 +70,7 @@ start-nginx:
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
+	-v ./deployment/configs/pihole:/app/pihole:ro \
 	-p 80:80 \
 	-p 443:443 \
 	-p 8448:8448 \
@@ -93,6 +94,7 @@ start-nginx-local:
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
+	-v ./deployment/configs/pihole:/app/pihole:ro \
 	-p ${NGINX_LOCAL_PORT}:80 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
