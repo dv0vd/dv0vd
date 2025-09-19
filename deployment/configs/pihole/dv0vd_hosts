@@ -4,17 +4,44 @@
 # with a dash of crowd sourcing via GitHub
 #
 # Date: 19 September 2025
-# Number of unique domains: 8
+# Number of unique domains: 13
 #
 # Fetch the latest version of this file: https://dv0vd.xyz/pihole/dv0vd_hosts
 #
 # ===============================================================
 
+
+
+0.0.0.0 ads.mozilla.org
+0.0.0.0 app.adjust.io
+0.0.0.0 cdn-rtb.sape.ru
+0.0.0.0 f.loca.amberweather.com
+0.0.0.0 hb.bumlam.com
+0.0.0.0 hb-bidder.skcrtxr.com
+0.0.0.0 ip4.tracker-api.my.com
+0.0.0.0 ip4.tracker-api.vk-analytics.ru
+0.0.0.0 log.strm.yandex.ru
 0.0.0.0 mobile.events.data.microsoft.com
 0.0.0.0 mshield.baidu.com
+0.0.0.0 nl06.cdnsqu.com
+0.0.0.0 public-api.uxfeedback.ru
+0.0.0.0 pb.adriver.ru
+0.0.0.0 px.videohype.net
+0.0.0.0 qcc.qualcomm.com
 0.0.0.0 ru.app.chat.global.xiaomi.net
 0.0.0.0 ru.global.market.xiaomi.com
+0.0.0.0 ru.resolver.msg.global.xiaomi.net
 0.0.0.0 ru-idm.api.io.mi.com
 0.0.0.0 sdkconfig.ad.rus.xiaomi.com
 0.0.0.0 shifen.com
+0.0.0.0 ssp.bidvol.com
+0.0.0.0 ssp-rtb.sape.ru
 0.0.0.0 stats.rustore.ru
+0.0.0.0 sync.dmp.otm-r.com
+0.0.0.0 ts.tracker-api.my.com
+0.0.0.0 ts.tracker-api.vk-analytics.ru
+0.0.0.0 tracker-api.vk-analytics.ru
+0.0.0.0 vk-analytics.ru
+0.0.0.0 www.statsforads.com
+0.0.0.0 yahoo.com
+0.0.0.0 yhb.p.otm-r.com
