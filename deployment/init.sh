@@ -28,7 +28,7 @@ apt upgrade -y &&
 apt install -y make &&
 apt install -y git && 
 apt install -y cgroup-tools &&
-apt install -y apache2-utils && # required for nginx basic auth
+apt install -y apache2-utils && # for nginx basic auth
 apt install -y fail2ban &&
 apt install -y podman && 
 #apt install -y telnet &&
