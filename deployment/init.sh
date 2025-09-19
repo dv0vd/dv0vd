@@ -26,6 +26,7 @@ envsubst < ./deployment/configs/linux/ssh_env.conf > /root/.ssh/config &&
 chmod 600 /root/.ssh/config &&
 
 # fail2ban
+envsubst < /root/dv0vd.xyz/deployment/configs/fail2ban/jail_env.local > /root/dv0vd.xyz/deployment/configs/fail2ban/jail.local &&
 cp /root/dv0vd.xyz/deployment/configs/fail2ban/jail.local /etc/fail2ban/jail.local &&
 cp /root/dv0vd.xyz/deployment/configs/fail2ban/fail2ban.local /etc/fail2ban/fail2ban.local &&
 cp /root/dv0vd.xyz/deployment/configs/fail2ban/filters/danted.conf /etc/fail2ban/filter.d && 
