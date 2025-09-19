@@ -1,0 +1,20 @@
+# Title: Dv0vD/hosts
+#
+# This hosts file is a merged collection of hosts from reputable sources,
+# with a dash of crowd sourcing via GitHub
+#
+# Date: 19 September 2025
+# Number of unique domains: 8
+#
+# Fetch the latest version of this file: https://dv0vd.xyz/pihole/dv0vd_hosts
+#
+# ===============================================================
+
+0.0.0.0 mobile.events.data.microsoft.com
+0.0.0.0 mshield.baidu.com
+0.0.0.0 ru.app.chat.global.xiaomi.net
+0.0.0.0 ru.global.market.xiaomi.com
+0.0.0.0 ru-idm.api.io.mi.com
+0.0.0.0 sdkconfig.ad.rus.xiaomi.com
+0.0.0.0 shifen.com
+0.0.0.0 stats.rustore.ru
