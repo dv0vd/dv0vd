@@ -1,7 +1,15 @@
 start-containers:
-	@for command in $(ON_STARTUP); do\
-		$(MAKE) $$command; \
-	done
+	- $(MAKE) start-db
+	- $(MAKE) start-socks5
+	- $(MAKE) start-socks4
+	- $(MAKE) start-https-proxy
+	- $(MAKE) synapse-vacuum-clean
+	- $(MAKE) synapse-backup-database
+	- $(MAKE) synapse-backup-to-storage-vps
+	- $(MAKE) start-coturn
+	- $(MAKE) start-synapse
+	- $(MAKE) start-demo
+	- $(MAKE) start-nginx
 
 start-socks4:
 	- podman pull docker.io/dv0vd/socks4:1.1.3
