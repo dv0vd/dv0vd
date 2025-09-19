@@ -16,7 +16,7 @@ mode    = aggressive
 enabled = true
 mode    = aggressive
 port    = http,https
-logpath = %(nginx_error_log)s
+logpath = %(nginx_access_log)s
 
 [nginx-limit-req]
 enabled = true
