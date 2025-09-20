@@ -4,18 +4,20 @@
 # with a dash of crowd sourcing via GitHub
 #
 # Date: 19 September 2025
-# Number of unique domains: 13
+# Number of unique domains: 17
 #
 # Fetch the latest version of this file: https://dv0vd.xyz/pihole/dv0vd_hosts
 #
 # ===============================================================
 
 
-
+0.0.0.0 a.root-servers.net
 0.0.0.0 ads.mozilla.org
+0.0.0.0 api.g.micloud.xiaomi.net
 0.0.0.0 app.adjust.io
 0.0.0.0 cdn-rtb.sape.ru
 0.0.0.0 f.loca.amberweather.com
+0.0.0.0 global.market.xiaomi.com
 0.0.0.0 hb.bumlam.com
 0.0.0.0 hb-bidder.skcrtxr.com
 0.0.0.0 ip4.tracker-api.my.com
@@ -38,9 +40,11 @@
 0.0.0.0 ssp-rtb.sape.ru
 0.0.0.0 stats.rustore.ru
 0.0.0.0 sync.dmp.otm-r.com
+0.0.0.0 tp-link.com
 0.0.0.0 ts.tracker-api.my.com
 0.0.0.0 ts.tracker-api.vk-analytics.ru
 0.0.0.0 tracker-api.vk-analytics.ru
+0.0.0.0 us.statusapi.micloud.xiaomi.net
 0.0.0.0 vk-analytics.ru
 0.0.0.0 www.statsforads.com
 0.0.0.0 yahoo.com
