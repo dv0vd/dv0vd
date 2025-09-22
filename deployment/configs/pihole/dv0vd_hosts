@@ -3,8 +3,8 @@
 # This hosts file is a merged collection of hosts from reputable sources,
 # with a dash of crowd sourcing via GitHub
 #
-# Date: 21 September 2025
-# Number of unique domains: 265
+# Date: 22 September 2025
+# Number of unique domains: 268
 #
 # Fetch the latest version of this file: https://dv0vd.xyz/pihole/dv0vd_hosts
 #
@@ -15,6 +15,7 @@
 0.0.0.0 ads.mozilla.org
 0.0.0.0 an.mail.ru
 0.0.0.0 api.g.micloud.xiaomi.net
+0.0.0.0 apmplus.volces.com/
 0.0.0.0 app.adjust.io
 0.0.0.0 cdn-rtb.sape.ru
 0.0.0.0 configs.amberweather.com
@@ -29,6 +30,7 @@
 0.0.0.0 hb-bidder.skcrtxr.com
 0.0.0.0 ip4.tracker-api.my.com
 0.0.0.0 ip4.tracker-api.vk-analytics.ru
+0.0.0.0 khtge.uxzw.club
 0.0.0.0 log.strm.yandex.ru
 0.0.0.0 mobile.events.data.microsoft.com
 0.0.0.0 mshield.baidu.com
@@ -50,6 +52,7 @@
 0.0.0.0 shifen.com
 0.0.0.0 ssp.bidvol.com
 0.0.0.0 ssp-rtb.sape.ru
+0.0.0.0 stat.tildaapi.com
 0.0.0.0 static-mon.yandex.net
 0.0.0.0 stats.rustore.ru
 0.0.0.0 sync.dmp.otm-r.com
