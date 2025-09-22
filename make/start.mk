@@ -171,15 +171,26 @@ start-demo:
 	$(MAKE) start-skillnotes
 
 start-timers:
-	cp ./.env ./demo/demo-timers/.env
-	cd ./demo/demo-timers
-	- make start-app
+	- podman run \
+		-d \
+		--name demo-timers \
+		--network podman_network \
+		--restart unless-stopped \
+		--memory=${TIMERS_APP_MEMORY} \
+		--cpus=${TIMERS_APP_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		demo-timers
 
 start-skillnotes:
-	cp ./.env ./demo/demo-skillnotes/.env
-	cd ./demo/demo-skillnotes
-	- make build
-	- make start-app
+	- podman run \
+		-d \
+		--name demo-skillnotes \
+		--network podman_network \
+		--restart unless-stopped \
+		--memory=${SKILLNOTES_APP_MEMORY} \
+		--cpus=${SKILLNOTES_APP_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		demo-skillnotes
 
 start-fail2ban:
 	systemctl enable fail2ban

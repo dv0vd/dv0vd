@@ -46,12 +46,12 @@ stop-demo:
 	$(MAKE) stop-skillnotes
 
 stop-timers:
-	cd ./demo/demo-timers
-	- make stop
+	- podman stop demo-timers
+	- podman rm demo-timers
 
 stop-skillnotes:
-	cd ./demo/demo-skillnotes
-	- make stop
+	- podman stop demo-skillnotes
+	- podman rm demo-skillnotes
 
 stop-fail2ban:
 	systemctl disable fail2ban
