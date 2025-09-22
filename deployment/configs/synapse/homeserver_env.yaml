@@ -61,8 +61,8 @@ retention:
   default_policy:
     min_lifetime: 1d
     max_lifetime: 30d
-  allowed_lifetime_min: 1d
-  allowed_lifetime_max: 30d
+  # allowed_lifetime_min: 1d
+  # allowed_lifetime_max: 30d
 allow_profile_lookup_over_federation: false
 allow_device_name_lookup_over_federation: false
 database:
