@@ -171,16 +171,18 @@ start-demo:
 	$(MAKE) start-skillnotes
 
 start-timers:
-	- podman build . -f ./deployment/configs/demo/timers.containerfile -t localhost/demo-timers
 	- podman run \
 		-d \
+		-e DB_HOST=${TIMERS_DB_HOST}
+		-e DB_NAME=${TIMERS_DB_NAME}
+		-e BASE_PATH='/demo/timers/'
 		--name demo-timers \
 		--network podman_network \
 		--restart unless-stopped \
 		--memory=${TIMERS_APP_MEMORY} \
 		--cpus=${TIMERS_APP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		localhost/demo-timers
+		dv0vd/demo-timers:1.0.0
 
 start-skillnotes:
 	- podman build . -f ./deployment/configs/demo/skillnotes.containerfile -t localhost/demo-skillnotes

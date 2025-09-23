@@ -1,10 +1,6 @@
 init-demo:
-	$(MAKE) init-timers
+	$(MAKE) init-lagoona
 	$(MAKE) init-skillnotes
-
-init-timers:
-	mkdir ./demo
-	cd ./demo && git clone https://github.com/dv0vd/demo-timers.git && cp ../.env ./demo-timers/.env
 
 init-skillnotes:
 	mkdir ./demo
@@ -21,10 +17,6 @@ refresh-demo:
 refresh-lagoona:
 	rm ./demo/demo-lagoona -rf
 	$(MAKE) init-lagoona
-
-refresh-timers:
-	rm ./demo/demo-timers -rf
-	$(MAKE) init-timers
 
 refresh-skillnotes:
 	rm ./demo/demo-skillnotes -rf
