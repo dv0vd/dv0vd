@@ -179,7 +179,7 @@ start-timers:
 		--memory=${TIMERS_APP_MEMORY} \
 		--cpus=${TIMERS_APP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		demo-timers
+		localhost/demo-timers
 
 start-skillnotes:
 	- podman run \
@@ -190,7 +190,7 @@ start-skillnotes:
 		--memory=${SKILLNOTES_APP_MEMORY} \
 		--cpus=${SKILLNOTES_APP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		demo-skillnotes
+		localhost/demo-skillnotes
 
 start-fail2ban:
 	systemctl enable fail2ban
