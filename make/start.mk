@@ -182,7 +182,7 @@ start-timers:
 		--memory=${TIMERS_APP_MEMORY} \
 		--cpus=${TIMERS_APP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		dv0vd/demo-timers:1.0.0
+		docker.io/dv0vd/demo-timers:1.0.0
 
 start-skillnotes:
 	- podman build . -f ./deployment/configs/demo/skillnotes.containerfile -t localhost/demo-skillnotes
