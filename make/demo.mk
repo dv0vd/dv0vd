@@ -5,12 +5,10 @@ init-demo:
 init-timers:
 	mkdir ./demo
 	cd ./demo && git clone https://github.com/dv0vd/demo-timers.git && cp ../.env ./demo-timers/.env
-	cd .. && podman build . -f ./deployment/configs/demo/timers.containerfile -t demo-timers
 
 init-skillnotes:
 	mkdir ./demo
 	cd ./demo && git clone https://github.com/dv0vd/demo-skillnotes.git && cp ../.env ./demo-skillnotes/.env
-	cd .. && podman build . -f ./deployment/configs/demo/skillnotes.containerfile -t demo-skillnotes
 
 init-lagoona:
 	mkdir ./demo
