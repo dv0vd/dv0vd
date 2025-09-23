@@ -171,7 +171,7 @@ start-demo:
 	$(MAKE) start-skillnotes
 
 start-timers:
-	- cd .. && podman build . -f ./deployment/configs/demo/timers.containerfile -t demo-timers
+	- cd .. && podman build . -f ./deployment/configs/demo/timers.containerfile -t localhost/demo-timers
 	- podman run \
 		-d \
 		--name demo-timers \
@@ -183,7 +183,7 @@ start-timers:
 		localhost/demo-timers
 
 start-skillnotes:
-	-cd .. && podman build . -f ./deployment/configs/demo/skillnotes.containerfile -t demo-skillnotes
+	-cd .. && podman build . -f ./deployment/configs/demo/skillnotes.containerfile -t localhost/demo-skillnotes
 	- podman run \
 		-d \
 		--name demo-skillnotes \
