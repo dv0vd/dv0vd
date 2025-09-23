@@ -173,9 +173,9 @@ start-demo:
 start-timers:
 	- podman run \
 		-d \
-		-e DB_HOST=${TIMERS_DB_HOST}
-		-e DB_NAME=${TIMERS_DB_NAME}
-		-e BASE_PATH='/demo/timers/'
+		-e DB_HOST=${TIMERS_DB_HOST} \
+		-e DB_NAME=${TIMERS_DB_NAME} \
+		-e BASE_PATH='/demo/timers/' \
 		--name demo-timers \
 		--network podman_network \
 		--restart unless-stopped \
