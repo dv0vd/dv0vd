@@ -1,12 +1,12 @@
 # Dv0vD
-## https://dv0vd.xyz
+## https://dv0vd.dev
 My personal website to showcase my portfolio, skills, hobbies, and contact information. Additionally, the site features deployed servers for SOCKS4, SOCKS5, HTTPS proxy, Synapse, TURN, Matrix, Pi-hole (Ad Blocking), and Email services.
 
 ## Getting started  
 1) Update packages index: `apt update`.
 2) Install git: `apt install git`.
 3) Copy storage-vps SSH private key to `/root/.ssh/vps-storage` for storage vps backups.
-4) Clone repo: `git clone https://github.com/dv0vd/dv0vd.xyz.git`.
+4) Clone repo: `git clone https://github.com/dv0vd/dv0vd.git`.
 5) Copy Nginx certificates to `./deployment/configs/nginx`:
 - dv0vd_xyz.crt
 - dv0vd_xyz.key
@@ -22,4 +22,5 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 - postgres_15.14-alpine.tar
 - synapse_1.135.0.tar
 - pihole_2025.08.0.tar
+- dv0vd-demo-skillnotes_1.0.6.tar
 8) Run the initialization script `bash ./deployment/init.sh`.
