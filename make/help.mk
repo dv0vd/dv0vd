@@ -71,10 +71,8 @@ help:
 	@echo ${GREEN}podman-resources'                        '${WHITE}— get podman consumed resources with tasks{RESET}
 	@echo ${GREEN}on-startup'                              '${WHITE}— commands to execute immediately after server startup${RESET}
 	@echo ${GREEN}init-demo'                               '${WHITE}— clone demo projects and install dependencies${RESET}
-	@echo ${GREEN}init-skillnotes'                         '${WHITE}— clone skillnotes demo project and install dependencies${RESET}
 	@echo ${GREEN}init-lagoon'                             '${WHITE}— clone lagoona demo project and install dependencies${RESET}
 	@echo ${GREEN}refresh-demo'                            '${WHITE}— completely remove demo projects and reinstall them${RESET}
-	@echo ${GREEN}refresh-skillnotes'                      '${WHITE}— completely remove skillnotes project and reinstall it${RESET}
 	@echo ${GREEN}refresh-lagoona'                         '${WHITE}— completely remove lagoona project and reinstall it${RESET}
 	@echo ${GREEN}synapse-init'                            '${WHITE}— init synapse server${RESET}
 	@echo ${GREEN}synapse-create-user'                     '${WHITE}— create synapse user${RESET}

@@ -185,16 +185,21 @@ start-timers:
 		docker.io/dv0vd/demo-timers:1.0.5
 
 start-skillnotes:
-	- podman build . -f ./deployment/configs/demo/skillnotes.containerfile -t localhost/demo-skillnotes
 	- podman run \
 		-d \
+		-e DB_HOST=${SKILLNOTES_DB_HOST} \
+		-e DB_PORT=${SKILLNOTES_DB_PORT} \
+		-e DB_USER=${SKILLNOTES_DB_USER} \
+		-e DB_PASSWORD=${SKILLNOTES_DB_PASSWORD} \
+		-e DB_NAME=${SKILLNOTES_DB_NAME} \
+		-e BASE_PATH='/demo/skillnotes/' \
 		--name demo-skillnotes \
 		--network podman_network \
 		--restart unless-stopped \
 		--memory=${SKILLNOTES_APP_MEMORY} \
 		--cpus=${SKILLNOTES_APP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		localhost/demo-skillnotes
+		docker.io/dv0vd/demo-skillnotes
 
 start-fail2ban:
 	systemctl enable fail2ban
