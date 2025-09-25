@@ -8,8 +8,10 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 3) Copy storage-vps SSH private key to `/root/.ssh/vps-storage` for storage vps backups.
 4) Clone repo: `git clone https://github.com/dv0vd/dv0vd.git`.
 5) Copy Nginx certificates to `./deployment/configs/nginx`:
-- dv0vd.crt
-- dv0vd.key
+- dv0vd_dev.crt
+- dv0vd_xyz.crt
+- dv0vd_dev.key
+- dv0vd_xyz.key
 6) Configure the `.env` file.
 7) Copy Podman images to `./deployment/images`:
 - coturn_4.7.0.tar
