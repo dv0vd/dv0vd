@@ -39,7 +39,6 @@ email:
   notif_delay_before_mail: 10m
   client_base_url: ${SYNAPSE_CLIENT_BASE_URL}
   validation_token_lifetime: 15m
-  invite_client_location: ${SYNAPSE_WEB_CLIENT_LOCATION}
   subjects:
     message_from_person_in_room: '[%(app)s] You have a message on %(app)s from %(person)s
       in the %(room)s room...'
