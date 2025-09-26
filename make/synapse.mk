@@ -29,9 +29,9 @@ synapse-restore-database:
 	podman exec -it postgres-synapse sh -c 'pg_restore -U ${SYNAPSE_DB_USERNAME} -v -d ${SYNAPSE_DB_NAME} < /backups/0.dump'
 
 synapse-backup-to-storage-vps:
-	- rclone sync -v '/root/dv0vd.xyz/deployment/data/postgres-synapse/backups' 'vps-storage-bg-postgres-synapse:/'
-	- rclone sync -v '/root/dv0vd.xyz/deployment/data/synapse/data/media_store' 'vps-storage-bg-synapse:/'
+	- rclone sync -v '/root/dv0vd/deployment/data/postgres-synapse/backups' 'vps-storage-bg-postgres-synapse:/'
+	- rclone sync -v '/root/dv0vd/deployment/data/synapse/data/media_store' 'vps-storage-bg-synapse:/'
 
 synapse-restore-from-storage-vps:
-	- rclone sync -v 'vps-storage-bg-postgres-synapse:/' '/root/dv0vd.xyz/deployment/data/postgres-synapse/restored_backups'
-	- rclone sync -v 'vps-storage-bg-synapse:/' '/root/dv0vd.xyz/deployment/data/synapse/restored_backups'
+	- rclone sync -v 'vps-storage-bg-postgres-synapse:/' '/root/dv0vd/deployment/data/postgres-synapse/restored_backups'
+	- rclone sync -v 'vps-storage-bg-synapse:/' '/root/dv0vd/deployment/data/synapse/restored_backups'
