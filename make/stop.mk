@@ -1,12 +1,8 @@
 stop-containers:
 	- $(MAKE) stop-nginx
-	- $(MAKE) stop-demo
 	- $(MAKE) stop-socks4
-	- $(MAKE) stop-socks5
 	- $(MAKE) stop-https-proxy
-	- $(MAKE) stop-coturn
-	- $(MAKE) stop-synapse
-	- $(MAKE) stop-db
+	- $(MAKE) stop-pihole
 
 stop-socks4:
 	- podman stop socks4

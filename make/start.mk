@@ -1,14 +1,8 @@
 start-containers:
-	- $(MAKE) start-db
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
-	- $(MAKE) synapse-vacuum-clean
-	- $(MAKE) synapse-backup-database
-	- $(MAKE) synapse-backup-to-storage-vps
-	- $(MAKE) start-coturn
-	- $(MAKE) start-synapse
-	- $(MAKE) start-demo
+	- $(MAKE) start-pihole
 	- $(MAKE) start-nginx
 
 start-socks4:
@@ -64,16 +58,12 @@ start-nginx:
 	- podman run \
 	-d \
 	--name nginx \
-	--network podman_network \
+	--network host \
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
-	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
-	-v ./deployment/configs/pihole:/app/pihole:ro \
-	-p 80:80 \
-	-p 443:443 \
-	-p 8448:8448 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
@@ -95,7 +85,7 @@ start-nginx-local:
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
 	-v ./deployment/configs/pihole:/app/pihole:ro \
-	-p ${NGINX_LOCAL_PORT}:80 \
+	-p ${NGINX_LOCAL_PORT}:443 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
