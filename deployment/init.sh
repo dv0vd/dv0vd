@@ -3,7 +3,6 @@ set -e
 
 LOG_FILE="/var/log/init.log"
 
-# Function for logging both to console and to file with separator
 log() {
   local msg="$1"
   local ts
@@ -34,7 +33,7 @@ apt install -y podman &&
 #apt install -y telnet &&
 
 log "Configuring SSH..."
-cat /root/dv0vd.xyz/deployment/configs/linux/ssh.pub >> /root/.ssh/authorized_keys &&
+cat /root/dv0vd/deployment/configs/linux/ssh.pub >> /root/.ssh/authorized_keys &&
 touch /etc/ssh/sshd_config.d/00-dv0vd.conf &&
 echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config.d/00-dv0vd.conf &&
 echo Port $SSH_PORT >> /etc/ssh/sshd_config.d/00-dv0vd.conf &&
@@ -42,16 +41,16 @@ envsubst < ./deployment/configs/linux/ssh_env.conf > /root/.ssh/config &&
 chmod 600 /root/.ssh/config &&
 
 log "Configuring fail2ban..."
-envsubst < /root/dv0vd.xyz/deployment/configs/fail2ban/jail_env.local > /root/dv0vd.xyz/deployment/configs/fail2ban/jail.local &&
-cp /root/dv0vd.xyz/deployment/configs/fail2ban/jail.local /etc/fail2ban/jail.local &&
-cp /root/dv0vd.xyz/deployment/configs/fail2ban/fail2ban.local /etc/fail2ban/fail2ban.local &&
-cp /root/dv0vd.xyz/deployment/configs/fail2ban/filters/danted.conf /etc/fail2ban/filter.d && 
-cp /root/dv0vd.xyz/deployment/configs/fail2ban/filters/nginx-bad-request.local /etc/fail2ban/filter.d && 
-cp /root/dv0vd.xyz/deployment/configs/fail2ban/filters/nginx-not-found.local /etc/fail2ban/filter.d && 
-cp /root/dv0vd.xyz/deployment/configs/fail2ban/filters/nginx-redirected.local /etc/fail2ban/filter.d && 
-touch /root/dv0vd.xyz/deployment/data/nginx/logs/error.log &&
-touch /root/dv0vd.xyz/deployment/data/nginx/logs/access.log &&
-touch /root/dv0vd.xyz/deployment/data/socks5/logs/danted.log &&
+envsubst < /root/dv0vd/deployment/configs/fail2ban/jail_env.local > /root/dv0vd/deployment/configs/fail2ban/jail.local &&
+cp /root/dv0vd/deployment/configs/fail2ban/jail.local /etc/fail2ban/jail.local &&
+cp /root/dv0vd/deployment/configs/fail2ban/fail2ban.local /etc/fail2ban/fail2ban.local &&
+cp /root/dv0vd/deployment/configs/fail2ban/filters/danted.conf /etc/fail2ban/filter.d && 
+cp /root/dv0vd/deployment/configs/fail2ban/filters/nginx-bad-request.local /etc/fail2ban/filter.d && 
+cp /root/dv0vd/deployment/configs/fail2ban/filters/nginx-not-found.local /etc/fail2ban/filter.d && 
+cp /root/dv0vd/deployment/configs/fail2ban/filters/nginx-redirected.local /etc/fail2ban/filter.d && 
+touch /root/dv0vd/deployment/data/nginx/logs/error.log &&
+touch /root/dv0vd/deployment/data/nginx/logs/access.log &&
+touch /root/dv0vd/deployment/data/socks5/logs/danted.log &&
 systemctl enable fail2ban &&
 systemctl start fail2ban &&
 
@@ -74,15 +73,15 @@ ssh-keygen -R $RCLONE_HOST || true &&
 ssh-keyscan -p $RCLONE_PORT $RCLONE_HOST >> /root/.ssh/known_hosts &&
 
 log "Configuring nginx (htpasswd and SSL certificate)..."
-htpasswd -cb /root/dv0vd.xyz/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
+htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-  -keyout /root/dv0vd.xyz/deployment/configs/nginx/nginx.key \
-  -out /root/dv0vd.xyz/deployment/configs/nginx/nginx.crt \
+  -keyout /root/dv0vd/deployment/configs/nginx/nginx.key \
+  -out /root/dv0vd/deployment/configs/nginx/nginx.crt \
   -subj "/CN=localhost" &&
 
 log "Configuring rc.local autostart..."
 rm /etc/rc.local -f &&
-cp /root/dv0vd.xyz/deployment/configs/linux/rc.local /etc/rc.local &&
+cp /root/dv0vd/deployment/configs/linux/rc.local /etc/rc.local &&
 chmod a+x /etc/rc.local &&
 
 log "Initialization finished. Rebooting now..."

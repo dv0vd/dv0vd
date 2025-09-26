@@ -29,10 +29,10 @@ logs-postgres-synapse:
 	podman logs -f postgres-synapse
 
 logs-timers:
-	podman logs -f timers_app
+	podman logs -f demo-timers
 
 logs-skillnotes:
-	podman logs -f skillnotes_app
+	podman logs -f demo-skillnotes
 
 logs-fail2ban:
 	tail -f -n +1 /var/log/fail2ban.log
