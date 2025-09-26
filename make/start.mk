@@ -60,7 +60,6 @@ start-https-proxy:
 start-nginx:
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
-	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/nginx_env.conf > ./deployment/configs/nginx/nginx.conf"
 	- podman run \
 	-d \
 	--name nginx \
@@ -83,7 +82,6 @@ start-nginx:
 start-nginx-local:
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
-	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
 	- podman run \
 	-d \
 	--name nginx \
