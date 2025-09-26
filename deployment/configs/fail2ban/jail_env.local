@@ -3,8 +3,8 @@ findtime          = 1d
 maxretry          = 3
 bantime           = -1
 bantime.increment = true
-nginx_access_log  = /root/dv0vd.xyz/deployment/data/nginx/logs/access.log
-nginx_error_log   = /root/dv0vd.xyz/deployment/data/nginx/logs/error.log
+nginx_access_log  = /root/dv0vd/deployment/data/nginx/logs/access.log
+nginx_error_log   = /root/dv0vd/deployment/data/nginx/logs/error.log
 banaction         = iptables-allports
 ignoreip          = $FAIL2BAN_IGNORE_IPS
 
@@ -49,5 +49,5 @@ maxretry = 10
 [danted]
 enabled = true
 filter  = danted
-logpath = /root/dv0vd.xyz/deployment/data/socks5/logs/danted.log
+logpath = /root/dv0vd/deployment/data/socks5/logs/danted.log
 backend = auto

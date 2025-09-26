@@ -84,6 +84,7 @@ start-nginx-local:
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
+	-v ./deployment/configs/pihole:/app/pihole:ro \
 	-p ${NGINX_LOCAL_PORT}:443 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
@@ -160,15 +161,35 @@ start-demo:
 	$(MAKE) start-skillnotes
 
 start-timers:
-	cp ./.env ./demo/demo-timers/.env
-	cd ./demo/demo-timers
-	- make start-app
+	- podman run \
+		-d \
+		-e DB_HOST=${TIMERS_DB_HOST} \
+		-e DB_NAME=${TIMERS_DB_NAME} \
+		-e BASE_PATH='/demo/timers/' \
+		--name demo-timers \
+		--network podman_network \
+		--restart unless-stopped \
+		--memory=${TIMERS_APP_MEMORY} \
+		--cpus=${TIMERS_APP_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/dv0vd/demo-timers:1.0.5
 
 start-skillnotes:
-	cp ./.env ./demo/demo-skillnotes/.env
-	cd ./demo/demo-skillnotes
-	- make build
-	- make start-app
+	- podman run \
+		-d \
+		-e DB_HOST=${SKILLNOTES_DB_HOST} \
+		-e DB_PORT=${SKILLNOTES_DB_PORT} \
+		-e DB_USER=${SKILLNOTES_DB_USER} \
+		-e DB_PASSWORD=${SKILLNOTES_DB_PASSWORD} \
+		-e DB_NAME=${SKILLNOTES_DB_NAME} \
+		-e BASE_PATH='/demo/skillnotes/' \
+		--name demo-skillnotes \
+		--network podman_network \
+		--restart unless-stopped \
+		--memory=${SKILLNOTES_APP_MEMORY} \
+		--cpus=${SKILLNOTES_APP_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/dv0vd/demo-skillnotes:1.0.6
 
 start-fail2ban:
 	systemctl enable fail2ban

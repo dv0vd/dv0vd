@@ -1,5 +1,5 @@
 #!/bin/bash
 export PATH=$PATH:/root/.local/bin:/root/.local/bin
-cd /root/dv0vd.xyz
-make on-startup
+cd /root/dv0vd
+make on-startup > /var/log/on-startup.log
 exit 0
