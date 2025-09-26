@@ -58,6 +58,8 @@ help:
 	@echo ${GREEN}logs-timers'                             '${WHITE}— get logs of timers demo project${RESET}
 	@echo ${GREEN}logs-skillnotes'                         '${WHITE}— get logs of skillnotes demo project${RESET}
 	@echo ${GREEN}logs-auth'                               '${WHITE}— get SSH connection attemps logs${RESET}
+	@echo ${GREEN}logs-init'                               '${WHITE}— get init logs${RESET}
+	@echo ${GREEN}logs-startup'                            '${WHITE}— get startup logs${RESET}
 	@echo ${GREEN}logs-fail2ban'                           '${WHITE}— get fail2ban logs${RESET}
 	@echo ${GREEN}logs-synapse'                            '${WHITE}— get synapse homerver logs${RESET}
 	@echo ${GREEN}logs-synapse-container'                  '${WHITE}— get synapse container logs${RESET}
