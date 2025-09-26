@@ -51,3 +51,9 @@ logs-coturn:
 
 logs-pihole:
 	podman logs -f pihole
+
+logs-init:
+	cat /var/log/init.log
+
+logs-startup:
+	cat /var/log/on-startup.log
