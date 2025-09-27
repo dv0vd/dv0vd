@@ -58,6 +58,7 @@ start-https-proxy:
 		docker.io/dv0vd/https-proxy
 
 start-nginx:
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -80,6 +81,7 @@ start-nginx:
 	docker.io/nginx:1.27.3
 
 start-nginx-local:
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
