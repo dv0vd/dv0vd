@@ -3,8 +3,8 @@
 # This hosts file is a merged collection of hosts from reputable sources,
 # with a dash of crowd sourcing via GitHub
 #
-# Date: 24 September 2025
-# Number of unique domains: 74
+# Date: 29 September 2025
+# Number of unique domains: 79
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -13,6 +13,7 @@
 
 0.0.0.0 a.root-servers.net
 0.0.0.0 ads.mozilla.org
+0.0.0.0 amc.yandex.ru
 0.0.0.0 an.mail.ru
 0.0.0.0 api.g.micloud.xiaomi.net
 0.0.0.0 api.gallery.intl.miui.com
@@ -53,14 +54,17 @@
 0.0.0.0 pb.adriver.ru
 0.0.0.0 px.videohype.net
 0.0.0.0 qcc.qualcomm.com
+0.0.0.0 rap.skcrtxr.com
 0.0.0.0 rebus.rustore.ru
 0.0.0.0 redirect-frontend.weborama-tech.ru	
 0.0.0.0 repodownload.mediatek.com
+0.0.0.0 rum.dzen.ru
 0.0.0.0 ru.app.chat.global.xiaomi.net
 0.0.0.0 ru.global.market.xiaomi.com
 0.0.0.0 ru.resolver.msg.global.xiaomi.net
 0.0.0.0 ru-idm.api.io.mi.com
 0.0.0.0 r.mradx.net
+0.0.0.0 sdk-api.apptracer.ru
 0.0.0.0 sdkconfig.ad.rus.xiaomi.com
 0.0.0.0 sdkconfig.rus.xiaomi.com
 0.0.0.0 shifen.com
@@ -86,3 +90,4 @@
 0.0.0.0 xray.mail.ru
 0.0.0.0 yahoo.com
 0.0.0.0 yhb.p.otm-r.com
+0.0.0.0 531111.ms.dzen.ru
