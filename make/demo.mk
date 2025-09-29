@@ -1,6 +1,7 @@
 init-demo:
 	$(MAKE) init-lagoona
 	$(MAKE) init-gazprombank-auth
+	$(MAKE) init-gazprombank-startups
 
 init-lagoona:
 	mkdir ./demo
@@ -9,6 +10,10 @@ init-lagoona:
 init-gazprombank-auth:
 	mkdir ./demo
 	cd ./demo && git clone https://github.com/dv0vd/demo-gazprombank-auth.git
+
+init-gazprombank-startups:
+	mkdir ./demo
+	cd ./demo && git clone https://github.com/dv0vd/demo-gazprombank-startups.git
 
 refresh-demo:
 	rm ./demo -rf
@@ -20,4 +25,8 @@ refresh-lagoona:
 
 refresh-gazprombank-auth:
 	rm ./demo/demo-gazprombank-auth -rf
+	$(MAKE) init-lagoona
+
+refresh-gazprombank-startups:
+	rm ./demo/demo-gazprombank-startups -rf
 	$(MAKE) init-lagoona
