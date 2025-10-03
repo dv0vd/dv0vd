@@ -3,8 +3,8 @@
 # This hosts file is a merged collection of hosts from reputable sources,
 # with a dash of crowd sourcing via GitHub
 #
-# Date: 29 September 2025
-# Number of unique domains: 79
+# Date: 03 October 2025
+# Number of unique domains: 92
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -13,6 +13,7 @@
 
 0.0.0.0 a.root-servers.net
 0.0.0.0 ads.mozilla.org
+0.0.0.0 alt-ad.mail.ru
 0.0.0.0 amc.yandex.ru
 0.0.0.0 an.mail.ru
 0.0.0.0 api.g.micloud.xiaomi.net
@@ -20,16 +21,21 @@
 0.0.0.0 apmplus.volces.com
 0.0.0.0 app.adjust.io
 0.0.0.0 bobid-ip.hybrid.ai
+0.0.0.0 cdn-exp-sg-recommend.pt.xiaomi.com
 0.0.0.0 cdn-rtb.sape.ru
 0.0.0.0 configs.amberweather.com
 0.0.0.0 clickstream.goldapple.ru
+0.0.0.0 cqohtp.inapps.appsflyersdk.com
+0.0.0.0 dc1-ml.ksn.kaspersky-labs.com
 0.0.0.0 dc1-pp.ksn.kaspersky-labs.com
+0.0.0.0 dss.hybrid.ai
 0.0.0.0 eye.targetads.io
 0.0.0.0 experimentation-evaluator.eu01.miro.com
 0.0.0.0 e-x.not.fyi
+0.0.0.0 f.loca.amberweather.com
 0.0.0.0 fb-t-msedge.net
 0.0.0.0 find.api.micloud.xiaomi.net
-0.0.0.0 f.loca.amberweather.com
+0.0.0.0 fpf.hybrid.ai
 0.0.0.0 gator.volces.com
 0.0.0.0 global.market.xiaomi.com
 0.0.0.0 hb.bumlam.com
@@ -40,20 +46,27 @@
 0.0.0.0 ip4.tracker-api.vk-analytics.ru
 0.0.0.0 khtge.uxzw.club
 0.0.0.0 ksn-ca-geo.kaspersky-labs.com
+0.0.0.0 ksn-cinfo-geo.kaspersky-labs.com
 0.0.0.0 ksn-file-geo.kaspersky-labs.com
 0.0.0.0 ksn-ml-geo.kaspersky-labs.com
 0.0.0.0 ksn-info-geo.kaspersky-labs.com
 0.0.0.0 ksn-pp.kaspersky-labs.com
+0.0.0.0 launches.appsflyersdk.com
 0.0.0.0 log.strm.yandex.ru
 0.0.0.0 matchid.adfox.yandex.ru
+0.0.0.0 mdp-appconf-ru.heytapdl.com
 0.0.0.0 mobile.events.data.microsoft.com
+0.0.0.0 mos-howl.api.intl.miui.com
 0.0.0.0 mshield.baidu.com
+0.0.0.0 mpsbol.clickstream.sberbank.ru
 0.0.0.0 nl06.cdnsqu.com
+0.0.0.0 obus-rudc-sg.heytapmobile.com
 0.0.0.0 ondevicesafety-pa.googleapis.com
 0.0.0.0 public-api.uxfeedback.ru
 0.0.0.0 pb.adriver.ru
 0.0.0.0 px.videohype.net
 0.0.0.0 qcc.qualcomm.com
+0.0.0.0 r.mradx.net
 0.0.0.0 rap.skcrtxr.com
 0.0.0.0 rebus.rustore.ru
 0.0.0.0 redirect-frontend.weborama-tech.ru	
@@ -63,7 +76,7 @@
 0.0.0.0 ru.global.market.xiaomi.com
 0.0.0.0 ru.resolver.msg.global.xiaomi.net
 0.0.0.0 ru-idm.api.io.mi.com
-0.0.0.0 r.mradx.net
+0.0.0.0 rus-service-sg.allawnos.com
 0.0.0.0 sdk-api.apptracer.ru
 0.0.0.0 sdkconfig.ad.rus.xiaomi.com
 0.0.0.0 sdkconfig.rus.xiaomi.com
@@ -90,4 +103,3 @@
 0.0.0.0 xray.mail.ru
 0.0.0.0 yahoo.com
 0.0.0.0 yhb.p.otm-r.com
-0.0.0.0 531111.ms.dzen.ru
