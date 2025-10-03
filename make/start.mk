@@ -199,7 +199,7 @@ start-skillnotes:
 		--memory=${SKILLNOTES_APP_MEMORY} \
 		--cpus=${SKILLNOTES_APP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/dv0vd/demo-skillnotes:1.0.6
+		docker.io/dv0vd/demo-skillnotes:1.0.7
 
 start-fail2ban:
 	systemctl enable fail2ban
