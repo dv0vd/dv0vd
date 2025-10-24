@@ -34,6 +34,9 @@ logs-timers:
 logs-skillnotes:
 	podman logs -f demo-skillnotes
 
+logs-todo-manager:
+	podman logs -f demo-todo-manager
+
 logs-fail2ban:
 	tail -f -n +1 /var/log/fail2ban.log
 

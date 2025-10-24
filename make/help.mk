@@ -15,6 +15,7 @@ help:
 	@echo ${GREEN}start-demo'                              '${WHITE}— start all demo projects${RESET}
 	@echo ${GREEN}start-timers'                            '${WHITE}— start timers demo project${RESET}
 	@echo ${GREEN}start-skillnotes'                        '${WHITE}— start skillnotes demo project${RESET}
+	@echo ${GREEN}start-todo-manager'                      '${WHITE}— start todo manager demo project${RESET}
 	@echo ${GREEN}start-fail2ban'                          '${WHITE}— start fail2ban${RESET}
 	@echo ${GREEN}stop-containers'                         '${WHITE}— stop all containers${RESET}
 	@echo ${GREEN}stop-socks4'                             '${WHITE}— stop socks4 server${RESET}
@@ -29,6 +30,7 @@ help:
 	@echo ${GREEN}stop-demo'                               '${WHITE}— stop all demo projects${RESET}
 	@echo ${GREEN}stop-timers'                             '${WHITE}— stop timers demo project${RESET}
 	@echo ${GREEN}stop-skillnotes'                         '${WHITE}— stop skillnotes demo project${RESET}
+	@echo ${GREEN}stop-todo-manager'                       '${WHITE}— stop todo-manager demo project${RESET}
 	@echo ${GREEN}stop-fail2ban'                           '${WHITE}— stop fail2ban${RESET}
 	@echo ${GREEN}restart-containers'                      '${WHITE}— restart all containers${RESET}
 	@echo ${GREEN}restart-socks4'                          '${WHITE}— restart socks4 server${RESET}
@@ -43,6 +45,7 @@ help:
 	@echo ${GREEN}restart-demo'                            '${WHITE}— restart all demo projects${RESET}
 	@echo ${GREEN}restart-timers'                          '${WHITE}— restart timers demo project${RESET}
 	@echo ${GREEN}restart-skillnotes'                      '${WHITE}— restart skillnotes demo project${RESET}
+	@echo ${GREEN}restart-todo-manager'                    '${WHITE}— restart todo-manager demo project${RESET}
 	@echo ${GREEN}restart-fail2ban'                        '${WHITE}— restart fail2ban and reload fail2ban-client${RESET}
 	@echo ${GREEN}logs-clear'                              '${WHITE}— clear journalctl logs olden then 1 day${RESET}
 	@echo ${GREEN}logs-socks4'                             '${WHITE}— get socks4 server logs${RESET}
@@ -57,6 +60,7 @@ help:
 	@echo ${GREEN}logs-postgres-synapse'                   '${WHITE}— get logs of postgres database for synapse server${RESET}
 	@echo ${GREEN}logs-timers'                             '${WHITE}— get logs of timers demo project${RESET}
 	@echo ${GREEN}logs-skillnotes'                         '${WHITE}— get logs of skillnotes demo project${RESET}
+	@echo ${GREEN}logs-todo-manager'                       '${WHITE}— get logs of todo-manager demo project${RESET}
 	@echo ${GREEN}logs-auth'                               '${WHITE}— get SSH connection attemps logs${RESET}
 	@echo ${GREEN}logs-init'                               '${WHITE}— get init logs${RESET}
 	@echo ${GREEN}logs-startup'                            '${WHITE}— get startup logs${RESET}

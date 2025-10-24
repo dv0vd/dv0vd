@@ -169,6 +169,7 @@ start-db:
 start-demo:
 	$(MAKE) start-timers
 	$(MAKE) start-skillnotes
+	$(MAKE) start-todo-manager
 
 start-timers:
 	- podman run \
@@ -200,6 +201,23 @@ start-skillnotes:
 		--cpus=${SKILLNOTES_APP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/dv0vd/demo-skillnotes:1.0.10
+
+start-todo-manager:
+	- podman run \
+		-d \
+		-e DB_HOST=${TODO_MANAGER_DB_HOST} \
+		-e DB_PORT=${TODO_MANAGER_DB_PORT} \
+		-e DB_USER=${TODO_MANAGER_DB_USER} \
+		-e DB_PASSWORD=${TODO_MANAGER_DB_PASSWORD} \
+		-e DB_NAME=${TODO_MANAGER_DB_NAME} \
+		-e HOST=${TODO_MANAGER_HOST} \
+		--name demo-todo-manager \
+		--network podman_network \
+		--restart unless-stopped \
+		--memory=${TODO_MANAGER_APP_MEMORY} \
+		--cpus=${TODO_MANAGER_APP_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/dv0vd/demo-todo-manager:1.0.0
 
 start-fail2ban:
 	systemctl enable fail2ban

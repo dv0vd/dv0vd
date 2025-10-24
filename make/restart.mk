@@ -33,6 +33,8 @@ restart-timers: stop-timers start-timers restart-nginx
 
 restart-skillnotes: stop-skillnotes start-skillnotes restart-nginx
 
+restart-todo-manager: stop-todo-manager start-todo-manager restart-nginx
+
 restart-fail2ban: 
 	systemctl restart fail2ban
 

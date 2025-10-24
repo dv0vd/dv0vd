@@ -53,6 +53,10 @@ stop-skillnotes:
 	- podman stop demo-skillnotes
 	- podman rm demo-skillnotes
 
+stop-todo-manager:
+	- podman stop demo-todo-manager
+	- podman rm demo-todo-manager
+
 stop-fail2ban:
 	systemctl disable fail2ban
 	systemctl stop fail2ban
