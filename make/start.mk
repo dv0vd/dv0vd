@@ -217,7 +217,7 @@ start-todo-manager:
 		--memory=${TODO_MANAGER_APP_MEMORY} \
 		--cpus=${TODO_MANAGER_APP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/dv0vd/demo-todo-manager:1.1.0
+		docker.io/dv0vd/demo-todo-manager:1.1.1
 
 start-fail2ban:
 	systemctl enable fail2ban
