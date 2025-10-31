@@ -13,16 +13,16 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 6) Configure the `.env` file.
 7) Copy Podman images to `./deployment/images`:
 - coturn_4.7.0.tar
+- dv0vd-demo-skillnotes_1.0.10.tar
+- dv0vd-demo-timers_1.0.5.tar
+- dv0vd-demo-todo-manager_1.1.1.tar
 - dv0vd-https-proxy_1.2.0.tar
 - dv0vd-socks4_1.1.3.tar
 - dv0vd-socks5_1.1.1.tar
 - mongo_7.0.16.tar
 - nginx_1.27.3.tar
-- node_24.5.0-alpine.tar
+- outline-shadowbox_v1.12.3.tar
+- pihole_2025.08.0.tar
 - postgres_15.14-alpine.tar
 - synapse_1.135.0.tar
-- pihole_2025.08.0.tar
-- dv0vd-demo-skillnotes_1.0.6.tar
-- dv0vd-demo-todo-manager_1.0.0.tar
-- outline-shadowbox_v1.12.3.tar
 8) Run the initialization script `bash ./deployment/init.sh`.
