@@ -24,7 +24,7 @@ generateOutlineServerConfig() {
     }'
   )
 
-  echo "$json" > ./deployment/configs/outline/shadowbox_config.json
+  echo "$json" > ./deployment/configs/outline/shadowbox_server_config.json
 }
 
 log() {
@@ -55,6 +55,7 @@ apt install -y apache2-utils && # for nginx basic auth
 apt install -y fail2ban &&
 apt install -y podman && 
 apt install -y jq && # for outline json config generation
+apt install -y uuid-runtime && # for outline json config generation
 #apt install -y telnet &&
 
 log "Configuring SSH..."
