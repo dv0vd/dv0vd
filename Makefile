@@ -15,6 +15,7 @@ include ./make/synapse.mk
 include ./make/fail2ban.mk
 include ./make/podman.mk
 include ./make/hooks.mk
+include ./make/outline.mk
 
 # stop-email:
 # 	- podman stop email

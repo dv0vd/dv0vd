@@ -66,8 +66,8 @@ start-outline:
 		-v ./deployment/data/outline/data:/root/shadowbox \
 		-v ./deployment/configs/outline:/app \
 		-v ./deployment/configs/outline/shadowbox_config.json:/root/shadowbox/persisted-state/shadowbox_config.json:ro \
-		-p 127.0.0.1:${OUTLINE_API_PORT}:8081 \
-		-p ${OUTLINE_ACCESS_PORT}:28085 \
+		-p 127.0.0.1:8081:8081 \
+		-p ${OUTLINE_PORT}:28085 \
 		-e SB_API_PREFIX=api \
 		-e SB_API_PORT=8081 \
 		-e SB_ENABLE_METRICS=false \
