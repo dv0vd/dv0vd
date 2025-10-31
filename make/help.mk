@@ -97,3 +97,6 @@ help:
 	@echo ${GREEN}synapse-restore-database'                '${WHITE}— restore synapse postgres database${RESET}
 	@echo ${GREEN}synapse-backup-to-storage-vps'           '${WHITE}— backup synapse database and media store to storage vps${RESET}
 	@echo ${GREEN}synapse-restore-from-storage-vps'        '${WHITE}— restore synapse database and media store from storage vps${RESET}
+	@echo ${GREEN}outline-get-keys'                        '${WHITE}— get outline vpn client keys${RESET}
+	@echo ${GREEN}outline-create-key' [name]               '${WHITE}— create outline vpn client key${RESET}
+	@echo ${GREEN}outline-delete-key' [id]                 '${WHITE}— delete outline vpn client key${RESET}
