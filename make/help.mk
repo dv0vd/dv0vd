@@ -6,6 +6,7 @@ help:
 	@echo ${GREEN}start-socks4'                            '${WHITE}— start socks4 server${RESET}
 	@echo ${GREEN}start-socks5'                            '${WHITE}— start socks5 server${RESET}
 	@echo ${GREEN}start-https-proxy'                       '${WHITE}— start https proxy server${RESET}
+	@echo ${GREEN}start-outline'                           '${WHITE}— start outline vpn${RESET}
 	@echo ${GREEN}start-nginx'                             '${WHITE}— start nginx server${RESET}
 	@echo ${GREEN}start-pihone'                            '${WHITE}— start Pi-hole${RESET}
 	@echo ${GREEN}start-db'                                '${WHITE}— start databases${RESET}
@@ -21,6 +22,7 @@ help:
 	@echo ${GREEN}stop-socks4'                             '${WHITE}— stop socks4 server${RESET}
 	@echo ${GREEN}stop-socks5'                             '${WHITE}— stop socks5 server${RESET}
 	@echo ${GREEN}stop-https-proxy'                        '${WHITE}— stop https proxy server${RESET}
+	@echo ${GREEN}stop-outline'                            '${WHITE}— stop outline vpn${RESET}
 	@echo ${GREEN}stop-pihole'                             '${WHITE}— stop Pi-hole${RESET}
 	@echo ${GREEN}stop-nginx'                              '${WHITE}— stop nginx server${RESET}
 	@echo ${GREEN}stop-db'                                 '${WHITE}— stop databases${RESET}
@@ -36,6 +38,7 @@ help:
 	@echo ${GREEN}restart-socks4'                          '${WHITE}— restart socks4 server${RESET}
 	@echo ${GREEN}restart-socks5'                          '${WHITE}— restart socks5 server${RESET}
 	@echo ${GREEN}restart-https-proxy'                     '${WHITE}— restart https proxy server${RESET}
+	@echo ${GREEN}restart-outline'                         '${WHITE}— restart outline vpn${RESET}
 	@echo ${GREEN}restart-nginx'                           '${WHITE}— restart nginx server${RESET}
 	@echo ${GREEN}restart-pihole'                          '${WHITE}— restart Pi-hole${RESET}
 	@echo ${GREEN}restart-db'                              '${WHITE}— restart databases${RESET}
@@ -51,6 +54,7 @@ help:
 	@echo ${GREEN}logs-socks4'                             '${WHITE}— get socks4 server logs${RESET}
 	@echo ${GREEN}logs-socks5'                             '${WHITE}— get socks5 server logs${RESET}
 	@echo ${GREEN}logs-https-proxy'                        '${WHITE}— get https proxy server logs${RESET}
+	@echo ${GREEN}logs-outline'                            '${WHITE}— get outline vpn logs${RESET}
 	@echo ${GREEN}logs-nginx'                              '${WHITE}— get nginx logs${RESET}
 	@echo ${GREEN}logs-nginx-access'                       '${WHITE}— get nginx access logs${RESET}
 	@echo ${GREEN}logs-nginx-error'                        '${WHITE}— get nginx error logs${RESET}
