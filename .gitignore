@@ -14,4 +14,4 @@ deployment/configs/element/config.json
 deployment/configs/coturn/turnserver.conf
 deployment/configs/linux/rclone.conf
 deployment/configs/fail2ban/jail.local
-deployment/configs/outline/shadowbox_config.json
+deployment/configs/outline/shadowbox_server_config.json

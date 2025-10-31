@@ -59,13 +59,14 @@ start-https-proxy:
 		docker.io/dv0vd/https-proxy
 
 start-outline:
+	- mkdir ./deployment/data/outline/data/persisted-state
+	- cp -f ./deployment/configs/outline/shadowbox_server_config.json ./deployment/data/outline/data/persisted-state/shadowbox_server_config.json
 	- podman run \
 		-d \
 		--name outline \
 		--network podman_network \
 		-v ./deployment/data/outline/data:/root/shadowbox \
 		-v ./deployment/configs/outline:/app \
-		-v ./deployment/configs/outline/shadowbox_config.json:/root/shadowbox/persisted-state/shadowbox_config.json:ro \
 		-p 127.0.0.1:8081:8081 \
 		-p ${OUTLINE_PORT}:28085 \
 		-e SB_API_PREFIX=api \
