@@ -24,4 +24,5 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 - pihole_2025.08.0.tar
 - dv0vd-demo-skillnotes_1.0.6.tar
 - dv0vd-demo-todo-manager_1.0.0.tar
+- outline-shadowbox_v1.12.3.tar
 8) Run the initialization script `bash ./deployment/init.sh`.

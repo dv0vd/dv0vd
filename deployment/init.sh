@@ -3,6 +3,30 @@ set -e
 
 LOG_FILE="/var/log/init.log"
 
+generateOutlineServerConfig() {
+  serverId=$(uuidgen)
+  createdTimestampMs=$(($(date +%s%3N)))
+  hostname="localhost"
+  portForNewAccessKeys=28085
+  metricsEnabled=false
+  json=$(jq -n \
+    --arg serverId "$serverId" \
+    --argjson metricsEnabled "$metricsEnabled" \
+    --argjson createdTimestampMs "$createdTimestampMs" \
+    --arg hostname "$hostname" \
+    --argjson portForNewAccessKeys "$portForNewAccessKeys" \
+    '{
+        serverId: $serverId,
+        metricsEnabled: $metricsEnabled,
+        createdTimestampMs: $createdTimestampMs,
+        hostname: $hostname,
+        portForNewAccessKeys: $portForNewAccessKeys
+    }'
+  )
+
+  echo "$json" > ./deployment/configs/outline/shadowbox_config.json
+}
+
 log() {
   local msg="$1"
   local ts
@@ -74,10 +98,17 @@ ssh-keyscan -p $RCLONE_PORT $RCLONE_HOST >> /root/.ssh/known_hosts &&
 
 log "Configuring nginx (htpasswd and SSL certificate)..."
 htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+openssl req -x509 -nodes -newkey rsa:2048 \
   -keyout /root/dv0vd/deployment/configs/nginx/nginx.key \
   -out /root/dv0vd/deployment/configs/nginx/nginx.crt \
   -subj "/CN=localhost" &&
+
+log "Configuring Outline VPN..."
+openssl req -x509 -nodes -newkey rsa:2048 \
+  -keyout /root/dv0vd/deployment/configs/outline/outline.key \
+  -out /root/dv0vd/deployment/configs/outline/outline.crt \
+  -subj "/CN=localhost" &&
+generateOutlineServerConfig &&
 
 log "Configuring rc.local autostart..."
 rm /etc/rc.local -f &&
