@@ -3,3 +3,6 @@ enter-nginx:
 
 enter-synapse:
 	podman exec -it synapse bash
+
+enter-outline:
+	podman exec -it outline sh

@@ -57,6 +57,27 @@ start-https-proxy:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/dv0vd/https-proxy
 
+start-outline:
+	- podman run \
+		-d \
+		--name outline \
+		--network podman_network \
+		-v ./deployment/data/outline/data:/root/shadowbox \
+		-v ./deployment/configs/outline:/app \
+		-p ${OUTLINE_API_PORT}:8081 \
+		-p ${OUTLINE_ACCESS_PORT}:28085 \
+		-e SB_API_PREFIX=api \
+		-e SB_API_PORT=8081 \
+		-e SB_ENABLE_METRICS=false \
+		-e SB_DEFAULT_SERVER_NAME=Dv0vD \
+		-e SB_CERTIFICATE_FILE=/app/outline.crt \
+		-e SB_PRIVATE_KEY_FILE=/app/outline.key \
+		--restart unless-stopped \
+		--memory=${OUTLINE_MEMORY} \
+		--cpus=${OUTLINE_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		quay.io/outline/shadowbox:v1.12.3
+
 start-nginx:
 	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log

@@ -10,6 +10,9 @@ logs-socks5:
 logs-https-proxy:
 	podman logs -f https-proxy
 
+logs-outline:
+	podman logs -f outline
+
 logs-nginx:
 	podman logs -f nginx
 

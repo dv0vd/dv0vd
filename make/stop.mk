@@ -3,6 +3,7 @@ stop-containers:
 	- $(MAKE) stop-demo
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
+	- $(MAKE) stop-outline
 	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-coturn
 	- $(MAKE) stop-synapse
@@ -19,6 +20,10 @@ stop-socks5:
 stop-https-proxy:
 	- podman stop https-proxy
 	- podman rm https-proxy
+
+stop-outline:
+	- podman stop outline
+	- podman rm outline
 
 stop-nginx:
 	- podman stop nginx
@@ -44,6 +49,7 @@ stop-postgres-synapse:
 stop-demo:
 	$(MAKE) stop-timers
 	$(MAKE) stop-skillnotes
+	$(MAKE) stop-todo-manager
 
 stop-timers:
 	- podman stop demo-timers
