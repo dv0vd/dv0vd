@@ -25,6 +25,7 @@ log "Updating system and installing required packages..."
 apt update &&
 apt upgrade -y &&
 apt install -y make &&
+apt install -y curl &&
 apt install -y git && 
 apt install -y cgroup-tools &&
 apt install -y apache2-utils && # for nginx basic auth
