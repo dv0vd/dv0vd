@@ -3,8 +3,8 @@
 # This hosts file is a merged collection of hosts from reputable sources,
 # with a dash of crowd sourcing via GitHub
 #
-# Date: 03 October 2025
-# Number of unique domains: 92
+# Date: 31 October 2025
+# Number of unique domains: 95
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -25,6 +25,7 @@
 0.0.0.0 cdn-rtb.sape.ru
 0.0.0.0 configs.amberweather.com
 0.0.0.0 clickstream.goldapple.ru
+0.0.0.0 cloudconf-app-ru.heytapmobile.com
 0.0.0.0 cqohtp.inapps.appsflyersdk.com
 0.0.0.0 dc1-ml.ksn.kaspersky-labs.com
 0.0.0.0 dc1-pp.ksn.kaspersky-labs.com
@@ -60,6 +61,7 @@
 0.0.0.0 mshield.baidu.com
 0.0.0.0 mpsbol.clickstream.sberbank.ru
 0.0.0.0 nl06.cdnsqu.com
+0.0.0.0 obus-dc20123-sg.heytapmobile.com
 0.0.0.0 obus-rudc-sg.heytapmobile.com
 0.0.0.0 ondevicesafety-pa.googleapis.com
 0.0.0.0 public-api.uxfeedback.ru
@@ -88,6 +90,7 @@
 0.0.0.0 stats.rustore.ru
 0.0.0.0 sync.dmp.otm-r.com
 0.0.0.0 s07.upd.kaspersky.com
+0.0.0.0 time-push-intl.heytapmobile.com
 0.0.0.0 tp-link.com
 0.0.0.0 ts.tracker-api.my.com
 0.0.0.0 ts.tracker-api.vk-analytics.ru
