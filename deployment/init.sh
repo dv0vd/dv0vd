@@ -54,6 +54,7 @@ apt install -y cgroup-tools &&
 apt install -y apache2-utils && # for nginx basic auth
 apt install -y fail2ban &&
 apt install -y podman && 
+apt install -y jq && # for outline json config generation
 #apt install -y telnet &&
 
 log "Configuring SSH..."
