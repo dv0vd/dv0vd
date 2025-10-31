@@ -11,6 +11,8 @@ restart-socks5: stop-socks5 start-socks5
 
 restart-https-proxy: stop-https-proxy start-https-proxy
 
+restart-outline: stop-outline start-outline
+
 restart-pihole: stop-pihole start-pihole
 
 restart-nginx: stop-nginx start-nginx
@@ -32,6 +34,8 @@ restart-demo: stop-demo start-demo restart-nginx
 restart-timers: stop-timers start-timers restart-nginx
 
 restart-skillnotes: stop-skillnotes start-skillnotes restart-nginx
+
+restart-todo-manager: stop-todo-manager start-todo-manager restart-nginx
 
 restart-fail2ban: 
 	systemctl restart fail2ban

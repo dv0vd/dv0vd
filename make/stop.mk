@@ -3,6 +3,7 @@ stop-containers:
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-pihole
+	- $(MAKE) stop-outline
 
 stop-socks4:
 	- podman stop socks4
@@ -15,6 +16,10 @@ stop-socks5:
 stop-https-proxy:
 	- podman stop https-proxy
 	- podman rm https-proxy
+
+stop-outline:
+	- podman stop outline
+	- podman rm outline
 
 stop-nginx:
 	- podman stop nginx
@@ -40,6 +45,7 @@ stop-postgres-synapse:
 stop-demo:
 	$(MAKE) stop-timers
 	$(MAKE) stop-skillnotes
+	$(MAKE) stop-todo-manager
 
 stop-timers:
 	- podman stop demo-timers
@@ -48,6 +54,10 @@ stop-timers:
 stop-skillnotes:
 	- podman stop demo-skillnotes
 	- podman rm demo-skillnotes
+
+stop-todo-manager:
+	- podman stop demo-todo-manager
+	- podman rm demo-todo-manager
 
 stop-fail2ban:
 	systemctl disable fail2ban

@@ -3,6 +3,7 @@ start-containers:
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-pihole
+	- $(MAKE) start-outline
 	- $(MAKE) start-nginx
 
 start-socks4:
@@ -51,10 +52,33 @@ start-https-proxy:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/dv0vd/https-proxy
 
+start-outline:
+	- mkdir ./deployment/data/outline/data/persisted-state
+	- cp -f ./deployment/configs/outline/shadowbox_server_config.json ./deployment/data/outline/data/persisted-state/shadowbox_server_config.json
+	- podman run \
+		-d \
+		--name outline \
+		--network podman_network \
+		-v ./deployment/data/outline/data:/root/shadowbox \
+		-v ./deployment/configs/outline:/app \
+		-p 127.0.0.1:8081:8081 \
+		-p ${OUTLINE_PORT}:28085 \
+		-e SB_API_PREFIX=api \
+		-e SB_API_PORT=8081 \
+		-e SB_ENABLE_METRICS=false \
+		-e SB_DEFAULT_SERVER_NAME=Dv0vD \
+		-e SB_CERTIFICATE_FILE=/app/outline.crt \
+		-e SB_PRIVATE_KEY_FILE=/app/outline.key \
+		--restart unless-stopped \
+		--memory=${OUTLINE_MEMORY} \
+		--cpus=${OUTLINE_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		quay.io/outline/shadowbox:v1.12.3
+
 start-nginx:
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
-	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/nginx_env.conf > ./deployment/configs/nginx/nginx.conf"
 	- podman run \
 	-d \
 	--name nginx \
@@ -71,9 +95,9 @@ start-nginx:
 	docker.io/nginx:1.27.3
 
 start-nginx-local:
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
-	- bash -c "set -a; . .env; set +a; envsubst '\$$ELEMENT_LOCATION_PREFIX' < ./deployment/configs/nginx/local_env.conf > ./deployment/configs/nginx/local.conf"
 	- podman run \
 	-d \
 	--name nginx \
@@ -159,6 +183,7 @@ start-db:
 start-demo:
 	$(MAKE) start-timers
 	$(MAKE) start-skillnotes
+	$(MAKE) start-todo-manager
 
 start-timers:
 	- podman run \
@@ -189,7 +214,24 @@ start-skillnotes:
 		--memory=${SKILLNOTES_APP_MEMORY} \
 		--cpus=${SKILLNOTES_APP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/dv0vd/demo-skillnotes:1.0.6
+		docker.io/dv0vd/demo-skillnotes:1.0.10
+
+start-todo-manager:
+	- podman run \
+		-d \
+		-e DB_HOST=${TODO_MANAGER_DB_HOST} \
+		-e DB_PORT=${TODO_MANAGER_DB_PORT} \
+		-e DB_USER=${TODO_MANAGER_DB_USER} \
+		-e DB_PASSWORD=${TODO_MANAGER_DB_PASSWORD} \
+		-e DB_NAME=${TODO_MANAGER_DB_NAME} \
+		-e HOST=${TODO_MANAGER_HOST} \
+		--name demo-todo-manager \
+		--network podman_network \
+		--restart unless-stopped \
+		--memory=${TODO_MANAGER_APP_MEMORY} \
+		--cpus=${TODO_MANAGER_APP_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/dv0vd/demo-todo-manager:1.1.1
 
 start-fail2ban:
 	systemctl enable fail2ban

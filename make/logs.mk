@@ -10,6 +10,9 @@ logs-socks5:
 logs-https-proxy:
 	podman logs -f https-proxy
 
+logs-outline:
+	podman logs -f outline
+
 logs-nginx:
 	podman logs -f nginx
 
@@ -33,6 +36,9 @@ logs-timers:
 
 logs-skillnotes:
 	podman logs -f demo-skillnotes
+
+logs-todo-manager:
+	podman logs -f demo-todo-manager
 
 logs-fail2ban:
 	tail -f -n +1 /var/log/fail2ban.log
