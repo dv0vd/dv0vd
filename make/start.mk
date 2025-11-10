@@ -18,6 +18,8 @@ start-socks4:
 		-d \
 		--name socks4 \
 		--network podman_network \
+		--dns ${DNS1} \ 
+		--dns ${DNS2} \ 
 		-p ${SOCKS4_PORT}:1080 \
 		--restart unless-stopped \
 		--memory=${SOCKS4_MEMORY} \
@@ -33,6 +35,8 @@ start-socks5:
 		-d \
 		--name socks5 \
 		--network podman_network \
+		--dns ${DNS1} \ 
+		--dns ${DNS2} \ 
 		-p ${SOCKS5_PORT}:1080 \
 		-e SOCKS_USERNAME=${SOCKS5_USERNAME} \
 		-e SOCKS_PASSWORD=${SOCKS5_PASSWORD} \
@@ -49,6 +53,8 @@ start-https-proxy:
 		-d \
 		--name https-proxy \
 		--network podman_network \
+		--dns ${DNS1} \ 
+		--dns ${DNS2} \ 
 		-e DNS1=${DNS1} \
 		-e DNS2=${DNS2} \
 		-p ${HTTPS_PROXY_PORT}:3128 \
@@ -65,6 +71,8 @@ start-outline:
 		-d \
 		--name outline \
 		--network podman_network \
+		--dns ${DNS1} \ 
+		--dns ${DNS2} \ 
 		-v ./deployment/data/outline/data:/root/shadowbox \
 		-v ./deployment/configs/outline:/app \
 		-p 127.0.0.1:8081:8081 \
@@ -89,6 +97,8 @@ start-nginx:
 	-d \
 	--name nginx \
 	--network podman_network \
+	--dns ${DNS1} \ 
+	--dns ${DNS2} \ 
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
@@ -112,6 +122,8 @@ start-nginx-local:
 	-d \
 	--name nginx \
 	--network podman_network \
+	--dns ${DNS1} \ 
+	--dns ${DNS2} \ 
 	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
@@ -130,6 +142,8 @@ start-pihole:
 		-d \
 		--name pihole \
 		--network podman_network \
+		--dns ${DNS1} \ 
+		--dns ${DNS2} \ 
 		-p 53:53/tcp \
 		-p 53:53/udp \
 		-p 127.0.0.1:80:80 \
@@ -147,6 +161,8 @@ start-mongo-demo:
 	-d \
 	--name mongo-demo \
 	--network podman_network \
+	--dns ${DNS1} \ 
+	--dns ${DNS2} \ 
 	--restart unless-stopped \
 	--memory=${MONGO_DEMO_MEMORY} \
 	--cpus=${MONGO_DEMO_CPUS} \
@@ -160,6 +176,8 @@ start-postgres-demo:
 	-v ./deployment/configs/postgres/demo.sql:/docker-entrypoint-initdb.d/demo.sql \
 	-e POSTGRES_PASSWORD=${POSTGRES_DEMO_PASSWORD} \
 	--network podman_network \
+	--dns ${DNS1} \ 
+	--dns ${DNS2} \ 
 	--restart unless-stopped \
 	--memory=${POSTGRES_DEMO_MEMORY} \
 	--cpus=${POSTGRES_DEMO_CPUS} \
@@ -179,6 +197,8 @@ start-postgres-synapse:
 	-e POSTGRES_PASSWORD=${SYNAPSE_DB_PASSWORD} \
 	-p 127.0.0.1:${SYNAPSE_DB_HOST_PORT}:${SYNAPSE_DB_PORT} \
 	--network podman_network \
+	--dns ${DNS1} \ 
+	--dns ${DNS2} \ 
 	--restart unless-stopped \
 	--memory=${SYNAPSE_DB_MEMORY} \
 	--cpus=${SYNAPSE_DB_CPUS} \
@@ -203,6 +223,8 @@ start-timers:
 		-e BASE_PATH='/demo/timers/' \
 		--name demo-timers \
 		--network podman_network \
+		--dns ${DNS1} \ 
+		--dns ${DNS2} \ 
 		--restart unless-stopped \
 		--memory=${TIMERS_APP_MEMORY} \
 		--cpus=${TIMERS_APP_CPUS} \
@@ -220,6 +242,8 @@ start-skillnotes:
 		-e BASE_PATH='/demo/skillnotes/' \
 		--name demo-skillnotes \
 		--network podman_network \
+		--dns ${DNS1} \ 
+		--dns ${DNS2} \ 
 		--restart unless-stopped \
 		--memory=${SKILLNOTES_APP_MEMORY} \
 		--cpus=${SKILLNOTES_APP_CPUS} \
@@ -237,6 +261,8 @@ start-todo-manager:
 		-e HOST=${TODO_MANAGER_HOST} \
 		--name demo-todo-manager \
 		--network podman_network \
+		--dns ${DNS1} \ 
+		--dns ${DNS2} \ 
 		--restart unless-stopped \
 		--memory=${TODO_MANAGER_APP_MEMORY} \
 		--cpus=${TODO_MANAGER_APP_CPUS} \
@@ -259,6 +285,8 @@ start-synapse:
 	-v ./deployment/configs/synapse:/config \
 	-e SYNAPSE_CONFIG_DIR=/config \
 	--network podman_network \
+	--dns ${DNS1} \ 
+	--dns ${DNS2} \ 
 	--memory=${SYNAPSE_APP_MEMORY} \
 	--cpus=${SYNAPSE_APP_CPUS} \
 	--cgroup-parent=/podman-group.slice \
@@ -278,6 +306,8 @@ start-coturn:
 	-e DETECT_RELAY_IP=yes \
 	-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
 	--network podman_network \
+	--dns ${DNS1} \ 
+	--dns ${DNS2} \ 
 	--memory=${COTURN_MEMORY} \
 	--cpus=${COTURN_CPUS} \
 	--cgroup-parent=/podman-group.slice \

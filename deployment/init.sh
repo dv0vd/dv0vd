@@ -125,6 +125,7 @@ install_packages() {
   apt install -y gettext # for envsubst
   apt install -y jq # for outline json config generation
   apt install -y uuid-runtime # for outline json config generation
+  apt install dnsutils # for dig
   #apt install -y telnet &&
   log "Packages successfully installed"
 }
