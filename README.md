@@ -22,7 +22,6 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 - mongo_7.0.16.tar
 - nginx_1.27.3.tar
 - outline-shadowbox_v1.12.3.tar
-- pihole_2025.08.0.tar
 - postgres_15.14-alpine.tar
 - synapse_1.135.0.tar
 8) Run the initialization script `bash ./deployment/init.sh`.
