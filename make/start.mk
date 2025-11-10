@@ -1,15 +1,9 @@
 start-containers:
-	- $(MAKE) start-db
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
+	- $(MAKE) start-pihole
 	- $(MAKE) start-outline
-	- $(MAKE) synapse-vacuum-clean
-	- $(MAKE) synapse-backup-database
-	- $(MAKE) synapse-backup-to-storage-vps
-	- $(MAKE) start-coturn
-	- $(MAKE) start-synapse
-	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
 
 start-socks4:
@@ -90,7 +84,7 @@ start-outline:
 		quay.io/outline/shadowbox:v1.12.3
 
 start-nginx:
-	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_lite_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -115,7 +109,7 @@ start-nginx:
 	docker.io/nginx:1.27.3
 
 start-nginx-local:
-	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/local_main_env.conf > ./deployment/configs/nginx/local.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/local_lite_env.conf > ./deployment/configs/nginx/local.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
