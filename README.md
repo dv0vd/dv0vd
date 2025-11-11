@@ -6,12 +6,13 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 1) Update packages index: `apt update`.
 2) Install git: `apt install git`.
 3) Clone repo: `git clone https://github.com/dv0vd/dv0vd.git`.
-4) Configure the `.env` file.
-5) Copy Podman images to `./deployment/images`:
+4) Go to the `lite` branch: `cd dv0vd && git checkout lite`.
+5) Configure the `.env` file.
+6) Copy Podman images to `./deployment/images`:
 - dv0vd-https-proxy_1.2.0.tar
 - dv0vd-socks4_1.1.3.tar
 - dv0vd-socks5_1.1.1.tar
 - nginx_1.27.3.tar
 - outline-shadowbox_v1.12.3.tar
 - pihole_2025.08.0.tar
-6) Run the initialization script `bash ./deployment/init.sh`.
+7) Run the initialization script `bash ./deployment/init.sh`.
