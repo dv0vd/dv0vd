@@ -7,7 +7,7 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 2) Install git: `apt install git`.
 3) Copy storage-vps SSH private key to `/root/.ssh/vps-storage` for storage vps backups.
 4) Clone repo: `git clone https://github.com/dv0vd/dv0vd.git`.
-5) Copy Nginx certificates to `./deployment/configs/nginx`:
+5) Copy Nginx certificates to `./dv0vd/deployment/configs/nginx`:
 - dv0vd_dev.crt
 - dv0vd_dev.key
 6) Configure the `.env` file.
@@ -24,4 +24,4 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 - outline-shadowbox_v1.12.3.tar
 - postgres_15.14-alpine.tar
 - synapse_1.135.0.tar
-8) Run the initialization script `bash ./deployment/init.sh`.
+8) Run the initialization script `./dv0vd/deployment/init.sh`.
