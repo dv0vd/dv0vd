@@ -3,26 +3,31 @@
 # This hosts file is a merged collection of hosts from reputable sources,
 # with a dash of crowd sourcing via GitHub
 #
-# Date: 31 October 2025
-# Number of unique domains: 108
+# Date: 03 November 2025
+# Number of unique domains: 121
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
 # ===============================================================
 
 
+0.0.0.0 a.adiam.tech
 0.0.0.0 a.root-servers.net
 0.0.0.0 a.atraffic.ru
+0.0.0.0 a.bringads.ru
+0.0.0.0 a.utraff.com
 0.0.0.0 acint.net
 0.0.0.0 ads.mozilla.org
 0.0.0.0 adx.videonow.ru
 0.0.0.0 alt-ad.mail.ru
 0.0.0.0 amc.yandex.ru
 0.0.0.0 an.mail.ru
+0.0.0.0 analytex.userpilot.io
 0.0.0.0 api.g.micloud.xiaomi.net
 0.0.0.0 api.gallery.intl.miui.com
 0.0.0.0 apmplus.volces.com
 0.0.0.0 app.adjust.io
+0.0.0.0 bid.sspnet.tech
 0.0.0.0 bobid-ip.hybrid.ai
 0.0.0.0 cdn-exp-sg-recommend.pt.xiaomi.com
 0.0.0.0 cdn-rtb.sape.ru
@@ -32,6 +37,7 @@
 0.0.0.0 cloudconf-app-ru.heytapmobile.com
 0.0.0.0 cqohtp.inapps.appsflyersdk.com
 0.0.0.0 cr-frontend.weborama-tech.ru
+0.0.0.0 dc.xoalt.com
 0.0.0.0 dc1-ml.ksn.kaspersky-labs.com
 0.0.0.0 dc1-pp.ksn.kaspersky-labs.com
 0.0.0.0 dmg.digitaltarget.ru
@@ -44,6 +50,7 @@
 0.0.0.0 fb-t-msedge.net
 0.0.0.0 fcgi4.gnezdo.ru
 0.0.0.0 find.api.micloud.xiaomi.net
+0.0.0.0 find.userpilot.io
 0.0.0.0 fpf.hybrid.ai
 0.0.0.0 gator.volces.com
 0.0.0.0 global.market.xiaomi.com
@@ -53,6 +60,7 @@
 0.0.0.0 hitcrypt.udqrh6.ru
 0.0.0.0 ip4.tracker-api.my.com
 0.0.0.0 ip4.tracker-api.vk-analytics.ru
+0.0.0.0 js.userpilot.io
 0.0.0.0 khtge.uxzw.club
 0.0.0.0 ksn-ca-geo.kaspersky-labs.com
 0.0.0.0 ksn-cinfo-geo.kaspersky-labs.com
@@ -64,6 +72,7 @@
 0.0.0.0 log.strm.yandex.ru
 0.0.0.0 match.ohmy.bid
 0.0.0.0 matchid.adfox.yandex.ru
+0.0.0.0 metrics.alfabank.ru
 0.0.0.0 mdp-appconf-ru.heytapdl.com
 0.0.0.0 mobile.events.data.microsoft.com
 0.0.0.0 mos-howl.api.intl.miui.com
@@ -86,6 +95,7 @@
 0.0.0.0 rum.dzen.ru
 0.0.0.0 ru.app.chat.global.xiaomi.net
 0.0.0.0 ru.global.market.xiaomi.com
+0.0.0.0 ru.id.facct.ru
 0.0.0.0 ru.resolver.msg.global.xiaomi.net
 0.0.0.0 ru-idm.api.io.mi.com
 0.0.0.0 rus-service-sg.allawnos.com
@@ -94,11 +104,13 @@
 0.0.0.0 sdkconfig.rus.xiaomi.com
 0.0.0.0 shifen.com
 0.0.0.0 sp.linkssp.ru
+0.0.0.0 ssp.al-adtech.com
 0.0.0.0 ssp.bidvol.com
 0.0.0.0 ssp-rtb.sape.ru
 0.0.0.0 stat.tildaapi.com
 0.0.0.0 static-mon.yandex.net
 0.0.0.0 stats.rustore.ru
+0.0.0.0 sync.bumlam.com
 0.0.0.0 sync.dmp.otm-r.com
 0.0.0.0 s07.upd.kaspersky.com
 0.0.0.0 time-push-intl.heytapmobile.com
@@ -108,6 +120,7 @@
 0.0.0.0 t-msedge.net
 0.0.0.0 tracker-api.vk-analytics.ru
 0.0.0.0 uaas.yandex.ru
+0.0.0.0 uid.bumlam.com
 0.0.0.0 us.appbackupapi.micloud.xiaomi.net	
 0.0.0.0 us.statusapi.micloud.xiaomi.net
 0.0.0.0 user-geo-data.wildberries.ru
