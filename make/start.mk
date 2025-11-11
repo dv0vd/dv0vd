@@ -1,4 +1,6 @@
 start-containers:
+	- echo "nameserver ${DNS1}" > /etc/resolv.conf
+	- echo "nameserver ${DNS2}" >> /etc/resolv.conf
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
