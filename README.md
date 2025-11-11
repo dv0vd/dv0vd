@@ -6,7 +6,7 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 1) Update packages index: `apt update`.
 2) Install git: `apt install git`.
 3) Clone repo: `git clone https://github.com/dv0vd/dv0vd.git`.
-4) Go to the project directory: `cd dv0vd`
+4) Go to the project directory: `cd ./dv0vd`
 5) Go to the `lite` branch: `git checkout lite`.
 6) Configure the `.env` file.
 7) Copy Podman images to `./deployment/images`:
