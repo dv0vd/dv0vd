@@ -1,8 +1,8 @@
 restart-containers:
 	- $(MAKE) stop-containers
 	- $(MAKE) podman-cleanup
-# - $(MAKE) clean-containers
 	- $(MAKE) podman-create-network
+	- $(MAKE) podman-load-images
 	- $(MAKE) start-containers
 
 restart-socks4: stop-socks4 start-socks4
