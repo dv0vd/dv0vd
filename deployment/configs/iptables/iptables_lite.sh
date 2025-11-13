@@ -24,11 +24,10 @@ iptables -A OUTPUT -o lo -j ACCEPT
 iptables -A INPUT -p icmp --icmp-type 8 -m limit --limit 10/s -j ACCEPT # echo request with limit for the whole server
 iptables -A OUTPUT -p icmp --icmp-type 0 -m limit --limit 10/s -j ACCEPT # echo reply with limit for the whole server
 
-# allow DNS
-iptables -A INPUT -p udp --dport 53 -j ACCEPT
 
-# allow SSH
-iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT
+iptables -A INPUT -p udp --dport 53 -j ACCEPT # allow DNS
+iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT # allow SSH
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT # allow https
 
 # default rules
 iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
