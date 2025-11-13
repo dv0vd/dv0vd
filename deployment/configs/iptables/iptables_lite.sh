@@ -10,7 +10,7 @@ iptables -A OUTPUT -m state --state INVALID -j DROP
 # block ips
 ipset create blocked_hosts iphash -exist # no error if set already exists
 ipset -F blocked_hosts # clean set
-for ip in $(cat ./blocked_hosts.txt); do
+for ip in $(cat ./deployment/configs/iptables/blocked_hosts.txt); do
     ipset add blocked_hosts $ip
 done
 iptables -A INPUT -p tcp -m set --match-set blocked_hosts src -j REJECT --reject-with tcp-reset
