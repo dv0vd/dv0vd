@@ -26,12 +26,12 @@ iptables -A OUTPUT -p icmp --icmp-type 0 -m limit --limit 10/s -j ACCEPT # echo 
 
 # allow DNS
 iptables -A INPUT -p udp --dport 53 -j ACCEPT
-iptables -A INPUT -p udp --sport 53 -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT # allow SSH
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT # allow https
 
 # default rules
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
 iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
 
