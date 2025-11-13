@@ -15,7 +15,7 @@ configure_fail2ban() {
   touch /root/dv0vd/deployment/data/nginx/logs/error.log
   touch /root/dv0vd/deployment/data/nginx/logs/access.log
   touch /root/dv0vd/deployment/data/socks5/logs/danted.log
-  systemctl enable fail2ban
+  systemctl disable fail2ban
   systemctl start fail2ban
   log "Fail2ban successfully configured"
 }
@@ -122,6 +122,7 @@ install_packages() {
   apt install -y apache2-utils # for nginx basic auth
   apt install -y fail2ban
   apt install -y podman
+  apt install -y ipset # for iptables
   apt install -y gettext # for envsubst
   apt install -y jq # for outline json config generation
   apt install -y uuid-runtime # for outline json config generation

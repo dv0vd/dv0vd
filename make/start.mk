@@ -264,7 +264,6 @@ start-todo-manager:
 		docker.io/dv0vd/demo-todo-manager:1.1.1
 
 start-fail2ban:
-	systemctl enable fail2ban
 	systemctl start fail2ban
 
 start-synapse:
