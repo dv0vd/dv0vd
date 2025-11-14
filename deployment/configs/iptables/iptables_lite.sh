@@ -12,10 +12,6 @@ iptables -P FORWARD DROP
 iptables -A INPUT  -i lo -j ACCEPT
 iptables -A OUTPUT -o lo -j ACCEPT
 
-# drop invalid packages
-iptables -A INPUT  -m state --state INVALID -j DROP
-iptables -A OUTPUT -m state --state INVALID -j DROP
-
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT # allow established/related
 
 # block ips
@@ -40,7 +36,10 @@ iptables -A INPUT -p tcp --dport $SOCKS4_PORT -j ACCEPT # allow socks4
 iptables -A INPUT -p tcp --dport $SOCKS5_PORT -j ACCEPT # allow socks5
 iptables -A INPUT -p tcp --dport $OUTLINE_PORT -j ACCEPT # allow outline
 
-# default rules
+# drop invalid packages
+iptables -A INPUT  -m state --state INVALID -j DROP
+iptables -A OUTPUT -m state --state INVALID -j DROP
 
+# default rules
 iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
 iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
