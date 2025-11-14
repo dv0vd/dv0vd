@@ -3,9 +3,10 @@
 iptables -F # clean all rules
 iptables -X # clean all user defined chains
 
-# drop invalid packages
-iptables -A INPUT  -m state --state INVALID -j DROP
-iptables -A OUTPUT -m state --state INVALID -j DROP
+# default policies
+iptables -P INPUT DROP
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD DROP
 
 # block ips
 ipset create blocked_hosts iphash -exist # no error if set already exists
@@ -38,7 +39,7 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
 iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
 
-# default policies
-iptables -P INPUT DROP
-iptables -P OUTPUT ACCEPT
-iptables -P FORWARD DROP
+# drop invalid packages
+iptables -A INPUT  -m state --state INVALID -j DROP
+iptables -A OUTPUT -m state --state INVALID -j DROP
+
