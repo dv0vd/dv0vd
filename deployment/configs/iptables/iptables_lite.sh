@@ -29,6 +29,9 @@ iptables -A INPUT -p udp --dport 53 -j ACCEPT
 
 iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT # allow SSH
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT # allow https
+iptables -A INPUT -p tcp --dport $SOCKS4_PORT -j ACCEPT # allow socks4
+iptables -A INPUT -p tcp --dport $SOCKS5_PORT -j ACCEPT # allow socks5
+iptables -A INPUT -p tcp --dport $OUTLINE_PORT -j ACCEPT # allow outline
 
 # default rules
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
