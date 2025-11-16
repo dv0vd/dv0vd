@@ -68,11 +68,13 @@ start-outline:
 	- podman run \
 		-d \
 		--name outline \
-		--network host \
+		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
 		-v ./deployment/data/outline/data:/root/shadowbox \
 		-v ./deployment/configs/outline:/app \
+		-p 127.0.0.1:8081:8081 \
+		-p ${OUTLINE_PORT}:28085 \
 		-e SB_API_PREFIX=api \
 		-e SB_API_PORT=8081 \
 		-e SB_ENABLE_METRICS=false \
