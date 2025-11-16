@@ -43,8 +43,8 @@ iptables -A INPUT -p tcp --dport $OUTLINE_PORT -j ACCEPT
 iptables -A INPUT -p udp --dport $OUTLINE_PORT -j ACCEPT 
 
 # fix for hardcoded outline DNS server
-iptables -t nat -A OUTPUT -p udp -d 9.9.9.9 --dport 53 -j DNAT --to-destination 127.0.0.1:53
-iptables -t nat -A OUTPUT -p tcp -d 9.9.9.9 --dport 53 -j DNAT --to-destination 127.0.0.1:53
+iptables -t nat -A PREROUTING -p udp -d 9.9.9.9 --dport 53 -j DNAT --to 127.0.0.1:53
+iptables -t nat -A PREROUTING -p tcp -d 9.9.9.9 --dport 53 -j DNAT --to 127.0.0.1:53
 
 # drop invalid packages
 iptables -A INPUT  -m state --state INVALID -j DROP
