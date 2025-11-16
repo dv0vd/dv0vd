@@ -32,9 +32,18 @@ iptables -A INPUT -p udp --dport 53 -j ACCEPT
 
 iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT # allow SSH
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT # allow https
-iptables -A INPUT -p tcp --dport $SOCKS4_PORT -j ACCEPT # allow socks4
-iptables -A INPUT -p tcp --dport $SOCKS5_PORT -j ACCEPT # allow socks5
-iptables -A INPUT -p tcp --dport $OUTLINE_PORT -j ACCEPT # allow outline
+
+# allow socks4
+iptables -A INPUT -p tcp --dport $SOCKS4_PORT -j ACCEPT 
+iptables -A INPUT -p udp --dport $SOCKS4_PORT -j ACCEPT 
+
+# allow socks5
+iptables -A INPUT -p tcp --dport $SOCKS5_PORT -j ACCEPT 
+iptables -A INPUT -p udp --dport $SOCKS5_PORT -j ACCEPT 
+
+# allow outline
+iptables -A INPUT -p tcp --dport $OUTLINE_PORT -j ACCEPT
+iptables -A INPUT -p udp --dport $OUTLINE_PORT -j ACCEPT
 
 # drop invalid packages
 iptables -A INPUT  -m state --state INVALID -j DROP
