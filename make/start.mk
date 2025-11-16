@@ -69,7 +69,8 @@ start-outline:
 		-d \
 		--name outline \
 		--network host \
-		--cap-add=NET_ADMIN --device=/dev/net/tun
+		--cap-add=NET_ADMIN \
+		--device=/dev/net/tun \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
 		-v ./deployment/data/outline/data:/root/shadowbox \
