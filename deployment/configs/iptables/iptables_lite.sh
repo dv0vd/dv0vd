@@ -38,6 +38,9 @@ iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT # allow SSH
 
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT # allow https
 
+# fix for hardcoded outline DNS server
+iptables -t nat -A OUTPUT -p udp -d 9.9.9.9 --dport 53 -j DNAT --to-destination 127.0.0.1:53
+
 # drop invalid packages
 iptables -A INPUT  -m state --state INVALID -j DROP
 iptables -A OUTPUT -m state --state INVALID -j DROP
