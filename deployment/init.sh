@@ -90,7 +90,7 @@ generateOutlineServerConfig() {
   serverId=$(uuidgen)
   createdTimestampMs=$(date +%s%3N)
   hostname="localhost"
-  portForNewAccessKeys=28085
+  portForNewAccessKeys=$OUTLINE_PORT
   metricsEnabled=false
   json=$(jq -n \
     --arg serverId "$serverId" \

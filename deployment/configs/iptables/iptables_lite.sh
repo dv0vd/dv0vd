@@ -38,6 +38,10 @@ iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT # allow SSH
 
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT # allow https
 
+# allow outline
+iptables -A INPUT -p tcp --dport $OUTLINE_PORT -j ACCEPT 
+iptables -A INPUT -p upd --dport $OUTLINE_PORT -j ACCEPT 
+
 # fix for hardcoded outline DNS server
 iptables -t nat -A OUTPUT -p udp -d 9.9.9.9 --dport 53 -j DNAT --to-destination 127.0.0.1:53
 iptables -t nat -A OUTPUT -p tcp -d 9.9.9.9 --dport 53 -j DNAT --to-destination 127.0.0.1:53
