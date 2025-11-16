@@ -87,6 +87,7 @@ start-outline:
 		-e SB_DEFAULT_SERVER_NAME=Dv0vD \
 		-e SB_CERTIFICATE_FILE=/app/outline.crt \
 		-e SB_PRIVATE_KEY_FILE=/app/outline.key \
+		-e SB_DNS_SERVERS=${DNS1},${DNS2},1.1.1.1,8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${OUTLINE_MEMORY} \
 		--cpus=${OUTLINE_CPUS} \
