@@ -71,6 +71,7 @@ start-outline:
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
+		--privileged \
 		-v ./deployment/data/outline/data:/root/shadowbox \
 		-v ./deployment/configs/outline:/app \
 		-p 127.0.0.1:8081:8081 \
