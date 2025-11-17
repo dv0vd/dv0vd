@@ -33,14 +33,11 @@ iptables -A OUTPUT -p icmp --icmp-type 0 -m limit --limit 10/s -j ACCEPT # echo 
 
 # allow DNS
 iptables -A INPUT -p udp --dport 53 -j ACCEPT
+iptables -A INPUT -p tcp --dport 53 -j ACCEPT
 
 iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT # allow SSH
 
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT # allow https
-
-# fix for hardcoded outline DNS server
-iptables -t nat -A PREROUTING -p udp -d 9.9.9.9 --dport 53 -j REDIRECT --to-ports 53
-iptables -t nat -A PREROUTING -p tcp -d 9.9.9.9 --dport 53 -j REDIRECT --to-ports 53
 
 # drop invalid packages
 iptables -A INPUT  -m state --state INVALID -j DROP
