@@ -15,3 +15,4 @@ deployment/configs/coturn/turnserver.conf
 deployment/configs/rclone/rclone.conf
 deployment/configs/fail2ban/jail.local
 deployment/configs/outline/shadowbox_server_config.json
+deployment/configs/iptables/iptables.sh
