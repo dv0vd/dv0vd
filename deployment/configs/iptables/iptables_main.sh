@@ -33,8 +33,6 @@ iptables -A OUTPUT -p icmp --icmp-type 0 -m limit --limit 10/s -j ACCEPT # echo 
 
 iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT # allow SSH
 
-iptables -A INPUT -p tcp --dport 443 -j ACCEPT # allow https
-
 # drop invalid packages
 iptables -A INPUT  -m state --state INVALID -j DROP
 iptables -A OUTPUT -m state --state INVALID -j DROP
