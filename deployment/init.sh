@@ -176,6 +176,7 @@ configure_dns
 configure_ssh
 configure_fail2ban
 configure_podman
+configure_rclone
 configure_nginx
 configure_outline
 finish
