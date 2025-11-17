@@ -8,4 +8,3 @@ on-startup:
 	- $(MAKE) start-fail2ban
 	- $(MAKE) logs-clear
 	- $(MAKE) restart-containers
-
