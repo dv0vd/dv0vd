@@ -79,6 +79,7 @@ help:
 	@echo ${GREEN}podman-stats'                            '${WHITE}— get containers stats${RESET}
 	@echo ${GREEN}podman-info'                             '${WHITE}— get containers list with info${RESET}
 	@echo ${GREEN}podman-resources'                        '${WHITE}— get podman consumed resources with tasks{RESET}
+	@echo ${GREEN}iptables-rules-filter'                   '${WHITE}— show iptables filter table rules{RESET}
 	@echo ${GREEN}on-startup'                              '${WHITE}— commands to execute immediately after server startup${RESET}
 	@echo ${GREEN}init-demo'                               '${WHITE}— clone demo projects and install dependencies${RESET}
 	@echo ${GREEN}init-lagoona'                            '${WHITE}— clone lagoona demo project and install dependencies${RESET}

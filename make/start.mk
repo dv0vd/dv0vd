@@ -142,6 +142,8 @@ start-pihole:
 		-d \
 		--name pihole \
 		--network podman_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
 		-p 53:53/tcp \
 		-p 53:53/udp \
 		-p 127.0.0.1:80:80 \
@@ -256,7 +258,6 @@ start-todo-manager:
 		docker.io/dv0vd/demo-todo-manager:1.1.1
 
 start-fail2ban:
-	systemctl enable fail2ban
 	systemctl start fail2ban
 
 start-synapse:
