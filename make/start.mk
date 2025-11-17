@@ -71,6 +71,7 @@ start-outline:
 		--network host \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
+		--privileged \
 		-v ./deployment/data/outline/data:/root/shadowbox \
 		-v ./deployment/configs/outline:/app \
 		-e SB_API_PREFIX=api \
