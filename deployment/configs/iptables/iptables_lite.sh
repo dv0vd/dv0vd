@@ -1,7 +1,16 @@
 #!/bin/bash
 
-iptables -F # clean all rules
-iptables -X # clean all user defined chains
+# clean all rules
+iptables -t filter -F
+iptables -t nat -F
+iptables -t mangle -F
+iptables -t raw -F
+
+# clean all user defined chains
+iptables -t filter -X
+iptables -t nat -X
+iptables -t mangle -X
+iptables -t raw -X
 
 # default policies
 iptables -P INPUT DROP
