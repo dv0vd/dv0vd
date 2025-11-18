@@ -3,7 +3,6 @@ stop-containers:
 	- $(MAKE) stop-demo
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
-	- $(MAKE) stop-outline
 	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-coturn
 	- $(MAKE) stop-synapse
