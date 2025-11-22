@@ -23,6 +23,8 @@ start-socks4:
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		-p ${SOCKS4_PORT}:1080 \
 		--restart unless-stopped \
 		--memory=${SOCKS4_MEMORY} \
@@ -40,6 +42,8 @@ start-socks5:
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		-p ${SOCKS5_PORT}:1080 \
 		-e SOCKS_USERNAME=${SOCKS5_USERNAME} \
 		-e SOCKS_PASSWORD=${SOCKS5_PASSWORD} \
@@ -58,6 +62,8 @@ start-https-proxy:
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		-e DNS1=${DNS1} \
 		-e DNS2=${DNS2} \
 		-p ${HTTPS_PROXY_PORT}:3128 \
@@ -76,6 +82,8 @@ start-outline:
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		-v ./deployment/data/outline/data:/root/shadowbox \
 		-v ./deployment/configs/outline:/app \
 		-p 127.0.0.1:8081:8081 \
@@ -143,6 +151,8 @@ start-pihole:
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		-p 53:53/tcp \
 		-p 53:53/udp \
 		-p 127.0.0.1:80:80 \
