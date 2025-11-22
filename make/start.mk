@@ -161,7 +161,7 @@ start-pihole:
 		--restart unless-stopped \
 		--memory=${PIHOLE_MEMORY} \
 		--cpus=${PIHOLE_CPUS} \
-		--shm-size=${PODMAN_SHM_SIZE} \
+		--shm-size=${PIHOLE_SHM_SIZE} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/pihole/pihole:2025.08.0
 
