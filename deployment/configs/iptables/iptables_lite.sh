@@ -31,6 +31,8 @@ for ip in $(cat ./deployment/configs/iptables/blocked_hosts.txt); do
 done
 iptables -A INPUT -p tcp -m set --match-set blocked_hosts src -j REJECT --reject-with tcp-reset
 iptables -A INPUT -p udp -m set --match-set blocked_hosts src -j REJECT --reject-with icmp-port-unreachable
+iptables -A FORWARD -p tcp -m set --match-set blocked_hosts src -j REJECT --reject-with tcp-reset
+iptables -A FORWARD -p udp -m set --match-set blocked_hosts src -j REJECT --reject-with icmp-port-unreachable
 
 # block nets
 ipset create blocked_nets nethash -exist # no error if set already exists
@@ -40,6 +42,8 @@ for ip in $(cat ./deployment/configs/iptables/blocked_nets.txt); do
 done
 iptables -A INPUT -p tcp -m set --match-set blocked_nets src -j REJECT --reject-with tcp-reset
 iptables -A INPUT -p udp -m set --match-set blocked_nets src -j REJECT --reject-with icmp-port-unreachable
+iptables -A FORWARD -p tcp -m set --match-set blocked_nets src -j REJECT --reject-with tcp-reset
+iptables -A FORWARD -p udp -m set --match-set blocked_nets src -j REJECT --reject-with icmp-port-unreachable
 
 # allow podman
 iptables -A FORWARD -o podman1 -j ACCEPT
