@@ -3,8 +3,8 @@
 # This hosts file is a merged collection of hosts from reputable sources,
 # with a dash of crowd sourcing via GitHub
 #
-# Date: 21 November 2025
-# Number of unique domains: 140
+# Date: 22 November 2025
+# Number of unique domains: 144
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -32,9 +32,11 @@
 0.0.0.0 bbb.skx-telga-redir1.site
 0.0.0.0 bid.sspnet.tech
 0.0.0.0 bobid-ip.hybrid.ai
+0.0.0.0 cbs.nl
 0.0.0.0 cdn-exp-sg-recommend.pt.xiaomi.com
 0.0.0.0 cdn-rtb.sape.ru
 0.0.0.0 chaseherbalpasty.com
+0.0.0.0 cisco.com
 0.0.0.0 coosync.com
 0.0.0.0 configs.amberweather.com
 0.0.0.0 content.adriver.ru
@@ -68,6 +70,7 @@
 0.0.0.0 holahupa.com
 0.0.0.0 hot.sexkomix22.com
 0.0.0.0 img4.sexkomix22.com
+0.0.0.0 inc.com
 0.0.0.0 ip4.tracker-api.my.com
 0.0.0.0 ip4.tracker-api.vk-analytics.ru
 0.0.0.0 js.userpilot.io
