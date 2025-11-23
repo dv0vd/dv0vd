@@ -57,10 +57,10 @@ ipset -F blocked_hosts_v6 # clean set
 for ip in $(cat ./deployment/configs/iptables/blocked_hosts_v6.txt); do
     ipset add blocked_hosts_v6 $ip
 done
-ip6tables -A INPUT -p tcp -m set --match-set blocked_hosts_v6 src -j REJECT --reject-with tcp-reset
-ip6tables -A INPUT -p udp -m set --match-set blocked_hosts_v6 src -j REJECT --reject-with icmp-port-unreachable
-ip6tables -A FORWARD -p tcp -m set --match-set blocked_hosts_v6 src -j REJECT --reject-with tcp-reset
-ip6tables -A FORWARD -p udp -m set --match-set blocked_hosts_v6 src -j REJECT --reject-with icmp-port-unreachable
+ip6tables -A INPUT -p tcp -m set --match-set blocked_hosts_v6 src -j REJECT --reject-with icmp6-adm-prohibited
+ip6tables -A INPUT -p udp -m set --match-set blocked_hosts_v6 src -j REJECT --reject-with icmp6-adm-prohibited
+ip6tables -A FORWARD -p tcp -m set --match-set blocked_hosts_v6 src -j REJECT --reject-with icmp6-adm-prohibited
+ip6tables -A FORWARD -p udp -m set --match-set blocked_hosts_v6 src -j REJECT --reject-with icmp6-adm-prohibited
 
 # block nets v4
 ipset create blocked_nets_v4 nethash -exist # no error if set already exists
@@ -79,10 +79,10 @@ ipset -F blocked_nets_v6 # clean set
 for ip in $(cat ./deployment/configs/iptables/blocked_nets_v6.txt); do
     ipset add blocked_nets_v6 $ip
 done
-ip6tables -A INPUT -p tcp -m set --match-set blocked_nets_v6 src -j REJECT --reject-with tcp-reset
-ip6tables -A INPUT -p udp -m set --match-set blocked_nets_v6 src -j REJECT --reject-with icmp-port-unreachable
-ip6tables -A FORWARD -p tcp -m set --match-set blocked_nets_v6 src -j REJECT --reject-with tcp-reset
-ip6tables -A FORWARD -p udp -m set --match-set blocked_nets_v6 src -j REJECT --reject-with icmp-port-unreachable
+ip6tables -A INPUT -p tcp -m set --match-set blocked_nets_v6 src -j REJECT --reject-with icmp6-adm-prohibited
+ip6tables -A INPUT -p udp -m set --match-set blocked_nets_v6 src -j REJECT --reject-with icmp6-adm-prohibited
+ip6tables -A FORWARD -p tcp -m set --match-set blocked_nets_v6 src -j REJECT --reject-with icmp6-adm-prohibited
+ip6tables -A FORWARD -p udp -m set --match-set blocked_nets_v6 src -j REJECT --reject-with icmp6-adm-prohibited
 
 # allow podman
 iptables -A FORWARD -o podman1 -j ACCEPT
@@ -119,5 +119,5 @@ ip6tables -A OUTPUT -m state --state INVALID -j DROP
 # default rules
 iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
 iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
-ip6tables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
-ip6tables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+ip6tables -A INPUT -p tcp -j REJECT --reject-with icmp6-port-unreachable
+ip6tables -A INPUT -p udp -j REJECT --reject-with icmp6-port-unreachable
