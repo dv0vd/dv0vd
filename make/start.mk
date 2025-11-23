@@ -307,6 +307,8 @@ start-synapse:
 	--network podman_network \
 	--dns ${DNS1} \
 	--dns ${DNS2} \
+	--dns 1.1.1.1 \
+	--dns 8.8.8.8 \
 	--memory=${SYNAPSE_APP_MEMORY} \
 	--cpus=${SYNAPSE_APP_CPUS} \
 	--cgroup-parent=/podman-group.slice \
