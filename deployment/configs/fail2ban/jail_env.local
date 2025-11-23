@@ -5,7 +5,7 @@ bantime           = -1
 bantime.increment = true
 nginx_access_log  = /root/dv0vd/deployment/data/nginx/logs/access.log
 nginx_error_log   = /root/dv0vd/deployment/data/nginx/logs/error.log
-banaction         = iptables-allports
+banaction         = %(banaction_allports)s
 ignoreip          = $FAIL2BAN_IGNORE_IPS
 
 [sshd]
