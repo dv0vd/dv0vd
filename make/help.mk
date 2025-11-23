@@ -80,6 +80,13 @@ help:
 	@echo ${GREEN}podman-info'                             '${WHITE}— get containers list with info${RESET}
 	@echo ${GREEN}podman-resources'                        '${WHITE}— get podman consumed resources with tasks{RESET}
 	@echo ${GREEN}iptables-rules-filter'                   '${WHITE}— show iptables filter table rules{RESET}
+	@echo ${GREEN}iptables-rules-nat'                      '${WHITE}— show iptables nat table rules{RESET}
+	@echo ${GREEN}iptables-rules-mangle'                   '${WHITE}— show iptables raw table rules{RESET}
+	@echo ${GREEN}iptables-rules-raw'                      '${WHITE}— show iptables mangle table rules{RESET}
+	@echo ${GREEN}ip6tables-rules-filter'                  '${WHITE}— show ip6tables filter table rules{RESET}
+	@echo ${GREEN}ip6tables-rules-nat'                     '${WHITE}— show ip6tables nat table rules{RESET}
+	@echo ${GREEN}ip6tables-rules-mangle'                  '${WHITE}— show ip6tables raw table rules{RESET}
+	@echo ${GREEN}ip6tables-rules-raw'                     '${WHITE}— show ip6tables mangle table rules{RESET}
 	@echo ${GREEN}iptables-rules-apply'                    '${WHITE}— apply iptables rules{RESET}
 	@echo ${GREEN}on-startup'                              '${WHITE}— commands to execute immediately after server startup${RESET}
 	@echo ${GREEN}disable-ipv6'                            '${WHITE}— disable-ipv6${RESET}
