@@ -189,6 +189,8 @@ start-postgres-demo:
 	--network podman_network \
 	--dns ${DNS1} \
 	--dns ${DNS2} \
+	--dns 1.1.1.1 \
+	--dns 8.8.8.8 \
 	--restart unless-stopped \
 	--memory=${POSTGRES_DEMO_MEMORY} \
 	--cpus=${POSTGRES_DEMO_CPUS} \
@@ -210,6 +212,8 @@ start-postgres-synapse:
 	--network podman_network \
 	--dns ${DNS1} \
 	--dns ${DNS2} \
+	--dns 1.1.1.1 \
+	--dns 8.8.8.8 \
 	--restart unless-stopped \
 	--memory=${SYNAPSE_DB_MEMORY} \
 	--cpus=${SYNAPSE_DB_CPUS} \
@@ -236,6 +240,8 @@ start-timers:
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${TIMERS_APP_MEMORY} \
 		--cpus=${TIMERS_APP_CPUS} \
@@ -255,6 +261,8 @@ start-skillnotes:
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${SKILLNOTES_APP_MEMORY} \
 		--cpus=${SKILLNOTES_APP_CPUS} \
@@ -274,6 +282,8 @@ start-todo-manager:
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${TODO_MANAGER_APP_MEMORY} \
 		--cpus=${TODO_MANAGER_APP_CPUS} \
@@ -318,6 +328,8 @@ start-coturn:
 	--network podman_network \
 	--dns ${DNS1} \
 	--dns ${DNS2} \
+	--dns 1.1.1.1 \
+	--dns 8.8.8.8 \
 	--memory=${COTURN_MEMORY} \
 	--cpus=${COTURN_CPUS} \
 	--cgroup-parent=/podman-group.slice \
