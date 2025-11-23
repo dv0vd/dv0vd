@@ -3,11 +3,16 @@ start-containers:
 	- echo "nameserver ${DNS2}" >> /etc/resolv.conf
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+	- $(MAKE) start-db
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
-	- $(MAKE) start-pihole
-	- $(MAKE) start-outline
+	- $(MAKE) synapse-vacuum-clean
+	- $(MAKE) synapse-backup-database
+	- $(MAKE) synapse-backup-to-storage-vps
+	- $(MAKE) start-coturn
+	- $(MAKE) start-synapse
+	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
 
 start-socks4:
@@ -96,22 +101,22 @@ start-outline:
 		quay.io/outline/shadowbox:v1.12.3
 
 start-nginx:
-	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_lite_env.conf > ./deployment/configs/nginx/nginx.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
 	-d \
 	--name nginx \
-	--network host \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
+	--network podman_network \
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
-	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
+	-v ./deployment/configs/pihole:/app/pihole:ro \
+	-p 80:80 \
+	-p 443:443 \
+	-p 8448:8448 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
@@ -119,17 +124,13 @@ start-nginx:
 	docker.io/nginx:1.27.3
 
 start-nginx-local:
-	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/local_lite_env.conf > ./deployment/configs/nginx/local.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/local_main_env.conf > ./deployment/configs/nginx/local.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
 	-d \
 	--name nginx \
 	--network podman_network \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
 	-v ./deployment/configs/nginx/local.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
@@ -137,7 +138,7 @@ start-nginx-local:
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
 	-v ./deployment/configs/pihole:/app/pihole:ro \
-	-p ${NGINX_LOCAL_PORT}:443 \
+	-p ${NGINX_LOCAL_PORT}:80 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
