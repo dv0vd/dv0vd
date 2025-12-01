@@ -25,4 +25,5 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 - outline-shadowbox_v1.12.3.tar
 - postgres_15.14-alpine.tar
 - synapse_1.135.0.tar
+- teddysun_xray-25.10.15.tar
 9) Run the initialization script `./deployment/init.sh`.
