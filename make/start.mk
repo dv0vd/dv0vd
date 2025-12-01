@@ -3,6 +3,7 @@ start-containers:
 	- echo "nameserver ${DNS2}" >> /etc/resolv.conf
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) start-db
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
