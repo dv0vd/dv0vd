@@ -13,6 +13,8 @@ restart-https-proxy: stop-https-proxy start-https-proxy
 
 restart-outline: stop-outline start-outline
 
+restart-xray-vless-reality: stop-xray-vless-reality start-xray-vless-reality
+
 restart-pihole: stop-pihole start-pihole
 
 restart-nginx: stop-nginx start-nginx

@@ -9,6 +9,7 @@ start-containers:
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-outline
+	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) synapse-vacuum-clean
 	- $(MAKE) synapse-backup-database
 	- $(MAKE) synapse-backup-to-storage-vps
@@ -101,6 +102,23 @@ start-outline:
 		--cpus=${OUTLINE_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		quay.io/outline/shadowbox:v1.12.3
+
+start-xray-vless-reality:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_env.json > ./deployment/configs/xray-vless-reality/xray_config.json"
+	- podman run \
+		-d \
+		--name xray-vless-reality \
+		--network podman_network \
+		-p ${XRAY_VLESS_REALITY_PORT}:443 \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		-v ./deployment/configs/xray-vless-reality/xray_config.json:/etc/xray/config.json:ro \
+		--memory=${XRAY_VLESS_REALITY_MEMORY} \
+		--cpus=${XRAY_VLESS_REALITY_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/teddysun/xray:25.10.15
 
 start-nginx:
 	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"

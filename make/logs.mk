@@ -13,6 +13,9 @@ logs-https-proxy:
 logs-outline:
 	podman logs -f outline
 
+logs-xray-vless-reality:
+	podman logs -f xray-vless-reality
+
 logs-nginx:
 	podman logs -f nginx
 

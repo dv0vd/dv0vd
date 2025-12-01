@@ -24,6 +24,10 @@ stop-outline:
 	- podman stop outline
 	- podman rm outline
 
+stop-xray-vless-reality:
+	- podman stop xray-vless-reality
+	- podman rm xray-vless-reality
+
 stop-nginx:
 	- podman stop nginx
 	- podman rm nginx
