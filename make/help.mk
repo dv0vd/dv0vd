@@ -7,6 +7,7 @@ help:
 	@echo ${GREEN}start-socks5'                            '${WHITE}— start socks5 server${RESET}
 	@echo ${GREEN}start-https-proxy'                       '${WHITE}— start https proxy server${RESET}
 	@echo ${GREEN}start-outline'                           '${WHITE}— start outline vpn${RESET}
+	@echo ${GREEN}start-xray-vless-reality'                '${WHITE}— start VLESS + XTLS / Reality${RESET}
 	@echo ${GREEN}start-nginx'                             '${WHITE}— start nginx server${RESET}
 	@echo ${GREEN}start-pihone'                            '${WHITE}— start Pi-hole${RESET}
 	@echo ${GREEN}start-db'                                '${WHITE}— start databases${RESET}
@@ -23,6 +24,7 @@ help:
 	@echo ${GREEN}stop-socks5'                             '${WHITE}— stop socks5 server${RESET}
 	@echo ${GREEN}stop-https-proxy'                        '${WHITE}— stop https proxy server${RESET}
 	@echo ${GREEN}stop-outline'                            '${WHITE}— stop outline vpn${RESET}
+	@echo ${GREEN}stop-xray-vless-reality'                 '${WHITE}— stop VLESS + XTLS / Reality${RESET}
 	@echo ${GREEN}stop-pihole'                             '${WHITE}— stop Pi-hole${RESET}
 	@echo ${GREEN}stop-nginx'                              '${WHITE}— stop nginx server${RESET}
 	@echo ${GREEN}stop-db'                                 '${WHITE}— stop databases${RESET}
@@ -39,6 +41,7 @@ help:
 	@echo ${GREEN}restart-socks5'                          '${WHITE}— restart socks5 server${RESET}
 	@echo ${GREEN}restart-https-proxy'                     '${WHITE}— restart https proxy server${RESET}
 	@echo ${GREEN}restart-outline'                         '${WHITE}— restart outline vpn${RESET}
+	@echo ${GREEN}restart-xray-vless-reality'              '${WHITE}— restart VLESS + XTLS / Reality${RESET}
 	@echo ${GREEN}restart-nginx'                           '${WHITE}— restart nginx server${RESET}
 	@echo ${GREEN}restart-pihole'                          '${WHITE}— restart Pi-hole${RESET}
 	@echo ${GREEN}restart-db'                              '${WHITE}— restart databases${RESET}
@@ -55,6 +58,7 @@ help:
 	@echo ${GREEN}logs-socks5'                             '${WHITE}— get socks5 server logs${RESET}
 	@echo ${GREEN}logs-https-proxy'                        '${WHITE}— get https proxy server logs${RESET}
 	@echo ${GREEN}logs-outline'                            '${WHITE}— get outline vpn logs${RESET}
+	@echo ${GREEN}logs-xray-vless-reality'                 '${WHITE}— get VLESS + XTLS / Reality logs${RESET}
 	@echo ${GREEN}logs-nginx'                              '${WHITE}— get nginx logs${RESET}
 	@echo ${GREEN}logs-nginx-access'                       '${WHITE}— get nginx access logs${RESET}
 	@echo ${GREEN}logs-nginx-error'                        '${WHITE}— get nginx error logs${RESET}
@@ -78,16 +82,16 @@ help:
 	@echo ${GREEN}podman-create-network'                   '${WHITE}— create custom podman network with ipv6 support${RESET}
 	@echo ${GREEN}podman-stats'                            '${WHITE}— get containers stats${RESET}
 	@echo ${GREEN}podman-info'                             '${WHITE}— get containers list with info${RESET}
-	@echo ${GREEN}podman-resources'                        '${WHITE}— get podman consumed resources with tasks{RESET}
-	@echo ${GREEN}iptables-rules-filter'                   '${WHITE}— show iptables filter table rules{RESET}
-	@echo ${GREEN}iptables-rules-nat'                      '${WHITE}— show iptables nat table rules{RESET}
-	@echo ${GREEN}iptables-rules-mangle'                   '${WHITE}— show iptables raw table rules{RESET}
-	@echo ${GREEN}iptables-rules-raw'                      '${WHITE}— show iptables mangle table rules{RESET}
-	@echo ${GREEN}ip6tables-rules-filter'                  '${WHITE}— show ip6tables filter table rules{RESET}
-	@echo ${GREEN}ip6tables-rules-nat'                     '${WHITE}— show ip6tables nat table rules{RESET}
-	@echo ${GREEN}ip6tables-rules-mangle'                  '${WHITE}— show ip6tables raw table rules{RESET}
-	@echo ${GREEN}ip6tables-rules-raw'                     '${WHITE}— show ip6tables mangle table rules{RESET}
-	@echo ${GREEN}iptables-rules-apply'                    '${WHITE}— apply iptables rules{RESET}
+	@echo ${GREEN}podman-resources'                        '${WHITE}— get podman consumed resources with tasks${RESET}
+	@echo ${GREEN}iptables-rules-filter'                   '${WHITE}— show iptables filter table rules${RESET}
+	@echo ${GREEN}iptables-rules-nat'                      '${WHITE}— show iptables nat table rules${RESET}
+	@echo ${GREEN}iptables-rules-mangle'                   '${WHITE}— show iptables raw table rules${RESET}
+	@echo ${GREEN}iptables-rules-raw'                      '${WHITE}— show iptables mangle table rules{$RESET}
+	@echo ${GREEN}ip6tables-rules-filter'                  '${WHITE}— show ip6tables filter table rules${RESET}
+	@echo ${GREEN}ip6tables-rules-nat'                     '${WHITE}— show ip6tables nat table rules${RESET}
+	@echo ${GREEN}ip6tables-rules-mangle'                  '${WHITE}— show ip6tables raw table rules${RESET}
+	@echo ${GREEN}ip6tables-rules-raw'                     '${WHITE}— show ip6tables mangle table rules${RESET}
+	@echo ${GREEN}iptables-rules-apply'                    '${WHITE}— apply iptables rules${RESET}
 	@echo ${GREEN}on-startup'                              '${WHITE}— commands to execute immediately after server startup${RESET}
 	@echo ${GREEN}disable-ipv6'                            '${WHITE}— disable-ipv6${RESET}
 	@echo ${GREEN}init-demo'                               '${WHITE}— clone demo projects and install dependencies${RESET}
@@ -110,3 +114,4 @@ help:
 	@echo ${GREEN}outline-get-keys'                        '${WHITE}— get outline vpn client keys${RESET}
 	@echo ${GREEN}outline-create-key' [name]               '${WHITE}— create outline vpn client key${RESET}
 	@echo ${GREEN}outline-delete-key' [id]                 '${WHITE}— delete outline vpn client key${RESET}
+	@echo ${GREEN}generate-xray-private-key' [id]          '${WHITE}— generate VLESS + XTLS / Reality private key${RESET}
