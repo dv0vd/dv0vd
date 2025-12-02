@@ -186,6 +186,19 @@ start-pihole:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/pihole/pihole:2025.08.0
 
+start-doh-server:
+	- podman run \
+		-d \
+		--name doh-server \
+		--network podman_network \
+		-p ${DOH_SERVER_PORT}:8053/tcp \
+		-e UPSTREAM_DNS_SERVER="udp:${DNS1}:53,udp:${DNS2}" \
+		--restart unless-stopped \
+		--memory=${DOH_SERVER_MEMORY} \
+		--cpus=${DOH_SERVER_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/satishweb/doh-server:v2.3.10-alpine
+
 start-mongo-demo:
 	- podman run \
 	-d \

@@ -61,6 +61,9 @@ logs-coturn:
 logs-pihole:
 	podman logs -f pihole
 
+logs-doh-server:
+	podman logs -f doh-server
+
 logs-init:
 	cat /var/log/init.log
 

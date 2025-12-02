@@ -19,6 +19,7 @@ podman-load-images:
 	podman load < ./deployment/images/postgres_15.14-alpine.tar
 	podman load < ./deployment/images/synapse_1.135.0.tar
 	podman load < ./deployment/images/teddysun_xray-25.10.15.tar
+	podman load < ./deployment/images/satishweb-doh-server_v2.3.10-alpine.tar
 
 podman-info:
 	podman ps -w 1

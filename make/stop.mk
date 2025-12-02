@@ -81,3 +81,7 @@ stop-coturn:
 stop-pihole:
 	- podman stop pihole
 	- podman rm pihole
+
+stop-doh-server:
+	- podman stop doh-server
+	- podman rm doh-server

@@ -17,6 +17,8 @@ restart-xray-vless-reality: stop-xray-vless-reality start-xray-vless-reality
 
 restart-pihole: stop-pihole start-pihole
 
+restart-doh-server: stop-doh-server start-doh-server
+
 restart-nginx: stop-nginx start-nginx
 
 restart-db:
