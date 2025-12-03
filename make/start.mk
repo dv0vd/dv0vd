@@ -10,6 +10,7 @@ start-containers:
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-outline
 	- $(MAKE) start-xray-vless-reality
+	- $(MAKE) start-doh-server
 	- $(MAKE) synapse-vacuum-clean
 	- $(MAKE) synapse-backup-database
 	- $(MAKE) synapse-backup-to-storage-vps
@@ -191,8 +192,7 @@ start-doh-server:
 		-d \
 		--name doh-server \
 		--network podman_network \
-		-p ${DOH_SERVER_PORT}:8053/tcp \
-		-e UPSTREAM_DNS_SERVER="udp:${DNS1}:53,udp:${DNS2}" \
+		-e UPSTREAM_DNS_SERVER="udp:${DNS1}:53,udp:${DNS2}:53" \
 		--restart unless-stopped \
 		--memory=${DOH_SERVER_MEMORY} \
 		--cpus=${DOH_SERVER_CPUS} \
