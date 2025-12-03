@@ -6,3 +6,6 @@ enter-synapse:
 
 enter-outline:
 	podman exec -it outline sh
+
+enter-doh-server:
+	podman exec -it doh-server bash

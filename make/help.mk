@@ -55,6 +55,10 @@ help:
 	@echo ${GREEN}restart-timers'                          '${WHITE}— restart timers demo project${RESET}
 	@echo ${GREEN}restart-skillnotes'                      '${WHITE}— restart skillnotes demo project${RESET}
 	@echo ${GREEN}restart-todo-manager'                    '${WHITE}— restart todo-manager demo project${RESET}
+	@echo ${GREEN}enter-nginx'                             '${WHITE}— enter to the nginx container${RESET}
+	@echo ${GREEN}enter-synapse'                           '${WHITE}— enter to the synapse container${RESET}
+	@echo ${GREEN}enter-outline'                           '${WHITE}— enter to the outline container${RESET}
+	@echo ${GREEN}enter-doh-server'                        '${WHITE}— enter to the DoH server container${RESET}
 	@echo ${GREEN}restart-fail2ban'                        '${WHITE}— restart fail2ban and reload fail2ban-client${RESET}
 	@echo ${GREEN}logs-clear'                              '${WHITE}— clear journalctl logs olden then 1 day${RESET}
 	@echo ${GREEN}logs-socks4'                             '${WHITE}— get socks4 server logs${RESET}
