@@ -5,3 +5,6 @@ disable-ipv6:
 
 generate-xray-private-key:
 	podman run docker.io/teddysun/xray:25.10.15 xray x25519
+
+generate-xray-short-id:
+	openssl rand -hex 8
