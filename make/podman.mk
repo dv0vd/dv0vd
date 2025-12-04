@@ -2,7 +2,7 @@ podman-cleanup:
 	podman system reset -f
 
 podman-create-network:
-	podman network create --ipv6 podman_network
+	podman network create --ipv6 --disable-dns podman_network
 
 podman-load-images:
 	podman load < ./deployment/images/coturn_4.7.0.tar
