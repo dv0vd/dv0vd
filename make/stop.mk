@@ -1,9 +1,11 @@
 stop-containers:
 	- $(MAKE) stop-nginx
-	- $(MAKE) stop-socks4
-	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-pihole
+	- $(MAKE) stop-socks4
+	- $(MAKE) stop-socks5
+	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-outline
+	- $(MAKE) stop-xray-vless-reality
 
 stop-socks4:
 	- podman stop socks4
@@ -20,6 +22,10 @@ stop-https-proxy:
 stop-outline:
 	- podman stop outline
 	- podman rm outline
+
+stop-xray-vless-reality:
+	- podman stop xray-vless-reality
+	- podman rm xray-vless-reality
 
 stop-nginx:
 	- podman stop nginx
@@ -74,3 +80,7 @@ stop-coturn:
 stop-pihole:
 	- podman stop pihole
 	- podman rm pihole
+
+stop-doh-server:
+	- podman stop doh-server
+	- podman rm doh-server

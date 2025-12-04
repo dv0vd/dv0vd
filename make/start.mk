@@ -3,11 +3,13 @@ start-containers:
 	- echo "nameserver ${DNS2}" >> /etc/resolv.conf
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
+	- $(MAKE) start-pihole
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
-	- $(MAKE) start-pihole
 	- $(MAKE) start-outline
+	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-nginx
 
 start-socks4:
@@ -95,6 +97,23 @@ start-outline:
 		--cgroup-parent=/podman-group.slice \
 		quay.io/outline/shadowbox:v1.12.3
 
+start-xray-vless-reality:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_env.json > ./deployment/configs/xray-vless-reality/xray_config.json"
+	- podman run \
+		-d \
+		--name xray-vless-reality \
+		--network podman_network \
+		-p ${XRAY_VLESS_REALITY_PORT}:443 \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		-v ./deployment/configs/xray-vless-reality/xray_config.json:/etc/xray/config.json:ro \
+		--memory=${XRAY_VLESS_REALITY_MEMORY} \
+		--cpus=${XRAY_VLESS_REALITY_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/teddysun/xray:25.10.15
+
 start-nginx:
 	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_lite_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
@@ -166,15 +185,24 @@ start-pihole:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/pihole/pihole:2025.08.0
 
+start-doh-server:
+	- podman run \
+		-d \
+		--name doh-server \
+		--network podman_network \
+		-e UPSTREAM_DNS_SERVER="udp:${DNS1}:53,udp:${DNS2}:53" \
+		-e DOH_HTTP_PREFIX="/dns-query" \
+		--restart unless-stopped \
+		--memory=${DOH_SERVER_MEMORY} \
+		--cpus=${DOH_SERVER_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/satishweb/doh-server:v2.3.10-alpine
+
 start-mongo-demo:
 	- podman run \
 	-d \
 	--name mongo-demo \
 	--network podman_network \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
 	--restart unless-stopped \
 	--memory=${MONGO_DEMO_MEMORY} \
 	--cpus=${MONGO_DEMO_CPUS} \
@@ -188,10 +216,6 @@ start-postgres-demo:
 	-v ./deployment/configs/postgres/demo.sql:/docker-entrypoint-initdb.d/demo.sql \
 	-e POSTGRES_PASSWORD=${POSTGRES_DEMO_PASSWORD} \
 	--network podman_network \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
 	--restart unless-stopped \
 	--memory=${POSTGRES_DEMO_MEMORY} \
 	--cpus=${POSTGRES_DEMO_CPUS} \
@@ -211,10 +235,6 @@ start-postgres-synapse:
 	-e POSTGRES_PASSWORD=${SYNAPSE_DB_PASSWORD} \
 	-p 127.0.0.1:${SYNAPSE_DB_HOST_PORT}:${SYNAPSE_DB_PORT} \
 	--network podman_network \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
 	--restart unless-stopped \
 	--memory=${SYNAPSE_DB_MEMORY} \
 	--cpus=${SYNAPSE_DB_CPUS} \
@@ -239,10 +259,6 @@ start-timers:
 		-e BASE_PATH='/demo/timers/' \
 		--name demo-timers \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${TIMERS_APP_MEMORY} \
 		--cpus=${TIMERS_APP_CPUS} \
@@ -260,10 +276,6 @@ start-skillnotes:
 		-e BASE_PATH='/demo/skillnotes/' \
 		--name demo-skillnotes \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${SKILLNOTES_APP_MEMORY} \
 		--cpus=${SKILLNOTES_APP_CPUS} \
@@ -281,10 +293,6 @@ start-todo-manager:
 		-e HOST=${TODO_MANAGER_HOST} \
 		--name demo-todo-manager \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${TODO_MANAGER_APP_MEMORY} \
 		--cpus=${TODO_MANAGER_APP_CPUS} \
@@ -306,10 +314,6 @@ start-synapse:
 	-v ./deployment/configs/synapse:/config \
 	-e SYNAPSE_CONFIG_DIR=/config \
 	--network podman_network \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
 	--memory=${SYNAPSE_APP_MEMORY} \
 	--cpus=${SYNAPSE_APP_CPUS} \
 	--cgroup-parent=/podman-group.slice \
@@ -329,10 +333,6 @@ start-coturn:
 	-e DETECT_RELAY_IP=yes \
 	-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
 	--network podman_network \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
 	--memory=${COTURN_MEMORY} \
 	--cpus=${COTURN_CPUS} \
 	--cgroup-parent=/podman-group.slice \

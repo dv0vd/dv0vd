@@ -13,6 +13,9 @@ logs-https-proxy:
 logs-outline:
 	podman logs -f outline
 
+logs-xray-vless-reality:
+	podman logs -f xray-vless-reality
+
 logs-nginx:
 	podman logs -f nginx
 
@@ -57,6 +60,9 @@ logs-coturn:
 
 logs-pihole:
 	podman logs -f pihole
+
+logs-doh-server:
+	podman logs -f doh-server
 
 logs-init:
 	cat /var/log/init.log

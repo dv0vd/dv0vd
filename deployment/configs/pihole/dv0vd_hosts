@@ -4,7 +4,7 @@
 # with a dash of crowd sourcing via GitHub
 #
 # Date: 22 November 2025
-# Number of unique domains: 124
+# Number of unique domains: 144
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -12,11 +12,13 @@
 
 
 0.0.0.0 a.adiam.tech
+0.0.0.0 a.chnsrv.com
 0.0.0.0 a.root-servers.net
 0.0.0.0 a.atraffic.ru
 0.0.0.0 a.bringads.ru
 0.0.0.0 a.utraff.com
 0.0.0.0 acint.net
+0.0.0.0 ad.twinrdengine.com
 0.0.0.0 ads.mozilla.org
 0.0.0.0 adx.videonow.ru
 0.0.0.0 alt-ad.mail.ru
@@ -28,10 +30,15 @@
 0.0.0.0 api.mossfast.com
 0.0.0.0 apmplus.volces.com
 0.0.0.0 app.adjust.io
+0.0.0.0 bbb.skx-telga-redir1.site
 0.0.0.0 bid.sspnet.tech
 0.0.0.0 bobid-ip.hybrid.ai
+0.0.0.0 cbs.nl
 0.0.0.0 cdn-exp-sg-recommend.pt.xiaomi.com
 0.0.0.0 cdn-rtb.sape.ru
+0.0.0.0 chaseherbalpasty.com
+0.0.0.0 cisco.com
+0.0.0.0 coosync.com
 0.0.0.0 configs.amberweather.com
 0.0.0.0 content.adriver.ru
 0.0.0.0 clickstream.goldapple.ru
@@ -42,6 +49,7 @@
 0.0.0.0 dc1-ml.ksn.kaspersky-labs.com
 0.0.0.0 dc1-pp.ksn.kaspersky-labs.com
 0.0.0.0 dmg.digitaltarget.ru
+0.0.0.0 dr.yandex.net
 0.0.0.0 dss.hybrid.ai
 0.0.0.0 eye.targetads.io
 0.0.0.0 exchange.buzzoola.com
@@ -50,6 +58,7 @@
 0.0.0.0 f.loca.amberweather.com
 0.0.0.0 fb-t-msedge.net
 0.0.0.0 fcgi4.gnezdo.ru
+0.0.0.0 fdf.awefweegfxwergexw.icu
 0.0.0.0 find.api.micloud.xiaomi.net
 0.0.0.0 find.userpilot.io
 0.0.0.0 fpf.hybrid.ai
@@ -59,6 +68,10 @@
 0.0.0.0 hb-bidder.skcrtxr.com
 0.0.0.0 hit.udqrh6.ru
 0.0.0.0 hitcrypt.udqrh6.ru
+0.0.0.0 holahupa.com
+0.0.0.0 hot.sexkomix22.com
+0.0.0.0 img4.sexkomix22.com
+0.0.0.0 inc.com
 0.0.0.0 ip4.tracker-api.my.com
 0.0.0.0 ip4.tracker-api.vk-analytics.ru
 0.0.0.0 jupiter.rus.sys.miui.com
@@ -85,6 +98,7 @@
 0.0.0.0 obus-dc20123-sg.heytapmobile.com
 0.0.0.0 obus-rudc-sg.heytapmobile.com
 0.0.0.0 ondevicesafety-pa.googleapis.com
+0.0.0.0 pecantinglytripod.com
 0.0.0.0 public-api.uxfeedback.ru
 0.0.0.0 pb.adriver.ru
 0.0.0.0 px.videohype.net
@@ -98,10 +112,15 @@
 0.0.0.0 rum.dzen.ru
 0.0.0.0 ru.app.chat.global.xiaomi.net
 0.0.0.0 ru.global.market.xiaomi.com
+0.0.0.0 ru.hlth.io.mi.com
 0.0.0.0 ru.id.facct.ru
 0.0.0.0 ru.resolver.msg.global.xiaomi.net
 0.0.0.0 ru-idm.api.io.mi.com
+0.0.0.0 rus.porn-comix2.com
 0.0.0.0 rus-service-sg.allawnos.com
+0.0.0.0 s.ad.twinrdengine.com
+0.0.0.0 s.chnsrv.com
+0.0.0.0 s.magsrv.com
 0.0.0.0 sdk-api.apptracer.ru
 0.0.0.0 sdkconfig.ad.rus.xiaomi.com
 0.0.0.0 sdkconfig.rus.xiaomi.com
@@ -119,19 +138,23 @@
 0.0.0.0 tc.vbnmhjlp.com
 0.0.0.0 time-push-intl.heytapmobile.com
 0.0.0.0 tp-link.com
+0.0.0.0 trk.ezymny.com
 0.0.0.0 ts.tracker-api.my.com
 0.0.0.0 ts.tracker-api.vk-analytics.ru
 0.0.0.0 t-msedge.net
 0.0.0.0 tracker-api.vk-analytics.ru
+0.0.0.0 trk.ezymny.com
 0.0.0.0 uaas.yandex.ru
 0.0.0.0 uid.bumlam.com
 0.0.0.0 us.appbackupapi.micloud.xiaomi.net	
 0.0.0.0 us.statusapi.micloud.xiaomi.net
 0.0.0.0 user-geo-data.wildberries.ru
+0.0.0.0 vast.yomeno.xyz
 0.0.0.0 vk-analytics.ru
 0.0.0.0 wcm.weborama-tech.ru
 0.0.0.0 weborama-tech.ru
 0.0.0.0 www.statsforads.com
+0.0.0.0 x.sexkomix1.com
 0.0.0.0 xray.mail.ru
 0.0.0.0 x01.aidata.io
 0.0.0.0 yahoo.com

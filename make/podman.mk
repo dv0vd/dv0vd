@@ -11,6 +11,7 @@ podman-load-images:
 	podman load < ./deployment/images/nginx_1.27.3.tar
 	podman load < ./deployment/images/outline-shadowbox_v1.12.3.tar
 	podman load < ./deployment/images/pihole_2025.08.0.tar
+	podman load < ./deployment/images/teddysun_xray-25.10.15.tar
 
 podman-info:
 	podman ps -w 1
