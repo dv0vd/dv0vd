@@ -166,6 +166,7 @@ start-nginx-local:
 	docker.io/nginx:1.27.3
 
 start-pihole:
+	- rm deployment/data/pihole/data/pihole-FTL.db*
 	- podman run \
 		-d \
 		--name pihole \
