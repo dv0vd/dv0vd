@@ -9,7 +9,6 @@ start-containers:
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-outline
-	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-nginx
 
 start-socks4:

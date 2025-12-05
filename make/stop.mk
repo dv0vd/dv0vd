@@ -5,7 +5,6 @@ stop-containers:
 	- $(MAKE) stop-socks5
 	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-outline
-	- $(MAKE) stop-xray-vless-reality
 
 stop-socks4:
 	- podman stop socks4
