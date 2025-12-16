@@ -3,8 +3,8 @@
 # This hosts file is a merged collection of hosts from reputable sources,
 # with a dash of crowd sourcing via GitHub
 #
-# Date: 22 November 2025
-# Number of unique domains: 144
+# Date: 05 December 2025
+# Number of unique domains: 145
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -152,6 +152,7 @@
 0.0.0.0 vast.yomeno.xyz
 0.0.0.0 vk-analytics.ru
 0.0.0.0 wcm.weborama-tech.ru
+0.0.0.0 wcm-ru.frontend.weborama.fr
 0.0.0.0 weborama-tech.ru
 0.0.0.0 www.statsforads.com
 0.0.0.0 x.sexkomix1.com
