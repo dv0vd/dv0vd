@@ -60,8 +60,8 @@ configure_podman() {
   systemctl start podman
   podman system prune --all -f
   systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS
-  systemctl stop systemd-resolved # required for Pi-hole
-  systemctl disable systemd-resolved # required for Pi-hole
+  systemctl stop systemd-resolved || true # required for Pi-hole 
+  systemctl disable systemd-resolved || true # required for Pi-hole
   log "Podman successfully configured"
 }
 
