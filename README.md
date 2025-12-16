@@ -16,4 +16,4 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 - nginx_1.27.3.tar
 - outline-shadowbox_v1.12.3.tar
 - pihole_2025.08.0.tar
-8) Run the initialization script `./deployment/init.sh`.
+8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
