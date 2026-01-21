@@ -19,12 +19,12 @@
         "network": "raw",
         "security": "reality",
         "realitySettings": {
-          "show": false,
-          "dest": "dv0vd.dev:443",
+          "show": true,
+          "dest": "rutube.ru:443",
           "xver": 0,
           "serverNames": [
-            "www.dv0vd.dev",
-            "dv0vd.dev"
+            "www.rutube.ru",
+            "rutube.ru"
           ],
           "privateKey": "$XRAY_VLESS_REALITY_PRIVATE_KEY",
           "minClientVer": "",
