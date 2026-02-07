@@ -3,8 +3,8 @@
 # This hosts file is a merged collection of hosts from reputable sources,
 # with a dash of crowd sourcing via GitHub
 #
-# Date: 22 November 2025
-# Number of unique domains: 144
+# Date: 07 February 2026
+# Number of unique domains: 146
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -125,6 +125,7 @@
 0.0.0.0 sdkconfig.ad.rus.xiaomi.com
 0.0.0.0 sdkconfig.rus.xiaomi.com
 0.0.0.0 shifen.com
+0.0.0.0 shortintl.push.heytapmobile.com
 0.0.0.0 sp.linkssp.ru
 0.0.0.0 ssp.al-adtech.com
 0.0.0.0 ssp.bidvol.com
@@ -137,6 +138,7 @@
 0.0.0.0 s07.upd.kaspersky.com
 0.0.0.0 tc.vbnmhjlp.com
 0.0.0.0 time-push-intl.heytapmobile.com
+0.0.0.0 toblog.tobsnssdk.com
 0.0.0.0 tp-link.com
 0.0.0.0 trk.ezymny.com
 0.0.0.0 ts.tracker-api.my.com
