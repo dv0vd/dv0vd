@@ -1,12 +1,14 @@
 stop-containers:
 	- $(MAKE) stop-nginx
 	- $(MAKE) stop-demo
+	- $(MAKE) stop-synapse
+	- $(MAKE) stop-coturn
+	- $(MAKE) stop-doh-server
+	- $(MAKE) stop-xray-vless-reality
+	- $(MAKE) stop-outline
+	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
-	- $(MAKE) stop-https-proxy
-	- $(MAKE) stop-xray-vless-reality
-	- $(MAKE) stop-coturn
-	- $(MAKE) stop-synapse
 	- $(MAKE) stop-db
 
 stop-socks4:
