@@ -5,15 +5,25 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 ## Getting started  
 1) Update packages index: `apt update`.
 2) Install git: `apt install git`.
-3) Clone repo: `git clone https://github.com/dv0vd/dv0vd.git`.
-4) Go to the project directory: `cd ./dv0vd`
-5) Go to the `lite` branch: `git checkout lite`.
-6) Configure the `.env` file.
-7) Copy Podman images to `./deployment/images`:
+3) Copy storage-vps SSH private key to `/root/.ssh/vps-storage` for storage vps backups.
+4) Clone repo: `git clone https://github.com/dv0vd/dv0vd.git`.
+5) Go to the project directory: `cd ./dv0vd`.
+6) Copy Nginx certificates to `./deployment/configs/nginx`:
+- dv0vd_dev.crt
+- dv0vd_dev.key
+7) Configure the `.env` file.
+8) Copy Podman images to `./deployment/images`:
+- coturn_4.7.0.tar
+- dv0vd-demo-skillnotes_1.0.10.tar
+- dv0vd-demo-timers_1.0.5.tar
+- dv0vd-demo-todo-manager_1.1.1.tar
 - dv0vd-https-proxy_1.2.0.tar
 - dv0vd-socks4_1.1.3.tar
 - dv0vd-socks5_1.1.1.tar
+- mongo_7.0.16.tar
 - nginx_1.27.3.tar
 - outline-shadowbox_v1.12.3.tar
-- pihole_2025.08.0.tar
-8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
+- postgres_15.14-alpine.tar
+- synapse_1.135.0.tar
+- teddysun_xray-25.10.15.tar
+9) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
