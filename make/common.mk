@@ -9,7 +9,7 @@ generate-xray-private-key:
 generate-xray-short-id:
 	openssl rand -hex 8
 
-issue-letsencrypt-certificate:
+letsencrypt-issue-certificate:
 	podman run \
 		--rm \
 		--name certbot \
@@ -29,7 +29,17 @@ issue-letsencrypt-certificate:
 		--agree-tos \
 		--no-eff-email
 
-
+letsencrypt-renew-certificate:
+	podman run \
+		--rm \
+		--name certbot \
+		--network podman_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
+		docker.io/certbot/certbot:v5.3.1 renew
 
 # 	- podman run \
 # 		-d \
