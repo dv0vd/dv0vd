@@ -20,13 +20,20 @@ configure_fail2ban() {
   log "Fail2ban successfully configured"
 }
 
-configure_nginx() {
+configure_nginx_lite() {
   log "Configuring nginx..."
   htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
   openssl req -x509 -nodes -newkey rsa:2048 \
     -keyout /root/dv0vd/deployment/configs/nginx/nginx.key \
     -out /root/dv0vd/deployment/configs/nginx/nginx.crt \
     -subj "/CN=localhost" &&
+  log "Nginx successfully configured"
+}
+
+configure_nginx_main() {
+  log "Configuring nginx..."
+  htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
+  make -C /root/dv0vd letsencrypt-issue-certificate
   log "Nginx successfully configured"
 }
 
@@ -177,6 +184,6 @@ configure_ssh
 configure_fail2ban
 configure_podman
 configure_rclone
-configure_nginx
+configure_nginx_main
 configure_outline
 finish

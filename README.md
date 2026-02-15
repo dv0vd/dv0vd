@@ -8,11 +8,8 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 3) Copy storage-vps SSH private key to `/root/.ssh/vps-storage` for storage vps backups.
 4) Clone repo: `git clone https://github.com/dv0vd/dv0vd.git`.
 5) Go to the project directory: `cd ./dv0vd`.
-6) Copy Nginx certificates to `./deployment/configs/nginx`:
-- dv0vd_dev.crt
-- dv0vd_dev.key
-7) Configure the `.env` file.
-8) Copy Podman images to `./deployment/images`:
+6) Configure the `.env` file.
+7) Copy Podman images to `./deployment/images`:
 - coturn_4.7.0.tar
 - dv0vd-demo-skillnotes_1.0.10.tar
 - dv0vd-demo-timers_1.0.5.tar
@@ -27,4 +24,4 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 - synapse_1.135.0.tar
 - teddysun_xray-25.10.15.tar
 - certbot_5.3.1.tar
-9) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
+8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
