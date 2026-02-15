@@ -124,5 +124,5 @@ help:
 	@echo ${GREEN}outline-delete-key' [id]                 '${WHITE}— delete outline vpn client key${RESET}
 	@echo ${GREEN}generate-xray-private-key'               '${WHITE}— generate VLESS + XTLS / Reality private key${RESET}
 	@echo ${GREEN}generate-xray-short-id'                  '${WHITE}— generate VLESS + XTLS / Reality shortId${RESET}
-	@echo ${GREEN}letsencrypt-issue-certificate'           '${WHITE}— issue Let's enctypt certificate${RESET}
-	@echo ${GREEN}letsencrypt-renew-certificate'           '${WHITE}— renew Let's enctypt certificate${RESET}
+	@echo ${GREEN}letsencrypt-issue-certificate'           '${WHITE}— issue Lets enctypt certificate${RESET}
+	@echo ${GREEN}letsencrypt-renew-certificate'           '${WHITE}— renew Lets enctypt certificate${RESET}
