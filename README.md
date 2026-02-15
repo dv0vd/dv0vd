@@ -26,4 +26,5 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 - postgres_15.14-alpine.tar
 - synapse_1.135.0.tar
 - teddysun_xray-25.10.15.tar
+- certbot_5.3.1.tar
 9) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
