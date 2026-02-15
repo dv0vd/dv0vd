@@ -135,8 +135,7 @@ start-nginx:
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
 	-v ./deployment/configs/pihole:/app/pihole:ro \
-	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
-	-v ./deployment/data/letsencrypt/data/live:/app/letsencrypt/certificates:ro \
+	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt:ro \
 	-p 80:80 \
 	-p 443:443 \
 	-p 8448:8448 \
