@@ -3,6 +3,7 @@ stop-containers:
 	- $(MAKE) stop-demo
 	- $(MAKE) stop-synapse
 	- $(MAKE) stop-coturn
+	- $(MAKE) stop-ntfy
 	- $(MAKE) stop-doh-server
 	- $(MAKE) stop-xray-vless-reality
 	- $(MAKE) stop-outline

@@ -11,6 +11,7 @@ start-containers:
 	- $(MAKE) start-outline
 	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-doh-server
+	- $(MAKE) start-ntfy
 	- $(MAKE) synapse-vacuum-clean
 	- $(MAKE) synapse-backup-database
 	- $(MAKE) synapse-backup-to-storage-vps
