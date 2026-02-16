@@ -342,3 +342,27 @@ start-coturn:
 	--cpus=${COTURN_CPUS} \
 	--cgroup-parent=/podman-group.slice \
 	docker.io/coturn/coturn:4.7.0
+
+start-ntfy:
+	- podman run \
+		-d \
+		--name ntfy \
+		--network podman_network \
+		-v ./deployment/data/ntfy:/var/lib/ntfy \
+		-e NTFY_BASE_URL=https://${NTFY_URL} \
+		-e NTFY_CACHE_FILE=/var/lib/ntfy/cache.db \
+		-e NTFY_CACHE_DURATION=720h \
+		-e NTFY_AUTH_FILE=/var/lib/ntfy/auth.db \
+		-e NTFY_AUTH_DEFAULT_ACCESS=read-write \
+		-e NTFY_BEHIND_PROXY=true \
+		-e NTFY_ATTACHMENT_CACHE_DIR=/var/lib/ntfy/attachments \
+		-e NTFY_ENABLE_LOGIN=false \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		--restart unless-stopped \
+		--memory=${NTFY_MEMORY} \
+		--cpus=${NTFY_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/binwiederhier/ntfy:v2.17 serve

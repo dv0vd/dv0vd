@@ -69,3 +69,6 @@ logs-init:
 
 logs-startup:
 	cat /var/log/on-startup.log
+
+logs-ntfy:
+	podman logs -f ntfy

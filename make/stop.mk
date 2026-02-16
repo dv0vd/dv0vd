@@ -88,3 +88,7 @@ stop-pihole:
 stop-doh-server:
 	- podman stop doh-server
 	- podman rm doh-server
+
+stop-ntfy:
+	- podman stop ntfy
+	- podman rm ntfy
