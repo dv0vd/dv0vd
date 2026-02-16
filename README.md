@@ -1,6 +1,6 @@
 # Dv0vD
 ## https://dv0vd.dev
-Personal website presenting portfolio, technical skills, interests, and contact information, along with hosted infrastructure: SOCKS4/5 and HTTPS proxies, Outline VPN, VLESS+XTLS/Reality, Matrix (Synapse), TURN (Coturn), ntfy, Sygnal, Pi-hole, DNS-over-HTTPS, and email services.
+My personal website to showcase my portfolio, skills, hobbies, and contact information. Additionally, the site features deployed servers for SOCKS4, SOCKS5, HTTPS proxy, Outline VPN, VLESS + XTLS / Reality, Synapse, TURN (Coturn), Matrix (Synapse), Pi-hole, DNS over HTTPS, and Email services.
 
 ## Getting started  
 1) Update packages index: `apt update`.
@@ -24,6 +24,5 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - synapse_1.135.0.tar
 - teddysun_xray-25.10.15.tar
 - certbot_5.3.1.tar
-- binwiederhier-ntfy_2.17.tar
-- matrixdotorg-sygnal_0.17.0.tar
+- /binwiederhier-ntfy_2.17.tar
 8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.

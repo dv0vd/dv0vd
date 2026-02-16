@@ -12,7 +12,6 @@ help:
 	@echo ${GREEN}start-pihone'                            '${WHITE}— start Pi-hole${RESET}
 	@echo ${GREEN}start-doh-server'                        '${WHITE}— start DoH server${RESET}
 	@echo ${GREEN}start-ntfy'                              '${WHITE}— start ntfy server${RESET}
-	@echo ${GREEN}start-sygnal'                            '${WHITE}— start sygnal synapse push gateway${RESET}
 	@echo ${GREEN}start-db'                                '${WHITE}— start databases${RESET}
 	@echo ${GREEN}start-mongo-demo'                        '${WHITE}— start mongo database for demo projects${RESET}
 	@echo ${GREEN}start-postgres-demo'                     '${WHITE}— start postgres database for demo projects${RESET}
@@ -31,7 +30,6 @@ help:
 	@echo ${GREEN}stop-pihole'                             '${WHITE}— stop Pi-hole${RESET}
 	@echo ${GREEN}stop-doh-server'                         '${WHITE}— stop DoH server${RESET}
 	@echo ${GREEN}stop-ntfy'                               '${WHITE}— stop ntfy server${RESET}
-	@echo ${GREEN}stop-sygnal'                             '${WHITE}— stop sygnal synapse push gateway${RESET}
 	@echo ${GREEN}stop-nginx'                              '${WHITE}— stop nginx server${RESET}
 	@echo ${GREEN}stop-db'                                 '${WHITE}— stop databases${RESET}
 	@echo ${GREEN}stop-mongo-demo'                         '${WHITE}— stop mongo database for demo projects${RESET}
@@ -52,7 +50,6 @@ help:
 	@echo ${GREEN}restart-pihole'                          '${WHITE}— restart Pi-hole${RESET}
 	@echo ${GREEN}restart-doh-server'                      '${WHITE}— restart DoH server${RESET}
 	@echo ${GREEN}restart-ntfy'                            '${WHITE}— restart ntfy server${RESET}
-	@echo ${GREEN}restart-sygnal'                          '${WHITE}— restart sygnal synapse push gateway${RESET}
 	@echo ${GREEN}restart-db'                              '${WHITE}— restart databases${RESET}
 	@echo ${GREEN}restart-mongo-demo'                      '${WHITE}— restart mongo database for demo projects${RESET}
 	@echo ${GREEN}restart-postgres-demo'                   '${WHITE}— restart postgres database for demo projects${RESET}
@@ -78,7 +75,6 @@ help:
 	@echo ${GREEN}logs-pihole'                             '${WHITE}— get Pi-hole logs${RESET}
 	@echo ${GREEN}logs-doh-server'                         '${WHITE}— get DoH server logs${RESET}
 	@echo ${GREEN}logs-ntfy'                               '${WHITE}— get ntfy server logs${RESET}
-	@echo ${GREEN}logs-sygnal'                             '${WHITE}— get sygnal synapse push gateway logs${RESET}
 	@echo ${GREEN}logs-mongo-demo'                         '${WHITE}— get logs of mongo database for demo projects${RESET}
 	@echo ${GREEN}logs-postgres-demo'                      '${WHITE}— get logs of postgres database for demo projects${RESET}
 	@echo ${GREEN}logs-postgres-synapse'                   '${WHITE}— get logs of postgres database for synapse server${RESET}

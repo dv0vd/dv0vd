@@ -22,7 +22,6 @@ podman-load-images:
 	podman load < ./deployment/images/satishweb-doh-server_v2.3.10-alpine.tar
 	podman load < ./deployment/images/certbot_5.3.1.tar
 	podman load < ./deployment/images/binwiederhier-ntfy_2.17.tar
-	podman load < ./deployment/images/matrixdotorg-sygnal_0.17.0.tar
 
 podman-info:
 	podman ps -w 1

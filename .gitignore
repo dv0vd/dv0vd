@@ -17,4 +17,3 @@ deployment/configs/fail2ban/jail.local
 deployment/configs/outline/shadowbox_server_config.json
 deployment/configs/iptables/iptables.sh
 deployment/configs/xray-vless-reality/xray_config.json
-deployment/configs/sygnal/sygnal.yaml
