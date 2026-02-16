@@ -4,6 +4,6 @@ on-startup:
 	- $(MAKE) iptables-apply-rules
 	- shutdown -r 0:00
 	- $(MAKE) start-fail2ban
-	- $(MAKE) letsencrypt-renew-certificate
+	- $(MAKE) letsencrypt-renew-certificates
 	- $(MAKE) logs-clear
 	- $(MAKE) restart-containers

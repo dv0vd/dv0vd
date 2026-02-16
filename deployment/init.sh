@@ -33,7 +33,7 @@ configure_nginx_lite() {
 configure_nginx_main() {
   log "Configuring nginx..."
   htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
-  make -C /root/dv0vd letsencrypt-issue-certificate
+  make -C /root/dv0vd letsencrypt-issue-certificates
   log "Nginx successfully configured"
 }
 
