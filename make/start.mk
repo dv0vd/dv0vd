@@ -375,7 +375,7 @@ start-sygnal:
 		-d \
 		--name sygnal \
 		--network podman_network \
-		-v ./deployment/configs/sygnal/sygnal.yaml:/data/sygnal.yaml:ro \
+		-v ./deployment/configs/sygnal/sygnal.yaml:/sygnal.yaml:ro \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
 		--dns 1.1.1.1 \
