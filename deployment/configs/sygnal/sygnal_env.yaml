@@ -1,0 +1,21 @@
+log:
+  setup:
+    version: 1
+    handlers:
+      console:
+        class: logging.StreamHandler
+    root:
+      level: INFO
+      handlers: [console]
+
+http:
+  port: 5000
+  bind_addresses: ["0.0.0.0"]
+
+metrics:
+  enabled: false
+
+apps:
+  unifiedpush:
+    type: unifiedpush
+    base_url: "https://$NTFY_URL"

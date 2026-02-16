@@ -72,3 +72,6 @@ logs-startup:
 
 logs-ntfy:
 	podman logs -f ntfy
+
+logs-sygnal:
+	podman logs -f sygnal

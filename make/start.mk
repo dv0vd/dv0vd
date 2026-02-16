@@ -12,6 +12,7 @@ start-containers:
 	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-doh-server
 	- $(MAKE) start-ntfy
+	- $(MAKE) start-sygnal
 	- $(MAKE) synapse-vacuum-clean
 	- $(MAKE) synapse-backup-database
 	- $(MAKE) synapse-backup-to-storage-vps
@@ -367,3 +368,20 @@ start-ntfy:
 		--cpus=${NTFY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/binwiederhier/ntfy:v2.17 serve
+
+start-sygnal:
+	- bash -c "set -a; . .env; set +a; envsubst '\$$NTFY_URL' < ./deployment/configs/sygnal/sygnal_env.yaml > ./deployment/configs/sygnal/sygnal.yaml"
+	- podman run \
+		-d \
+		--name sygnal \
+		--network podman_network \
+		-v ./deployment/configs/sygnal/sygnal.yaml:/data/sygnal.yaml:ro \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		--restart unless-stopped \
+		--memory=${SYGNAL_MEMORY} \
+		--cpus=${SYGNAL_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/matrixdotorg/sygnal:v0.17.0

@@ -3,6 +3,7 @@ stop-containers:
 	- $(MAKE) stop-demo
 	- $(MAKE) stop-synapse
 	- $(MAKE) stop-coturn
+	- $(MAKE) stop-sygnal
 	- $(MAKE) stop-ntfy
 	- $(MAKE) stop-doh-server
 	- $(MAKE) stop-xray-vless-reality
@@ -93,3 +94,7 @@ stop-doh-server:
 stop-ntfy:
 	- podman stop ntfy
 	- podman rm ntfy
+
+stop-sygnal:
+	- podman stop sygnal
+	- podman rm sygnal

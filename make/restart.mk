@@ -49,3 +49,5 @@ restart-synapse: stop-synapse start-synapse restart-nginx
 restart-coturn: stop-coturn start-coturn
 
 restart-ntfy: stop-ntfy start-ntfy
+
+restart-sygnal: stop-sygnal start-sygnal
