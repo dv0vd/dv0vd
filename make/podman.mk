@@ -2,7 +2,7 @@ podman-cleanup:
 	podman system reset -f
 
 podman-create-network:
-	podman network create --ipv6 podman_network
+	podman network create --ipv6 podman_network --subnet 10.100.0.0/16 --gateway 10.100.0.1
 
 podman-load-images:
 	podman load < ./deployment/images/coturn_4.7.0.tar
