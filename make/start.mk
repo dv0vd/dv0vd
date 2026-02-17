@@ -5,6 +5,7 @@ start-containers:
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) start-db
+	- $(MAKE) start-livekit-redis
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
@@ -16,6 +17,7 @@ start-containers:
 	- $(MAKE) synapse-backup-database
 	- $(MAKE) synapse-backup-to-storage-vps
 	- $(MAKE) start-coturn
+	- $(MAKE) start-livekit
 	- $(MAKE) start-synapse
 	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
@@ -136,8 +138,8 @@ start-nginx:
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
 	-v ./deployment/configs/pihole:/app/pihole:ro \
-	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt:ro \
-	-v ./deployment/data/letsencrypt/data:/etc/letsencrypt:ro \
+	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
+	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
 	-p 80:80 \
 	-p 443:443 \
 	-p 8448:8448 \
@@ -367,3 +369,29 @@ start-ntfy:
 		--cpus=${NTFY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/binwiederhier/ntfy:v2.17 serve
+
+start-livekit-redis:
+	- podman run \
+		-d \
+		--name livekit-redis \
+		--network podman_network \
+		--restart unless-stopped \
+		--memory=${LIVEKIT_REDIS_MEMORY} \
+		--cpus=${LIVEKIT_REDIS_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/redis:8.4.0-alpine
+
+start-livekit:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/livekit/livekit_env.yaml > ./deployment/configs/livekit/livekit.yaml"
+	- podman run \
+		-d \
+		--name livekit \
+		--network podman_network \
+		-v ./deployment/configs/livekit/livekit.yaml:/app/livekit.yaml:ro \
+		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
+		-p ${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT}:${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT}/udp \
+		--restart unless-stopped \
+		--memory=${LIVEKIT_MEMORY} \
+		--cpus=${LIVEKIT_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/livekit/livekit-server:v1.9.11 --config /app/livekit.yaml

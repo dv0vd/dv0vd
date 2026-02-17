@@ -22,6 +22,8 @@ podman-load-images:
 	podman load < ./deployment/images/satishweb-doh-server_v2.3.10-alpine.tar
 	podman load < ./deployment/images/certbot_5.3.1.tar
 	podman load < ./deployment/images/binwiederhier-ntfy_2.17.tar
+	podman load < ./deployment/images/livekit-server_1.9.11.tar
+	podman load < ./deployment/images/redis_8.4.0-alpine.tar
 
 podman-info:
 	podman ps -w 1

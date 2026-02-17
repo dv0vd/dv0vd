@@ -9,3 +9,6 @@ enter-outline:
 
 enter-doh-server:
 	podman exec -it doh-server bash
+
+enter-livekit:
+	podman exec -it livekit sh

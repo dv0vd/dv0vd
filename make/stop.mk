@@ -2,6 +2,7 @@ stop-containers:
 	- $(MAKE) stop-nginx
 	- $(MAKE) stop-demo
 	- $(MAKE) stop-synapse
+	- $(MAKE) stop-livekit
 	- $(MAKE) stop-coturn
 	- $(MAKE) stop-ntfy
 	- $(MAKE) stop-doh-server
@@ -10,6 +11,7 @@ stop-containers:
 	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
+	- $(MAKE) stop-livekit-redis
 	- $(MAKE) stop-db
 
 stop-socks4:
@@ -93,3 +95,11 @@ stop-doh-server:
 stop-ntfy:
 	- podman stop ntfy
 	- podman rm ntfy
+
+stop-livekit:
+	- podman stop livekit
+	- podman rm livekit
+
+stop-livekit-redis:
+	- podman stop livekit-redis
+	- podman rm livekit-redis

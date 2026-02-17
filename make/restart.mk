@@ -49,3 +49,7 @@ restart-synapse: stop-synapse start-synapse restart-nginx
 restart-coturn: stop-coturn start-coturn
 
 restart-ntfy: stop-ntfy start-ntfy
+
+restart-livekit: stop-livekit start-livekit
+
+restart-livekit-redis: stop-livekit-redis start-livekit-redis

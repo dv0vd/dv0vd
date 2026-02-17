@@ -72,3 +72,9 @@ logs-startup:
 
 logs-ntfy:
 	podman logs -f ntfy
+
+logs-livekit:
+	podman logs -f livekit
+
+logs-livekit-redis:
+	podman logs -f livekit-redis

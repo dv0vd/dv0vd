@@ -4,6 +4,9 @@ include .env
 .ONESHELL:
 MAKEFLAGS += --no-print-directory
 
+PUBLIC_IP := $(shell ip -4 addr show | awk '/inet/ && !/127.0.0.1/ {print $$2}' | cut -d/ -f1 | head -n1)
+export PUBLIC_IP
+
 include ./make/help.mk
 include ./make/logs.mk
 include ./make/restart.mk
