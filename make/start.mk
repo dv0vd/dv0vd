@@ -126,7 +126,7 @@ start-xray-vless-reality:
 		docker.io/teddysun/xray:25.10.15
 
 start-nginx:
-	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_API_PORT \$$MATRIX_RTC_PORT' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_URL' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -389,8 +389,6 @@ start-livekit:
 		--network podman_network \
 		-v ./deployment/configs/livekit/livekit.yaml:/app/livekit.yaml:ro \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
-		-p ${LIVEKIT_API_PORT}:7880 \
-		-p ${LIVEKIT_TCP_PORT}:7881 \
 		-p ${LIVEKIT_TURN_UDP_PORT}:3478 \
 		-p ${LIVEKIT_TURN_UDP_PORT}:3478/udp \
 		-p ${LIVEKIT_TURN_TCP_PORT}:5349 \
