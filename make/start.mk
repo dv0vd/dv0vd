@@ -338,6 +338,7 @@ start-coturn:
 		-p ${COTURN_TCP_PORT}:5349/udp \
 		-p ${COTURN_MIN_PORT}-${COTURN_MAX_PORT}:${COTURN_MIN_PORT}-${COTURN_MAX_PORT}/udp \
 		-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
+		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
 		--network podman_network \
 		--memory=${COTURN_MEMORY} \
 		--cpus=${COTURN_CPUS} \
