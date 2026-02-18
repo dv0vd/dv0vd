@@ -78,3 +78,6 @@ logs-livekit:
 
 logs-livekit-redis:
 	podman logs -f livekit-redis
+
+logs-matrix-rtc:
+	podman logs -f matrix-rtc

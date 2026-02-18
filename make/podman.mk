@@ -24,6 +24,7 @@ podman-load-images:
 	podman load < ./deployment/images/binwiederhier-ntfy_2.17.tar
 	podman load < ./deployment/images/livekit-server_1.9.11.tar
 	podman load < ./deployment/images/redis_8.4.0-alpine.tar
+	podman load < ./deployment/images/element-hq-lk-jwt-service_0.4.1.tar
 
 podman-info:
 	podman ps -w 1

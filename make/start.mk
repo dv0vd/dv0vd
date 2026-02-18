@@ -125,7 +125,7 @@ start-xray-vless-reality:
 		docker.io/teddysun/xray:25.10.15
 
 start-nginx:
-	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_API_PORT \$$MATRIX_RTC_PORT' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -388,9 +388,31 @@ start-livekit:
 		--network podman_network \
 		-v ./deployment/configs/livekit/livekit.yaml:/app/livekit.yaml:ro \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
+		-p ${LIVEKIT_API_PORT}:7880 \
+		-p ${LIVEKIT_TCP_PORT}:7881 \
+		-p ${LIVEKIT_TURN_UDP_PORT}:3478 \
+		-p ${LIVEKIT_TURN_UDP_PORT}:3478/udp \
+		-p ${LIVEKIT_TURN_TCP_PORT}:5349 \
+		-p ${LIVEKIT_TURN_TCP_PORT}:5349/udp \
 		-p ${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT}:${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT}/udp \
 		--restart unless-stopped \
 		--memory=${LIVEKIT_MEMORY} \
 		--cpus=${LIVEKIT_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/livekit/livekit-server:v1.9.11 --config /app/livekit.yaml
+
+start-matrix-rtc:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/livekit/livekit_env.yaml > ./deployment/configs/livekit/livekit.yaml"
+	- podman run \
+		-d \
+		--name matrix-rtc \
+		-e LIVEKIT_URL=wss://${BASE_URL}: \
+		-e LIVEKIT_KEY=${LIVEKIT_API_KEY} \
+		-e LIVEKIT_SECRET=${LIVEKIT_API_SECRET} \
+		-e LIVEKIT_FULL_ACCESS_HOMESERVERS=${BASE_URL} \
+		--network podman_network \
+		--restart unless-stopped \
+		--memory=${MATRIX_RTC_MEMORY} \
+		--cpus=${MATRIX_RTC_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		ghcr.io/element-hq/lk-jwt-service:0.4.1

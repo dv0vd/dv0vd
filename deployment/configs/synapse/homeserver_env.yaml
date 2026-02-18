@@ -83,7 +83,10 @@ media_retention:
   local_media_lifetime: 45d
   remote_media_lifetime: 45d
 url_preview_enabled: false
-turn_uris: [ "turn:${COTURN_HOST}:${COTURN_UDP_PORT}?transport=udp", "turn:${COTURN_HOST}:${COTURN_TCP_PORT}?transport=tcp" ]
+turn_uris: [ 
+  "turns:${COTURN_HOST}:${COTURN_UDP_PORT}?transport=udp", 
+  "turns:${COTURN_HOST}:${COTURN_TCP_PORT}?transport=tcp" 
+]
 turn_shared_secret: ${COTURN_SECRET}
 turn_user_lifetime: 1h
 turn_allow_guests: false
@@ -109,3 +112,7 @@ encryption_enabled_by_default_for_room_type: all
 stats:
   enabled: true
 forget_rooms_on_leave: false
+matrix_rtc:
+  transports:
+  - type: livekit
+    livekit_service_url: https://${SYNAPSE_PUBLIC_BASE_URL}:$MATRIX_RTC_PORT/livekit/jwt

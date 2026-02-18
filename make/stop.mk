@@ -103,3 +103,7 @@ stop-livekit:
 stop-livekit-redis:
 	- podman stop livekit-redis
 	- podman rm livekit-redis
+
+stop-matrix-rtc:
+	- podman stop matrix-rtc
+	- podman rm matrix-rtc

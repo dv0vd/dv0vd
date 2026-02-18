@@ -27,4 +27,5 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - binwiederhier-ntfy_2.17.tar
 - livekit-server_1.9.11.tar
 - redis_8.4.0-alpine.tar
+- element-hq-lk-jwt-service_0.4.1.tar
 8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
