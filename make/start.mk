@@ -405,7 +405,7 @@ start-matrix-rtc:
 	- podman run \
 		-d \
 		--name matrix-rtc \
-		-e LIVEKIT_URL=wss://${LIVEKIT_URL} \
+		-e LIVEKIT_URL=wss://livekit:7880 \
 		-e LIVEKIT_KEY=${LIVEKIT_API_KEY} \
 		-e LIVEKIT_SECRET=${LIVEKIT_API_SECRET} \
 		-e LIVEKIT_FULL_ACCESS_HOMESERVERS=${BASE_URL} \
