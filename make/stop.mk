@@ -2,6 +2,7 @@ stop-containers:
 	- $(MAKE) stop-nginx
 	- $(MAKE) stop-demo
 	- $(MAKE) stop-synapse
+	- $(MAKE) stop-matrix-rtc
 	- $(MAKE) stop-livekit
 	- $(MAKE) stop-coturn
 	- $(MAKE) stop-ntfy

@@ -18,6 +18,7 @@ start-containers:
 	- $(MAKE) synapse-backup-to-storage-vps
 	- $(MAKE) start-coturn
 	- $(MAKE) start-livekit
+	- $(MAKE) start-matrix-rtc
 	- $(MAKE) start-synapse
 	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
