@@ -50,8 +50,8 @@ restart-coturn: stop-coturn start-coturn
 
 restart-ntfy: stop-ntfy start-ntfy
 
-restart-livekit: stop-livekit start-livekit
+restart-livekit: stop-livekit start-livekit restart-nginx
 
 restart-livekit-redis: stop-livekit-redis start-livekit-redis
 
-restart-matrix-rtc: stop-matrix-rtc start-matrix-rtc
+restart-matrix-rtc: stop-matrix-rtc start-matrix-rtc restart-nginx
