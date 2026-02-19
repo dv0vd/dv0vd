@@ -6,7 +6,7 @@ podman-create-network:
 
 podman-load-images:
 	podman load < ./deployment/images/coturn_4.7.0.tar
-	podman load < ./deployment/images/dv0vd-demo-skillnotes_1.0.10.tar
+	podman load < ./deployment/images/dv0vd-demo-skillnotes_1.0.11.tar
 	podman load < ./deployment/images/dv0vd-demo-timers_1.0.5.tar
 	podman load < ./deployment/images/dv0vd-demo-todo-manager_1.1.1.tar
 	podman load < ./deployment/images/dv0vd-https-proxy_1.2.0.tar

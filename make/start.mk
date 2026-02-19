@@ -289,7 +289,7 @@ start-skillnotes:
 		--memory=${SKILLNOTES_APP_MEMORY} \
 		--cpus=${SKILLNOTES_APP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/dv0vd/demo-skillnotes:1.0.10
+		docker.io/dv0vd/demo-skillnotes:1.0.11
 
 start-todo-manager:
 	- podman run \
