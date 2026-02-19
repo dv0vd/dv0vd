@@ -3,8 +3,8 @@
 # This hosts file is a merged collection of hosts from reputable sources,
 # with a dash of crowd sourcing via GitHub
 #
-# Date: 07 February 2026
-# Number of unique domains: 147
+# Date: 19 February 2026
+# Number of unique domains: 160
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -18,12 +18,19 @@
 0.0.0.0 a.bringads.ru
 0.0.0.0 a.utraff.com
 0.0.0.0 acint.net
+0.0.0.0 ad.mail.ru
 0.0.0.0 ad.twinrdengine.com
+0.0.0.0 adfstat.yandex.ru
+0.0.0.0 ads.adfox.ru
 0.0.0.0 ads.mozilla.org
 0.0.0.0 adx.videonow.ru
+0.0.0.0 alog.umeng.com
+0.0.0.0 alog.umengcloud.com
 0.0.0.0 alt-ad.mail.ru
 0.0.0.0 amc.yandex.ru
 0.0.0.0 an.mail.ru
+0.0.0.0 an.yandex.ru
+0.0.0.0 android.bugly.qq.com
 0.0.0.0 analytex.userpilot.io
 0.0.0.0 api.g.micloud.xiaomi.net
 0.0.0.0 api.gallery.intl.miui.com
@@ -64,6 +71,7 @@
 0.0.0.0 fpf.hybrid.ai
 0.0.0.0 gator.volces.com
 0.0.0.0 global.market.xiaomi.com
+0.0.0.0 graph.facebook.com
 0.0.0.0 hb.bumlam.com
 0.0.0.0 hb-bidder.skcrtxr.com
 0.0.0.0 hit.udqrh6.ru
@@ -87,6 +95,7 @@
 0.0.0.0 log.strm.yandex.ru
 0.0.0.0 match.ohmy.bid
 0.0.0.0 matchid.adfox.yandex.ru
+0.0.0.0 mc.yandex.ru
 0.0.0.0 mediation‑sg.pangle.io
 0.0.0.0 metrics.alfabank.ru
 0.0.0.0 mdp-appconf-ru.heytapdl.com
@@ -109,13 +118,13 @@
 0.0.0.0 redirect-frontend.weborama-tech.ru	
 0.0.0.0 repodownload.mediatek.com
 0.0.0.0 rpc.skcrtxr.com
-0.0.0.0 rum.dzen.ru
 0.0.0.0 ru.app.chat.global.xiaomi.net
 0.0.0.0 ru.global.market.xiaomi.com
 0.0.0.0 ru.hlth.io.mi.com
 0.0.0.0 ru.id.facct.ru
 0.0.0.0 ru.resolver.msg.global.xiaomi.net
 0.0.0.0 ru-idm.api.io.mi.com
+0.0.0.0 rum.dzen.ru
 0.0.0.0 rus.porn-comix2.com
 0.0.0.0 rus-service-sg.allawnos.com
 0.0.0.0 s.ad.twinrdengine.com
