@@ -16,7 +16,7 @@ start-containers:
 	- $(MAKE) synapse-vacuum-clean
 	- $(MAKE) synapse-backup-database
 	- $(MAKE) synapse-backup-to-storage-vps
-	- $(MAKE) start-coturn
+# 	- $(MAKE) start-coturn
 	- $(MAKE) start-livekit
 	- $(MAKE) start-matrix-rtc
 	- $(MAKE) start-synapse
@@ -389,10 +389,10 @@ start-livekit:
 		--network podman_network \
 		-v ./deployment/configs/livekit/livekit.yaml:/app/livekit.yaml:ro \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
-		-p ${LIVEKIT_TURN_UDP_PORT}:3478 \
-		-p ${LIVEKIT_TURN_UDP_PORT}:3478/udp \
-		-p ${LIVEKIT_TURN_TCP_PORT}:5349 \
-		-p ${LIVEKIT_TURN_TCP_PORT}:5349/udp \
+		-p ${LIVEKIT_TURN_UDP_PORT}:${LIVEKIT_TURN_UDP_PORT}/udp \
+		-p ${LIVEKIT_TURN_TCP_PORT}:${LIVEKIT_TURN_TCP_PORT} \
+		-p ${LIVEKIT_FALLBACK_PORT}:${LIVEKIT_FALLBACK_PORT} \
+		-p ${LIVEKIT_MIN_PORT}-${LIVEKIT_MAX_PORT}:${LIVEKIT_MIN_PORT}-${LIVEKIT_MAX_PORT}/udp \
 		-p ${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT}:${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT}/udp \
 		--restart unless-stopped \
 		--memory=${LIVEKIT_MEMORY} \
@@ -405,7 +405,7 @@ start-matrix-rtc:
 	- podman run \
 		-d \
 		--name matrix-rtc \
-		-e LIVEKIT_URL=ws://livekit:7880 \
+		-e LIVEKIT_URL=wss://${LIVEKIT_URL} \
 		-e LIVEKIT_KEY=${LIVEKIT_API_KEY} \
 		-e LIVEKIT_SECRET=${LIVEKIT_API_SECRET} \
 		-e LIVEKIT_FULL_ACCESS_HOMESERVERS=${BASE_URL} \

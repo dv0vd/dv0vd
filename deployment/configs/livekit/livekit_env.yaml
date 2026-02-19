@@ -1,9 +1,9 @@
 port: 7880
 log_level: info
 rtc:
-  tcp_port: 7881
-  port_range_start: 50500
-  port_range_end: 50600
+  tcp_port: $LIVEKIT_FALLBACK_PORT
+  port_range_start: $LIVEKIT_MIN_PORT
+  port_range_end: $LIVEKIT_MAX_PORT
   use_external_ip: false
   node_ip: $PUBLIC_IP
 redis:
@@ -13,8 +13,8 @@ keys:
 turn:
   enabled: true
   domain: $BASE_URL
-  udp_port: 3478
-  tls_port: 5349
+  udp_port: $LIVEKIT_TURN_UDP_PORT
+  tls_port: $LIVEKIT_TURN_TCP_PORT
   relay_range_start: $LIVEKIT_TURN_MIN_PORT
   relay_range_end: $LIVEKIT_TURN_MAX_PORT
   cert_file: /app/letsencrypt/live/$BASE_URL/fullchain.pem

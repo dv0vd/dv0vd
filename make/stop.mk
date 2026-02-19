@@ -4,7 +4,7 @@ stop-containers:
 	- $(MAKE) stop-synapse
 	- $(MAKE) stop-matrix-rtc
 	- $(MAKE) stop-livekit
-	- $(MAKE) stop-coturn
+# 	- $(MAKE) stop-coturn
 	- $(MAKE) stop-ntfy
 	- $(MAKE) stop-doh-server
 	- $(MAKE) stop-xray-vless-reality
