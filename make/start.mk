@@ -4,6 +4,8 @@ start-containers:
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
+	- $(MAKE) email-backup-to-storage-vps
+	- $(MAKE) start-email
 	- $(MAKE) start-db
 	- $(MAKE) start-livekit-redis
 	- $(MAKE) start-socks5

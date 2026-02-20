@@ -14,6 +14,7 @@ stop-containers:
 	- $(MAKE) stop-socks5
 	- $(MAKE) stop-livekit-redis
 	- $(MAKE) stop-db
+	- $(MAKE) stop-email
 
 stop-socks4:
 	- podman stop socks4

@@ -145,6 +145,8 @@ help:
 	@echo ${GREEN}email-create-user' [name]                '${WHITE}— create email user${RESET}
 	@echo ${GREEN}email-delete-user' [name]                '${WHITE}— delete email user${RESET}
 	@echo ${GREEN}email-list-users'                        '${WHITE}— list email users${RESET}
+	@echo ${GREEN}email-backup-to-storage-vps'             '${WHITE}— backup emails to storage vps${RESET}
+	@echo ${GREEN}email-restore-from-storage-vps'          '${WHITE}— restore emails from storage vps${RESET}
 	@echo ${GREEN}outline-get-keys'                        '${WHITE}— get outline vpn client keys${RESET}
 	@echo ${GREEN}outline-create-key' [name]               '${WHITE}— create outline vpn client key${RESET}
 	@echo ${GREEN}outline-delete-key' [id]                 '${WHITE}— delete outline vpn client key${RESET}
