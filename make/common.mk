@@ -8,9 +8,3 @@ generate-xray-private-key:
 
 generate-xray-short-id:
 	openssl rand -hex 8
-
-email-init:
-	podman run --rm -it \
-		-v ./deployment/configs/email:/tmp/docker-mailserver \
-		ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
-		setup config dkim domain ${BASE_URL}

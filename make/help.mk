@@ -9,7 +9,7 @@ help:
 	@echo ${GREEN}start-outline'                           '${WHITE}— start outline vpn${RESET}
 	@echo ${GREEN}start-xray-vless-reality'                '${WHITE}— start VLESS + XTLS / Reality${RESET}
 	@echo ${GREEN}start-nginx'                             '${WHITE}— start nginx server${RESET}
-	@echo ${GREEN}start-pihone'                            '${WHITE}— start Pi-hole${RESET}
+	@echo ${GREEN}start-pihole'                            '${WHITE}— start Pi-hole${RESET}
 	@echo ${GREEN}start-doh-server'                        '${WHITE}— start DoH server${RESET}
 	@echo ${GREEN}start-ntfy'                              '${WHITE}— start ntfy server${RESET}
 	@echo ${GREEN}start-livekit'                           '${WHITE}— start LiveKit server${RESET}
@@ -115,7 +115,7 @@ help:
 	@echo ${GREEN}iptables-rules-filter'                   '${WHITE}— show iptables filter table rules${RESET}
 	@echo ${GREEN}iptables-rules-nat'                      '${WHITE}— show iptables nat table rules${RESET}
 	@echo ${GREEN}iptables-rules-mangle'                   '${WHITE}— show iptables raw table rules${RESET}
-	@echo ${GREEN}iptables-rules-raw'                      '${WHITE}— show iptables mangle table rules{$RESET}
+	@echo ${GREEN}iptables-rules-raw'                      '${WHITE}— show iptables mangle table rules${RESET}
 	@echo ${GREEN}ip6tables-rules-filter'                  '${WHITE}— show ip6tables filter table rules${RESET}
 	@echo ${GREEN}ip6tables-rules-nat'                     '${WHITE}— show ip6tables nat table rules${RESET}
 	@echo ${GREEN}ip6tables-rules-mangle'                  '${WHITE}— show ip6tables raw table rules${RESET}
@@ -134,17 +134,22 @@ help:
 	@echo ${GREEN}refresh-gazprombank-auth'                '${WHITE}— completely remove gazprombank auth project and reinstall it${RESET}
 	@echo ${GREEN}refresh-gazprombank-startups'            '${WHITE}— completely remove gazprombank startup form project and reinstall it${RESET}
 	@echo ${GREEN}synapse-init'                            '${WHITE}— init synapse server${RESET}
-	@echo ${GREEN}email-init'                              '${WHITE}— init email server${RESET}
 	@echo ${GREEN}synapse-create-user'                     '${WHITE}— create synapse user${RESET}
 	@echo ${GREEN}synapse-vacuum-clean'                    '${WHITE}— reclaims synapse postgres space${RESET}
 	@echo ${GREEN}synapse-backup-database'                 '${WHITE}— backup synapse postgres database${RESET}
 	@echo ${GREEN}synapse-restore-database'                '${WHITE}— restore synapse postgres database${RESET}
 	@echo ${GREEN}synapse-backup-to-storage-vps'           '${WHITE}— backup synapse database and media store to storage vps${RESET}
 	@echo ${GREEN}synapse-restore-from-storage-vps'        '${WHITE}— restore synapse database and media store from storage vps${RESET}
+	@echo ${GREEN}email-init'                              '${WHITE}— init email server${RESET}
+	@echo ${GREEN}email-create-user' [name]                '${WHITE}— create email user${RESET}
 	@echo ${GREEN}outline-get-keys'                        '${WHITE}— get outline vpn client keys${RESET}
 	@echo ${GREEN}outline-create-key' [name]               '${WHITE}— create outline vpn client key${RESET}
 	@echo ${GREEN}outline-delete-key' [id]                 '${WHITE}— delete outline vpn client key${RESET}
 	@echo ${GREEN}generate-xray-private-key'               '${WHITE}— generate VLESS + XTLS / Reality private key${RESET}
 	@echo ${GREEN}generate-xray-short-id'                  '${WHITE}— generate VLESS + XTLS / Reality shortId${RESET}
-	@echo ${GREEN}letsencrypt-issue-certificates'           '${WHITE}— issue Lets enctypt certificates${RESET}
-	@echo ${GREEN}letsencrypt-renew-certificates'           '${WHITE}— renew Lets enctypt certificates${RESET}
+	@echo ${GREEN}certbot-issue'                           '${WHITE}— issue Lets enctypt certificates${RESET}
+	@echo ${GREEN}certbot-issue-website'                   '${WHITE}— issue Lets enctypt certificate for website${RESET}
+	@echo ${GREEN}certbot-issue-ntfy'                      '${WHITE}— issue Lets enctypt certificate for ntfy${RESET}
+	@echo ${GREEN}certbot-issue-livekit'                   '${WHITE}— issue Lets enctypt certificate for livekit${RESET}
+	@echo ${GREEN}certbot-issue-email'                     '${WHITE}— issue Lets enctypt certificate for email${RESET}
+	@echo ${GREEN}certbot-renew'                           '${WHITE}— renew Lets enctypt certificates${RESET}
