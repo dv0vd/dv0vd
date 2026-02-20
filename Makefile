@@ -22,18 +22,3 @@ include ./make/outline.mk
 include ./make/common.mk
 include ./make/iptables.mk
 include ./make/certbot.mk
-
-# stop-email:
-# 	- podman stop email
-# 	- podman rm email
-
-# restart-email:
-# 	- $(MAKE) stop-email
-# 	- $(MAKE) start-email
-
-# fail2ban-status-ssh:
-# 	fail2ban-client status sshd
-
-# fail2ban-unban-all:
-# 	@-fail2ban-client unban --all
-

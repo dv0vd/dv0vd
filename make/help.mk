@@ -15,6 +15,7 @@ help:
 	@echo ${GREEN}start-livekit'                           '${WHITE}— start LiveKit server${RESET}
 	@echo ${GREEN}start-livekit-redis'                     '${WHITE}— start Redis for LiveKit server${RESET}
 	@echo ${GREEN}start-matrix-rtc'                        '${WHITE}— start MatrixRTC Authorization Service${RESET}
+	@echo ${GREEN}start-email'                             '${WHITE}— start email server${RESET}
 	@echo ${GREEN}start-db'                                '${WHITE}— start databases${RESET}
 	@echo ${GREEN}start-mongo-demo'                        '${WHITE}— start mongo database for demo projects${RESET}
 	@echo ${GREEN}start-postgres-demo'                     '${WHITE}— start postgres database for demo projects${RESET}
@@ -36,6 +37,7 @@ help:
 	@echo ${GREEN}stop-livekit'                            '${WHITE}— stop LiveKit server${RESET}
 	@echo ${GREEN}stop-livekit-redis'                      '${WHITE}— stop Redis for LiveKit server${RESET}
 	@echo ${GREEN}stop-matrix-rtc'                         '${WHITE}— stop MatrixRTC Authorization Service${RESET}
+	@echo ${GREEN}stop-email'                              '${WHITE}— stop email server${RESET}
 	@echo ${GREEN}stop-nginx'                              '${WHITE}— stop nginx server${RESET}
 	@echo ${GREEN}stop-db'                                 '${WHITE}— stop databases${RESET}
 	@echo ${GREEN}stop-mongo-demo'                         '${WHITE}— stop mongo database for demo projects${RESET}
@@ -59,6 +61,7 @@ help:
 	@echo ${GREEN}restart-livekit'                         '${WHITE}— restart LiveKit server${RESET}
 	@echo ${GREEN}restart-livekit-redis'                   '${WHITE}— restart Redis for LiveKit server${RESET}
 	@echo ${GREEN}restart-matrix-rtc'                      '${WHITE}— restart MatrixRTC Authorization Service${RESET}
+	@echo ${GREEN}restart-email'                           '${WHITE}— restart email server${RESET}
 	@echo ${GREEN}restart-db'                              '${WHITE}— restart databases${RESET}
 	@echo ${GREEN}restart-mongo-demo'                      '${WHITE}— restart mongo database for demo projects${RESET}
 	@echo ${GREEN}restart-postgres-demo'                   '${WHITE}— restart postgres database for demo projects${RESET}
@@ -88,6 +91,7 @@ help:
 	@echo ${GREEN}logs-livekit'                            '${WHITE}— get LiveKit server logs${RESET}
 	@echo ${GREEN}logs-livekit-redis'                      '${WHITE}— get log of Redis for LiveKit server${RESET}
 	@echo ${GREEN}logs-matrix-rtc'                         '${WHITE}— get MatrixRTC Authorization Service logs${RESET}
+	@echo ${GREEN}logs-email'                              '${WHITE}— get email server logs${RESET}
 	@echo ${GREEN}logs-mongo-demo'                         '${WHITE}— get logs of mongo database for demo projects${RESET}
 	@echo ${GREEN}logs-postgres-demo'                      '${WHITE}— get logs of postgres database for demo projects${RESET}
 	@echo ${GREEN}logs-postgres-synapse'                   '${WHITE}— get logs of postgres database for synapse server${RESET}
@@ -130,6 +134,7 @@ help:
 	@echo ${GREEN}refresh-gazprombank-auth'                '${WHITE}— completely remove gazprombank auth project and reinstall it${RESET}
 	@echo ${GREEN}refresh-gazprombank-startups'            '${WHITE}— completely remove gazprombank startup form project and reinstall it${RESET}
 	@echo ${GREEN}synapse-init'                            '${WHITE}— init synapse server${RESET}
+	@echo ${GREEN}email-init'                              '${WHITE}— init email server${RESET}
 	@echo ${GREEN}synapse-create-user'                     '${WHITE}— create synapse user${RESET}
 	@echo ${GREEN}synapse-vacuum-clean'                    '${WHITE}— reclaims synapse postgres space${RESET}
 	@echo ${GREEN}synapse-backup-database'                 '${WHITE}— backup synapse postgres database${RESET}

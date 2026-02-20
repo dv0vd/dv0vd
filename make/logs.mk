@@ -81,3 +81,6 @@ logs-livekit-redis:
 
 logs-matrix-rtc:
 	podman logs -f matrix-rtc
+
+logs-email:
+	podman logs -f email

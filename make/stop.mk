@@ -108,3 +108,7 @@ stop-livekit-redis:
 stop-matrix-rtc:
 	- podman stop matrix-rtc
 	- podman rm matrix-rtc
+
+stop-email:
+	- podman stop email
+	- podman rm email

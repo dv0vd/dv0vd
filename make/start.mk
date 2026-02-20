@@ -415,3 +415,45 @@ start-matrix-rtc:
 		--cpus=${MATRIX_RTC_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		ghcr.io/element-hq/lk-jwt-service:0.4.1
+
+start-email:
+# 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/livekit/livekit_env.yaml > ./deployment/configs/livekit/livekit.yaml"
+	- podman run \
+		-d \
+		--name email \
+		--network podman_network \
+		-e OVERRIDE_HOSTNAME=mail.${BASE_URL} \
+		-e TZ=UTC \
+		-e ENABLE_AMAVIS=0 \
+		-e ENABLE_POP3=1 \
+		-e ENABLE_IMAP=1 \
+		-e ENABLE_CLAMAV=0 \
+		-e ENABLE_FAIL2BAN=0 \
+		-e SSL_TYPE=letsencrypt \
+		-e SPOOF_PROTECTION=1 \
+		-e POSTMASTER_ADDRESS=postmaster@${BASE_URL} \
+		-e ENABLE_UPDATE_CHECK=0 \
+		-e ENABLE_RSPAMD=0 \
+		-e ENABLE_SPAMASSASSIN=0 \
+		-e ENABLE_DNSBL=0 \
+		-e ENABLE_MTA_STS=1 \
+		-e ENABLE_OPENDKIM=1 \
+		-e ENABLE_OPENDMARC=1 \
+		-e ENABLE_POLICYD_SPF=1 \
+		-e ENABLE_SRS=0 \
+		-e POSTFIX_REJECT_UNKNOWN_CLIENT_HOSTNAME=1 \
+		-e ENABLE_QUOTAS=1 \
+		-e POSTFIX_MESSAGE_SIZE_LIMIT=10240000 \
+		-v ./deployment/configs/livekit/livekit.yaml:/app/livekit.yaml:ro \
+		-v ./deployment/data/email/data:/var/mail \
+		-v ./deployment/data/email/state:/var/mail-state \
+		-v ./deployment/data/email/logs:/var/log/mail \
+		-v ./deployment/configs/email:/tmp/docker-mailserver \
+		-p 25:25 \
+		-p 465:465 \
+		-p 993:993 \
+		--restart unless-stopped \
+		--memory=${EMAIL_MEMORY} \
+		--cpus=${EMAIL_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		ghcr.io/docker-mailserver/docker-mailserver:15.1.0

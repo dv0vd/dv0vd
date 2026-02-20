@@ -174,6 +174,15 @@ configure_dns() {
   log "DNS successfully configured"
 }
 
+configure_email() {
+  log "Configuring Email server..."
+  podman run --rm -it \
+    -v ./deployment/configs/email:/tmp/docker-mailserver \
+    ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
+    setup config dkim domain $BASE_URL
+  log "Email server successfully configured"
+}
+
 
 
 load_env
@@ -186,4 +195,5 @@ configure_podman
 configure_rclone
 configure_nginx_main
 configure_outline
+configure_email
 finish

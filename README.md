@@ -1,6 +1,6 @@
 # Dv0vD
 ## https://dv0vd.dev
-Personal website presenting portfolio, technical skills, interests, and contact information, along with hosted infrastructure: SOCKS4/5 and HTTPS proxies, Outline VPN, VLESS+XTLS/Reality, Matrix (Synapse), TURN (Coturn), ntfy, Sygnal, Pi-hole, DNS-over-HTTPS, and email services.
+Personal website presenting portfolio, technical skills, interests, and contact information, along with hosted infrastructure: SOCKS4/5 and HTTPS proxies, Outline VPN, VLESS+XTLS/Reality, Matrix (Synapse), TURN (Coturn), ntfy, LiveKit, Pi-hole, DNS-over-HTTPS, and email services.
 
 ## Getting started  
 1) Update packages index: `apt update`.
@@ -28,4 +28,5 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - livekit-server_1.9.11.tar
 - redis_8.4.0-alpine.tar
 - element-hq-lk-jwt-service_0.4.1.tar
+- docker-mailserver:15.1.0.tar
 8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
