@@ -417,6 +417,8 @@ start-matrix-rtc:
 		ghcr.io/element-hq/lk-jwt-service:0.4.1
 
 start-email:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/email/dovecot_env.cf > ./deployment/data/email/configs/dovecot.cf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/email/postfix-virtual_env.cf > ./deployment/data/email/configs/postfix-virtual.cf"
 	- podman run \
 		-d \
 		--name email \

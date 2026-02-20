@@ -1,11 +1,11 @@
 email-init:
 	podman run --rm -it \
-		-v ./deployment/configs/email:/tmp/docker-mailserver \
+		-v ./deployment/data/email/configs:/tmp/docker-mailserver \
 		ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
 		setup config dkim domain ${BASE_URL}
 
 email-create-user:
 	podman run --rm -it \
-		-v ./deployment/configs/email:/tmp/docker-mailserver \
+		-v ./deployment/data/email/configs:/tmp/docker-mailserver \
 		ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
-		setup email add ${username}@dv0vd.dev
+		setup email add ${username}@${BASE_URL}

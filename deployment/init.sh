@@ -176,10 +176,9 @@ configure_dns() {
 
 configure_email() {
   log "Configuring Email server..."
-  podman run --rm -it \
-    -v ./deployment/configs/email:/tmp/docker-mailserver \
-    ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
-    setup config dkim domain $BASE_URL
+  make -C /root/dv0vd email-init
+  make -C /root/dv0vd email-create-user username=postmaster
+  make -C /root/dv0vd email-create-user username=catch-all
   log "Email server successfully configured"
 }
 
