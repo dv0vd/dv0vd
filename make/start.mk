@@ -417,7 +417,6 @@ start-matrix-rtc:
 		ghcr.io/element-hq/lk-jwt-service:0.4.1
 
 start-email:
-# 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/livekit/livekit_env.yaml > ./deployment/configs/livekit/livekit.yaml"
 	- podman run \
 		-d \
 		--name email \
