@@ -449,7 +449,7 @@ start-email:
 		-v ./deployment/data/email/data:/var/mail \
 		-v ./deployment/data/email/state:/var/mail-state \
 		-v ./deployment/data/email/logs:/var/log/mail \
-		-v ./deployment/configs/email:/tmp/docker-mailserver \
+		-v ./deployment/data/email/configs:/tmp/docker-mailserver \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt:ro \
 		-p 25:25 \
 		-p 465:465 \
