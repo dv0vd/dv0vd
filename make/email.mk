@@ -9,3 +9,15 @@ email-create-user:
 		-v ./deployment/data/email/configs:/tmp/docker-mailserver \
 		ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
 		setup email add ${username}@${BASE_URL}
+
+email-delete-user:
+	podman run --rm -it \
+		-v ./deployment/data/email/configs:/tmp/docker-mailserver \
+		ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
+		setup email del ${username}@${BASE_URL}
+
+email-list-users:
+	podman run --rm -it \
+		-v ./deployment/data/email/configs:/tmp/docker-mailserver \
+		ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
+		setup email list

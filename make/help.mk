@@ -142,6 +142,8 @@ help:
 	@echo ${GREEN}synapse-restore-from-storage-vps'        '${WHITE}— restore synapse database and media store from storage vps${RESET}
 	@echo ${GREEN}email-init'                              '${WHITE}— init email server${RESET}
 	@echo ${GREEN}email-create-user' [name]                '${WHITE}— create email user${RESET}
+	@echo ${GREEN}email-delete-user' [name]                '${WHITE}— delete email user${RESET}
+	@echo ${GREEN}email-list-users'                        '${WHITE}— list email users${RESET}
 	@echo ${GREEN}outline-get-keys'                        '${WHITE}— get outline vpn client keys${RESET}
 	@echo ${GREEN}outline-create-key' [name]               '${WHITE}— create outline vpn client key${RESET}
 	@echo ${GREEN}outline-delete-key' [id]                 '${WHITE}— delete outline vpn client key${RESET}
