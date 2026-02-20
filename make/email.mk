@@ -28,4 +28,4 @@ email-backup-to-storage-vps:
 	- rclone sync -v '/root/dv0vd/deployment/data/email' 'vps-storage-bg-email:/'
 
 email-restore-from-storage-vps:
-	- rclone sync -v 'vps-storage-bg-email:/' '/root/dv0vd/deployment/data/email/restored_backup'
+	- rclone sync -v 'vps-storage-bg-email:/' '/root/dv0vd/deployment/restore/email'
