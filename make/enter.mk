@@ -12,3 +12,6 @@ enter-doh-server:
 
 enter-livekit:
 	podman exec -it livekit sh
+
+enter-email:
+	podman exec -it email bash

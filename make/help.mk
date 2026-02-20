@@ -75,6 +75,7 @@ help:
 	@echo ${GREEN}enter-outline'                           '${WHITE}— enter to the outline container${RESET}
 	@echo ${GREEN}enter-doh-server'                        '${WHITE}— enter to the DoH server container${RESET}
 	@echo ${GREEN}enter-livekit'                           '${WHITE}— enter to the LiveKit server container${RESET}
+	@echo ${GREEN}enter-email'                             '${WHITE}— enter to the email container${RESET}
 	@echo ${GREEN}restart-fail2ban'                        '${WHITE}— restart fail2ban and reload fail2ban-client${RESET}
 	@echo ${GREEN}logs-clear'                              '${WHITE}— clear journalctl logs olden then 1 day${RESET}
 	@echo ${GREEN}logs-socks4'                             '${WHITE}— get socks4 server logs${RESET}
