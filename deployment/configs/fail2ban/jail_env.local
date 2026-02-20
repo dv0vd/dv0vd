@@ -15,33 +15,27 @@ mode    = aggressive
 [nginx-http-auth]
 enabled = true
 mode    = aggressive
-port    = http,https
 logpath = %(nginx_access_log)s
 
 [nginx-limit-req]
 enabled = true
-port    = http,https
 logpath = %(nginx_error_log)s
 
 [nginx-botsearch]
 enabled  = true
-port     = http,https
 logpath  = %(nginx_access_log)s
 
 [nginx-bad-request]
 enabled = true
-port    = http,https
 logpath = %(nginx_access_log)s
 
 [nginx-not-found]
 enabled  = true
-port     = http,https
 logpath  = %(nginx_access_log)s
 maxretry = 10
 
 [nginx-redirected]
 enabled  = true
-port     = http,https
 logpath  = %(nginx_access_log)s
 maxretry = 10
 
@@ -50,3 +44,13 @@ enabled = true
 filter  = danted
 logpath = /root/dv0vd/deployment/data/socks5/logs/danted.log
 backend = auto
+
+[postfix]
+enabled  = true
+filter   = postfix
+logpath  = /root/dv0vd/deployment/data/email/logs/mail.log
+
+[dovecot]
+enabled  = true
+filter   = dovecot
+logpath  = /root/dv0vd/deployment/data/email/logs/mail.log
