@@ -19,5 +19,6 @@ email-delete-user:
 email-list-users:
 	podman run --rm -it \
 		-v ./deployment/data/email/configs:/tmp/docker-mailserver \
+		-e ACCOUNT_PROVISIONER=FILE \
 		ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
 		setup email list
