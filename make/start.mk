@@ -336,10 +336,9 @@ start-coturn:
 		-d \
 		--name coturn \
 		--user 0 \
-		-p ${COTURN_UDP_PORT}:3478 \
-		-p ${COTURN_UDP_PORT}:3478/udp \
-		-p ${COTURN_TCP_PORT}:5349 \
-		-p ${COTURN_TCP_PORT}:5349/udp \
+		-p ${COTURN_PORT}:${COTURN_PORT} \
+		-p ${COTURN_PORT}:${COTURN_PORT}/udp \
+		-p ${COTURN_TLS_PORT}:${COTURN_TLS_PORT} \
 		-p ${COTURN_MIN_PORT}-${COTURN_MAX_PORT}:${COTURN_MIN_PORT}-${COTURN_MAX_PORT}/udp \
 		-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
