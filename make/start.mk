@@ -335,7 +335,7 @@ start-coturn:
 	- podman run \
 		-d \
 		--name coturn \
-		--user 0
+		--user 0 \
 		-p ${COTURN_UDP_PORT}:3478 \
 		-p ${COTURN_UDP_PORT}:3478/udp \
 		-p ${COTURN_TCP_PORT}:5349 \
