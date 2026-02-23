@@ -15,3 +15,6 @@ enter-livekit:
 
 enter-email:
 	podman exec -it email bash
+
+enter-coturn:
+	podman exec -it coturn bash
