@@ -4,7 +4,7 @@
 # with a dash of crowd sourcing via GitHub
 #
 # Date: 19 February 2026
-# Number of unique domains: 160
+# Number of unique domains: 159
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -22,7 +22,6 @@
 0.0.0.0 ad.twinrdengine.com
 0.0.0.0 adfstat.yandex.ru
 0.0.0.0 ads.adfox.ru
-0.0.0.0 ads.mozilla.org
 0.0.0.0 adx.videonow.ru
 0.0.0.0 alog.umeng.com
 0.0.0.0 alog.umengcloud.com
