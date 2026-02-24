@@ -6,4 +6,5 @@ on-startup:
 	- $(MAKE) start-fail2ban
 	- $(MAKE) certbot-renew
 	- $(MAKE) logs-clear
+	- rm -rf /var/tmp/*
 	- $(MAKE) restart-containers
