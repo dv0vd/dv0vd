@@ -468,8 +468,8 @@ start-rustdesk:
 		--network podman_network \
 		-v ./deployment/data/rustdesk:/root \
 		-p 21115:21115 \
-		-p ${RUSTDESK_ID_PORT}:${RUSTDESK_ID_PORT} \
-		-p ${RUSTDESK_ID_PORT}:${RUSTDESK_ID_PORT}/udp \
+		-p ${RUSTDESK_ID_PORT}:21116 \
+		-p ${RUSTDESK_ID_PORT}:21116/udp \
 		--restart unless-stopped \
 		--memory=${RUSTDESK_ID_MEMORY} \
 		--cpus=${RUSTDESK_ID_CPUS} \
@@ -478,7 +478,7 @@ start-rustdesk:
 	- podman run \
 		-d \
 		--name rustdesk-relay \
-		-p ${RUSTDESK_RELAY_PORT}:${RUSTDESK_RELAY_PORT} \
+		-p ${RUSTDESK_RELAY_PORT}:21117 \
 		--network podman_network \
 		-v ./deployment/data/rustdesk:/root \
 		--restart unless-stopped \
