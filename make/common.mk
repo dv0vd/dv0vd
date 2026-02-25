@@ -8,3 +8,6 @@ generate-xray-private-key:
 
 generate-xray-short-id:
 	openssl rand -hex 8
+
+disk-usage:
+	du -h ${path} | sort -hr
