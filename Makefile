@@ -23,3 +23,4 @@ include ./make/common.mk
 include ./make/iptables.mk
 include ./make/certbot.mk
 include ./make/email.mk
+include ./make/rustdesk.mk

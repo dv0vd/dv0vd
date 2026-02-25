@@ -5,6 +5,7 @@ stop-containers:
 	- $(MAKE) stop-matrix-rtc
 	- $(MAKE) stop-livekit
 	- $(MAKE) stop-coturn
+	- $(MAKE) stop-rustdesk
 	- $(MAKE) stop-ntfy
 	- $(MAKE) stop-doh-server
 	- $(MAKE) stop-xray-vless-reality
@@ -113,3 +114,9 @@ stop-matrix-rtc:
 stop-email:
 	- podman stop email
 	- podman rm email
+
+stop-rustdesk:
+	- podman stop rustdesk-id
+	- podman stop rustdesk-relay
+	- podman rm rustdesk-id
+	- podman rm rustdesk-relay

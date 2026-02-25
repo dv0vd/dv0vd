@@ -15,6 +15,8 @@ start-containers:
 	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-doh-server
 	- $(MAKE) start-ntfy
+	- $(MAKE) rustdesk-backup-to-storage-vps
+	- $(MAKE) start-rustdesk
 	- $(MAKE) synapse-vacuum-clean
 	- $(MAKE) synapse-backup-database
 	- $(MAKE) synapse-backup-to-storage-vps
@@ -458,3 +460,29 @@ start-email:
 		--cpus=${EMAIL_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		ghcr.io/docker-mailserver/docker-mailserver:15.1.0
+
+start-rustdesk:
+	- podman run \
+		-d \
+		--name rustdesk-id \
+		--network podman_network \
+		-v ./deployment/data/rustdesk:/root \
+		-p 21115:21115 \
+		-p ${RUSTDESK_ID_PORT}:${RUSTDESK_ID_PORT} \
+		-p ${RUSTDESK_ID_PORT}:${RUSTDESK_ID_PORT}/udp \
+		--restart unless-stopped \
+		--memory=${RUSTDESK_ID_MEMORY} \
+		--cpus=${RUSTDESK_ID_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/rustdesk/rustdesk-server:1.1.15 hbbs
+	- podman run \
+		-d \
+		--name rustdesk-relay \
+		-p ${RUSTDESK_RELAY_PORT}:${RUSTDESK_RELAY_PORT} \
+		--network podman_network \
+		-v ./deployment/data/rustdesk:/root \
+		--restart unless-stopped \
+		--memory=${RUSTDESK_RELAY_MEMORY} \
+		--cpus=${RUSTDESK_RELAY_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/rustdesk/rustdesk-server:1.1.15 hbbr

@@ -84,3 +84,9 @@ logs-matrix-rtc:
 
 logs-email:
 	podman logs -f email
+
+logs-rustdesk-id:
+	podman logs -f rustdesk-id
+
+logs-rustdesk-relay:
+	podman logs -f rustdesk-id

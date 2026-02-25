@@ -25,6 +25,7 @@ help:
 	@echo ${GREEN}start-skillnotes'                        '${WHITE}— start skillnotes demo project${RESET}
 	@echo ${GREEN}start-todo-manager'                      '${WHITE}— start todo manager demo project${RESET}
 	@echo ${GREEN}start-fail2ban'                          '${WHITE}— start fail2ban${RESET}
+	@echo ${GREEN}start-rustdesk'                          '${WHITE}— start RustDesk${RESET}
 	@echo ${GREEN}stop-containers'                         '${WHITE}— stop all containers${RESET}
 	@echo ${GREEN}stop-socks4'                             '${WHITE}— stop socks4 server${RESET}
 	@echo ${GREEN}stop-socks5'                             '${WHITE}— stop socks5 server${RESET}
@@ -48,6 +49,7 @@ help:
 	@echo ${GREEN}stop-skillnotes'                         '${WHITE}— stop skillnotes demo project${RESET}
 	@echo ${GREEN}stop-todo-manager'                       '${WHITE}— stop todo-manager demo project${RESET}
 	@echo ${GREEN}stop-fail2ban'                           '${WHITE}— stop fail2ban${RESET}
+	@echo ${GREEN}stop-rustdesk'                           '${WHITE}— stop RustDesk${RESET}
 	@echo ${GREEN}restart-containers'                      '${WHITE}— restart all containers${RESET}
 	@echo ${GREEN}restart-socks4'                          '${WHITE}— restart socks4 server${RESET}
 	@echo ${GREEN}restart-socks5'                          '${WHITE}— restart socks5 server${RESET}
@@ -70,6 +72,7 @@ help:
 	@echo ${GREEN}restart-timers'                          '${WHITE}— restart timers demo project${RESET}
 	@echo ${GREEN}restart-skillnotes'                      '${WHITE}— restart skillnotes demo project${RESET}
 	@echo ${GREEN}restart-todo-manager'                    '${WHITE}— restart todo-manager demo project${RESET}
+	@echo ${GREEN}restart-rustdesk'                        '${WHITE}— restart RustDesk${RESET}
 	@echo ${GREEN}enter-nginx'                             '${WHITE}— enter to the nginx container${RESET}
 	@echo ${GREEN}enter-synapse'                           '${WHITE}— enter to the synapse container${RESET}
 	@echo ${GREEN}enter-outline'                           '${WHITE}— enter to the outline container${RESET}
@@ -106,6 +109,8 @@ help:
 	@echo ${GREEN}logs-fail2ban'                           '${WHITE}— get fail2ban logs${RESET}
 	@echo ${GREEN}logs-synapse'                            '${WHITE}— get synapse homerver logs${RESET}
 	@echo ${GREEN}logs-synapse-container'                  '${WHITE}— get synapse container logs${RESET}
+	@echo ${GREEN}logs-rustdesk-id'                        '${WHITE}— get RustDesk ID Server container logs${RESET}
+	@echo ${GREEN}logs-rustdesk-relay'                     '${WHITE}— get RustDesk Relay Server container logs${RESET}
 	@echo ${GREEN}fail2ban-status'                         '${WHITE}— get fail2ban jails status${RESET}
 	@echo ${GREEN}fail2ban-unban-all'                      '${WHITE}— unban all IPs in fail2ban${RESET}
 	@echo ${GREEN}podman-load-images'                      '${WHITE}— load images from local copy${RESET}
@@ -143,6 +148,8 @@ help:
 	@echo ${GREEN}synapse-restore-database'                '${WHITE}— restore synapse postgres database${RESET}
 	@echo ${GREEN}synapse-backup-to-storage-vps'           '${WHITE}— backup synapse database and media store to storage vps${RESET}
 	@echo ${GREEN}synapse-restore-from-storage-vps'        '${WHITE}— restore synapse database and media store from storage vps${RESET}
+	@echo ${GREEN}rustdesk-backup-to-storage-vps'          '${WHITE}— backup RustDesk to storage vps${RESET}
+	@echo ${GREEN}rustdesk-restore-from-storage-vps'       '${WHITE}— restore RustDesk from storage vps${RESET}
 	@echo ${GREEN}email-init'                              '${WHITE}— init email server${RESET}
 	@echo ${GREEN}email-create-user' [name]                '${WHITE}— create email user${RESET}
 	@echo ${GREEN}email-delete-user' [name]                '${WHITE}— delete email user${RESET}
