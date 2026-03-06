@@ -12,7 +12,6 @@ start-containers:
 	- $(MAKE) start-nginx
 
 start-socks4:
-	- podman pull docker.io/dv0vd/socks4:1.1.3
 	- podman run \
 		-d \
 		--name socks4 \
@@ -31,7 +30,6 @@ start-socks4:
 start-socks5:
 	-@ rm ./deployment/data/socks5/logs/danted.log
 	- touch ./deployment/data/socks5/logs/danted.log
-	- podman pull docker.io/dv0vd/socks5:1.1.1
 	- podman run \
 		-d \
 		--name socks5 \
@@ -51,7 +49,6 @@ start-socks5:
 		docker.io/dv0vd/socks5
 
 start-https-proxy:
-	- podman pull docker.io/dv0vd/https-proxy:1.2.0
 	- podman run \
 		-d \
 		--name https-proxy \
