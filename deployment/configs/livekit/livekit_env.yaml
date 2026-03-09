@@ -1,0 +1,21 @@
+port: 7880
+log_level: info
+rtc:
+  tcp_port: $LIVEKIT_FALLBACK_PORT
+  port_range_start: $LIVEKIT_MIN_PORT
+  port_range_end: $LIVEKIT_MAX_PORT
+  use_external_ip: false
+  node_ip: $PUBLIC_IP
+redis:
+  address: livekit-redis:6379
+keys:
+  $LIVEKIT_API_KEY: $LIVEKIT_API_SECRET
+turn:
+  enabled: true
+  domain: $BASE_URL
+  udp_port: $LIVEKIT_TURN_UDP_PORT
+  tls_port: $LIVEKIT_TURN_TCP_PORT
+  relay_range_start: $LIVEKIT_TURN_MIN_PORT
+  relay_range_end: $LIVEKIT_TURN_MAX_PORT
+  cert_file: /app/letsencrypt/live/$BASE_URL/fullchain.pem
+  key_file: /app/letsencrypt/live/$BASE_URL/privkey.pem
