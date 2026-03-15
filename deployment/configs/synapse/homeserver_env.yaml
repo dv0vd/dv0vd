@@ -32,7 +32,7 @@ email:
   require_transport_security: true
   enable_tls: true
   tlsname: ${SMTP_HOST}
-  notif_from: Your Friendly %(app)s homeserver <noreply@${SYNAPSE_SERVER_NAME}>
+  notif_from: Your Friendly %(app)s homeserver <postmaster@${SYNAPSE_SERVER_NAME}>
   app_name: ${SYNAPSE_APP_NAME}
   enable_notifs: true
   notif_for_new_users: true
