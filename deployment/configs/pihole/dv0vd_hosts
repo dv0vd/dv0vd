@@ -3,8 +3,8 @@
 # This hosts file is a merged collection of hosts from reputable sources,
 # with a dash of crowd sourcing via GitHub
 #
-# Date: 19 February 2026
-# Number of unique domains: 159
+# Date: 17 March 2026
+# Number of unique domains: 171
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -22,6 +22,7 @@
 0.0.0.0 ad.twinrdengine.com
 0.0.0.0 adfstat.yandex.ru
 0.0.0.0 ads.adfox.ru
+0.0.0.0 adx.tradplusad.com
 0.0.0.0 adx.videonow.ru
 0.0.0.0 alog.umeng.com
 0.0.0.0 alog.umengcloud.com
@@ -38,6 +39,7 @@
 0.0.0.0 app.adjust.io
 0.0.0.0 bbb.skx-telga-redir1.site
 0.0.0.0 bid.sspnet.tech
+0.0.0.0 bidder.tradplusad.com
 0.0.0.0 bobid-ip.hybrid.ai
 0.0.0.0 cbs.nl
 0.0.0.0 cdn-exp-sg-recommend.pt.xiaomi.com
@@ -45,6 +47,7 @@
 0.0.0.0 chaseherbalpasty.com
 0.0.0.0 cisco.com
 0.0.0.0 coosync.com
+0.0.0.0 config.ads.vungle.com
 0.0.0.0 configs.amberweather.com
 0.0.0.0 content.adriver.ru
 0.0.0.0 clickstream.goldapple.ru
@@ -96,6 +99,7 @@
 0.0.0.0 match.ohmy.bid
 0.0.0.0 matchid.adfox.yandex.ru
 0.0.0.0 mc.yandex.ru
+0.0.0.0 mediation.goog
 0.0.0.0 mediation‑sg.pangle.io
 0.0.0.0 metrics.alfabank.ru
 0.0.0.0 mdp-appconf-ru.heytapdl.com
@@ -108,11 +112,13 @@
 0.0.0.0 obus-rudc-sg.heytapmobile.com
 0.0.0.0 ondevicesafety-pa.googleapis.com
 0.0.0.0 pecantinglytripod.com
+0.0.0.0 prod.tahoe-analytics.publishers.advertising.a2z.com
 0.0.0.0 public-api.uxfeedback.ru
 0.0.0.0 pb.adriver.ru
 0.0.0.0 px.videohype.net
 0.0.0.0 qcc.qualcomm.com
 0.0.0.0 r.mradx.net
+0.0.0.0 r.utraff.com
 0.0.0.0 rap.skcrtxr.com
 0.0.0.0 rebus.rustore.ru
 0.0.0.0 redirect-frontend.weborama-tech.ru	
@@ -130,6 +136,7 @@
 0.0.0.0 s.ad.twinrdengine.com
 0.0.0.0 s.chnsrv.com
 0.0.0.0 s.magsrv.com
+0.0.0.0 sac.presage.io
 0.0.0.0 sdk-api.apptracer.ru
 0.0.0.0 sdkconfig.ad.rus.xiaomi.com
 0.0.0.0 sdkconfig.rus.xiaomi.com
@@ -138,6 +145,8 @@
 0.0.0.0 sp.linkssp.ru
 0.0.0.0 ssp.al-adtech.com
 0.0.0.0 ssp.bidvol.com
+0.0.0.0 ssp.hybrid.ai
+0.0.0.0 ssp-asr.digitalcaramel.com
 0.0.0.0 ssp-rtb.sape.ru
 0.0.0.0 stat.tildaapi.com
 0.0.0.0 static-mon.yandex.net
@@ -155,6 +164,7 @@
 0.0.0.0 ts.tracker-api.vk-analytics.ru
 0.0.0.0 t-msedge.net
 0.0.0.0 tracker-api.vk-analytics.ru
+0.0.0.0 tracking.simplebro.co
 0.0.0.0 trk.ezymny.com
 0.0.0.0 uaas.yandex.ru
 0.0.0.0 uid.bumlam.com
