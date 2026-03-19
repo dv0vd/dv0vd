@@ -151,10 +151,10 @@ help:
 	@echo ${GREEN}rustdesk-backup-to-storage-vps'          '${WHITE}— backup RustDesk to storage vps${RESET}
 	@echo ${GREEN}rustdesk-restore-from-storage-vps'       '${WHITE}— restore RustDesk from storage vps${RESET}
 	@echo ${GREEN}email-init'                              '${WHITE}— init email server${RESET}
-	@echo ${GREEN}email-create-user' [name]                '${WHITE}— create email user${RESET}
-	@echo ${GREEN}email-delete-user' [name]                '${WHITE}— delete email user${RESET}
+	@echo ${GREEN}email-create-user' [username]            '${WHITE}— create email user${RESET}
+	@echo ${GREEN}email-delete-user' [username]            '${WHITE}— delete email user${RESET}
 	@echo ${GREEN}email-list-users'                        '${WHITE}— list email users${RESET}
-	@echo ${GREEN}email-change-password'                   '${WHITE}— change email user password${RESET}
+	@echo ${GREEN}email-change-password' [username]        '${WHITE}— change email user password${RESET}
 	@echo ${GREEN}email-backup-to-storage-vps'             '${WHITE}— backup emails to storage vps${RESET}
 	@echo ${GREEN}email-restore-from-storage-vps'          '${WHITE}— restore emails from storage vps${RESET}
 	@echo ${GREEN}outline-get-keys'                        '${WHITE}— get outline vpn client keys${RESET}

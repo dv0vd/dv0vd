@@ -29,7 +29,7 @@ email-change-password:
 		-v ./deployment/data/email/configs:/tmp/docker-mailserver \
 		-v ./deployment/data	/email/data:/var/mail \
 		ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
-		setup email update ${username}@${BASE_URL}	
+		setup email update ${username}@${BASE_URL}
 
 email-backup-to-storage-vps:
 	- rclone sync -v '/root/dv0vd/deployment/data/email' 'vps-storage-bg-email:/'
