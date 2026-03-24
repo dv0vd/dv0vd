@@ -1,6 +1,6 @@
 [DEFAULT]
 findtime          = 10m
-maxretry          = 25
+maxretry          = 5
 bantime           = -1
 nginx_access_log  = /root/dv0vd/deployment/data/nginx/logs/access.log
 nginx_error_log   = /root/dv0vd/deployment/data/nginx/logs/error.log
@@ -26,16 +26,19 @@ enabled  = true
 logpath  = %(nginx_access_log)s
 
 [nginx-bad-request]
+findtime          = 5m
+maxretry          = 10
+bantime           = -1
 enabled = true
 logpath = %(nginx_access_log)s
 
 [nginx-not-found]
-enabled  = true
+enabled  = false
 logpath  = %(nginx_access_log)s
 maxretry = 10
 
 [nginx-redirected]
-enabled  = true
+enabled  = false
 logpath  = %(nginx_access_log)s
 maxretry = 10
 
