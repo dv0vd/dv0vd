@@ -335,7 +335,7 @@ start-coturn:
 		-d \
 		--name coturn \
 		--user 0 \
-		--network=host \
+		--network host \
 		-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
 		--network podman_network \
