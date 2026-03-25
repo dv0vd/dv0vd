@@ -335,10 +335,9 @@ start-coturn:
 		-d \
 		--name coturn \
 		--user 0 \
-		--network host \
 		-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
-		--network podman_network \
+		--network host \
 		--memory=${COTURN_MEMORY} \
 		--cpus=${COTURN_CPUS} \
 		--cgroup-parent=/podman-group.slice \
