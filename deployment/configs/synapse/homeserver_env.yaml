@@ -84,8 +84,8 @@ media_retention:
   remote_media_lifetime: 45d
 url_preview_enabled: false
 turn_uris: [ 
-  "turn:${COTURN_HOST}:${COTURN_UDP_PORT}?transport=udp", 
-  "turns:${COTURN_HOST}:${COTURN_TCP_PORT}?transport=tcp" 
+  "turn:${COTURN_HOST}:${COTURN_PORT}?transport=udp", 
+  "turns:${COTURN_HOST}:${COTURN_TLS_PORT}?transport=tcp" 
 ]
 turn_shared_secret: ${COTURN_SECRET}
 turn_user_lifetime: 1h
