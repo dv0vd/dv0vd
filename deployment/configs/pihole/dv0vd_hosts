@@ -1,7 +1,7 @@
 # Title: Dv0vD blocked hosts
 #
-# Date: 17 March 2026
-# Number of unique domains: 171
+# Date: 26 March 2026
+# Number of unique domains: 174
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -57,6 +57,7 @@
 0.0.0.0 dmg.digitaltarget.ru
 0.0.0.0 dr.yandex.net
 0.0.0.0 dss.hybrid.ai
+0.0.0.0 emd.hybrid.ai
 0.0.0.0 eye.targetads.io
 0.0.0.0 exchange.buzzoola.com
 0.0.0.0 experimentation-evaluator.eu01.miro.com
@@ -67,6 +68,7 @@
 0.0.0.0 fdf.awefweegfxwergexw.icu
 0.0.0.0 find.api.micloud.xiaomi.net
 0.0.0.0 find.userpilot.io
+0.0.0.0 fp.hybrid.ai
 0.0.0.0 fpf.hybrid.ai
 0.0.0.0 gator.volces.com
 0.0.0.0 global.market.xiaomi.com
@@ -145,6 +147,7 @@
 0.0.0.0 ssp.hybrid.ai
 0.0.0.0 ssp-asr.digitalcaramel.com
 0.0.0.0 ssp-rtb.sape.ru
+0.0.0.0 st.hybrid.ai
 0.0.0.0 stat.tildaapi.com
 0.0.0.0 static-mon.yandex.net
 0.0.0.0 stats.rustore.ru
