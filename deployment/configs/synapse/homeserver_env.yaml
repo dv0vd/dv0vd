@@ -80,8 +80,8 @@ enable_media_repo: true
 media_store_path: /data/media_store
 max_upload_size: 100M
 media_retention:
-  local_media_lifetime: 45d
-  remote_media_lifetime: 45d
+  local_media_lifetime: 30d
+  remote_media_lifetime: 7d
 url_preview_enabled: false
 turn_uris: [ 
   "turn:${COTURN_HOST}:${COTURN_PORT}?transport=udp", 
