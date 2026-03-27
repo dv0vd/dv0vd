@@ -18,11 +18,7 @@ email-delete-user:
 		setup email del ${username}@${BASE_URL}
 
 email-get-user-quota:
-	podman run --rm -it \
-		-v ./deployment/data/email/configs:/tmp/docker-mailserver \
-		-v ./deployment/data/email/data:/var/mail \
-		ghcr.io/docker-mailserver/docker-mailserver:15.1.0 \
-		doveadm quota get -u ${username}@${BASE_URL}
+	podman exec -it email doveadm quota get -u ${username}@${BASE_URL}
 
 email-list-users:
 	podman run --rm -it \
