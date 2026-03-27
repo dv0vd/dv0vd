@@ -441,7 +441,7 @@ start-email:
 		-e ENABLE_SRS=0 \
 		-e POSTFIX_REJECT_UNKNOWN_CLIENT_HOSTNAME=1 \
 		-e ENABLE_QUOTAS=1 \
-		-e POSTFIX_MESSAGE_SIZE_LIMIT=10240000 \
+		-e POSTFIX_MESSAGE_SIZE_LIMIT=52428800 \
 		-v ./deployment/configs/livekit/livekit.yaml:/app/livekit.yaml:ro \
 		-v ./deployment/data/email/data:/var/mail \
 		-v ./deployment/data/email/state:/var/mail-state \
