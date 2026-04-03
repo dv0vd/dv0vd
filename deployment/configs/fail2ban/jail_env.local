@@ -26,21 +26,16 @@ enabled  = true
 logpath  = %(nginx_access_log)s
 
 [nginx-bad-request]
-findtime          = 5m
-maxretry          = 10
-bantime           = -1
 enabled = true
 logpath = %(nginx_access_log)s
 
 [nginx-not-found]
 enabled  = false
 logpath  = %(nginx_access_log)s
-maxretry = 10
 
 [nginx-redirected]
 enabled  = false
 logpath  = %(nginx_access_log)s
-maxretry = 10
 
 [danted]
 enabled = true
