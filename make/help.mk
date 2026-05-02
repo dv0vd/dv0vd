@@ -87,7 +87,6 @@ help:
 	@echo ${GREEN}logs-clear'                              '${WHITE}— clear journalctl logs olden then 1 day${RESET}
 	@echo ${GREEN}logs-socks4'                             '${WHITE}— get socks4 server logs${RESET}
 	@echo ${GREEN}logs-socks5'                             '${WHITE}— get socks5 server logs${RESET}
-	@echo ${GREEN}logs-mtproto'                            '${WHITE}— get MTProto proxy server logs${RESET}
 	@echo ${GREEN}logs-https-proxy'                        '${WHITE}— get https proxy server logs${RESET}
 	@echo ${GREEN}logs-outline'                            '${WHITE}— get outline vpn logs${RESET}
 	@echo ${GREEN}logs-xray-vless-reality'                 '${WHITE}— get VLESS + XTLS / Reality logs${RESET}
