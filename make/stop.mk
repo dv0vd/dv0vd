@@ -3,6 +3,7 @@ stop-containers:
 	- $(MAKE) stop-pihole
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
+	- $(MAKE) stop-mtproto
 	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-outline
 
@@ -83,3 +84,7 @@ stop-pihole:
 stop-doh-server:
 	- podman stop doh-server
 	- podman rm doh-server
+
+stop-mtproto:
+	- podman stop mtproto
+	- podman rm mtproto

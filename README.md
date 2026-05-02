@@ -1,6 +1,6 @@
 # Dv0vD
 ## https://dv0vd.dev
-My personal website to showcase my portfolio, skills, hobbies, and contact information. Additionally, the site features deployed servers for SOCKS4, SOCKS5, HTTPS proxy, Outline VPN, VLESS + XTLS / Reality, Synapse, TURN (Coturn), Matrix (Synapse), Pi-hole, DNS over HTTPS, and Email services.
+Personal website presenting portfolio, technical skills, interests, and contact information, along with hosted infrastructure: SOCKS4/5, HTTPS, and MTProto proxies, Outline VPN, VLESS+XTLS/Reality, Matrix (Synapse), TURN (Coturn), ntfy, LiveKit, Pi-hole, DNS-over-HTTPS, RustDesk, and email services.
 
 ## Getting started  
 1) Update packages index: `apt update`.
@@ -16,4 +16,5 @@ My personal website to showcase my portfolio, skills, hobbies, and contact infor
 - nginx_1.27.3.tar
 - outline-shadowbox_v1.12.3.tar
 - pihole_2025.08.0.tar
+- nineseconds-mtg_2.2.8.tar
 8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.

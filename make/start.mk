@@ -5,6 +5,7 @@ start-containers:
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) start-pihole
+	- $(MAKE) start-mtproto
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
@@ -333,3 +334,20 @@ start-coturn:
 	--cpus=${COTURN_CPUS} \
 	--cgroup-parent=/podman-group.slice \
 	docker.io/coturn/coturn:4.7.0
+
+start-mtproto:
+	- podman run \
+		-d \
+		--name mtproto \
+		-v ./deployment/configs/mtproto/mtg.toml:/config.toml \
+		-p ${MTPROTO_PORT}:3128 \
+		--network podman_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		--restart unless-stopped \
+		--memory=${MTPROTO_MEMORY} \
+		--cpus=${MTPROTO_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/nineseconds/mtg:2.2.8 run /config.toml
