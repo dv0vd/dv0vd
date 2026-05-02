@@ -58,8 +58,8 @@ certbot-issue-ntfy:
 		docker.io/certbot/certbot:v5.3.1 certonly \
  		--webroot \
 		--webroot-path=/app/acme \
-		-d ${NTFY_URL} \
-		-d www.${NTFY_URL} \
+		-d ${NTFY_URL}.${BASE_URL} \
+		-d www.${NTFY_URL}.${BASE_URL} \
 		--email postmaster@${BASE_URL} \
 		--agree-tos \
 		--no-eff-email
@@ -78,8 +78,8 @@ certbot-issue-livekit:
 		docker.io/certbot/certbot:v5.3.1 certonly \
  		--webroot \
 		--webroot-path=/app/acme \
-		-d ${LIVEKIT_URL} \
-		-d www.${LIVEKIT_URL} \
+		-d ${LIVEKIT_URL}.${BASE_URL} \
+		-d www.${LIVEKIT_URL}.${BASE_URL} \
 		--email postmaster@${BASE_URL} \
 		--agree-tos \
 		--no-eff-email

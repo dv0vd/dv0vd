@@ -349,7 +349,7 @@ start-ntfy:
 		--name ntfy \
 		--network podman_network \
 		-v ./deployment/data/ntfy:/var/lib/ntfy \
-		-e NTFY_BASE_URL=https://${NTFY_URL} \
+		-e NTFY_BASE_URL=https://${NTFY_URL}.${BASE_URL} \
 		-e NTFY_CACHE_FILE=/var/lib/ntfy/cache.db \
 		-e NTFY_CACHE_DURATION=720h \
 		-e NTFY_AUTH_FILE=/var/lib/ntfy/auth.db \
@@ -402,7 +402,7 @@ start-matrix-rtc:
 	- podman run \
 		-d \
 		--name matrix-rtc \
-		-e LIVEKIT_URL=wss://${LIVEKIT_URL} \
+		-e LIVEKIT_URL=wss://${LIVEKIT_URL}.${BASE_URL} \
 		-e LIVEKIT_KEY=${LIVEKIT_API_KEY} \
 		-e LIVEKIT_SECRET=${LIVEKIT_API_SECRET} \
 		-e LIVEKIT_FULL_ACCESS_HOMESERVERS=${BASE_URL} \
