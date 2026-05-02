@@ -488,6 +488,7 @@ start-mtproto:
 	- podman run \
 		-d \
 		--name mtproto \
+		-v ./deployment/configs/mtproto/mtg.toml:/config.toml \
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
@@ -497,4 +498,4 @@ start-mtproto:
 		--memory=${MTPROTO_MEMORY} \
 		--cpus=${MTPROTO_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/nineseconds/mtg:2.2.8 run ${MTPROTO_SECRET}
+		docker.io/nineseconds/mtg:2.2.8 run

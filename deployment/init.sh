@@ -118,6 +118,19 @@ generateOutlineServerConfig() {
   log "Outline server configuration successfully generated"
 }
 
+generateMtprotoProxyConfig() {
+  log "Generating MTProto proxy configuration..."
+  
+  SECRET=$(make --silent --no-print-directory -C .. mtproto-generate-secret BASE_URL="$BASE_URL")
+  cat <<EOF > ./configs/mtproto/mtg.toml
+secret = "$SECRET"
+bind-to = "0.0.0.0:3128"
+EOF
+
+  echo "$json" > ./deployment/configs/mtproto/mtg.toml
+  log "MTProto proxy configuration successfully generated"
+}
+
 install_packages() {
   log "Updating system and installing required packages..."
   apt update
@@ -194,5 +207,6 @@ configure_podman
 configure_rclone
 configure_nginx_main
 configure_outline
+generateMtprotoProxyConfig
 configure_email
 finish
