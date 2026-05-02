@@ -128,7 +128,7 @@ start-xray-vless-reality:
 		docker.io/teddysun/xray:25.10.15
 
 start-nginx:
-	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_URL' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_URL \$$MTPROTO_URL' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
