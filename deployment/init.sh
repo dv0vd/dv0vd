@@ -47,7 +47,7 @@ configure_outline() {
     -keyout /root/dv0vd/deployment/configs/outline/outline.key \
     -out /root/dv0vd/deployment/configs/outline/outline.crt \
     -subj "/CN=localhost"
-  generateOutlineServerConfig
+  generate_outline_server_config
   log "Outline VPN successfully configured"
 }
 
@@ -85,7 +85,7 @@ finish() {
   reboot
 }
 
-generateOutlineServerConfig() {
+generate_outline_server_config() {
   log "Generating outline server configuration..."
   serverId=$(uuidgen)
   createdTimestampMs=$(date +%s%3N)
@@ -109,6 +109,19 @@ generateOutlineServerConfig() {
 
   echo "$json" > ./deployment/configs/outline/shadowbox_server_config.json
   log "Outline server configuration successfully generated"
+}
+
+generate_mtproto_proxy_config() {
+  log "Generating MTProto proxy configuration..."
+  
+  SECRET=$(make --silent --no-print-directory -C .. mtproto-generate-secret BASE_URL="$BASE_URL")
+  cat <<EOF > ./configs/mtproto/mtg.toml
+secret = "$SECRET"
+bind-to = "0.0.0.0:3128"
+EOF
+
+  echo "$json" > ./deployment/configs/mtproto/mtg.toml
+  log "MTProto proxy configuration successfully generated"
 }
 
 install_packages() {
@@ -178,4 +191,5 @@ configure_fail2ban
 configure_podman
 configure_nginx
 configure_outline
+generate_mtproto_proxy_config
 finish
