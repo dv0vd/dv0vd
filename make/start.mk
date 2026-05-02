@@ -489,6 +489,7 @@ start-mtproto:
 		-d \
 		--name mtproto \
 		-v ./deployment/configs/mtproto/mtg.toml:/config.toml \
+		-p ${MTPROTO_PORT}:3128 \
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
