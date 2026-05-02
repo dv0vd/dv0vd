@@ -498,4 +498,4 @@ start-mtproto:
 		--memory=${MTPROTO_MEMORY} \
 		--cpus=${MTPROTO_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/nineseconds/mtg:2.2.8 run
+		docker.io/nineseconds/mtg:2.2.8 run /config.toml
