@@ -54,7 +54,7 @@ configure_outline() {
     -keyout /root/dv0vd/deployment/configs/outline/outline.key \
     -out /root/dv0vd/deployment/configs/outline/outline.crt \
     -subj "/CN=localhost"
-  generateOutlineServerConfig
+  generate_outline_server_config
   log "Outline VPN successfully configured"
 }
 
@@ -92,7 +92,7 @@ finish() {
   reboot
 }
 
-generateOutlineServerConfig() {
+generate_outline_server_config() {
   log "Generating outline server configuration..."
   serverId=$(uuidgen)
   createdTimestampMs=$(date +%s%3N)
@@ -118,7 +118,7 @@ generateOutlineServerConfig() {
   log "Outline server configuration successfully generated"
 }
 
-generateMtprotoProxyConfig() {
+generate_mtproto_proxy_config() {
   log "Generating MTProto proxy configuration..."
   
   SECRET=$(make --silent --no-print-directory -C .. mtproto-generate-secret BASE_URL="$BASE_URL")
@@ -207,6 +207,6 @@ configure_podman
 configure_rclone
 configure_nginx_main
 configure_outline
-generateMtprotoProxyConfig
+generate_mtproto_proxy_config
 configure_email
 finish
