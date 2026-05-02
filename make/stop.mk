@@ -13,6 +13,7 @@ stop-containers:
 	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
+	- $(MAKE) stop-mtproto
 	- $(MAKE) stop-livekit-redis
 	- $(MAKE) stop-db
 	- $(MAKE) stop-email
@@ -120,3 +121,7 @@ stop-rustdesk:
 	- podman stop rustdesk-relay
 	- podman rm rustdesk-id
 	- podman rm rustdesk-relay
+
+stop-mtproto:
+	- podman stop mtproto
+	- podman rm mtproto

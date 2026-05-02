@@ -8,6 +8,7 @@ start-containers:
 	- $(MAKE) start-email
 	- $(MAKE) start-db
 	- $(MAKE) start-livekit-redis
+	- $(MAKE) start-mtproto
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
@@ -482,3 +483,18 @@ start-rustdesk:
 		--cpus=${RUSTDESK_RELAY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/rustdesk/rustdesk-server:1.1.15 hbbr
+
+start-mtproto:
+	- podman run \
+		-d \
+		--name mtproto \
+		--network podman_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		--restart unless-stopped \
+		--memory=${MTPROTO_MEMORY} \
+		--cpus=${MTPROTO_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/nineseconds/mtg:2.2.8 run ${MTPROTO_SECRET}

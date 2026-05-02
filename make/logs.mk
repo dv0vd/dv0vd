@@ -90,3 +90,6 @@ logs-rustdesk-id:
 
 logs-rustdesk-relay:
 	podman logs -f rustdesk-id
+
+logs-mtproto:
+	podman logs -f mtproto

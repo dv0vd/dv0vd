@@ -59,3 +59,5 @@ restart-matrix-rtc: stop-matrix-rtc start-matrix-rtc restart-nginx
 restart-email: stop-email start-email
 
 restart-rustdesk: stop-rustdesk start-rustdesk
+
+restart-mtproto: stop-mtproto start-mtproto

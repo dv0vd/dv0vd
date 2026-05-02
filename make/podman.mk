@@ -27,6 +27,7 @@ podman-load-images:
 	podman load < ./deployment/images/element-hq-lk-jwt-service_0.4.1.tar
 	podman load < ./deployment/images/docker-mailserver:15.1.0.tar
 	podman load < ./deployment/images/rustdesk-server_1.1.15.tar
+	podman load < ./deployment/images/nineseconds-mtg_2.2.8.tar
 
 podman-info:
 	podman ps -w 1

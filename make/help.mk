@@ -5,6 +5,7 @@ help:
 	@echo ${GREEN}start-containers'                        '${WHITE}— start all containers${RESET}
 	@echo ${GREEN}start-socks4'                            '${WHITE}— start socks4 server${RESET}
 	@echo ${GREEN}start-socks5'                            '${WHITE}— start socks5 server${RESET}
+	@echo ${GREEN}start-mtproto'                           '${WHITE}— start MTProto proxy server${RESET}
 	@echo ${GREEN}start-https-proxy'                       '${WHITE}— start https proxy server${RESET}
 	@echo ${GREEN}start-outline'                           '${WHITE}— start outline vpn${RESET}
 	@echo ${GREEN}start-xray-vless-reality'                '${WHITE}— start VLESS + XTLS / Reality${RESET}
@@ -29,6 +30,7 @@ help:
 	@echo ${GREEN}stop-containers'                         '${WHITE}— stop all containers${RESET}
 	@echo ${GREEN}stop-socks4'                             '${WHITE}— stop socks4 server${RESET}
 	@echo ${GREEN}stop-socks5'                             '${WHITE}— stop socks5 server${RESET}
+	@echo ${GREEN}stop-mtproto'                            '${WHITE}— stop MTProto proxy server${RESET}
 	@echo ${GREEN}stop-https-proxy'                        '${WHITE}— stop https proxy server${RESET}
 	@echo ${GREEN}stop-outline'                            '${WHITE}— stop outline vpn${RESET}
 	@echo ${GREEN}stop-xray-vless-reality'                 '${WHITE}— stop VLESS + XTLS / Reality${RESET}
@@ -53,6 +55,7 @@ help:
 	@echo ${GREEN}restart-containers'                      '${WHITE}— restart all containers${RESET}
 	@echo ${GREEN}restart-socks4'                          '${WHITE}— restart socks4 server${RESET}
 	@echo ${GREEN}restart-socks5'                          '${WHITE}— restart socks5 server${RESET}
+	@echo ${GREEN}restart-mtproto'                         '${WHITE}— restart MTProto proxy server${RESET}
 	@echo ${GREEN}restart-https-proxy'                     '${WHITE}— restart https proxy server${RESET}
 	@echo ${GREEN}restart-outline'                         '${WHITE}— restart outline vpn${RESET}
 	@echo ${GREEN}restart-xray-vless-reality'              '${WHITE}— restart VLESS + XTLS / Reality${RESET}
@@ -84,6 +87,7 @@ help:
 	@echo ${GREEN}logs-clear'                              '${WHITE}— clear journalctl logs olden then 1 day${RESET}
 	@echo ${GREEN}logs-socks4'                             '${WHITE}— get socks4 server logs${RESET}
 	@echo ${GREEN}logs-socks5'                             '${WHITE}— get socks5 server logs${RESET}
+	@echo ${GREEN}logs-mtproto'                            '${WHITE}— get MTProto proxy server logs${RESET}
 	@echo ${GREEN}logs-https-proxy'                        '${WHITE}— get https proxy server logs${RESET}
 	@echo ${GREEN}logs-outline'                            '${WHITE}— get outline vpn logs${RESET}
 	@echo ${GREEN}logs-xray-vless-reality'                 '${WHITE}— get VLESS + XTLS / Reality logs${RESET}
@@ -169,3 +173,5 @@ help:
 	@echo ${GREEN}certbot-issue-livekit'                   '${WHITE}— issue Lets enctypt certificate for livekit${RESET}
 	@echo ${GREEN}certbot-issue-email'                     '${WHITE}— issue Lets enctypt certificate for email${RESET}
 	@echo ${GREEN}certbot-renew'                           '${WHITE}— renew Lets enctypt certificates${RESET}
+	@echo ${GREEN}mtproto-get-link'                        '${WHITE}— get MTProto proxy connection link${RESET}
+	@echo ${GREEN}mtproto-generate-secret                  '${WHITE}— generate MTProto proxy secret key${RESET}
