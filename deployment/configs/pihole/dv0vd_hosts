@@ -1,7 +1,7 @@
 # Title: Dv0vD blocked hosts
 #
-# Date: 26 March 2026
-# Number of unique domains: 174
+# Date: 05 May 2026
+# Number of unique domains: 176
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -70,6 +70,7 @@
 0.0.0.0 find.userpilot.io
 0.0.0.0 fp.hybrid.ai
 0.0.0.0 fpf.hybrid.ai
+0.0.0.0 g-galleryapi.micloud.xiaomi.net
 0.0.0.0 gator.volces.com
 0.0.0.0 global.market.xiaomi.com
 0.0.0.0 googleads.g.doubleclick.net
@@ -168,7 +169,8 @@
 0.0.0.0 trk.ezymny.com
 0.0.0.0 uaas.yandex.ru
 0.0.0.0 uid.bumlam.com
-0.0.0.0 us.appbackupapi.micloud.xiaomi.net	
+0.0.0.0 us.appbackupapi.micloud.xiaomi.net
+0.0.0.0 us.galleryapi.micloud.xiaomi.net
 0.0.0.0 us.statusapi.micloud.xiaomi.net
 0.0.0.0 user-geo-data.wildberries.ru
 0.0.0.0 vast.yomeno.xyz
