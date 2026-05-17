@@ -72,16 +72,6 @@ configure_podman() {
   log "Podman successfully configured"
 }
 
-configure_rclone() {
-  log "Configuring rclone..."
-  mkdir -p /root/.config/rclone
-  touch /root/.config/rclone/rclone.conf
-  envsubst < ./deployment/configs/rclone/rclone_env.conf > /root/.config/rclone/rclone.conf
-  ssh-keygen -R $RCLONE_HOST || true
-  ssh-keyscan -p $RCLONE_PORT $RCLONE_HOST >> /root/.ssh/known_hosts
-  log "Rclone successfully configured"
-}
-
 finish() {
   log "Configuring rc.local autostart..."
   rm /etc/rc.local -f
@@ -204,7 +194,6 @@ configure_dns
 configure_ssh
 configure_fail2ban
 configure_podman
-configure_rclone
 configure_nginx_main
 configure_outline
 generate_mtproto_proxy_config

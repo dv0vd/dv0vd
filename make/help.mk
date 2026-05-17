@@ -134,6 +134,7 @@ help:
 	@echo ${GREEN}on-startup'                              '${WHITE}— commands to execute immediately after server startup${RESET}
 	@echo ${GREEN}disable-ipv6'                            '${WHITE}— disable-ipv6${RESET}
 	@echo ${GREEN}disk-usage' [path]                       '${WHITE}— get disk usage${RESET}
+	@echo ${GREEN}rclone-configure                         '${WHITE}— configure rclone${RESET}
 	@echo ${GREEN}init-demo'                               '${WHITE}— clone demo projects and install dependencies${RESET}
 	@echo ${GREEN}init-lagoona'                            '${WHITE}— clone lagoona demo project and install dependencies${RESET}
 	@echo ${GREEN}init-evklid'                             '${WHITE}— clone evklid demo project and install dependencies${RESET}
