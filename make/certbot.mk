@@ -5,6 +5,7 @@ certbot-issue:
 	- $(MAKE) certbot-issue-email
 
 certbot-issue-website:
+	- podman rm certbot
 	podman run \
 		--rm \
 		--name certbot \
@@ -25,6 +26,7 @@ certbot-issue-website:
 		--no-eff-email
 
 certbot-issue-email:
+	- podman rm certbot
 	podman run \
 		--rm \
 		--name certbot \
@@ -45,6 +47,7 @@ certbot-issue-email:
 		--no-eff-email
 
 certbot-issue-ntfy:
+	- podman rm certbot
 	podman run \
 		--rm \
 		--name certbot \
@@ -65,6 +68,7 @@ certbot-issue-ntfy:
 		--no-eff-email
 
 certbot-issue-livekit:
+	- podman rm certbot
 	podman run \
 		--rm \
 		--name certbot \
@@ -85,6 +89,7 @@ certbot-issue-livekit:
 		--no-eff-email
 
 certbot-renew:
+	- podman rm certbot
 	podman run \
 		--rm \
 		--name certbot \
