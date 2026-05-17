@@ -8,3 +8,10 @@ generate-xray-private-key:
 
 generate-xray-short-id:
 	openssl rand -hex 8
+
+disk-usage:
+	du -h ${path} | sort -hr
+
+rclone-configure:
+	mkdir -p /root/.config/rclone
+	bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/rclone/rclone_env.conf > /root/.config/rclone/rclone.conf"

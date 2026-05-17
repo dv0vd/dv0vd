@@ -3,23 +3,6 @@ set -e # stop script on any error
 
 
 
-configure_fail2ban() {
-  log "Configuring fail2ban..."
-  envsubst < /root/dv0vd/deployment/configs/fail2ban/jail_env.local > /root/dv0vd/deployment/configs/fail2ban/jail.local
-  cp /root/dv0vd/deployment/configs/fail2ban/jail.local /etc/fail2ban/jail.local
-  cp /root/dv0vd/deployment/configs/fail2ban/fail2ban.local /etc/fail2ban/fail2ban.local
-  cp /root/dv0vd/deployment/configs/fail2ban/filters/danted.conf /etc/fail2ban/filter.d
-  cp /root/dv0vd/deployment/configs/fail2ban/filters/nginx-bad-request.local /etc/fail2ban/filter.d 
-  cp /root/dv0vd/deployment/configs/fail2ban/filters/nginx-not-found.local /etc/fail2ban/filter.d
-  cp /root/dv0vd/deployment/configs/fail2ban/filters/nginx-redirected.local /etc/fail2ban/filter.d
-  touch /root/dv0vd/deployment/data/nginx/logs/error.log
-  touch /root/dv0vd/deployment/data/nginx/logs/access.log
-  touch /root/dv0vd/deployment/data/socks5/logs/danted.log
-  systemctl disable fail2ban
-  systemctl start fail2ban
-  log "Fail2ban successfully configured"
-}
-
 configure_nginx() {
   log "Configuring nginx..."
   htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
@@ -187,7 +170,6 @@ set_timezone
 install_packages
 configure_dns
 configure_ssh
-configure_fail2ban
 configure_podman
 configure_nginx
 configure_outline

@@ -83,6 +83,7 @@ help:
 	@echo ${GREEN}logs-fail2ban'                           '${WHITE}— get fail2ban logs${RESET}
 	@echo ${GREEN}logs-synapse'                            '${WHITE}— get synapse homerver logs${RESET}
 	@echo ${GREEN}logs-synapse-container'                  '${WHITE}— get synapse container logs${RESET}
+	@echo ${GREEN}fail2ban-configure'                      '${WHITE}— configure fail2ban${RESET}
 	@echo ${GREEN}fail2ban-status'                         '${WHITE}— get fail2ban jails status${RESET}
 	@echo ${GREEN}fail2ban-unban-all'                      '${WHITE}— unban all IPs in fail2ban${RESET}
 	@echo ${GREEN}podman-load-images'                      '${WHITE}— load images from local copy${RESET}
@@ -102,6 +103,8 @@ help:
 	@echo ${GREEN}iptables-rules-apply'                    '${WHITE}— apply iptables rules${RESET}
 	@echo ${GREEN}on-startup'                              '${WHITE}— commands to execute immediately after server startup${RESET}
 	@echo ${GREEN}disable-ipv6'                            '${WHITE}— disable-ipv6${RESET}
+	@echo ${GREEN}disk-usage' [path]                       '${WHITE}— get disk usage${RESET}
+	@echo ${GREEN}rclone-configure'                        '${WHITE}— configure rclone${RESET}
 	@echo ${GREEN}init-demo'                               '${WHITE}— clone demo projects and install dependencies${RESET}
 	@echo ${GREEN}init-lagoona'                            '${WHITE}— clone lagoona demo project and install dependencies${RESET}
 	@echo ${GREEN}init-evklid'                             '${WHITE}— clone evklid demo project and install dependencies${RESET}

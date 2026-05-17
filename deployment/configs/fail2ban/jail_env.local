@@ -42,3 +42,13 @@ enabled = true
 filter  = danted
 logpath = /root/dv0vd/deployment/data/socks5/logs/danted.log
 backend = auto
+
+[postfix]
+enabled  = true
+filter   = postfix
+logpath  = /root/dv0vd/deployment/data/email/logs/mail.log
+
+[dovecot]
+enabled  = true
+filter   = dovecot
+logpath  = /root/dv0vd/deployment/data/email/logs/mail.log
