@@ -11,3 +11,10 @@ generate-xray-short-id:
 
 disk-usage:
 	du -h ${path} | sort -hr
+
+rclone-configure:
+	mkdir -p /root/.config/rclone
+	touch /root/.config/rclone/rclone.conf
+	bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/rclone/rclone_env.conf > /root/.config/rclone/rclone.conf"
+	ssh-keygen -R ${RCLONE_HOST} || true
+	ssh-keyscan -p ${RCLONE_PORT} ${RCLONE_HOST} >> /root/.ssh/known_hosts
