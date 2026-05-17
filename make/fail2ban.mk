@@ -9,6 +9,7 @@ fail2ban-configure:
 	touch ./deployment/data/nginx/logs/error.log
 	touch ./deployment/data/nginx/logs/access.log
 	touch ./deployment/data/socks5/logs/danted.log
+	touch ./deployment/data/email/logs/mail.log
 
 fail2ban-status:
 	fail2ban-client status
