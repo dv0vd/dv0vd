@@ -22,8 +22,7 @@ certbot-issue-website:
 		-d www.${BASE_URL} \
 		--email postmaster@${BASE_URL} \
 		--agree-tos \
-		--no-eff-email \
-		--no-chown
+		--no-eff-email
 
 certbot-issue-email:
 	podman run \
@@ -43,8 +42,7 @@ certbot-issue-email:
 		-d www.mail.${BASE_URL} \
 		--email postmaster@${BASE_URL} \
 		--agree-tos \
-		--no-eff-email \
-		--no-chown
+		--no-eff-email
 
 certbot-issue-ntfy:
 	podman run \
@@ -64,8 +62,7 @@ certbot-issue-ntfy:
 		-d www.${NTFY_URL}.${BASE_URL} \
 		--email postmaster@${BASE_URL} \
 		--agree-tos \
-		--no-eff-email \
-		--no-chown
+		--no-eff-email
 
 certbot-issue-livekit:
 	podman run \
@@ -85,8 +82,7 @@ certbot-issue-livekit:
 		-d www.${LIVEKIT_URL}.${BASE_URL} \
 		--email postmaster@${BASE_URL} \
 		--agree-tos \
-		--no-eff-email \
-		--no-chown
+		--no-eff-email
 
 certbot-renew:
 	podman run \
@@ -99,4 +95,4 @@ certbot-renew:
 		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
 		-v ./deployment/data/letsencrypt/acme:/app/acme \
-		docker.io/certbot/certbot:v5.3.1 renew --no-chown
+		docker.io/certbot/certbot:v5.3.1 renew
