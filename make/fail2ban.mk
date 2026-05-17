@@ -6,9 +6,10 @@ fail2ban-configure:
 	cp ./deployment/configs/fail2ban/filters/nginx-bad-request.local /etc/fail2ban/filter.d
 	cp ./deployment/configs/fail2ban/filters/nginx-not-found.local /etc/fail2ban/filter.d
 	cp ./deployment/configs/fail2ban/filters/nginx-redirected.local /etc/fail2ban/filter.d
-	touch ./deployment/data/nginx/logs/error.log
-	touch ./deployment/data/nginx/logs/access.log
-	touch ./deployment/data/socks5/logs/danted.log
+	mkdir -p ./deployment/data/nginx && touch ./deployment/data/nginx/logs/error.log
+	mkdir -p ./deployment/data/nginx && touch ./deployment/data/nginx/logs/access.log
+	mkdir -p ./deployment/data/socks5/logs && touch ./deployment/data/socks5/logs/danted.log
+	mkdir -p ./deployment/data/email/logs && touch ./deployment/data/email/logs/mail.log
 
 fail2ban-status:
 	fail2ban-client status
