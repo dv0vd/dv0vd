@@ -4,6 +4,7 @@ on-startup:
 	- $(MAKE) iptables-apply-rules
 	- $(MAKE) rclone-configure
 	- shutdown -r 0:00
+	- $(MAKE) fail2ban-configure
 	- $(MAKE) start-fail2ban
 	- $(MAKE) certbot-renew
 	- $(MAKE) logs-clear

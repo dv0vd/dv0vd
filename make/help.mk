@@ -114,6 +114,7 @@ help:
 	@echo ${GREEN}logs-synapse-container'                  '${WHITE}— get synapse container logs${RESET}
 	@echo ${GREEN}logs-rustdesk-id'                        '${WHITE}— get RustDesk ID Server container logs${RESET}
 	@echo ${GREEN}logs-rustdesk-relay'                     '${WHITE}— get RustDesk Relay Server container logs${RESET}
+	@echo ${GREEN}fail2ban-configure'                      '${WHITE}— configure fail2ban${RESET}
 	@echo ${GREEN}fail2ban-status'                         '${WHITE}— get fail2ban jails status${RESET}
 	@echo ${GREEN}fail2ban-unban-all'                      '${WHITE}— unban all IPs in fail2ban${RESET}
 	@echo ${GREEN}podman-load-images'                      '${WHITE}— load images from local copy${RESET}
