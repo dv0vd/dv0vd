@@ -90,3 +90,6 @@ logs-rustdesk-id:
 
 logs-rustdesk-relay:
 	podman logs -f rustdesk-id
+
+logs-whitelist-bypass:
+	podman logs -f whitelist-bypass

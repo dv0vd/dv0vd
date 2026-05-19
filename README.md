@@ -1,6 +1,6 @@
 # Dv0vD
 ## https://dv0vd.dev
-Personal website presenting portfolio, technical skills, interests, and contact information, along with hosted infrastructure: SOCKS4/5, HTTPS, and MTProto proxies, Outline VPN, VLESS+XTLS/Reality, Matrix (Synapse), TURN (Coturn), ntfy, LiveKit, Pi-hole, DNS-over-HTTPS, RustDesk, and email services.
+Personal website presenting portfolio, technical skills, interests, and contact information, along with hosted infrastructure: SOCKS4/5, HTTPS, and MTProto proxies, Outline VPN, VLESS+XTLS/Reality, WebRTC tunneling / whitelist-bypass infrastructure, Matrix (Synapse), TURN (Coturn), ntfy, LiveKit, Pi-hole, DNS-over-HTTPS, RustDesk, Email services.
 
 ## Getting started  
 1) Update packages index: `apt update`.
@@ -31,4 +31,7 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - docker-mailserver:15.1.0.tar
 - rustdesk-server_1.1.15.tar
 - nineseconds-mtg_2.2.8.tar
-8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
+- kulikov0-whitelist-bypass-bot_v0.3.3.tar
+8) Copy cookies for Whitelist Bypass service to `./deployment/configs/whitelist-bypass`:
+- cookies-telemost.json
+9) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.

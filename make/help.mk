@@ -6,6 +6,7 @@ help:
 	@echo ${GREEN}start-socks4'                            '${WHITE}— start socks4 server${RESET}
 	@echo ${GREEN}start-socks5'                            '${WHITE}— start socks5 server${RESET}
 	@echo ${GREEN}start-mtproto'                           '${WHITE}— start MTProto proxy server${RESET}
+	@echo ${GREEN}start-whitelist-bypass'                  '${WHITE}— start Whitelist Bypass VK bot${RESET}
 	@echo ${GREEN}start-https-proxy'                       '${WHITE}— start https proxy server${RESET}
 	@echo ${GREEN}start-outline'                           '${WHITE}— start outline vpn${RESET}
 	@echo ${GREEN}start-xray-vless-reality'                '${WHITE}— start VLESS + XTLS / Reality${RESET}
@@ -31,6 +32,7 @@ help:
 	@echo ${GREEN}stop-socks4'                             '${WHITE}— stop socks4 server${RESET}
 	@echo ${GREEN}stop-socks5'                             '${WHITE}— stop socks5 server${RESET}
 	@echo ${GREEN}stop-mtproto'                            '${WHITE}— stop MTProto proxy server${RESET}
+	@echo ${GREEN}stop-whitelist-bypass'                   '${WHITE}— stop Whitelist Bypass VK bot${RESET}
 	@echo ${GREEN}stop-https-proxy'                        '${WHITE}— stop https proxy server${RESET}
 	@echo ${GREEN}stop-outline'                            '${WHITE}— stop outline vpn${RESET}
 	@echo ${GREEN}stop-xray-vless-reality'                 '${WHITE}— stop VLESS + XTLS / Reality${RESET}
@@ -56,6 +58,7 @@ help:
 	@echo ${GREEN}restart-socks4'                          '${WHITE}— restart socks4 server${RESET}
 	@echo ${GREEN}restart-socks5'                          '${WHITE}— restart socks5 server${RESET}
 	@echo ${GREEN}restart-mtproto'                         '${WHITE}— restart MTProto proxy server${RESET}
+	@echo ${GREEN}restart-whitelist-bypass'                '${WHITE}— restart Whitelist Bypass VK bot${RESET}
 	@echo ${GREEN}restart-https-proxy'                     '${WHITE}— restart https proxy server${RESET}
 	@echo ${GREEN}restart-outline'                         '${WHITE}— restart outline vpn${RESET}
 	@echo ${GREEN}restart-xray-vless-reality'              '${WHITE}— restart VLESS + XTLS / Reality${RESET}
@@ -90,6 +93,7 @@ help:
 	@echo ${GREEN}logs-https-proxy'                        '${WHITE}— get https proxy server logs${RESET}
 	@echo ${GREEN}logs-outline'                            '${WHITE}— get outline vpn logs${RESET}
 	@echo ${GREEN}logs-xray-vless-reality'                 '${WHITE}— get VLESS + XTLS / Reality logs${RESET}
+	@echo ${GREEN}logs-whitelist-bypass'                   '${WHITE}— get Whitelist Bypass VK bot logs${RESET}
 	@echo ${GREEN}logs-nginx'                              '${WHITE}— get nginx logs${RESET}
 	@echo ${GREEN}logs-nginx-access'                       '${WHITE}— get nginx access logs${RESET}
 	@echo ${GREEN}logs-nginx-error'                        '${WHITE}— get nginx error logs${RESET}

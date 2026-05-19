@@ -61,3 +61,5 @@ restart-email: stop-email start-email
 restart-rustdesk: stop-rustdesk start-rustdesk
 
 restart-mtproto: stop-mtproto start-mtproto
+
+restart-whitelist-bypass: stop-whitelist-bypass start-whitelist-bypass

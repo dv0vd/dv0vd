@@ -9,6 +9,7 @@ start-containers:
 	- $(MAKE) start-db
 	- $(MAKE) start-livekit-redis
 	- $(MAKE) start-mtproto
+	- $(MAKE) start-whitelist-bypass
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
@@ -500,3 +501,18 @@ start-mtproto:
 		--cpus=${MTPROTO_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/nineseconds/mtg:2.2.8 run /config.toml
+
+start-whitelist-bypass:
+	- podman run \
+		-d \
+		--name whitelist-bypass \
+		-e VK_TOKEN=${WHITELIST_BYPASS_VK_TOKEN} \
+		-e VK_GROUP_ID=${WHITELIST_BYPASS_VK_GROUP_ID} \
+		-e TM_COOKIES=/app/cookies-telemost.json \
+		-v ./deployment/configs/whitelist-bypass:/app \
+		--network podman_network \
+		--restart unless-stopped \
+		--memory=${WHITELIST_BYPASS_MEMORY} \
+		--cpus=${WHITELIST_BYPASS_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		ghcr.io/kulikov0/whitelist-bypass-bot:v0.3.3

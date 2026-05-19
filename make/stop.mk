@@ -14,6 +14,7 @@ stop-containers:
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
 	- $(MAKE) stop-mtproto
+	- $(MAKE) stop-whitelist-bypass
 	- $(MAKE) stop-livekit-redis
 	- $(MAKE) stop-db
 	- $(MAKE) stop-email
@@ -125,3 +126,7 @@ stop-rustdesk:
 stop-mtproto:
 	- podman stop mtproto
 	- podman rm mtproto
+
+stop-whitelist-bypass:
+	- podman stop whitelist-bypass
+	- podman rm whitelist-bypass
