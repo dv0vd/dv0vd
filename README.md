@@ -34,4 +34,5 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - kulikov0-whitelist-bypass-bot_v0.3.3.tar
 8) Copy cookies for Whitelist Bypass service to `./deployment/configs/whitelist-bypass`:
 - cookies-telemost.json
+- cookies-wbstream.json
 9) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
