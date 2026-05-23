@@ -35,4 +35,5 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 8) Copy cookies for Whitelist Bypass service to `./deployment/configs/whitelist-bypass`:
 - cookies-telemost.json
 - cookies-wbstream.json
+- cookies-vk.json
 9) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
