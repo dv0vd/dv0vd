@@ -509,7 +509,7 @@ start-whitelist-bypass:
 		-e VK_TOKEN=${WHITELIST_BYPASS_VK_TOKEN} \
 		-e VK_GROUP_ID=${WHITELIST_BYPASS_VK_GROUP_ID} \
 		-e TM_COOKIES=/app/cookies-telemost.json \
-		-e TM_COOKIES=/app/cookies-telemost.json \
+		-e WB_COOKIES=/app/cookies-wbstream.json \
 		-e VK_COOKIES=/app/cookies-vk.json \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network podman_network \
