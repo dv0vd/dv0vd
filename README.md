@@ -31,7 +31,7 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - docker-mailserver:15.1.0.tar
 - rustdesk-server_1.1.15.tar
 - nineseconds-mtg_2.2.8.tar
-- kulikov0-whitelist-bypass-bot_v0.3.6.tar
+- kulikov0-whitelist-bypass-bot_v0.3.7.tar
 8) Copy cookies for Whitelist Bypass service to `./deployment/configs/whitelist-bypass`:
 - cookies-telemost.json
 - cookies-wbstream.json

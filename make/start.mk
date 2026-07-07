@@ -517,4 +517,4 @@ start-whitelist-bypass:
 		--memory=${WHITELIST_BYPASS_MEMORY} \
 		--cpus=${WHITELIST_BYPASS_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		ghcr.io/kulikov0/whitelist-bypass-bot:v0.3.6
+		ghcr.io/kulikov0/whitelist-bypass-bot:v0.3.7
