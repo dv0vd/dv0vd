@@ -93,3 +93,6 @@ logs-rustdesk-relay:
 
 logs-whitelist-bypass:
 	podman logs -f whitelist-bypass
+
+logs-sip:
+	tail -f -n +1 deployment/data/sip/logs/messages

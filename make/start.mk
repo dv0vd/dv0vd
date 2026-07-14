@@ -444,7 +444,6 @@ start-email:
 		-e POSTFIX_REJECT_UNKNOWN_CLIENT_HOSTNAME=1 \
 		-e ENABLE_QUOTAS=1 \
 		-e POSTFIX_MESSAGE_SIZE_LIMIT=52428800 \
-		-v ./deployment/configs/livekit/livekit.yaml:/app/livekit.yaml:ro \
 		-v ./deployment/data/email/data:/var/mail \
 		-v ./deployment/data/email/state:/var/mail-state \
 		-v ./deployment/data/email/logs:/var/log/mail \
@@ -518,3 +517,23 @@ start-whitelist-bypass:
 		--cpus=${WHITELIST_BYPASS_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		ghcr.io/kulikov0/whitelist-bypass-bot:v0.3.7
+
+start-sip:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/transport_env.conf > ./deployment/configs/sip/pjsip.d/transport.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/rtp_env.conf > ./deployment/configs/sip/rtp.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/110_env.conf > ./deployment/configs/sip/pjsip.d/110.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/120_env.conf > ./deployment/configs/sip/pjsip.d/120.conf"
+	- podman run \
+		-d \
+		--name sip \
+		-v ./deployment/configs/sip:/etc/asterisk \
+		-v ./deployment/data/sip/logs:/var/log/asterisk \
+		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt:ro \
+		-p ${SIP_PORT}:5061/tcp \
+		-p ${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}:${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}/udp \
+		--network podman_network \
+		--restart unless-stopped \
+		--memory=${SIP_MEMORY} \
+		--cpus=${SIP_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/andrius/asterisk:22.8-cert3_debian-trixie

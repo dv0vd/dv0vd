@@ -28,6 +28,7 @@ help:
 	@echo ${GREEN}start-todo-manager'                      '${WHITE}— start todo manager demo project${RESET}
 	@echo ${GREEN}start-fail2ban'                          '${WHITE}— start fail2ban${RESET}
 	@echo ${GREEN}start-rustdesk'                          '${WHITE}— start RustDesk${RESET}
+	@echo ${GREEN}start-sip'                               '${WHITE}— start SIP server${RESET}
 	@echo ${GREEN}stop-containers'                         '${WHITE}— stop all containers${RESET}
 	@echo ${GREEN}stop-socks4'                             '${WHITE}— stop socks4 server${RESET}
 	@echo ${GREEN}stop-socks5'                             '${WHITE}— stop socks5 server${RESET}
@@ -54,6 +55,7 @@ help:
 	@echo ${GREEN}stop-todo-manager'                       '${WHITE}— stop todo-manager demo project${RESET}
 	@echo ${GREEN}stop-fail2ban'                           '${WHITE}— stop fail2ban${RESET}
 	@echo ${GREEN}stop-rustdesk'                           '${WHITE}— stop RustDesk${RESET}
+	@echo ${GREEN}stop-sip'                                '${WHITE}— stop SIP server${RESET}
 	@echo ${GREEN}restart-containers'                      '${WHITE}— restart all containers${RESET}
 	@echo ${GREEN}restart-socks4'                          '${WHITE}— restart socks4 server${RESET}
 	@echo ${GREEN}restart-socks5'                          '${WHITE}— restart socks5 server${RESET}
@@ -79,6 +81,7 @@ help:
 	@echo ${GREEN}restart-skillnotes'                      '${WHITE}— restart skillnotes demo project${RESET}
 	@echo ${GREEN}restart-todo-manager'                    '${WHITE}— restart todo-manager demo project${RESET}
 	@echo ${GREEN}restart-rustdesk'                        '${WHITE}— restart RustDesk${RESET}
+	@echo ${GREEN}restart-sip'                             '${WHITE}— restart SIP server${RESET}
 	@echo ${GREEN}enter-nginx'                             '${WHITE}— enter to the nginx container${RESET}
 	@echo ${GREEN}enter-synapse'                           '${WHITE}— enter to the synapse container${RESET}
 	@echo ${GREEN}enter-outline'                           '${WHITE}— enter to the outline container${RESET}
@@ -118,6 +121,7 @@ help:
 	@echo ${GREEN}logs-synapse-container'                  '${WHITE}— get synapse container logs${RESET}
 	@echo ${GREEN}logs-rustdesk-id'                        '${WHITE}— get RustDesk ID Server container logs${RESET}
 	@echo ${GREEN}logs-rustdesk-relay'                     '${WHITE}— get RustDesk Relay Server container logs${RESET}
+	@echo ${GREEN}logs-sip'                                '${WHITE}— get SIP server logs${RESET}
 	@echo ${GREEN}fail2ban-configure'                      '${WHITE}— configure fail2ban${RESET}
 	@echo ${GREEN}fail2ban-status'                         '${WHITE}— get fail2ban jails status${RESET}
 	@echo ${GREEN}fail2ban-unban-all'                      '${WHITE}— unban all IPs in fail2ban${RESET}

@@ -130,3 +130,7 @@ stop-mtproto:
 stop-whitelist-bypass:
 	- podman stop whitelist-bypass
 	- podman rm whitelist-bypass
+
+stop-sip:
+	- podman stop sip
+	- podman rm sip
