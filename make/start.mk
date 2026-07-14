@@ -523,12 +523,16 @@ start-sip:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/rtp_env.conf > ./deployment/configs/sip/rtp.conf"
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/110_env.conf > ./deployment/configs/sip/pjsip.d/110.conf"
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/120_env.conf > ./deployment/configs/sip/pjsip.d/120.conf"
+	- mkdir -p ./deployment/data/sip/certs
+	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/fullchain.pem ./deployment/data/sip/certs/fullchain.pem
+	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/privkey.pem ./deployment/data/sip/certs/privkey.pem
+	- chmod 644 ./deployment/data/sip/certs/fullchain.pem ./deployment/data/sip/certs/privkey.pem
 	- podman run \
 		-d \
 		--name sip \
 		-v ./deployment/configs/sip:/etc/asterisk \
 		-v ./deployment/data/sip/logs:/var/log/asterisk \
-		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
+		-v ./deployment/data/sip/certs:/app/certs:ro \
 		-p ${SIP_PORT}:5061/tcp \
 		-p ${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}:${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}/udp \
 		--network podman_network \
