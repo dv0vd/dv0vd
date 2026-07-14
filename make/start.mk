@@ -528,7 +528,7 @@ start-sip:
 		--name sip \
 		-v ./deployment/configs/sip:/etc/asterisk \
 		-v ./deployment/data/sip/logs:/var/log/asterisk \
-		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt:ro \
+		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
 		-p ${SIP_PORT}:5061/tcp \
 		-p ${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}:${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}/udp \
 		--network podman_network \

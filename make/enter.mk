@@ -18,3 +18,6 @@ enter-email:
 
 enter-coturn:
 	podman exec -it coturn bash
+
+enter-sip:
+	podman exec -it sip bash
