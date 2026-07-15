@@ -544,4 +544,4 @@ start-sip:
 		--memory=${SIP_MEMORY} \
 		--cpus=${SIP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/andrius/asterisk:22.8-cert3_debian-trixie
+		docker.io/andrius/asterisk:22.8-cert3_debian-trixie asterisk -f -vvvv
