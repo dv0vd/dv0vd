@@ -21,6 +21,7 @@ fail2ban-status:
 	fail2ban-client status danted
 	fail2ban-client status postfix
 	fail2ban-client status dovecot
+	fail2ban-client status asterisk
 
 fail2ban-unban-all:
 	fail2ban-client unban --all

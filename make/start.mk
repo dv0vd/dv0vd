@@ -17,6 +17,7 @@ start-containers:
 	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-doh-server
 	- $(MAKE) start-ntfy
+	- $(MAKE) start-sip
 	- $(MAKE) rustdesk-backup-to-storage-vps
 	- $(MAKE) start-rustdesk
 	- $(MAKE) synapse-vacuum-clean
@@ -526,7 +527,8 @@ start-sip:
 	- mkdir -p ./deployment/data/sip/certs
 	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/fullchain.pem ./deployment/data/sip/certs/fullchain.pem
 	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/privkey.pem ./deployment/data/sip/certs/privkey.pem
-	- chmod 644 ./deployment/data/sip/certs/fullchain.pem ./deployment/data/sip/certs/privkey.pem
+	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/chain.pem ./deployment/data/sip/certs/chain.pem
+	- chmod 644 ./deployment/data/sip/certs/fullchain.pem ./deployment/data/sip/certs/privkey.pem ./deployment/data/sip/certs/chain.pem
 	- podman run \
 		-d \
 		--name sip \
