@@ -523,8 +523,16 @@ start-sip:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/transport_env.conf > ./deployment/configs/sip/pjsip.d/transport.conf"
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/rtp_env.conf > ./deployment/configs/sip/rtp.conf"
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/000_templates_env.conf > ./deployment/configs/sip/pjsip.d/000_templates.conf"
-	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/110_env.conf > ./deployment/configs/sip/pjsip.d/110.conf"
-	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/120_env.conf > ./deployment/configs/sip/pjsip.d/120.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/100_env.conf > ./deployment/configs/sip/pjsip.d/100.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/101_env.conf > ./deployment/configs/sip/pjsip.d/101.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/102_env.conf > ./deployment/configs/sip/pjsip.d/102.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/103_env.conf > ./deployment/configs/sip/pjsip.d/103.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/104_env.conf > ./deployment/configs/sip/pjsip.d/104.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/105_env.conf > ./deployment/configs/sip/pjsip.d/105.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/106_env.conf > ./deployment/configs/sip/pjsip.d/106.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/107_env.conf > ./deployment/configs/sip/pjsip.d/107.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/108_env.conf > ./deployment/configs/sip/pjsip.d/108.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/109_env.conf > ./deployment/configs/sip/pjsip.d/109.conf"
 	- mkdir -p ./deployment/data/sip/certs
 	-@ rm ./deployment/data/sip/logs/*
 	- touch ./deployment/data/sip/logs/messages
