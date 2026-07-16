@@ -15,3 +15,6 @@ disk-usage:
 rclone-configure:
 	mkdir -p /root/.config/rclone
 	bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/rclone/rclone_env.conf > /root/.config/rclone/rclone.conf"
+
+sip-debug:
+	pjsip set logger on

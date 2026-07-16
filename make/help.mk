@@ -185,3 +185,4 @@ help:
 	@echo ${GREEN}certbot-renew'                           '${WHITE}— renew Lets enctypt certificates${RESET}
 	@echo ${GREEN}mtproto-get-link'                        '${WHITE}— get MTProto proxy connection link${RESET}
 	@echo ${GREEN}mtproto-generate-secret'                 '${WHITE}— generate MTProto proxy secret key${RESET}
+	@echo ${GREEN}sip-debug'                               '${WHITE}— enable SIP server debug logs${RESET}
