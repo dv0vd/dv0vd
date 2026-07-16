@@ -522,6 +522,7 @@ start-whitelist-bypass:
 start-sip:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/transport_env.conf > ./deployment/configs/sip/pjsip.d/transport.conf"
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/rtp_env.conf > ./deployment/configs/sip/rtp.conf"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/000_templates_env.conf > ./deployment/configs/sip/pjsip.d/000_templates.conf"
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/110_env.conf > ./deployment/configs/sip/pjsip.d/110.conf"
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/120_env.conf > ./deployment/configs/sip/pjsip.d/120.conf"
 	- mkdir -p ./deployment/data/sip/certs

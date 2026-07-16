@@ -19,6 +19,7 @@ deployment/configs/iptables/iptables.sh
 deployment/configs/xray-vless-reality/xray_config.json
 deployment/configs/livekit/livekit.yaml
 deployment/configs/sip/pjsip.d/transport.conf
+deployment/configs/sip/pjsip.d/000_templates.conf
 deployment/configs/sip/pjsip.d/110.conf
 deployment/configs/sip/pjsip.d/120.conf
 deployment/configs/sip/rtp.conf

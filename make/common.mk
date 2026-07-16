@@ -17,4 +17,4 @@ rclone-configure:
 	bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/rclone/rclone_env.conf > /root/.config/rclone/rclone.conf"
 
 sip-debug:
-	podman exec -it sip asterisk -rx pjsip set logger on
+	podman exec -it sip asterisk -rx "pjsip set logger on"
