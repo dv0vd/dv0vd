@@ -9,3 +9,15 @@ enter-outline:
 
 enter-doh-server:
 	podman exec -it doh-server bash
+
+enter-livekit:
+	podman exec -it livekit sh
+
+enter-email:
+	podman exec -it email bash
+
+enter-coturn:
+	podman exec -it coturn bash
+
+enter-sip:
+	podman exec -it sip bash

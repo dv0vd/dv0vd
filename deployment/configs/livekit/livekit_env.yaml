@@ -19,4 +19,3 @@ turn:
   relay_range_end: $LIVEKIT_TURN_MAX_PORT
   cert_file: /app/letsencrypt/live/$BASE_URL/fullchain.pem
   key_file: /app/letsencrypt/live/$BASE_URL/privkey.pem
-  

@@ -104,6 +104,20 @@ ip6tables -A OUTPUT -p ipv6-icmp --icmpv6-type 129 -m limit --limit 10/s -j ACCE
 iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT
 ip6tables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT
 
+# allow coturn
+iptables -A INPUT -p udp --dport $COTURN_PORT -j ACCEPT
+iptables -A INPUT -p tcp --dport $COTURN_PORT -j ACCEPT
+iptables -A INPUT -p tcp --dport $COTURN_TLS_PORT -j ACCEPT
+iptables -A INPUT -p udp --dport $COTURN_MIN_PORT:$COTURN_MAX_PORT -j ACCEPT
+iptables -A INPUT -p udp --dport $COTURN_MIN_PORT:$COTURN_MAX_PORT -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p udp --sport $COTURN_MIN_PORT:$COTURN_MAX_PORT -m conntrack --ctstate ESTABLISHED -j ACCEPT
+ip6tables -A INPUT -p udp --dport $COTURN_PORT -j ACCEPT
+ip6tables -A INPUT -p tcp --dport $COTURN_PORT -j ACCEPT
+ip6tables -A INPUT -p tcp --dport $COTURN_TLS_PORT -j ACCEPT
+ip6tables -A INPUT -p udp --dport $COTURN_MIN_PORT:$COTURN_MAX_PORT -j ACCEPT
+ip6tables -A INPUT -p udp --dport $COTURN_MIN_PORT:$COTURN_MAX_PORT -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+ip6tables -A OUTPUT -p udp --sport $COTURN_MIN_PORT:$COTURN_MAX_PORT -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
 # drop invalid packages
 iptables -A INPUT  -m state --state INVALID -j DROP
 iptables -A OUTPUT -m state --state INVALID -j DROP
