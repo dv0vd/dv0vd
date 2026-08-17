@@ -1,11 +1,24 @@
 stop-containers:
 	- $(MAKE) stop-nginx
-	- $(MAKE) stop-pihole
+	- $(MAKE) stop-demo
+	- $(MAKE) stop-synapse
+	- $(MAKE) stop-matrix-rtc
+	- $(MAKE) stop-livekit
+	- $(MAKE) stop-coturn
+	- $(MAKE) stop-rustdesk
+	- $(MAKE) stop-sip
+	- $(MAKE) stop-ntfy
+	- $(MAKE) stop-doh-server
+	- $(MAKE) stop-xray-vless-reality
+	- $(MAKE) stop-outline
+	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
 	- $(MAKE) stop-mtproto
-	- $(MAKE) stop-https-proxy
-	- $(MAKE) stop-outline
+	- $(MAKE) stop-whitelist-bypass
+	- $(MAKE) stop-livekit-redis
+	- $(MAKE) stop-db
+	- $(MAKE) stop-email
 
 stop-socks4:
 	- podman stop socks4
@@ -85,6 +98,40 @@ stop-doh-server:
 	- podman stop doh-server
 	- podman rm doh-server
 
+stop-ntfy:
+	- podman stop ntfy
+	- podman rm ntfy
+
+stop-livekit:
+	- podman stop livekit
+	- podman rm livekit
+
+stop-livekit-redis:
+	- podman stop livekit-redis
+	- podman rm livekit-redis
+
+stop-matrix-rtc:
+	- podman stop matrix-rtc
+	- podman rm matrix-rtc
+
+stop-email:
+	- podman stop email
+	- podman rm email
+
+stop-rustdesk:
+	- podman stop rustdesk-id
+	- podman stop rustdesk-relay
+	- podman rm rustdesk-id
+	- podman rm rustdesk-relay
+
 stop-mtproto:
 	- podman stop mtproto
 	- podman rm mtproto
+
+stop-whitelist-bypass:
+	- podman stop whitelist-bypass
+	- podman rm whitelist-bypass
+
+stop-sip:
+	- podman stop sip
+	- podman rm sip

@@ -3,7 +3,7 @@ set -e # stop script on any error
 
 
 
-configure_nginx() {
+configure_nginx_lite() {
   log "Configuring nginx..."
   htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
   openssl req -x509 -nodes -newkey rsa:2048 \
@@ -13,9 +13,16 @@ configure_nginx() {
   log "Nginx successfully configured"
 }
 
+configure_nginx_main() {
+  log "Configuring nginx..."
+  htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
+  make -C /root/dv0vd certbot-issue
+  log "Nginx successfully configured"
+}
+
 configure_ssh() {
   log "Configuring SSH..."
-  cat /root/dv0vd/deployment/configs/ssh/ssh.pub >> /root/.ssh/authorized_keys
+  echo "$SSH_PUBLIC_KEY" >> /root/.ssh/authorized_keys
   touch /etc/ssh/sshd_config.d/00-dv0vd.conf
   echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config.d/00-dv0vd.conf
   echo Port $SSH_PORT >> /etc/ssh/sshd_config.d/00-dv0vd.conf
@@ -43,7 +50,7 @@ configure_podman() {
   systemctl start podman
   podman system prune --all -f
   systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS
-  systemctl stop systemd-resolved || true # required for Pi-hole
+  systemctl stop systemd-resolved || true # required for Pi-hole 
   systemctl disable systemd-resolved || true # required for Pi-hole
   log "Podman successfully configured"
 }
@@ -163,6 +170,14 @@ configure_dns() {
   log "DNS successfully configured"
 }
 
+configure_email() {
+  log "Configuring Email server..."
+  make -C /root/dv0vd email-init
+  make -C /root/dv0vd email-create-user username=postmaster
+  make -C /root/dv0vd email-create-user username=catch-all
+  log "Email server successfully configured"
+}
+
 
 
 load_env
@@ -171,7 +186,9 @@ install_packages
 configure_dns
 configure_ssh
 configure_podman
-configure_nginx
+configure_rclone
+configure_nginx_main
 configure_outline
 generate_mtproto_proxy_config
+configure_email
 finish
