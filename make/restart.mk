@@ -48,4 +48,20 @@ restart-synapse: stop-synapse start-synapse restart-nginx
 
 restart-coturn: stop-coturn start-coturn
 
+restart-ntfy: stop-ntfy start-ntfy
+
+restart-livekit: stop-livekit start-livekit restart-nginx
+
+restart-livekit-redis: stop-livekit-redis start-livekit-redis
+
+restart-matrix-rtc: stop-matrix-rtc start-matrix-rtc restart-nginx
+
+restart-email: stop-email start-email
+
+restart-rustdesk: stop-rustdesk start-rustdesk
+
 restart-mtproto: stop-mtproto start-mtproto
+
+restart-whitelist-bypass: stop-whitelist-bypass start-whitelist-bypass
+
+restart-sip: stop-sip start-sip

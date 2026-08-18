@@ -69,3 +69,30 @@ logs-init:
 
 logs-startup:
 	cat /var/log/on-startup.log
+
+logs-ntfy:
+	podman logs -f ntfy
+
+logs-livekit:
+	podman logs -f livekit
+
+logs-livekit-redis:
+	podman logs -f livekit-redis
+
+logs-matrix-rtc:
+	podman logs -f matrix-rtc
+
+logs-email:
+	podman logs -f email
+
+logs-rustdesk-id:
+	podman logs -f rustdesk-id
+
+logs-rustdesk-relay:
+	podman logs -f rustdesk-id
+
+logs-whitelist-bypass:
+	podman logs -f whitelist-bypass
+
+logs-sip:
+	tail -f -n +1 deployment/data/sip/logs/messages

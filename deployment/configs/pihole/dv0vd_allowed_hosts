@@ -1,0 +1,13 @@
+# Title: Dv0vD allowed hosts
+#
+# Date: 06 June 2026
+# Number of unique domains: 2
+#
+# Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_allowed_hosts
+#
+# ===============================================================
+
+
+
+incoming.telemetry.mozilla.org
+m.vk.com

@@ -85,6 +85,40 @@ stop-doh-server:
 	- podman stop doh-server
 	- podman rm doh-server
 
+stop-ntfy:
+	- podman stop ntfy
+	- podman rm ntfy
+
+stop-livekit:
+	- podman stop livekit
+	- podman rm livekit
+
+stop-livekit-redis:
+	- podman stop livekit-redis
+	- podman rm livekit-redis
+
+stop-matrix-rtc:
+	- podman stop matrix-rtc
+	- podman rm matrix-rtc
+
+stop-email:
+	- podman stop email
+	- podman rm email
+
+stop-rustdesk:
+	- podman stop rustdesk-id
+	- podman stop rustdesk-relay
+	- podman rm rustdesk-id
+	- podman rm rustdesk-relay
+
 stop-mtproto:
 	- podman stop mtproto
 	- podman rm mtproto
+
+stop-whitelist-bypass:
+	- podman stop whitelist-bypass
+	- podman rm whitelist-bypass
+
+stop-sip:
+	- podman stop sip
+	- podman rm sip

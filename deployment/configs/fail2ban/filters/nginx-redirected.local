@@ -9,4 +9,4 @@ journalmatch = _SYSTEMD_UNIT=nginx.service + _COMM=nginx
 
 ignoreregex = ^<HOST>.*"GET /(?:_matrix|_synapse/client).*"
 
-# Author: Viacheslav Davydov <dv0vd@dv0vd.xyz>
+# Author: Viacheslav Davydov <viacheslav_davydov@dv0vd.dev>

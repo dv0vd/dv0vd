@@ -32,7 +32,7 @@ email:
   require_transport_security: true
   enable_tls: true
   tlsname: ${SMTP_HOST}
-  notif_from: Your Friendly %(app)s homeserver <noreply@${SYNAPSE_SERVER_NAME}>
+  notif_from: Your Friendly %(app)s homeserver <postmaster@${SYNAPSE_SERVER_NAME}>
   app_name: ${SYNAPSE_APP_NAME}
   enable_notifs: true
   notif_for_new_users: true
@@ -80,10 +80,13 @@ enable_media_repo: true
 media_store_path: /data/media_store
 max_upload_size: 100M
 media_retention:
-  local_media_lifetime: 45d
-  remote_media_lifetime: 45d
+  local_media_lifetime: 30d
+  remote_media_lifetime: 7d
 url_preview_enabled: false
-turn_uris: [ "turn:${COTURN_HOST}:${COTURN_UDP_PORT}?transport=udp", "turn:${COTURN_HOST}:${COTURN_TCP_PORT}?transport=tcp" ]
+turn_uris: [ 
+  "turn:${BASE_URL}:${COTURN_PORT}?transport=udp", 
+  "turns:${BASE_URL}:${COTURN_TLS_PORT}?transport=tcp" 
+]
 turn_shared_secret: ${COTURN_SECRET}
 turn_user_lifetime: 1h
 turn_allow_guests: false

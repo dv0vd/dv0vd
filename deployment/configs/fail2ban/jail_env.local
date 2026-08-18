@@ -52,3 +52,8 @@ logpath  = /root/dv0vd/deployment/data/email/logs/mail.log
 enabled  = true
 filter   = dovecot
 logpath  = /root/dv0vd/deployment/data/email/logs/mail.log
+
+[asterisk]
+enabled  = true
+filter   = asterisk
+logpath  = /root/dv0vd/deployment/data/sip/logs/messages

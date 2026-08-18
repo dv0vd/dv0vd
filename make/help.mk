@@ -5,12 +5,19 @@ help:
 	@echo ${GREEN}start-containers'                        '${WHITE}— start all containers${RESET}
 	@echo ${GREEN}start-socks4'                            '${WHITE}— start socks4 server${RESET}
 	@echo ${GREEN}start-socks5'                            '${WHITE}— start socks5 server${RESET}
+	@echo ${GREEN}start-mtproto'                           '${WHITE}— start MTProto proxy server${RESET}
+	@echo ${GREEN}start-whitelist-bypass'                  '${WHITE}— start Whitelist Bypass VK bot${RESET}
 	@echo ${GREEN}start-https-proxy'                       '${WHITE}— start https proxy server${RESET}
 	@echo ${GREEN}start-outline'                           '${WHITE}— start outline vpn${RESET}
 	@echo ${GREEN}start-xray-vless-reality'                '${WHITE}— start VLESS + XTLS / Reality${RESET}
 	@echo ${GREEN}start-nginx'                             '${WHITE}— start nginx server${RESET}
-	@echo ${GREEN}start-pihone'                            '${WHITE}— start Pi-hole${RESET}
+	@echo ${GREEN}start-pihole'                            '${WHITE}— start Pi-hole${RESET}
 	@echo ${GREEN}start-doh-server'                        '${WHITE}— start DoH server${RESET}
+	@echo ${GREEN}start-ntfy'                              '${WHITE}— start ntfy server${RESET}
+	@echo ${GREEN}start-livekit'                           '${WHITE}— start LiveKit server${RESET}
+	@echo ${GREEN}start-livekit-redis'                     '${WHITE}— start Redis for LiveKit server${RESET}
+	@echo ${GREEN}start-matrix-rtc'                        '${WHITE}— start MatrixRTC Authorization Service${RESET}
+	@echo ${GREEN}start-email'                             '${WHITE}— start email server${RESET}
 	@echo ${GREEN}start-db'                                '${WHITE}— start databases${RESET}
 	@echo ${GREEN}start-mongo-demo'                        '${WHITE}— start mongo database for demo projects${RESET}
 	@echo ${GREEN}start-postgres-demo'                     '${WHITE}— start postgres database for demo projects${RESET}
@@ -20,14 +27,23 @@ help:
 	@echo ${GREEN}start-skillnotes'                        '${WHITE}— start skillnotes demo project${RESET}
 	@echo ${GREEN}start-todo-manager'                      '${WHITE}— start todo manager demo project${RESET}
 	@echo ${GREEN}start-fail2ban'                          '${WHITE}— start fail2ban${RESET}
+	@echo ${GREEN}start-rustdesk'                          '${WHITE}— start RustDesk${RESET}
+	@echo ${GREEN}start-sip'                               '${WHITE}— start SIP server${RESET}
 	@echo ${GREEN}stop-containers'                         '${WHITE}— stop all containers${RESET}
 	@echo ${GREEN}stop-socks4'                             '${WHITE}— stop socks4 server${RESET}
 	@echo ${GREEN}stop-socks5'                             '${WHITE}— stop socks5 server${RESET}
+	@echo ${GREEN}stop-mtproto'                            '${WHITE}— stop MTProto proxy server${RESET}
+	@echo ${GREEN}stop-whitelist-bypass'                   '${WHITE}— stop Whitelist Bypass VK bot${RESET}
 	@echo ${GREEN}stop-https-proxy'                        '${WHITE}— stop https proxy server${RESET}
 	@echo ${GREEN}stop-outline'                            '${WHITE}— stop outline vpn${RESET}
 	@echo ${GREEN}stop-xray-vless-reality'                 '${WHITE}— stop VLESS + XTLS / Reality${RESET}
 	@echo ${GREEN}stop-pihole'                             '${WHITE}— stop Pi-hole${RESET}
 	@echo ${GREEN}stop-doh-server'                         '${WHITE}— stop DoH server${RESET}
+	@echo ${GREEN}stop-ntfy'                               '${WHITE}— stop ntfy server${RESET}
+	@echo ${GREEN}stop-livekit'                            '${WHITE}— stop LiveKit server${RESET}
+	@echo ${GREEN}stop-livekit-redis'                      '${WHITE}— stop Redis for LiveKit server${RESET}
+	@echo ${GREEN}stop-matrix-rtc'                         '${WHITE}— stop MatrixRTC Authorization Service${RESET}
+	@echo ${GREEN}stop-email'                              '${WHITE}— stop email server${RESET}
 	@echo ${GREEN}stop-nginx'                              '${WHITE}— stop nginx server${RESET}
 	@echo ${GREEN}stop-db'                                 '${WHITE}— stop databases${RESET}
 	@echo ${GREEN}stop-mongo-demo'                         '${WHITE}— stop mongo database for demo projects${RESET}
@@ -38,15 +54,24 @@ help:
 	@echo ${GREEN}stop-skillnotes'                         '${WHITE}— stop skillnotes demo project${RESET}
 	@echo ${GREEN}stop-todo-manager'                       '${WHITE}— stop todo-manager demo project${RESET}
 	@echo ${GREEN}stop-fail2ban'                           '${WHITE}— stop fail2ban${RESET}
+	@echo ${GREEN}stop-rustdesk'                           '${WHITE}— stop RustDesk${RESET}
+	@echo ${GREEN}stop-sip'                                '${WHITE}— stop SIP server${RESET}
 	@echo ${GREEN}restart-containers'                      '${WHITE}— restart all containers${RESET}
 	@echo ${GREEN}restart-socks4'                          '${WHITE}— restart socks4 server${RESET}
 	@echo ${GREEN}restart-socks5'                          '${WHITE}— restart socks5 server${RESET}
+	@echo ${GREEN}restart-mtproto'                         '${WHITE}— restart MTProto proxy server${RESET}
+	@echo ${GREEN}restart-whitelist-bypass'                '${WHITE}— restart Whitelist Bypass VK bot${RESET}
 	@echo ${GREEN}restart-https-proxy'                     '${WHITE}— restart https proxy server${RESET}
 	@echo ${GREEN}restart-outline'                         '${WHITE}— restart outline vpn${RESET}
 	@echo ${GREEN}restart-xray-vless-reality'              '${WHITE}— restart VLESS + XTLS / Reality${RESET}
 	@echo ${GREEN}restart-nginx'                           '${WHITE}— restart nginx server${RESET}
 	@echo ${GREEN}restart-pihole'                          '${WHITE}— restart Pi-hole${RESET}
 	@echo ${GREEN}restart-doh-server'                      '${WHITE}— restart DoH server${RESET}
+	@echo ${GREEN}restart-ntfy'                            '${WHITE}— restart ntfy server${RESET}
+	@echo ${GREEN}restart-livekit'                         '${WHITE}— restart LiveKit server${RESET}
+	@echo ${GREEN}restart-livekit-redis'                   '${WHITE}— restart Redis for LiveKit server${RESET}
+	@echo ${GREEN}restart-matrix-rtc'                      '${WHITE}— restart MatrixRTC Authorization Service${RESET}
+	@echo ${GREEN}restart-email'                           '${WHITE}— restart email server${RESET}
 	@echo ${GREEN}restart-db'                              '${WHITE}— restart databases${RESET}
 	@echo ${GREEN}restart-mongo-demo'                      '${WHITE}— restart mongo database for demo projects${RESET}
 	@echo ${GREEN}restart-postgres-demo'                   '${WHITE}— restart postgres database for demo projects${RESET}
@@ -55,10 +80,16 @@ help:
 	@echo ${GREEN}restart-timers'                          '${WHITE}— restart timers demo project${RESET}
 	@echo ${GREEN}restart-skillnotes'                      '${WHITE}— restart skillnotes demo project${RESET}
 	@echo ${GREEN}restart-todo-manager'                    '${WHITE}— restart todo-manager demo project${RESET}
+	@echo ${GREEN}restart-rustdesk'                        '${WHITE}— restart RustDesk${RESET}
+	@echo ${GREEN}restart-sip'                             '${WHITE}— restart SIP server${RESET}
 	@echo ${GREEN}enter-nginx'                             '${WHITE}— enter to the nginx container${RESET}
 	@echo ${GREEN}enter-synapse'                           '${WHITE}— enter to the synapse container${RESET}
 	@echo ${GREEN}enter-outline'                           '${WHITE}— enter to the outline container${RESET}
 	@echo ${GREEN}enter-doh-server'                        '${WHITE}— enter to the DoH server container${RESET}
+	@echo ${GREEN}enter-livekit'                           '${WHITE}— enter to the LiveKit server container${RESET}
+	@echo ${GREEN}enter-email'                             '${WHITE}— enter to the email container${RESET}
+	@echo ${GREEN}enter-coturn'                            '${WHITE}— enter to the coturn container${RESET}
+	@echo ${GREEN}enter-sip'                               '${WHITE}— enter to the SIP server container${RESET}
 	@echo ${GREEN}restart-fail2ban'                        '${WHITE}— restart fail2ban and reload fail2ban-client${RESET}
 	@echo ${GREEN}logs-clear'                              '${WHITE}— clear journalctl logs olden then 1 day${RESET}
 	@echo ${GREEN}logs-socks4'                             '${WHITE}— get socks4 server logs${RESET}
@@ -66,11 +97,17 @@ help:
 	@echo ${GREEN}logs-https-proxy'                        '${WHITE}— get https proxy server logs${RESET}
 	@echo ${GREEN}logs-outline'                            '${WHITE}— get outline vpn logs${RESET}
 	@echo ${GREEN}logs-xray-vless-reality'                 '${WHITE}— get VLESS + XTLS / Reality logs${RESET}
+	@echo ${GREEN}logs-whitelist-bypass'                   '${WHITE}— get Whitelist Bypass VK bot logs${RESET}
 	@echo ${GREEN}logs-nginx'                              '${WHITE}— get nginx logs${RESET}
 	@echo ${GREEN}logs-nginx-access'                       '${WHITE}— get nginx access logs${RESET}
 	@echo ${GREEN}logs-nginx-error'                        '${WHITE}— get nginx error logs${RESET}
 	@echo ${GREEN}logs-pihole'                             '${WHITE}— get Pi-hole logs${RESET}
 	@echo ${GREEN}logs-doh-server'                         '${WHITE}— get DoH server logs${RESET}
+	@echo ${GREEN}logs-ntfy'                               '${WHITE}— get ntfy server logs${RESET}
+	@echo ${GREEN}logs-livekit'                            '${WHITE}— get LiveKit server logs${RESET}
+	@echo ${GREEN}logs-livekit-redis'                      '${WHITE}— get log of Redis for LiveKit server${RESET}
+	@echo ${GREEN}logs-matrix-rtc'                         '${WHITE}— get MatrixRTC Authorization Service logs${RESET}
+	@echo ${GREEN}logs-email'                              '${WHITE}— get email server logs${RESET}
 	@echo ${GREEN}logs-mongo-demo'                         '${WHITE}— get logs of mongo database for demo projects${RESET}
 	@echo ${GREEN}logs-postgres-demo'                      '${WHITE}— get logs of postgres database for demo projects${RESET}
 	@echo ${GREEN}logs-postgres-synapse'                   '${WHITE}— get logs of postgres database for synapse server${RESET}
@@ -83,6 +120,9 @@ help:
 	@echo ${GREEN}logs-fail2ban'                           '${WHITE}— get fail2ban logs${RESET}
 	@echo ${GREEN}logs-synapse'                            '${WHITE}— get synapse homerver logs${RESET}
 	@echo ${GREEN}logs-synapse-container'                  '${WHITE}— get synapse container logs${RESET}
+	@echo ${GREEN}logs-rustdesk-id'                        '${WHITE}— get RustDesk ID Server container logs${RESET}
+	@echo ${GREEN}logs-rustdesk-relay'                     '${WHITE}— get RustDesk Relay Server container logs${RESET}
+	@echo ${GREEN}logs-sip'                                '${WHITE}— get SIP server logs${RESET}
 	@echo ${GREEN}fail2ban-configure'                      '${WHITE}— configure fail2ban${RESET}
 	@echo ${GREEN}fail2ban-status'                         '${WHITE}— get fail2ban jails status${RESET}
 	@echo ${GREEN}fail2ban-unban-all'                      '${WHITE}— unban all IPs in fail2ban${RESET}
@@ -95,7 +135,7 @@ help:
 	@echo ${GREEN}iptables-rules-filter'                   '${WHITE}— show iptables filter table rules${RESET}
 	@echo ${GREEN}iptables-rules-nat'                      '${WHITE}— show iptables nat table rules${RESET}
 	@echo ${GREEN}iptables-rules-mangle'                   '${WHITE}— show iptables raw table rules${RESET}
-	@echo ${GREEN}iptables-rules-raw'                      '${WHITE}— show iptables mangle table rules{$RESET}
+	@echo ${GREEN}iptables-rules-raw'                      '${WHITE}— show iptables mangle table rules${RESET}
 	@echo ${GREEN}ip6tables-rules-filter'                  '${WHITE}— show ip6tables filter table rules${RESET}
 	@echo ${GREEN}ip6tables-rules-nat'                     '${WHITE}— show ip6tables nat table rules${RESET}
 	@echo ${GREEN}ip6tables-rules-mangle'                  '${WHITE}— show ip6tables raw table rules${RESET}
@@ -122,8 +162,27 @@ help:
 	@echo ${GREEN}synapse-restore-database'                '${WHITE}— restore synapse postgres database${RESET}
 	@echo ${GREEN}synapse-backup-to-storage-vps'           '${WHITE}— backup synapse database and media store to storage vps${RESET}
 	@echo ${GREEN}synapse-restore-from-storage-vps'        '${WHITE}— restore synapse database and media store from storage vps${RESET}
+	@echo ${GREEN}rustdesk-backup-to-storage-vps'          '${WHITE}— backup RustDesk to storage vps${RESET}
+	@echo ${GREEN}rustdesk-restore-from-storage-vps'       '${WHITE}— restore RustDesk from storage vps${RESET}
+	@echo ${GREEN}email-init'                              '${WHITE}— init email server${RESET}
+	@echo ${GREEN}email-create-user' [username]            '${WHITE}— create email user${RESET}
+	@echo ${GREEN}email-delete-user' [username]            '${WHITE}— delete email user${RESET}
+	@echo ${GREEN}email-list-users'                        '${WHITE}— list email users${RESET}
+	@echo ${GREEN}email-change-password' [username]        '${WHITE}— change email user password${RESET}
+	@echo ${GREEN}email-email-get-user-quota' [username]   '${WHITE}— get user quota${RESET}
+	@echo ${GREEN}email-backup-to-storage-vps'             '${WHITE}— backup emails to storage vps${RESET}
+	@echo ${GREEN}email-restore-from-storage-vps'          '${WHITE}— restore emails from storage vps${RESET}
 	@echo ${GREEN}outline-get-keys'                        '${WHITE}— get outline vpn client keys${RESET}
 	@echo ${GREEN}outline-create-key' [name]               '${WHITE}— create outline vpn client key${RESET}
 	@echo ${GREEN}outline-delete-key' [id]                 '${WHITE}— delete outline vpn client key${RESET}
 	@echo ${GREEN}generate-xray-private-key'               '${WHITE}— generate VLESS + XTLS / Reality private key${RESET}
 	@echo ${GREEN}generate-xray-short-id'                  '${WHITE}— generate VLESS + XTLS / Reality shortId${RESET}
+	@echo ${GREEN}certbot-issue'                           '${WHITE}— issue Lets enctypt certificates${RESET}
+	@echo ${GREEN}certbot-issue-website'                   '${WHITE}— issue Lets enctypt certificate for website${RESET}
+	@echo ${GREEN}certbot-issue-ntfy'                      '${WHITE}— issue Lets enctypt certificate for ntfy${RESET}
+	@echo ${GREEN}certbot-issue-livekit'                   '${WHITE}— issue Lets enctypt certificate for livekit${RESET}
+	@echo ${GREEN}certbot-issue-email'                     '${WHITE}— issue Lets enctypt certificate for email${RESET}
+	@echo ${GREEN}certbot-renew'                           '${WHITE}— renew Lets enctypt certificates${RESET}
+	@echo ${GREEN}mtproto-get-link'                        '${WHITE}— get MTProto proxy connection link${RESET}
+	@echo ${GREEN}mtproto-generate-secret'                 '${WHITE}— generate MTProto proxy secret key${RESET}
+	@echo ${GREEN}sip-debug'                               '${WHITE}— enable SIP server debug logs${RESET}

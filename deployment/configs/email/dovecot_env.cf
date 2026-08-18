@@ -1,0 +1,4 @@
+plugin {
+  quota = maildir:User quota
+  quota_rule = *:storage=$EMAIL_MAILBOX_LIMIT
+}
