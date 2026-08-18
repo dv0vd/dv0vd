@@ -1,24 +1,11 @@
 stop-containers:
 	- $(MAKE) stop-nginx
-	- $(MAKE) stop-demo
-	- $(MAKE) stop-synapse
-	- $(MAKE) stop-matrix-rtc
-	- $(MAKE) stop-livekit
-	- $(MAKE) stop-coturn
-	- $(MAKE) stop-rustdesk
-	- $(MAKE) stop-sip
-	- $(MAKE) stop-ntfy
-	- $(MAKE) stop-doh-server
-	- $(MAKE) stop-xray-vless-reality
-	- $(MAKE) stop-outline
-	- $(MAKE) stop-https-proxy
+	- $(MAKE) stop-pihole
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
 	- $(MAKE) stop-mtproto
-	- $(MAKE) stop-whitelist-bypass
-	- $(MAKE) stop-livekit-redis
-	- $(MAKE) stop-db
-	- $(MAKE) stop-email
+	- $(MAKE) stop-https-proxy
+	- $(MAKE) stop-outline
 
 stop-socks4:
 	- podman stop socks4

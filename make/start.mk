@@ -4,30 +4,12 @@ start-containers:
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
-	- $(MAKE) email-backup-to-storage-vps
-	- $(MAKE) start-email
-	- $(MAKE) start-db
-	- $(MAKE) start-livekit-redis
+	- $(MAKE) start-pihole
 	- $(MAKE) start-mtproto
-	- $(MAKE) start-whitelist-bypass
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-outline
-	- $(MAKE) start-xray-vless-reality
-	- $(MAKE) start-doh-server
-	- $(MAKE) start-ntfy
-	- $(MAKE) start-sip
-	- $(MAKE) rustdesk-backup-to-storage-vps
-	- $(MAKE) start-rustdesk
-	- $(MAKE) synapse-vacuum-clean
-	- $(MAKE) synapse-backup-database
-	- $(MAKE) synapse-backup-to-storage-vps
-	- $(MAKE) start-coturn
-	- $(MAKE) start-livekit
-	- $(MAKE) start-matrix-rtc
-	- $(MAKE) start-synapse
-	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
 
 start-socks4:
@@ -130,21 +112,22 @@ start-xray-vless-reality:
 		docker.io/teddysun/xray:25.10.15
 
 start-nginx:
-	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_URL \$$MTPROTO_URL' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_lite_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
 	-d \
 	--name nginx \
-	--network podman_network \
+	--network host \
+	--dns ${DNS1} \
+	--dns ${DNS2} \
+	--dns 1.1.1.1 \
+	--dns 8.8.8.8 \
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
-	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
-	-v ./deployment/configs/pihole:/app/pihole:ro \
-	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
-	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
 	-p 80:80 \
 	-p 443:443 \
 	-p 8448:8448 \
@@ -155,7 +138,7 @@ start-nginx:
 	docker.io/nginx:1.27.3
 
 start-nginx-local:
-	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/local_main_env.conf > ./deployment/configs/nginx/local.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/local_lite_env.conf > ./deployment/configs/nginx/local.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -169,7 +152,7 @@ start-nginx-local:
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
 	-v ./deployment/configs/pihole:/app/pihole:ro \
-	-p ${NGINX_LOCAL_PORT}:80 \
+	-p ${NGINX_LOCAL_PORT}:443 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \

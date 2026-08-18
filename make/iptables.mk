@@ -23,5 +23,5 @@ ip6tables-rules-mangle:
 	ip6tables -t mangle -vnL
 
 iptables-apply-rules:
-	bash -c 'set -a; . .env; set +a; envsubst "\$$SSH_PORT \$$COTURN_PORT \$$COTURN_TLS_PORT \$$COTURN_MIN_PORT \$$COTURN_MAX_PORT" < ./deployment/configs/iptables/iptables_main.sh > ./deployment/configs/iptables/iptables.sh'
+	bash -c 'set -a; . .env; set +a; envsubst "\$$SSH_PORT" < ./deployment/configs/iptables/iptables_lite.sh > ./deployment/configs/iptables/iptables.sh'
 	chmod +x ./deployment/configs/iptables/iptables.sh && ./deployment/configs/iptables/iptables.sh

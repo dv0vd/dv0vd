@@ -10,4 +10,3 @@ on-startup:
 	- rm -rf /var/tmp/*
 	- systemctl set-property podman-group.slice MemoryMax=${PODMAN_MEMORY_LIMIT} CPUQuota=${PODMAN_CPUS}
 	- $(MAKE) restart-containers
-	- $(MAKE) certbot-renew
