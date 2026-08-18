@@ -516,7 +516,6 @@ start-sip:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/107_env.conf > ./deployment/configs/sip/pjsip.d/107.conf"
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/108_env.conf > ./deployment/configs/sip/pjsip.d/108.conf"
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/109_env.conf > ./deployment/configs/sip/pjsip.d/109.conf"
-	- mkdir -p ./deployment/data/sip/certs
 	-@ rm ./deployment/data/sip/logs/*
 	- touch ./deployment/data/sip/logs/messages
 	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/fullchain.pem ./deployment/data/sip/certs/fullchain.pem
