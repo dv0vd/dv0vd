@@ -9,7 +9,6 @@ start-containers:
 	- $(MAKE) start-db
 	- $(MAKE) start-livekit-redis
 	- $(MAKE) start-mtproto
-	- $(MAKE) start-whitelist-bypass
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy

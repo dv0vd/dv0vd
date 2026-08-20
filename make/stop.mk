@@ -15,7 +15,6 @@ stop-containers:
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
 	- $(MAKE) stop-mtproto
-	- $(MAKE) stop-whitelist-bypass
 	- $(MAKE) stop-livekit-redis
 	- $(MAKE) stop-db
 	- $(MAKE) stop-email
