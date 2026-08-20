@@ -511,7 +511,7 @@ start-whitelist-bypass:
 		--name whitelist-bypass \
 		-e VK_TOKEN=${WHITELIST_BYPASS_VK_TOKEN} \
 		-e VK_GROUP_ID=${WHITELIST_BYPASS_VK_GROUP_ID} \
-		-e TM_COOKIES=/app/cookies-telemost.json \
+		-e TM_COOKIES=/app/cookies-yandex.json \
 		-e WB_COOKIES=/app/cookies-wbstream.json \
 		-e VK_COOKIES=/app/cookies-vk.json \
 		-e UPSTREAM_SOCKS=xray-vless-reality-whitelist-bypass:1080 \
