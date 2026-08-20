@@ -145,9 +145,6 @@ start-nginx:
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./src:/app:ro \
-	-p 80:80 \
-	-p 443:443 \
-	-p 8448:8448 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
