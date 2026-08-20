@@ -138,6 +138,7 @@ help:
 	$(call print-help,podman-load-images,load images from local copy)
 	$(call print-help,podman-cleanup,clean all podman resources)
 	$(call print-help,podman-create-network,create custom podman network with ipv6 support)
+	$(call print-help,podman-create-whitelist-bypass-network,create whitelist bypass podman network)
 	$(call print-help,podman-stats,get containers stats)
 	$(call print-help,podman-info,get containers list with info)
 	$(call print-help,podman-resources,get podman consumed resources with tasks)
