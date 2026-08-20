@@ -134,7 +134,6 @@ start-xray-vless-reality-whitelist-bypass:
 	- podman run \
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
-		-p ${XRAY_VLESS_REALITY_WHITELIST_BYPASS_PORT}:1080 \
 		--network podman_network \
 		--dns ${DNS1} \
 		--dns ${DNS2} \
