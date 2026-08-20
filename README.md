@@ -33,8 +33,4 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - nineseconds-mtg_2.2.8.tar
 - kulikov0-whitelist-bypass-bot_v0.3.7.tar
 - andrius-asterisk_22.8-cert3_debian-trixie.tar
-8) Copy cookies for Whitelist Bypass service to `./deployment/configs/whitelist-bypass`:
-- cookies-telemost.json
-- cookies-wbstream.json
-- cookies-vk.json
-9) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
+8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
