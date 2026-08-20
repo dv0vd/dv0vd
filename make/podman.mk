@@ -4,9 +4,6 @@ podman-cleanup:
 podman-create-network:
 	podman network create --ipv6 --disable-dns podman_network
 
-podman-create-whitelist-bypass-network:
-	podman network create whitelist_bypass_network
-
 podman-load-images:
 	podman load < ./deployment/images/dv0vd-https-proxy_1.2.0.tar
 	podman load < ./deployment/images/dv0vd-socks4_1.1.3.tar
