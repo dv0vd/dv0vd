@@ -6,6 +6,7 @@ stop-containers:
 	- $(MAKE) stop-mtproto
 	@if [ "${PUBLIC_IP}" = "${VPS_RU}" ]; then \
 		$(MAKE) stop-whitelist-bypass; \
+		$(MAKE) stop-xray-vless-reality-whitelist-bypass; \
 	fi
 	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-outline
