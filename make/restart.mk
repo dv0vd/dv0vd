@@ -3,6 +3,7 @@ restart-containers:
 	- $(MAKE) podman-cleanup
 	- $(MAKE) podman-load-images
 	- $(MAKE) podman-create-network
+	- $(MAKE) podman-create-whitelist-bypass-network
 	- $(MAKE) start-containers
 
 restart-socks4: stop-socks4 start-socks4
