@@ -15,7 +15,6 @@ stop-containers:
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
 	- $(MAKE) stop-mtproto
-	- $(MAKE) stop-whitelist-bypass
 	- $(MAKE) stop-livekit-redis
 	- $(MAKE) stop-db
 	- $(MAKE) stop-email
@@ -43,6 +42,10 @@ stop-xray-vless-reality-whitelist-bypass:
 stop-xray-vless-reality:
 	- podman stop xray-vless-reality
 	- podman rm xray-vless-reality
+
+stop-xray-vless-reality-whitelist-bypass:
+	- podman stop xray-vless-reality-whitelist-bypass
+	- podman rm xray-vless-reality-whitelist-bypass
 
 stop-nginx:
 	- podman stop nginx

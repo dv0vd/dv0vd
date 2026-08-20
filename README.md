@@ -31,6 +31,5 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - docker-mailserver:15.1.0.tar
 - rustdesk-server_1.1.15.tar
 - nineseconds-mtg_2.2.8.tar
-- kulikov0-whitelist-bypass-bot_v0.3.7.tar
 - andrius-asterisk_22.8-cert3_debian-trixie.tar
 8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
