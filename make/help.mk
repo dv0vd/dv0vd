@@ -104,6 +104,7 @@ help:
 	$(call print-help,logs-https-proxy,get https proxy server logs)
 	$(call print-help,logs-outline,get outline vpn logs)
 	$(call print-help,logs-xray-vless-reality,get VLESS + XTLS / Reality logs)
+	$(call print-help,logs-xray-vless-reality-whitelist-bypass,get VLESS + XTLS / Reality whitelist bypass logs)
 	$(call print-help,logs-whitelist-bypass,get Whitelist Bypass VK bot logs)
 	$(call print-help,logs-nginx,get nginx logs)
 	$(call print-help,logs-nginx-access,get nginx access logs)

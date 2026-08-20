@@ -16,6 +16,9 @@ logs-outline:
 logs-xray-vless-reality:
 	podman logs -f xray-vless-reality
 
+logs-xray-vless-reality-whitelist-bypass:
+	podman logs -f xray-vless-reality-whitelist-bypass
+
 logs-nginx:
 	podman logs -f nginx
 
