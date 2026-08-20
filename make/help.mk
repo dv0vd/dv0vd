@@ -1,188 +1,195 @@
 GREEN='\033[1;32m'
 WHITE='\033[1;37m'
 RESET='\033[0m'
+HELP_TARGET_WIDTH=49
+
+print-help = @printf ${GREEN}'%-$(HELP_TARGET_WIDTH)s'${WHITE}'— %s'${RESET}'\n' '$(1)' '$(2)'
+
 help:
-	@echo ${GREEN}start-containers'                        '${WHITE}— start all containers${RESET}
-	@echo ${GREEN}start-socks4'                            '${WHITE}— start socks4 server${RESET}
-	@echo ${GREEN}start-socks5'                            '${WHITE}— start socks5 server${RESET}
-	@echo ${GREEN}start-mtproto'                           '${WHITE}— start MTProto proxy server${RESET}
-	@echo ${GREEN}start-whitelist-bypass'                  '${WHITE}— start Whitelist Bypass VK bot${RESET}
-	@echo ${GREEN}start-https-proxy'                       '${WHITE}— start https proxy server${RESET}
-	@echo ${GREEN}start-outline'                           '${WHITE}— start outline vpn${RESET}
-	@echo ${GREEN}start-xray-vless-reality'                '${WHITE}— start VLESS + XTLS / Reality${RESET}
-	@echo ${GREEN}start-nginx'                             '${WHITE}— start nginx server${RESET}
-	@echo ${GREEN}start-pihole'                            '${WHITE}— start Pi-hole${RESET}
-	@echo ${GREEN}start-doh-server'                        '${WHITE}— start DoH server${RESET}
-	@echo ${GREEN}start-ntfy'                              '${WHITE}— start ntfy server${RESET}
-	@echo ${GREEN}start-livekit'                           '${WHITE}— start LiveKit server${RESET}
-	@echo ${GREEN}start-livekit-redis'                     '${WHITE}— start Redis for LiveKit server${RESET}
-	@echo ${GREEN}start-matrix-rtc'                        '${WHITE}— start MatrixRTC Authorization Service${RESET}
-	@echo ${GREEN}start-email'                             '${WHITE}— start email server${RESET}
-	@echo ${GREEN}start-db'                                '${WHITE}— start databases${RESET}
-	@echo ${GREEN}start-mongo-demo'                        '${WHITE}— start mongo database for demo projects${RESET}
-	@echo ${GREEN}start-postgres-demo'                     '${WHITE}— start postgres database for demo projects${RESET}
-	@echo ${GREEN}start-postgres-synapse'                  '${WHITE}— start postgres database for synapse server${RESET}
-	@echo ${GREEN}start-demo'                              '${WHITE}— start all demo projects${RESET}
-	@echo ${GREEN}start-timers'                            '${WHITE}— start timers demo project${RESET}
-	@echo ${GREEN}start-skillnotes'                        '${WHITE}— start skillnotes demo project${RESET}
-	@echo ${GREEN}start-todo-manager'                      '${WHITE}— start todo manager demo project${RESET}
-	@echo ${GREEN}start-fail2ban'                          '${WHITE}— start fail2ban${RESET}
-	@echo ${GREEN}start-rustdesk'                          '${WHITE}— start RustDesk${RESET}
-	@echo ${GREEN}start-sip'                               '${WHITE}— start SIP server${RESET}
-	@echo ${GREEN}stop-containers'                         '${WHITE}— stop all containers${RESET}
-	@echo ${GREEN}stop-socks4'                             '${WHITE}— stop socks4 server${RESET}
-	@echo ${GREEN}stop-socks5'                             '${WHITE}— stop socks5 server${RESET}
-	@echo ${GREEN}stop-mtproto'                            '${WHITE}— stop MTProto proxy server${RESET}
-	@echo ${GREEN}stop-whitelist-bypass'                   '${WHITE}— stop Whitelist Bypass VK bot${RESET}
-	@echo ${GREEN}stop-https-proxy'                        '${WHITE}— stop https proxy server${RESET}
-	@echo ${GREEN}stop-outline'                            '${WHITE}— stop outline vpn${RESET}
-	@echo ${GREEN}stop-xray-vless-reality'                 '${WHITE}— stop VLESS + XTLS / Reality${RESET}
-	@echo ${GREEN}stop-pihole'                             '${WHITE}— stop Pi-hole${RESET}
-	@echo ${GREEN}stop-doh-server'                         '${WHITE}— stop DoH server${RESET}
-	@echo ${GREEN}stop-ntfy'                               '${WHITE}— stop ntfy server${RESET}
-	@echo ${GREEN}stop-livekit'                            '${WHITE}— stop LiveKit server${RESET}
-	@echo ${GREEN}stop-livekit-redis'                      '${WHITE}— stop Redis for LiveKit server${RESET}
-	@echo ${GREEN}stop-matrix-rtc'                         '${WHITE}— stop MatrixRTC Authorization Service${RESET}
-	@echo ${GREEN}stop-email'                              '${WHITE}— stop email server${RESET}
-	@echo ${GREEN}stop-nginx'                              '${WHITE}— stop nginx server${RESET}
-	@echo ${GREEN}stop-db'                                 '${WHITE}— stop databases${RESET}
-	@echo ${GREEN}stop-mongo-demo'                         '${WHITE}— stop mongo database for demo projects${RESET}
-	@echo ${GREEN}stop-postgres-demo'                      '${WHITE}— stop postgres database for demo projects${RESET}
-	@echo ${GREEN}stop-postgres-synapse'                   '${WHITE}— stop postgres database for synapse server${RESET}
-	@echo ${GREEN}stop-demo'                               '${WHITE}— stop all demo projects${RESET}
-	@echo ${GREEN}stop-timers'                             '${WHITE}— stop timers demo project${RESET}
-	@echo ${GREEN}stop-skillnotes'                         '${WHITE}— stop skillnotes demo project${RESET}
-	@echo ${GREEN}stop-todo-manager'                       '${WHITE}— stop todo-manager demo project${RESET}
-	@echo ${GREEN}stop-fail2ban'                           '${WHITE}— stop fail2ban${RESET}
-	@echo ${GREEN}stop-rustdesk'                           '${WHITE}— stop RustDesk${RESET}
-	@echo ${GREEN}stop-sip'                                '${WHITE}— stop SIP server${RESET}
-	@echo ${GREEN}restart-containers'                      '${WHITE}— restart all containers${RESET}
-	@echo ${GREEN}restart-socks4'                          '${WHITE}— restart socks4 server${RESET}
-	@echo ${GREEN}restart-socks5'                          '${WHITE}— restart socks5 server${RESET}
-	@echo ${GREEN}restart-mtproto'                         '${WHITE}— restart MTProto proxy server${RESET}
-	@echo ${GREEN}restart-whitelist-bypass'                '${WHITE}— restart Whitelist Bypass VK bot${RESET}
-	@echo ${GREEN}restart-https-proxy'                     '${WHITE}— restart https proxy server${RESET}
-	@echo ${GREEN}restart-outline'                         '${WHITE}— restart outline vpn${RESET}
-	@echo ${GREEN}restart-xray-vless-reality'              '${WHITE}— restart VLESS + XTLS / Reality${RESET}
-	@echo ${GREEN}restart-nginx'                           '${WHITE}— restart nginx server${RESET}
-	@echo ${GREEN}restart-pihole'                          '${WHITE}— restart Pi-hole${RESET}
-	@echo ${GREEN}restart-doh-server'                      '${WHITE}— restart DoH server${RESET}
-	@echo ${GREEN}restart-ntfy'                            '${WHITE}— restart ntfy server${RESET}
-	@echo ${GREEN}restart-livekit'                         '${WHITE}— restart LiveKit server${RESET}
-	@echo ${GREEN}restart-livekit-redis'                   '${WHITE}— restart Redis for LiveKit server${RESET}
-	@echo ${GREEN}restart-matrix-rtc'                      '${WHITE}— restart MatrixRTC Authorization Service${RESET}
-	@echo ${GREEN}restart-email'                           '${WHITE}— restart email server${RESET}
-	@echo ${GREEN}restart-db'                              '${WHITE}— restart databases${RESET}
-	@echo ${GREEN}restart-mongo-demo'                      '${WHITE}— restart mongo database for demo projects${RESET}
-	@echo ${GREEN}restart-postgres-demo'                   '${WHITE}— restart postgres database for demo projects${RESET}
-	@echo ${GREEN}restart-postgres-synapse'                '${WHITE}— restart postgres database for synapse server${RESET}
-	@echo ${GREEN}restart-demo'                            '${WHITE}— restart all demo projects${RESET}
-	@echo ${GREEN}restart-timers'                          '${WHITE}— restart timers demo project${RESET}
-	@echo ${GREEN}restart-skillnotes'                      '${WHITE}— restart skillnotes demo project${RESET}
-	@echo ${GREEN}restart-todo-manager'                    '${WHITE}— restart todo-manager demo project${RESET}
-	@echo ${GREEN}restart-rustdesk'                        '${WHITE}— restart RustDesk${RESET}
-	@echo ${GREEN}restart-sip'                             '${WHITE}— restart SIP server${RESET}
-	@echo ${GREEN}enter-nginx'                             '${WHITE}— enter to the nginx container${RESET}
-	@echo ${GREEN}enter-synapse'                           '${WHITE}— enter to the synapse container${RESET}
-	@echo ${GREEN}enter-outline'                           '${WHITE}— enter to the outline container${RESET}
-	@echo ${GREEN}enter-doh-server'                        '${WHITE}— enter to the DoH server container${RESET}
-	@echo ${GREEN}enter-livekit'                           '${WHITE}— enter to the LiveKit server container${RESET}
-	@echo ${GREEN}enter-email'                             '${WHITE}— enter to the email container${RESET}
-	@echo ${GREEN}enter-coturn'                            '${WHITE}— enter to the coturn container${RESET}
-	@echo ${GREEN}enter-sip'                               '${WHITE}— enter to the SIP server container${RESET}
-	@echo ${GREEN}restart-fail2ban'                        '${WHITE}— restart fail2ban and reload fail2ban-client${RESET}
-	@echo ${GREEN}logs-clear'                              '${WHITE}— clear journalctl logs olden then 1 day${RESET}
-	@echo ${GREEN}logs-socks4'                             '${WHITE}— get socks4 server logs${RESET}
-	@echo ${GREEN}logs-socks5'                             '${WHITE}— get socks5 server logs${RESET}
-	@echo ${GREEN}logs-https-proxy'                        '${WHITE}— get https proxy server logs${RESET}
-	@echo ${GREEN}logs-outline'                            '${WHITE}— get outline vpn logs${RESET}
-	@echo ${GREEN}logs-xray-vless-reality'                 '${WHITE}— get VLESS + XTLS / Reality logs${RESET}
-	@echo ${GREEN}logs-whitelist-bypass'                   '${WHITE}— get Whitelist Bypass VK bot logs${RESET}
-	@echo ${GREEN}logs-nginx'                              '${WHITE}— get nginx logs${RESET}
-	@echo ${GREEN}logs-nginx-access'                       '${WHITE}— get nginx access logs${RESET}
-	@echo ${GREEN}logs-nginx-error'                        '${WHITE}— get nginx error logs${RESET}
-	@echo ${GREEN}logs-pihole'                             '${WHITE}— get Pi-hole logs${RESET}
-	@echo ${GREEN}logs-doh-server'                         '${WHITE}— get DoH server logs${RESET}
-	@echo ${GREEN}logs-ntfy'                               '${WHITE}— get ntfy server logs${RESET}
-	@echo ${GREEN}logs-livekit'                            '${WHITE}— get LiveKit server logs${RESET}
-	@echo ${GREEN}logs-livekit-redis'                      '${WHITE}— get log of Redis for LiveKit server${RESET}
-	@echo ${GREEN}logs-matrix-rtc'                         '${WHITE}— get MatrixRTC Authorization Service logs${RESET}
-	@echo ${GREEN}logs-email'                              '${WHITE}— get email server logs${RESET}
-	@echo ${GREEN}logs-mongo-demo'                         '${WHITE}— get logs of mongo database for demo projects${RESET}
-	@echo ${GREEN}logs-postgres-demo'                      '${WHITE}— get logs of postgres database for demo projects${RESET}
-	@echo ${GREEN}logs-postgres-synapse'                   '${WHITE}— get logs of postgres database for synapse server${RESET}
-	@echo ${GREEN}logs-timers'                             '${WHITE}— get logs of timers demo project${RESET}
-	@echo ${GREEN}logs-skillnotes'                         '${WHITE}— get logs of skillnotes demo project${RESET}
-	@echo ${GREEN}logs-todo-manager'                       '${WHITE}— get logs of todo-manager demo project${RESET}
-	@echo ${GREEN}logs-auth'                               '${WHITE}— get SSH connection attemps logs${RESET}
-	@echo ${GREEN}logs-init'                               '${WHITE}— get init logs${RESET}
-	@echo ${GREEN}logs-startup'                            '${WHITE}— get startup logs${RESET}
-	@echo ${GREEN}logs-fail2ban'                           '${WHITE}— get fail2ban logs${RESET}
-	@echo ${GREEN}logs-synapse'                            '${WHITE}— get synapse homerver logs${RESET}
-	@echo ${GREEN}logs-synapse-container'                  '${WHITE}— get synapse container logs${RESET}
-	@echo ${GREEN}logs-rustdesk-id'                        '${WHITE}— get RustDesk ID Server container logs${RESET}
-	@echo ${GREEN}logs-rustdesk-relay'                     '${WHITE}— get RustDesk Relay Server container logs${RESET}
-	@echo ${GREEN}logs-sip'                                '${WHITE}— get SIP server logs${RESET}
-	@echo ${GREEN}fail2ban-configure'                      '${WHITE}— configure fail2ban${RESET}
-	@echo ${GREEN}fail2ban-status'                         '${WHITE}— get fail2ban jails status${RESET}
-	@echo ${GREEN}fail2ban-unban-all'                      '${WHITE}— unban all IPs in fail2ban${RESET}
-	@echo ${GREEN}podman-load-images'                      '${WHITE}— load images from local copy${RESET}
-	@echo ${GREEN}podman-cleanup'                          '${WHITE}— clean all podman resources${RESET}
-	@echo ${GREEN}podman-create-network'                   '${WHITE}— create custom podman network with ipv6 support${RESET}
-	@echo ${GREEN}podman-stats'                            '${WHITE}— get containers stats${RESET}
-	@echo ${GREEN}podman-info'                             '${WHITE}— get containers list with info${RESET}
-	@echo ${GREEN}podman-resources'                        '${WHITE}— get podman consumed resources with tasks${RESET}
-	@echo ${GREEN}iptables-rules-filter'                   '${WHITE}— show iptables filter table rules${RESET}
-	@echo ${GREEN}iptables-rules-nat'                      '${WHITE}— show iptables nat table rules${RESET}
-	@echo ${GREEN}iptables-rules-mangle'                   '${WHITE}— show iptables raw table rules${RESET}
-	@echo ${GREEN}iptables-rules-raw'                      '${WHITE}— show iptables mangle table rules${RESET}
-	@echo ${GREEN}ip6tables-rules-filter'                  '${WHITE}— show ip6tables filter table rules${RESET}
-	@echo ${GREEN}ip6tables-rules-nat'                     '${WHITE}— show ip6tables nat table rules${RESET}
-	@echo ${GREEN}ip6tables-rules-mangle'                  '${WHITE}— show ip6tables raw table rules${RESET}
-	@echo ${GREEN}ip6tables-rules-raw'                     '${WHITE}— show ip6tables mangle table rules${RESET}
-	@echo ${GREEN}iptables-rules-apply'                    '${WHITE}— apply iptables rules${RESET}
-	@echo ${GREEN}on-startup'                              '${WHITE}— commands to execute immediately after server startup${RESET}
-	@echo ${GREEN}disable-ipv6'                            '${WHITE}— disable-ipv6${RESET}
-	@echo ${GREEN}disk-usage' [path]                       '${WHITE}— get disk usage${RESET}
-	@echo ${GREEN}rclone-configure'                        '${WHITE}— configure rclone${RESET}
-	@echo ${GREEN}init-demo'                               '${WHITE}— clone demo projects and install dependencies${RESET}
-	@echo ${GREEN}init-lagoona'                            '${WHITE}— clone lagoona demo project and install dependencies${RESET}
-	@echo ${GREEN}init-evklid'                             '${WHITE}— clone evklid demo project and install dependencies${RESET}
-	@echo ${GREEN}init-gazprombank-auth'                   '${WHITE}— clone gazprombank auth demo project and install dependencies${RESET}
-	@echo ${GREEN}init-gazprombank-startups'               '${WHITE}— clone gazprombank startups form project and install dependencies${RESET}
-	@echo ${GREEN}refresh-demo'                            '${WHITE}— completely remove demo projects and reinstall them${RESET}
-	@echo ${GREEN}refresh-lagoona'                         '${WHITE}— completely remove lagoona project and reinstall it${RESET}
-	@echo ${GREEN}refresh-evklid'                          '${WHITE}— completely remove evklid project and reinstall it${RESET}
-	@echo ${GREEN}refresh-gazprombank-auth'                '${WHITE}— completely remove gazprombank auth project and reinstall it${RESET}
-	@echo ${GREEN}refresh-gazprombank-startups'            '${WHITE}— completely remove gazprombank startup form project and reinstall it${RESET}
-	@echo ${GREEN}synapse-init'                            '${WHITE}— init synapse server${RESET}
-	@echo ${GREEN}synapse-create-user'                     '${WHITE}— create synapse user${RESET}
-	@echo ${GREEN}synapse-vacuum-clean'                    '${WHITE}— reclaims synapse postgres space${RESET}
-	@echo ${GREEN}synapse-backup-database'                 '${WHITE}— backup synapse postgres database${RESET}
-	@echo ${GREEN}synapse-restore-database'                '${WHITE}— restore synapse postgres database${RESET}
-	@echo ${GREEN}synapse-backup-to-storage-vps'           '${WHITE}— backup synapse database and media store to storage vps${RESET}
-	@echo ${GREEN}synapse-restore-from-storage-vps'        '${WHITE}— restore synapse database and media store from storage vps${RESET}
-	@echo ${GREEN}rustdesk-backup-to-storage-vps'          '${WHITE}— backup RustDesk to storage vps${RESET}
-	@echo ${GREEN}rustdesk-restore-from-storage-vps'       '${WHITE}— restore RustDesk from storage vps${RESET}
-	@echo ${GREEN}email-init'                              '${WHITE}— init email server${RESET}
-	@echo ${GREEN}email-create-user' [username]            '${WHITE}— create email user${RESET}
-	@echo ${GREEN}email-delete-user' [username]            '${WHITE}— delete email user${RESET}
-	@echo ${GREEN}email-list-users'                        '${WHITE}— list email users${RESET}
-	@echo ${GREEN}email-change-password' [username]        '${WHITE}— change email user password${RESET}
-	@echo ${GREEN}email-email-get-user-quota' [username]   '${WHITE}— get user quota${RESET}
-	@echo ${GREEN}email-backup-to-storage-vps'             '${WHITE}— backup emails to storage vps${RESET}
-	@echo ${GREEN}email-restore-from-storage-vps'          '${WHITE}— restore emails from storage vps${RESET}
-	@echo ${GREEN}outline-get-keys'                        '${WHITE}— get outline vpn client keys${RESET}
-	@echo ${GREEN}outline-create-key' [name]               '${WHITE}— create outline vpn client key${RESET}
-	@echo ${GREEN}outline-delete-key' [id]                 '${WHITE}— delete outline vpn client key${RESET}
-	@echo ${GREEN}generate-xray-private-key'               '${WHITE}— generate VLESS + XTLS / Reality private key${RESET}
-	@echo ${GREEN}generate-xray-short-id'                  '${WHITE}— generate VLESS + XTLS / Reality shortId${RESET}
-	@echo ${GREEN}certbot-issue'                           '${WHITE}— issue Lets enctypt certificates${RESET}
-	@echo ${GREEN}certbot-issue-website'                   '${WHITE}— issue Lets enctypt certificate for website${RESET}
-	@echo ${GREEN}certbot-issue-ntfy'                      '${WHITE}— issue Lets enctypt certificate for ntfy${RESET}
-	@echo ${GREEN}certbot-issue-livekit'                   '${WHITE}— issue Lets enctypt certificate for livekit${RESET}
-	@echo ${GREEN}certbot-issue-email'                     '${WHITE}— issue Lets enctypt certificate for email${RESET}
-	@echo ${GREEN}certbot-renew'                           '${WHITE}— renew Lets enctypt certificates${RESET}
-	@echo ${GREEN}mtproto-get-link'                        '${WHITE}— get MTProto proxy connection link${RESET}
-	@echo ${GREEN}mtproto-generate-secret'                 '${WHITE}— generate MTProto proxy secret key${RESET}
-	@echo ${GREEN}sip-debug'                               '${WHITE}— enable SIP server debug logs${RESET}
+	$(call print-help,start-containers,start all containers)
+	$(call print-help,start-socks4,start socks4 server)
+	$(call print-help,start-socks5,start socks5 server)
+	$(call print-help,start-mtproto,start MTProto proxy server)
+	$(call print-help,start-whitelist-bypass,start Whitelist Bypass VK bot)
+	$(call print-help,start-https-proxy,start https proxy server)
+	$(call print-help,start-outline,start outline vpn)
+	$(call print-help,start-xray-vless-reality,start VLESS + XTLS / Reality)
+	$(call print-help,start-xray-vless-reality-whitelist-bypass,start VLESS + XTLS / Reality whitelist bypass)
+	$(call print-help,start-nginx,start nginx server)
+	$(call print-help,start-pihole,start Pi-hole)
+	$(call print-help,start-doh-server,start DoH server)
+	$(call print-help,start-ntfy,start ntfy server)
+	$(call print-help,start-livekit,start LiveKit server)
+	$(call print-help,start-livekit-redis,start Redis for LiveKit server)
+	$(call print-help,start-matrix-rtc,start MatrixRTC Authorization Service)
+	$(call print-help,start-email,start email server)
+	$(call print-help,start-db,start databases)
+	$(call print-help,start-mongo-demo,start mongo database for demo projects)
+	$(call print-help,start-postgres-demo,start postgres database for demo projects)
+	$(call print-help,start-postgres-synapse,start postgres database for synapse server)
+	$(call print-help,start-demo,start all demo projects)
+	$(call print-help,start-timers,start timers demo project)
+	$(call print-help,start-skillnotes,start skillnotes demo project)
+	$(call print-help,start-todo-manager,start todo manager demo project)
+	$(call print-help,start-fail2ban,start fail2ban)
+	$(call print-help,start-rustdesk,start RustDesk)
+	$(call print-help,start-sip,start SIP server)
+	$(call print-help,stop-containers,stop all containers)
+	$(call print-help,stop-socks4,stop socks4 server)
+	$(call print-help,stop-socks5,stop socks5 server)
+	$(call print-help,stop-mtproto,stop MTProto proxy server)
+	$(call print-help,stop-whitelist-bypass,stop Whitelist Bypass VK bot)
+	$(call print-help,stop-https-proxy,stop https proxy server)
+	$(call print-help,stop-outline,stop outline vpn)
+	$(call print-help,stop-xray-vless-reality,stop VLESS + XTLS / Reality)
+	$(call print-help,stop-xray-vless-reality-whitelist-bypass,stop VLESS + XTLS / Reality whitelist bypass)
+	$(call print-help,stop-pihole,stop Pi-hole)
+	$(call print-help,stop-doh-server,stop DoH server)
+	$(call print-help,stop-ntfy,stop ntfy server)
+	$(call print-help,stop-livekit,stop LiveKit server)
+	$(call print-help,stop-livekit-redis,stop Redis for LiveKit server)
+	$(call print-help,stop-matrix-rtc,stop MatrixRTC Authorization Service)
+	$(call print-help,stop-email,stop email server)
+	$(call print-help,stop-nginx,stop nginx server)
+	$(call print-help,stop-db,stop databases)
+	$(call print-help,stop-mongo-demo,stop mongo database for demo projects)
+	$(call print-help,stop-postgres-demo,stop postgres database for demo projects)
+	$(call print-help,stop-postgres-synapse,stop postgres database for synapse server)
+	$(call print-help,stop-demo,stop all demo projects)
+	$(call print-help,stop-timers,stop timers demo project)
+	$(call print-help,stop-skillnotes,stop skillnotes demo project)
+	$(call print-help,stop-todo-manager,stop todo-manager demo project)
+	$(call print-help,stop-fail2ban,stop fail2ban)
+	$(call print-help,stop-rustdesk,stop RustDesk)
+	$(call print-help,stop-sip,stop SIP server)
+	$(call print-help,restart-containers,restart all containers)
+	$(call print-help,restart-socks4,restart socks4 server)
+	$(call print-help,restart-socks5,restart socks5 server)
+	$(call print-help,restart-mtproto,restart MTProto proxy server)
+	$(call print-help,restart-whitelist-bypass,restart Whitelist Bypass VK bot)
+	$(call print-help,restart-https-proxy,restart https proxy server)
+	$(call print-help,restart-outline,restart outline vpn)
+	$(call print-help,restart-xray-vless-reality,restart VLESS + XTLS / Reality)
+	$(call print-help,restart-xray-vless-reality-whitelist-bypass,restart VLESS + XTLS / Reality whitelist bypass)
+	$(call print-help,restart-nginx,restart nginx server)
+	$(call print-help,restart-pihole,restart Pi-hole)
+	$(call print-help,restart-doh-server,restart DoH server)
+	$(call print-help,restart-ntfy,restart ntfy server)
+	$(call print-help,restart-livekit,restart LiveKit server)
+	$(call print-help,restart-livekit-redis,restart Redis for LiveKit server)
+	$(call print-help,restart-matrix-rtc,restart MatrixRTC Authorization Service)
+	$(call print-help,restart-email,restart email server)
+	$(call print-help,restart-db,restart databases)
+	$(call print-help,restart-mongo-demo,restart mongo database for demo projects)
+	$(call print-help,restart-postgres-demo,restart postgres database for demo projects)
+	$(call print-help,restart-postgres-synapse,restart postgres database for synapse server)
+	$(call print-help,restart-demo,restart all demo projects)
+	$(call print-help,restart-timers,restart timers demo project)
+	$(call print-help,restart-skillnotes,restart skillnotes demo project)
+	$(call print-help,restart-todo-manager,restart todo-manager demo project)
+	$(call print-help,restart-rustdesk,restart RustDesk)
+	$(call print-help,restart-sip,restart SIP server)
+	$(call print-help,enter-nginx,enter to the nginx container)
+	$(call print-help,enter-synapse,enter to the synapse container)
+	$(call print-help,enter-outline,enter to the outline container)
+	$(call print-help,enter-doh-server,enter to the DoH server container)
+	$(call print-help,enter-livekit,enter to the LiveKit server container)
+	$(call print-help,enter-email,enter to the email container)
+	$(call print-help,enter-coturn,enter to the coturn container)
+	$(call print-help,enter-sip,enter to the SIP server container)
+	$(call print-help,restart-fail2ban,restart fail2ban and reload fail2ban-client)
+	$(call print-help,logs-clear,clear journalctl logs olden then 1 day)
+	$(call print-help,logs-socks4,get socks4 server logs)
+	$(call print-help,logs-socks5,get socks5 server logs)
+	$(call print-help,logs-https-proxy,get https proxy server logs)
+	$(call print-help,logs-outline,get outline vpn logs)
+	$(call print-help,logs-xray-vless-reality,get VLESS + XTLS / Reality logs)
+	$(call print-help,logs-whitelist-bypass,get Whitelist Bypass VK bot logs)
+	$(call print-help,logs-nginx,get nginx logs)
+	$(call print-help,logs-nginx-access,get nginx access logs)
+	$(call print-help,logs-nginx-error,get nginx error logs)
+	$(call print-help,logs-pihole,get Pi-hole logs)
+	$(call print-help,logs-doh-server,get DoH server logs)
+	$(call print-help,logs-ntfy,get ntfy server logs)
+	$(call print-help,logs-livekit,get LiveKit server logs)
+	$(call print-help,logs-livekit-redis,get log of Redis for LiveKit server)
+	$(call print-help,logs-matrix-rtc,get MatrixRTC Authorization Service logs)
+	$(call print-help,logs-email,get email server logs)
+	$(call print-help,logs-mongo-demo,get logs of mongo database for demo projects)
+	$(call print-help,logs-postgres-demo,get logs of postgres database for demo projects)
+	$(call print-help,logs-postgres-synapse,get logs of postgres database for synapse server)
+	$(call print-help,logs-timers,get logs of timers demo project)
+	$(call print-help,logs-skillnotes,get logs of skillnotes demo project)
+	$(call print-help,logs-todo-manager,get logs of todo-manager demo project)
+	$(call print-help,logs-auth,get SSH connection attemps logs)
+	$(call print-help,logs-init,get init logs)
+	$(call print-help,logs-startup,get startup logs)
+	$(call print-help,logs-fail2ban,get fail2ban logs)
+	$(call print-help,logs-synapse,get synapse homerver logs)
+	$(call print-help,logs-synapse-container,get synapse container logs)
+	$(call print-help,logs-rustdesk-id,get RustDesk ID Server container logs)
+	$(call print-help,logs-rustdesk-relay,get RustDesk Relay Server container logs)
+	$(call print-help,logs-sip,get SIP server logs)
+	$(call print-help,fail2ban-configure,configure fail2ban)
+	$(call print-help,fail2ban-status,get fail2ban jails status)
+	$(call print-help,fail2ban-unban-all,unban all IPs in fail2ban)
+	$(call print-help,podman-load-images,load images from local copy)
+	$(call print-help,podman-cleanup,clean all podman resources)
+	$(call print-help,podman-create-network,create custom podman network with ipv6 support)
+	$(call print-help,podman-stats,get containers stats)
+	$(call print-help,podman-info,get containers list with info)
+	$(call print-help,podman-resources,get podman consumed resources with tasks)
+	$(call print-help,iptables-rules-filter,show iptables filter table rules)
+	$(call print-help,iptables-rules-nat,show iptables nat table rules)
+	$(call print-help,iptables-rules-mangle,show iptables raw table rules)
+	$(call print-help,iptables-rules-raw,show iptables mangle table rules)
+	$(call print-help,ip6tables-rules-filter,show ip6tables filter table rules)
+	$(call print-help,ip6tables-rules-nat,show ip6tables nat table rules)
+	$(call print-help,ip6tables-rules-mangle,show ip6tables raw table rules)
+	$(call print-help,ip6tables-rules-raw,show ip6tables mangle table rules)
+	$(call print-help,iptables-rules-apply,apply iptables rules)
+	$(call print-help,on-startup,commands to execute immediately after server startup)
+	$(call print-help,disable-ipv6,disable-ipv6)
+	$(call print-help,disk-usage [path],get disk usage)
+	$(call print-help,rclone-configure,configure rclone)
+	$(call print-help,init-demo,clone demo projects and install dependencies)
+	$(call print-help,init-lagoona,clone lagoona demo project and install dependencies)
+	$(call print-help,init-evklid,clone evklid demo project and install dependencies)
+	$(call print-help,init-gazprombank-auth,clone gazprombank auth demo project and install dependencies)
+	$(call print-help,init-gazprombank-startups,clone gazprombank startups form project and install dependencies)
+	$(call print-help,refresh-demo,completely remove demo projects and reinstall them)
+	$(call print-help,refresh-lagoona,completely remove lagoona project and reinstall it)
+	$(call print-help,refresh-evklid,completely remove evklid project and reinstall it)
+	$(call print-help,refresh-gazprombank-auth,completely remove gazprombank auth project and reinstall it)
+	$(call print-help,refresh-gazprombank-startups,completely remove gazprombank startup form project and reinstall it)
+	$(call print-help,synapse-init,init synapse server)
+	$(call print-help,synapse-create-user,create synapse user)
+	$(call print-help,synapse-vacuum-clean,reclaims synapse postgres space)
+	$(call print-help,synapse-backup-database,backup synapse postgres database)
+	$(call print-help,synapse-restore-database,restore synapse postgres database)
+	$(call print-help,synapse-backup-to-storage-vps,backup synapse database and media store to storage vps)
+	$(call print-help,synapse-restore-from-storage-vps,restore synapse database and media store from storage vps)
+	$(call print-help,rustdesk-backup-to-storage-vps,backup RustDesk to storage vps)
+	$(call print-help,rustdesk-restore-from-storage-vps,restore RustDesk from storage vps)
+	$(call print-help,email-init,init email server)
+	$(call print-help,email-create-user [username],create email user)
+	$(call print-help,email-delete-user [username],delete email user)
+	$(call print-help,email-list-users,list email users)
+	$(call print-help,email-change-password [username],change email user password)
+	$(call print-help,email-email-get-user-quota [username],get user quota)
+	$(call print-help,email-backup-to-storage-vps,backup emails to storage vps)
+	$(call print-help,email-restore-from-storage-vps,restore emails from storage vps)
+	$(call print-help,outline-get-keys,get outline vpn client keys)
+	$(call print-help,outline-create-key [name],create outline vpn client key)
+	$(call print-help,outline-delete-key [id],delete outline vpn client key)
+	$(call print-help,generate-xray-private-key,generate VLESS + XTLS / Reality private key)
+	$(call print-help,generate-xray-short-id,generate VLESS + XTLS / Reality shortId)
+	$(call print-help,certbot-issue,issue Lets enctypt certificates)
+	$(call print-help,certbot-issue-website,issue Lets enctypt certificate for website)
+	$(call print-help,certbot-issue-ntfy,issue Lets enctypt certificate for ntfy)
+	$(call print-help,certbot-issue-livekit,issue Lets enctypt certificate for livekit)
+	$(call print-help,certbot-issue-email,issue Lets enctypt certificate for email)
+	$(call print-help,certbot-renew,renew Lets enctypt certificates)
+	$(call print-help,mtproto-get-link,get MTProto proxy connection link)
+	$(call print-help,mtproto-generate-secret,generate MTProto proxy secret key)
+	$(call print-help,sip-debug,enable SIP server debug logs)

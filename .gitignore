@@ -17,6 +17,7 @@ deployment/configs/fail2ban/jail.local
 deployment/configs/outline/shadowbox_server_config.json
 deployment/configs/iptables/iptables.sh
 deployment/configs/xray-vless-reality/xray_config.json
+deployment/configs/xray-vless-reality/xray_config_whitelist_bypass.json
 deployment/configs/livekit/livekit.yaml
 deployment/configs/sip/pjsip.d/transport.conf
 deployment/configs/sip/pjsip.d/000_templates.conf

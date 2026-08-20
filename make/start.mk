@@ -6,6 +6,10 @@ start-containers:
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) start-pihole
 	- $(MAKE) start-mtproto
+	@if [ "${PUBLIC_IP}" = "${VPS_RU}" ]; then \
+		$(MAKE) start-xray-vless-reality-whitelist-bypass; \
+		$(MAKE) start-whitelist-bypass; \
+	fi
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
@@ -106,6 +110,22 @@ start-xray-vless-reality:
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/configs/xray-vless-reality/xray_config.json:/etc/xray/config.json:ro \
+		--memory=${XRAY_VLESS_REALITY_MEMORY} \
+		--cpus=${XRAY_VLESS_REALITY_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/teddysun/xray:25.10.15
+
+start-xray-vless-reality-whitelist-bypass:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass_env.json > ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass.json"
+	- podman run \
+		-d \
+		--name xray-vless-reality-whitelist-bypass \
+		--network podman_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		-v ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
@@ -494,6 +514,7 @@ start-whitelist-bypass:
 		-e TM_COOKIES=/app/cookies-telemost.json \
 		-e WB_COOKIES=/app/cookies-wbstream.json \
 		-e VK_COOKIES=/app/cookies-vk.json \
+		-e UPSTREAM_SOCKS=xray-vless-reality-whitelist-bypass:1080 \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network podman_network \
 		--restart unless-stopped \
