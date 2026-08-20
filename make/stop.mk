@@ -40,6 +40,10 @@ stop-xray-vless-reality:
 	- podman stop xray-vless-reality
 	- podman rm xray-vless-reality
 
+stop-xray-vless-reality-whitelist-bypass:
+	- podman stop xray-vless-reality-whitelist-bypass
+	- podman rm xray-vless-reality-whitelist-bypass
+
 stop-nginx:
 	- podman stop nginx
 	- podman rm nginx

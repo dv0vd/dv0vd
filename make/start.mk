@@ -129,6 +129,22 @@ start-xray-vless-reality:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/teddysun/xray:25.10.15
 
+start-xray-vless-reality-whitelist-bypass:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass.json"
+	- podman run \
+		-d \
+		--name xray-vless-reality-whitelist-bypass \
+		--network podman_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		-v ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass.json:/etc/xray/config.json:ro \
+		--memory=${XRAY_VLESS_REALITY_MEMORY} \
+		--cpus=${XRAY_VLESS_REALITY_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/teddysun/xray:25.10.15
+
 start-nginx:
 	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_URL \$$MTPROTO_URL' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
