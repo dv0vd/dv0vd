@@ -4,6 +4,9 @@ podman-cleanup:
 podman-create-network:
 	podman network create --ipv6 podman_network --subnet 10.100.0.0/16 --gateway 10.100.0.1
 
+podman-create-whitelist-bypass-network:
+	podman network create --subnet 10.89.10.0/24 whitelist_bypass_network
+
 podman-load-images:
 	podman load < ./deployment/images/coturn_4.7.0.tar
 	podman load < ./deployment/images/dv0vd-demo-skillnotes_1.0.11.tar
