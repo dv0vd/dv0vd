@@ -7,7 +7,6 @@ start-containers:
 	- $(MAKE) start-pihole
 	- $(MAKE) start-mtproto
 	@if [ "${PUBLIC_IP}" = "${VPS_RU}" ]; then \
-		$(MAKE) start-xray-vless-reality-whitelist-bypass; \
 		$(MAKE) start-whitelist-bypass; \
 	fi
 	- $(MAKE) start-socks5
