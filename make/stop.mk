@@ -35,6 +35,10 @@ stop-outline:
 	- podman stop outline
 	- podman rm outline
 
+stop-xray-vless-reality-whitelist-bypass:
+	- podman stop xray-vless-reality-whitelist-bypass
+	- podman rm xray-vless-reality-whitelist-bypass
+
 stop-xray-vless-reality:
 	- podman stop xray-vless-reality
 	- podman rm xray-vless-reality

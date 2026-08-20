@@ -133,11 +133,8 @@ start-xray-vless-reality-whitelist-bypass:
 	- podman run \
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
-		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
+		--network whitelist_bypass_network \
+		--ip 10.89.10.2 \
 		-v ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
@@ -523,11 +520,13 @@ start-whitelist-bypass:
 		--name whitelist-bypass \
 		-e VK_TOKEN=${WHITELIST_BYPASS_VK_TOKEN} \
 		-e VK_GROUP_ID=${WHITELIST_BYPASS_VK_GROUP_ID} \
-		-e TM_COOKIES=/app/cookies-telemost.json \
+		-e TM_COOKIES=/app/cookies-yandex.json \
 		-e WB_COOKIES=/app/cookies-wbstream.json \
 		-e VK_COOKIES=/app/cookies-vk.json \
+		-e UPSTREAM_SOCKS=10.89.10.2:1080 \
 		-v ./deployment/configs/whitelist-bypass:/app \
-		--network podman_network \
+		--network whitelist_bypass_network \
+		--ip 10.89.10.3 \
 		--restart unless-stopped \
 		--memory=${WHITELIST_BYPASS_MEMORY} \
 		--cpus=${WHITELIST_BYPASS_CPUS} \
