@@ -513,7 +513,7 @@ start-whitelist-bypass:
 		-e TM_COOKIES=/app/cookies-yandex.json \
 		-e WB_COOKIES=/app/cookies-wbstream.json \
 		-e VK_COOKIES=/app/cookies-vk.json \
-		-e UPSTREAM_SOCKS=${BASE_URL}:${XRAY_VLESS_REALITY_PORT} \
+		-e UPSTREAM_SOCKS=${BASE_URL}:${XRAY_VLESS_REALITY_WHITELIST_BYPASS_PORT} \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network podman_network \
 		--dns ${DNS1} \
