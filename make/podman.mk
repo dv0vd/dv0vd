@@ -4,6 +4,9 @@ podman-cleanup:
 podman-create-network:
 	podman network create --ipv6 --disable-dns podman_network
 
+podman-create-whitelist-bypass-network:
+	podman network create --subnet 10.89.10.0/24 whitelist_bypass_network
+
 podman-load-images:
 	podman load < ./deployment/images/dv0vd-https-proxy_1.2.0.tar
 	podman load < ./deployment/images/dv0vd-socks4_1.1.3.tar
@@ -13,6 +16,8 @@ podman-load-images:
 	podman load < ./deployment/images/pihole_2025.08.0.tar
 	podman load < ./deployment/images/teddysun_xray-25.10.15.tar
 	podman load < ./deployment/images/nineseconds-mtg_2.2.8.tar
+	podman load < ./deployment/images/kulikov0-whitelist-bypass-bot_v0.3.8.tar
+	podman load < ./deployment/images/teddysun_xray-25.10.15.tar
 
 podman-info:
 	podman ps -w 1

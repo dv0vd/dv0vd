@@ -3,6 +3,7 @@ restart-containers:
 	- $(MAKE) podman-cleanup
 	- $(MAKE) podman-load-images
 	- $(MAKE) podman-create-network
+	- $(MAKE) podman-create-whitelist-bypass-network
 	- $(MAKE) start-containers
 
 restart-socks4: stop-socks4 start-socks4
@@ -14,6 +15,8 @@ restart-https-proxy: stop-https-proxy start-https-proxy
 restart-outline: stop-outline start-outline
 
 restart-xray-vless-reality: stop-xray-vless-reality start-xray-vless-reality
+
+restart-xray-vless-reality-whitelist-bypass: stop-xray-vless-reality-whitelist-bypass start-xray-vless-reality-whitelist-bypass
 
 restart-pihole: stop-pihole start-pihole
 
