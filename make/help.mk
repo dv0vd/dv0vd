@@ -97,6 +97,7 @@ help:
 	$(call print-help,enter-email,enter to the email container)
 	$(call print-help,enter-coturn,enter to the coturn container)
 	$(call print-help,enter-sip,enter to the SIP server container)
+	$(call print-help,enter-xray-vless-reality-whitelist-bypass,enter to the VLESS + XTLS / Reality whitelist bypass container)
 	$(call print-help,restart-fail2ban,restart fail2ban and reload fail2ban-client)
 	$(call print-help,logs-clear,clear journalctl logs olden then 1 day)
 	$(call print-help,logs-socks4,get socks4 server logs)
