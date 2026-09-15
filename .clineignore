@@ -1,0 +1,10 @@
+dist/
+build/
+.nuxt/
+.output/
+coverage/
+bootstrap/cache/
+public/build/
+public/hot
+*.min.js
+*.min.css
