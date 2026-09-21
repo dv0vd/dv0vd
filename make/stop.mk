@@ -131,3 +131,7 @@ stop-whitelist-bypass:
 stop-sip:
 	- podman stop sip
 	- podman rm sip
+
+stop-open-webui:
+	- podman stop open-webui
+	- podman rm open-webui
