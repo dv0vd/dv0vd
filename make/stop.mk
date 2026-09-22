@@ -18,6 +18,7 @@ stop-containers:
 	- $(MAKE) stop-livekit-redis
 	- $(MAKE) stop-db
 	- $(MAKE) stop-email
+	- $(MAKE) stop-open-webui
 
 stop-socks4:
 	- podman stop socks4
@@ -138,3 +139,7 @@ stop-whitelist-bypass:
 stop-sip:
 	- podman stop sip
 	- podman rm sip
+
+stop-open-webui:
+	- podman stop open-webui
+	- podman rm open-webui

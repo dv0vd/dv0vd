@@ -99,3 +99,6 @@ logs-whitelist-bypass:
 
 logs-sip:
 	tail -f -n +1 deployment/data/sip/logs/messages
+
+logs-open-webui:
+	podman logs -f open-webui
