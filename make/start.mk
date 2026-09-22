@@ -567,14 +567,3 @@ start-sip:
 		--cpus=${SIP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/andrius/asterisk:22.8-cert3_debian-trixie asterisk -f -vvvvv
-
-start-open-webui:
-	- podman run \
-		-d \
-		--name open-webui \
-		-e AIOHTTP_CLIENT_TIMEOUT=600 \
-		-v ./deployment/data/open-webui:/app/backend/data \
-		--memory=${OPEN_WEBUI_MEMORY} \
-		--cpus=${OPEN_WEBUI_CPUS} \
-		--cgroup-parent=/podman-group.slice \
-		ghcr.io/open-webui/open-webui:v0.11.3
