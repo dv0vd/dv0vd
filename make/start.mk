@@ -574,6 +574,7 @@ start-open-webui:
 		--name open-webui \
 		-e AIOHTTP_CLIENT_TIMEOUT=600 \
 		-v ./deployment/data/open-webui:/app/backend/data \
+		--network podman_network \
 		--memory=${OPEN_WEBUI_MEMORY} \
 		--cpus=${OPEN_WEBUI_CPUS} \
 		--cgroup-parent=/podman-group.slice \
