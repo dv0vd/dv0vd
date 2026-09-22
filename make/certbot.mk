@@ -3,7 +3,6 @@ certbot-issue:
 	- $(MAKE) certbot-issue-ntfy
 	- $(MAKE) certbot-issue-livekit
 	- $(MAKE) certbot-issue-email
-	- $(MAKE) certbot-issue-open-webui
 
 certbot-issue-website:
 	- podman rm certbot
@@ -85,27 +84,6 @@ certbot-issue-livekit:
 		--webroot-path=/app/acme \
 		-d ${LIVEKIT_URL}.${BASE_URL} \
 		-d www.${LIVEKIT_URL}.${BASE_URL} \
-		--email postmaster@${BASE_URL} \
-		--agree-tos \
-		--no-eff-email
-
-certbot-issue-open-webui:
-	- podman rm certbot
-	podman run \
-		--rm \
-		--name certbot \
-		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
-		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
-		-v ./deployment/data/letsencrypt/acme:/app/acme \
-		docker.io/certbot/certbot:v5.3.1 certonly \
- 		--webroot \
-		--webroot-path=/app/acme \
-		-d ${OPEN_WEBUI_URL}.${BASE_URL} \
-		-d www.${OPEN_WEBUI_URL}.${BASE_URL} \
 		--email postmaster@${BASE_URL} \
 		--agree-tos \
 		--no-eff-email
