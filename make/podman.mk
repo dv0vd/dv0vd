@@ -32,7 +32,6 @@ podman-load-images:
 	podman load < ./deployment/images/rustdesk-server_1.1.15.tar
 	podman load < ./deployment/images/nineseconds-mtg_2.2.8.tar
 	podman load < ./deployment/images/andrius-asterisk_22.8-cert3_debian-trixie.tar
-	podman load < ./deployment/images/open-webui_v0.11.3.tar
 
 podman-info:
 	podman ps -w 1
