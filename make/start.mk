@@ -6,6 +6,7 @@ start-containers:
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) email-backup-to-storage-vps
 	- $(MAKE) start-email
+	- $(MAKE) start-open-webui
 	- $(MAKE) start-db
 	- $(MAKE) start-livekit-redis
 	- $(MAKE) start-mtproto
