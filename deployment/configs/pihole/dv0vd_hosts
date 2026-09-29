@@ -1,7 +1,7 @@
 # Title: Dv0vD blocked hosts
 #
-# Date: 05 May 2026
-# Number of unique domains: 176
+# Date: 29 Sep 2026
+# Number of unique domains: 175
 #
 # Fetch the latest version of this file: https://dv0vd.dev/pihole/dv0vd_hosts
 #
@@ -74,7 +74,6 @@
 0.0.0.0 gator.volces.com
 0.0.0.0 global.market.xiaomi.com
 0.0.0.0 googleads.g.doubleclick.net
-0.0.0.0 graph.facebook.com
 0.0.0.0 hb.bumlam.com
 0.0.0.0 hb-bidder.skcrtxr.com
 0.0.0.0 hit.udqrh6.ru
