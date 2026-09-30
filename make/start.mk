@@ -145,9 +145,6 @@ start-nginx:
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./src:/app:ro \
-	-p 80:80 \
-	-p 443:443 \
-	-p 8448:8448 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
@@ -442,7 +439,7 @@ start-email:
 		-e ENABLE_OPENDMARC=1 \
 		-e ENABLE_POLICYD_SPF=1 \
 		-e ENABLE_SRS=0 \
-		-e POSTFIX_REJECT_UNKNOWN_CLIENT_HOSTNAME=1 \
+		-e POSTFIX_REJECT_UNKNOWN_CLIENT_HOSTNAME=0 \
 		-e ENABLE_QUOTAS=1 \
 		-e POSTFIX_MESSAGE_SIZE_LIMIT=52428800 \
 		-v ./deployment/data/email/data:/var/mail \
@@ -555,3 +552,15 @@ start-sip:
 		--cpus=${SIP_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/andrius/asterisk:22.8-cert3_debian-trixie asterisk -f -vvvvv
+
+start-open-webui:
+	- podman run \
+		-d \
+		--name open-webui \
+		-e AIOHTTP_CLIENT_TIMEOUT=600 \
+		-v ./deployment/data/open-webui:/app/backend/data \
+		--network podman_network \
+		--memory=${OPEN_WEBUI_MEMORY} \
+		--cpus=${OPEN_WEBUI_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		ghcr.io/open-webui/open-webui:v0.11.3

@@ -10,6 +10,7 @@ fail2ban-configure:
 	mkdir -p ./deployment/data/nginx && touch ./deployment/data/nginx/logs/access.log
 	mkdir -p ./deployment/data/socks5/logs && touch ./deployment/data/socks5/logs/danted.log
 	mkdir -p ./deployment/data/email/logs && touch ./deployment/data/email/logs/mail.log
+	mkdir -p ./deployment/data/sip/logs && touch ./deployment/data/sip/logs/messages
 
 fail2ban-status:
 	fail2ban-client status

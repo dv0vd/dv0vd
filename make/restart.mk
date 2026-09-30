@@ -68,3 +68,5 @@ restart-mtproto: stop-mtproto start-mtproto
 restart-whitelist-bypass: stop-whitelist-bypass start-whitelist-bypass
 
 restart-sip: stop-sip start-sip
+
+restart-open-webui: stop-open-webui start-open-webui
