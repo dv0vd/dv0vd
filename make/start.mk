@@ -524,6 +524,7 @@ start-whitelist-bypass:
 		-e TM_COOKIES=/app/cookies-yandex.json \
 		-e WB_COOKIES=/app/cookies-wbstream.json \
 		-e VK_COOKIES=/app/cookies-vk.json \
+		-e BITRIX_COOKIES=/app/cookies-bitrix.json \
 		-e UPSTREAM_SOCKS=10.89.10.2:1080 \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network whitelist_bypass_network \
@@ -532,7 +533,7 @@ start-whitelist-bypass:
 		--memory=${WHITELIST_BYPASS_MEMORY} \
 		--cpus=${WHITELIST_BYPASS_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		ghcr.io/kulikov0/whitelist-bypass-bot:v0.3.8
+		ghcr.io/kulikov0/whitelist-bypass-bot:v0.4.4
 
 start-sip:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/transport_env.conf > ./deployment/configs/sip/pjsip.d/transport.conf"
