@@ -551,7 +551,7 @@ start-sip:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/109_env.conf > ./deployment/configs/sip/pjsip.d/109.conf"
 	-@ rm ./deployment/data/sip/logs/*
 	- touch ./deployment/data/sip/logs/messages
-	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/fullchain.pem ./deployment/data/sip/certs/fullchain.pem
+	- cat ./deployment/data/letsencrypt/data/live/${BASE_URL}/cert.pem ./deployment/data/letsencrypt/data/live/${BASE_URL}/chain.pem > ./deployment/data/sip/certs/fullchain.pem
 	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/privkey.pem ./deployment/data/sip/certs/privkey.pem
 	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/chain.pem ./deployment/data/sip/certs/chain.pem
 	- chmod 644 ./deployment/data/sip/certs/fullchain.pem ./deployment/data/sip/certs/privkey.pem ./deployment/data/sip/certs/chain.pem
