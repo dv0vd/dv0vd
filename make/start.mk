@@ -9,6 +9,7 @@ start-containers:
 	@if [ "${PUBLIC_IP}" = "${VPS_RU}" ]; then \
 		$(MAKE) start-xray-vless-reality-whitelist-bypass; \
 		$(MAKE) start-whitelist-bypass; \
+		$(MAKE) start-xray-vless-reality-edge; \
 	fi
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
@@ -123,6 +124,23 @@ start-xray-vless-reality-whitelist-bypass:
 		--network whitelist_bypass_network \
 		--ip 10.89.10.2 \
 		-v ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass.json:/etc/xray/config.json:ro \
+		--memory=${XRAY_VLESS_REALITY_MEMORY} \
+		--cpus=${XRAY_VLESS_REALITY_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/teddysun/xray:25.10.15
+
+start-xray-vless-reality-edge:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_edge_env.json > ./deployment/configs/xray-vless-reality/xray_config_edge.json"
+	- podman run \
+		-d \
+		--name xray-vless-reality \
+		--network podman_network \
+		-p ${XRAY_VLESS_REALITY_EDGE_PORT}:443 \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		-v ./deployment/configs/xray-vless-reality/xray_config_edge.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
