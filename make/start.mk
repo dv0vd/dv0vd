@@ -219,6 +219,7 @@ start-doh-server:
 		-e UPSTREAM_DNS_SERVER="udp:${DNS1}:53,udp:${DNS2}:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
+		-e DOH_SERVER_VERBOSE="true" \
 		--restart unless-stopped \
 		--memory=${DOH_SERVER_MEMORY} \
 		--cpus=${DOH_SERVER_CPUS} \
