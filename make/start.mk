@@ -130,7 +130,7 @@ start-xray-vless-reality-whitelist-bypass:
 		docker.io/teddysun/xray:25.10.15
 
 start-xray-vless-reality-edge:
-	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_edge_env.json > ./deployment/configs/xray-vless-reality/xray_config_edge.json" | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/xray_config_edge.json"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_edge_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/xray_config_edge.json"
 	- podman run \
 		-d \
 		--name xray-vless-reality-edge \
