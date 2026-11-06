@@ -187,9 +187,7 @@ install_packages
 configure_dns
 configure_ssh
 configure_podman
-configure_rclone
 configure_nginx_main
 configure_outline
 generate_mtproto_proxy_config
-configure_email
 finish

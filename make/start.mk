@@ -11,7 +11,6 @@ start-containers:
 	- $(MAKE) start-outline
 	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-doh-server
-	- $(MAKE) start-ntfy
 	- $(MAKE) start-nginx
 
 start-socks4:
