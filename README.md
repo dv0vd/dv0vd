@@ -6,8 +6,8 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 1) Update packages index: `apt update`.
 2) Install git: `apt install git`.
 3) Clone repo: `git clone https://github.com/dv0vd/dv0vd.git`.
-4) Switch branch: `git switch web`.
-5) Go to the project directory: `cd ./dv0vd`.
+4) Go to the project directory: `cd ./dv0vd`.
+5) Switch branch: `git switch web`.
 6) Configure the `.env` file.
 7) Copy Podman images to `./deployment/images`:
 - dv0vd-https-proxy_1.2.0.tar

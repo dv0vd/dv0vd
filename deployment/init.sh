@@ -20,6 +20,13 @@ configure_nginx_main() {
   log "Nginx successfully configured"
 }
 
+configure_nginx_web() {
+  log "Configuring nginx..."
+  htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
+  make -C /root/dv0vd certbot-issue
+  log "Nginx successfully configured"
+}
+
 configure_ssh() {
   log "Configuring SSH..."
   echo "$SSH_PUBLIC_KEY" >> /root/.ssh/authorized_keys
@@ -187,7 +194,7 @@ install_packages
 configure_dns
 configure_ssh
 configure_podman
-configure_nginx_main
+configure_nginx_web
 configure_outline
 generate_mtproto_proxy_config
 finish
