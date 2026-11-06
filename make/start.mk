@@ -220,6 +220,8 @@ start-doh-server:
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
+		-e DOH_SERVER_TIMEOUT="2" \
+		-e DOH_SERVER_TRIES="3" \
 		--restart unless-stopped \
 		--memory=${DOH_SERVER_MEMORY} \
 		--cpus=${DOH_SERVER_CPUS} \
