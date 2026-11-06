@@ -133,7 +133,7 @@ start-xray-vless-reality-edge:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_edge_env.json > ./deployment/configs/xray-vless-reality/xray_config_edge.json"
 	- podman run \
 		-d \
-		--name xray-vless-reality \
+		--name xray-vless-reality-edge \
 		--network podman_network \
 		-p ${XRAY_VLESS_REALITY_EDGE_PORT}:443 \
 		--dns ${DNS1} \
