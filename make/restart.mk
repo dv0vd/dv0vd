@@ -18,6 +18,8 @@ restart-xray-vless-reality: stop-xray-vless-reality start-xray-vless-reality
 
 restart-xray-vless-reality-whitelist-bypass: stop-xray-vless-reality-whitelist-bypass start-xray-vless-reality-whitelist-bypass
 
+restart-xray-vless-reality-edge: stop-xray-vless-reality-edge start-xray-vless-reality-edge
+
 restart-pihole: stop-pihole start-pihole
 
 restart-doh-server: stop-doh-server start-doh-server

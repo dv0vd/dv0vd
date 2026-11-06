@@ -7,6 +7,7 @@ stop-containers:
 	@if [ "${PUBLIC_IP}" = "${VPS_RU}" ]; then \
 		$(MAKE) stop-whitelist-bypass; \
 		$(MAKE) stop-xray-vless-reality-whitelist-bypass; \
+		$(MAKE) stop-xray-vless-reality-edge; \
 	fi
 	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-outline
@@ -27,7 +28,6 @@ stop-outline:
 	- podman stop outline
 	- podman rm outline
 
-
 stop-xray-vless-reality:
 	- podman stop xray-vless-reality
 	- podman rm xray-vless-reality
@@ -35,6 +35,10 @@ stop-xray-vless-reality:
 stop-xray-vless-reality-whitelist-bypass:
 	- podman stop xray-vless-reality-whitelist-bypass
 	- podman rm xray-vless-reality-whitelist-bypass
+
+stop-xray-vless-reality-edge:
+	- podman stop xray-vless-reality-edge
+	- podman rm xray-vless-reality-edge
 
 stop-nginx:
 	- podman stop nginx

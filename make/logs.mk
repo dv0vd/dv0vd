@@ -19,6 +19,9 @@ logs-xray-vless-reality:
 logs-xray-vless-reality-whitelist-bypass:
 	podman logs -f xray-vless-reality-whitelist-bypass
 
+logs-xray-vless-reality-edge:
+	podman logs -f xray-vless-reality-edge
+
 logs-nginx:
 	podman logs -f nginx
 
