@@ -4,12 +4,52 @@
   },
   "inbounds": [
     {
-      "listen": "0.0.0.0",
-      "port": 1080,
-      "protocol": "socks",
+      "port": 443,
+      "protocol": "vless",
       "settings": {
-        "auth": "noauth",
-        "udp": true
+        "clients": [
+          {
+            "id": "$XRAY_VLESS_REALITY_UUID",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "raw",
+        "security": "reality",
+        "realitySettings": {
+          "show": true,
+          "dest": "$VLESS_EDGE_URL.$BASE_URL:443",
+          "xver": 0,
+          "serverNames": [
+            "www.$VLESS_EDGE_URL.$BASE_URL",
+            "$VLESS_EDGE_URL.$BASE_URL"
+          ],
+          "privateKey": "$XRAY_VLESS_REALITY_PRIVATE_KEY",
+          "minClientVer": "",
+          "maxClientVer": "",
+          "maxTimeDiff": 0,
+          "shortIds": [
+            "$XRAY_VLESS_REALITY_USER1",
+            "$XRAY_VLESS_REALITY_USER2",
+            "$XRAY_VLESS_REALITY_USER3",
+            "$XRAY_VLESS_REALITY_USER4",
+            "$XRAY_VLESS_REALITY_USER5",
+            "$XRAY_VLESS_REALITY_USER6",
+            "$XRAY_VLESS_REALITY_USER7",
+            "$XRAY_VLESS_REALITY_USER8",
+            "$XRAY_VLESS_REALITY_USER9",
+            "$XRAY_VLESS_REALITY_USER10"
+          ]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
       }
     }
   ],
