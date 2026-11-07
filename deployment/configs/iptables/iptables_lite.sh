@@ -106,6 +106,10 @@ ip6tables -A INPUT -p tcp --dport 53 -j ACCEPT
 iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT
 ip6tables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT
 
+# allow http
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT 
+ip6tables -A INPUT -p tcp --dport 80 -j ACCEPT
+
 # allow https
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT 
 ip6tables -A INPUT -p tcp --dport 443 -j ACCEPT
