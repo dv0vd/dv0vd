@@ -18,6 +18,7 @@ podman-load-images:
 	podman load < ./deployment/images/nineseconds-mtg_2.2.8.tar
 	podman load < ./deployment/images/kulikov0-whitelist-bypass-bot_v0.4.4.tar
 	podman load < ./deployment/images/teddysun_xray-25.10.15.tar
+	podman load < ./deployment/images/certbot_5.3.1.tar
 
 podman-info:
 	podman ps -w 1

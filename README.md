@@ -19,6 +19,7 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - nineseconds-mtg_2.2.8.tar
 - kulikov0-whitelist-bypass-bot_v0.4.4.tar
 - teddysun_xray-25.10.15.tar
+- certbot_5.3.1.tar
 8) Copy cookies for Whitelist Bypass service to `./deployment/configs/whitelist-bypass`:
 - cookies-yandex.json
 - cookies-wbstream.json
