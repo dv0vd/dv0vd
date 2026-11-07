@@ -209,6 +209,7 @@ help:
 	$(call print-help,certbot-issue-livekit,issue Lets enctypt certificate for livekit)
 	$(call print-help,certbot-issue-email,issue Lets enctypt certificate for email)
 	$(call print-help,certbot-issue-open-webui,issue Lets enctypt certificate for Open WebUI)
+	$(call print-help,certbot-issue-xray-vless-reality-edge,issue Lets enctypt certificate for VLESS + XTLS / Reality edge)
 	$(call print-help,certbot-renew,renew Lets enctypt certificates)
 	$(call print-help,mtproto-get-link,get MTProto proxy connection link)
 	$(call print-help,mtproto-generate-secret,generate MTProto proxy secret key)
