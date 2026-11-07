@@ -202,7 +202,7 @@ start-pihole:
 		--dns 8.8.8.8 \
 		-p 53:53/tcp \
 		-p 53:53/udp \
-		-p 127.0.0.1:80:80 \
+		-p 127.0.0.1:8080:80 \
 		-e TZ=UTC \
 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
 		-v ./deployment/data/pihole/data:/etc/pihole \
