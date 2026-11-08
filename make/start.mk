@@ -6,15 +6,12 @@ start-containers:
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) start-pihole
 	- $(MAKE) start-mtproto
-	@if [ "${PUBLIC_IP}" = "${VPS_RU}" ]; then \
-		$(MAKE) start-xray-vless-reality-whitelist-bypass; \
-		$(MAKE) start-whitelist-bypass; \
-	fi
 	- $(MAKE) start-socks5
 	- $(MAKE) start-socks4
 	- $(MAKE) start-https-proxy
+	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-outline
-	- $(MAKE) start-nginx
+	- $(MAKE) start-nginx-lite
 
 start-socks4:
 	- podman run \
@@ -130,6 +127,29 @@ start-xray-vless-reality-whitelist-bypass:
 
 start-nginx:
 	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_lite_env.conf > ./deployment/configs/nginx/nginx.conf"
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
+	- podman run \
+	-d \
+	--name nginx \
+	--network host \
+	--dns ${DNS1} \
+	--dns ${DNS2} \
+	--dns 1.1.1.1 \
+	--dns 8.8.8.8 \
+	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./src:/app:ro \
+	--restart unless-stopped \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
+	--cgroup-parent=/podman-group.slice \
+	docker.io/nginx:1.27.3
+
+start-nginx-lite:
+	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$PROXY_A_URL' < ./deployment/configs/nginx/nginx_lite_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \

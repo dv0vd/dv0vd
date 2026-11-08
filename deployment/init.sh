@@ -10,6 +10,7 @@ configure_nginx_lite() {
     -keyout /root/dv0vd/deployment/configs/nginx/nginx.key \
     -out /root/dv0vd/deployment/configs/nginx/nginx.crt \
     -subj "/CN=localhost" &&
+  make -C /root/dv0vd certbot-issue
   log "Nginx successfully configured"
 }
 
