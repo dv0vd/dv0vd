@@ -1,12 +1,9 @@
 stop-containers:
 	- $(MAKE) stop-nginx
-	- $(MAKE) stop-outline
-	- $(MAKE) stop-xray-vless-reality
-	- $(MAKE) stop-https-proxy
-	- $(MAKE) stop-socks4
-	- $(MAKE) stop-socks5
-	- $(MAKE) stop-mtproto
-	- $(MAKE) stop-pihole
+	- $(MAKE) stop-xray-vless-reality-whitelist-bypass
+	- $(MAKE) stop-xray-vless-reality-gateway
+	- $(MAKE) stop-whitelist-bypass
+	- $(MAKE) stop-doh-server
 
 stop-socks4:
 	- podman stop socks4
@@ -23,6 +20,10 @@ stop-https-proxy:
 stop-outline:
 	- podman stop outline
 	- podman rm outline
+
+stop-xray-vless-reality-gateway:
+	- podman stop xray-vless-reality-gateway
+	- podman rm xray-vless-reality-gateway
 
 stop-xray-vless-reality:
 	- podman stop xray-vless-reality

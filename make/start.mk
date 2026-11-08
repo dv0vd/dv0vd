@@ -4,14 +4,11 @@ start-containers:
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
-	- $(MAKE) start-pihole
-	- $(MAKE) start-mtproto
-	- $(MAKE) start-socks5
-	- $(MAKE) start-socks4
-	- $(MAKE) start-https-proxy
-	- $(MAKE) start-xray-vless-reality
-	- $(MAKE) start-outline
-	- $(MAKE) start-nginx-lite
+	- $(MAKE) start-doh-server
+	- $(MAKE) start-whitelist-bypass
+	- $(MAKE) start-xray-vless-reality-gateway
+	- $(MAKE) start-xray-vless-reality-whitelist-bypass
+	- $(MAKE) start-nginx-gateway
 
 start-socks4:
 	- podman run \
@@ -96,7 +93,7 @@ start-outline:
 		quay.io/outline/shadowbox:v1.12.3
 
 start-xray-vless-reality:
-	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_env.json > ./deployment/configs/xray-vless-reality/xray_config.json"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_env.json > ./deployment/configs/xray-vless-reality/xray.json"
 	- podman run \
 		-d \
 		--name xray-vless-reality \
@@ -112,8 +109,25 @@ start-xray-vless-reality:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/teddysun/xray:25.10.15
 
+start-xray-vless-reality-gateway:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/gateway_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/gateway.json"
+	- podman run \
+		-d \
+		--name xray-vless-reality-gateway \
+		--network podman_network \
+		-p ${XRAY_VLESS_REALITY_PORT}:443 \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		-v ./deployment/configs/xray-vless-reality/xray_config_gateway.json:/etc/xray/config.json:ro \
+		--memory=${XRAY_VLESS_REALITY_MEMORY} \
+		--cpus=${XRAY_VLESS_REALITY_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/teddysun/xray:25.10.15
+
 start-xray-vless-reality-whitelist-bypass:
-	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass.json"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/whitelist_bypass.json"
 	- podman run \
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
@@ -161,6 +175,30 @@ start-nginx-lite:
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
 	-v ./deployment/configs/nginx/lite.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+	-v ./src:/app:ro \
+	--restart unless-stopped \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
+	--cgroup-parent=/podman-group.slice \
+	docker.io/nginx:1.27.3
+
+start-nginx-gateway:
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/gateway_env.conf > ./deployment/configs/nginx/gateway.conf"
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
+	- podman run \
+	-d \
+	--name nginx \
+	--network host \
+	--dns ${DNS1} \
+	--dns ${DNS2} \
+	--dns 1.1.1.1 \
+	--dns 8.8.8.8 \
+	-v ./deployment/configs/nginx/gateway.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
@@ -551,7 +589,6 @@ start-whitelist-bypass:
 		-e VK_TOKEN=${WHITELIST_BYPASS_VK_TOKEN} \
 		-e VK_GROUP_ID=${WHITELIST_BYPASS_VK_GROUP_ID} \
 		-e TM_COOKIES=/app/cookies-yandex.json \
-		-e WB_COOKIES=/app/cookies-wbstream.json \
 		-e VK_COOKIES=/app/cookies-vk.json \
 		-e BITRIX_COOKIES=/app/cookies-bitrix.json \
 		-e UPSTREAM_SOCKS=10.89.10.2:1080 \

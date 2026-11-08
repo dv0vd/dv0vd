@@ -9,6 +9,28 @@ certbot-issue-lite:
 	- $(MAKE) certbot-issue-proxy PROXY_NAME=$$PROXY_NAME
 	- $(MAKE) stop-nginx-certbot
 
+certbot-issue-gateway:
+	- $(MAKE) start-nginx-certbot
+	podman run \
+		--rm \
+		--name certbot \
+		--network podman_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
+		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
+		-v ./deployment/data/letsencrypt/acme:/app/acme \
+		docker.io/certbot/certbot:v5.3.1 certonly \
+ 		--webroot \
+		--webroot-path=/app/acme \
+		-d ${GATEWAY_URL}.${BASE_URL} \
+		-d www.${GATEWAY_URL}.${BASE_URL} \
+		--email postmaster@${BASE_URL} \
+		--agree-tos \
+		--no-eff-email
+	- $(MAKE) stop-nginx-certbot
+
 certbot-issue-website:
 	- podman rm certbot
 	podman run \

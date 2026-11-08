@@ -11,5 +11,6 @@ on-startup:
 	- $(MAKE) podman-cleanup
 	- $(MAKE) podman-load-images
 	- $(MAKE) podman-create-network
+	- $(MAKE) podman-create-whitelist-bypass-network
 	- $(MAKE) certbot-renew
 	- $(MAKE) restart-containers

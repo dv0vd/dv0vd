@@ -7,15 +7,10 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 2) Install git: `apt install git`.
 3) Clone repo: `git clone -c core.filemode=false https://github.com/dv0vd/dv0vd.git`.
 4) Go to the project directory: `cd ./dv0vd`
-5) Go to the `lite` branch: `git checkout lite`.
+5) Go to the `gateway` branch: `git checkout gateway`.
 6) Configure the `.env` file.
 7) Copy Podman images to `./deployment/images`:
-- dv0vd-https-proxy_1.2.0.tar
-- dv0vd-socks4_1.1.3.tar
-- dv0vd-socks5_1.1.1.tar
 - nginx_1.27.3.tar
-- outline-shadowbox_v1.12.3.tar
-- pihole_2025.08.0.tar
 - nineseconds-mtg_2.2.8.tar
 - kulikov0-whitelist-bypass-bot_v0.4.4.tar
 - teddysun_xray-25.10.15.tar
