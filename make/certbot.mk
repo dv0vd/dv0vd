@@ -1,5 +1,7 @@
 certbot-issue:
-	- $(MAKE) certbot-issue-proxy-a
+	@if [ "${PUBLIC_IP}" = "${IP_PROXY_A}" ]; then \
+		$(MAKE) certbot-issue-proxy-a
+	fi
 
 certbot-issue-website:
 	- podman rm certbot
