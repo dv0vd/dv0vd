@@ -1,15 +1,12 @@
 stop-containers:
 	- $(MAKE) stop-nginx
-	- $(MAKE) stop-pihole
+	- $(MAKE) stop-outline
+	- $(MAKE) stop-stop-xray-vless-reality
+	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
 	- $(MAKE) stop-mtproto
-	@if [ "${PUBLIC_IP}" = "${VPS_RU}" ]; then \
-		$(MAKE) stop-whitelist-bypass; \
-		$(MAKE) stop-xray-vless-reality-whitelist-bypass; \
-	fi
-	- $(MAKE) stop-https-proxy
-	- $(MAKE) stop-outline
+	- $(MAKE) stop-pihole
 
 stop-socks4:
 	- podman stop socks4
@@ -26,7 +23,6 @@ stop-https-proxy:
 stop-outline:
 	- podman stop outline
 	- podman rm outline
-
 
 stop-xray-vless-reality:
 	- podman stop xray-vless-reality
