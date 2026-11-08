@@ -155,11 +155,13 @@ start-nginx-lite:
 	- podman run \
 	-d \
 	--name nginx \
-	--network host \
+	--network podman_network \
 	--dns ${DNS1} \
 	--dns ${DNS2} \
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
+	-p 80:80 \
+	-p 443:443 \
 	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \

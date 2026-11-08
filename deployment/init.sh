@@ -12,10 +12,10 @@ configure_git() {
 configure_nginx_lite() {
   log "Configuring nginx..."
   htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD
-  openssl req -x509 -nodes -newkey rsa:2048 \
-    -keyout /root/dv0vd/deployment/configs/nginx/nginx.key \
-    -out /root/dv0vd/deployment/configs/nginx/nginx.crt \
-    -subj "/CN=localhost"
+  podman load < ./deployment/images/nginx_1.27.3.tar
+  podman load < ./deployment/images/certbot_5.3.1.tar
+  make -C /root/dv0vd start-nginx-lite
+  make -C /root/dv0vd certbot-issue
   log "Nginx successfully configured"
 }
 
