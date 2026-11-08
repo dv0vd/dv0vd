@@ -12,10 +12,7 @@ configure_git() {
 configure_nginx_lite() {
   log "Configuring nginx..."
   htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD
-  openssl req -x509 -nodes -newkey rsa:2048 \
-    -keyout /root/dv0vd/deployment/configs/nginx/nginx.key \
-    -out /root/dv0vd/deployment/configs/nginx/nginx.crt \
-    -subj "/CN=localhost"
+  make -C /root/dv0vd certbot-issue-lite
   log "Nginx successfully configured"
 }
 
@@ -55,6 +52,7 @@ configure_podman() {
   systemctl enable podman
   systemctl start podman
   podman system prune --all -f
+  make -C /root/dv0vd podman-load-images
   systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS
   systemctl stop systemd-resolved || true # required for Pi-hole 
   systemctl disable systemd-resolved || true # required for Pi-hole
@@ -109,7 +107,6 @@ generate_outline_server_config() {
 
 generate_mtproto_proxy_config() {
   log "Generating MTProto proxy configuration..."
-  podman load < ./deployment/images/nineseconds-mtg_2.2.8.tar
   SECRET=$(make --silent --no-print-directory -C /root/dv0vd mtproto-generate-secret BASE_URL="$BASE_URL")
   cat <<EOF > ./deployment/configs/mtproto/mtg.toml
 secret = "$SECRET"

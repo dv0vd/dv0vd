@@ -149,7 +149,7 @@ start-nginx:
 	docker.io/nginx:1.27.3
 
 start-nginx-lite:
-	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$PROXY_A_URL' < ./deployment/configs/nginx/nginx_lite_env.conf > ./deployment/configs/nginx/nginx.conf"
+	- bash ./deployment/scripts/render_nginx_lite.sh
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -160,14 +160,33 @@ start-nginx-lite:
 	--dns ${DNS2} \
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
-	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx/lite_env.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
-	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
 	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
 	-v ./src:/app:ro \
 	--restart unless-stopped \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
+	--cgroup-parent=/podman-group.slice \
+	docker.io/nginx:1.27.3
+
+start-nginx-certbot:
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
+	- podman rm -f nginx-certbot
+	- podman run \
+	-d \
+	--name nginx-certbot \
+	--network host \
+	--dns ${DNS1} \
+	--dns ${DNS2} \
+	--dns 1.1.1.1 \
+	--dns 8.8.8.8 \
+	-v ./deployment/configs/nginx/certbot.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
 	--cgroup-parent=/podman-group.slice \

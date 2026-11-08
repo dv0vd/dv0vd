@@ -1,7 +1,13 @@
-certbot-issue:
-	@if [ "${PUBLIC_IP}" = "${IP_PROXY_A}" ]; then \
-		$(MAKE) certbot-issue-proxy-a
-	fi
+certbot-issue-lite:
+	- set -a; . ./.env; set +a
+	PROXY_NAME=
+	for entry in $$PROXIES; do
+		p=$${entry%%=*}; ip=$${entry#*=}
+		if [ "$$ip" = "$$PUBLIC_IP" ]; then PROXY_NAME=$$p; break; fi
+	done
+	- $(MAKE) start-nginx-certbot
+	- $(MAKE) certbot-issue-proxy PROXY_NAME=$$PROXY_NAME
+	- $(MAKE) stop-nginx-certbot
 
 certbot-issue-website:
 	- podman rm certbot
@@ -87,7 +93,7 @@ certbot-issue-livekit:
 		--agree-tos \
 		--no-eff-email
 
-certbot-issue-proxy-a:
+certbot-issue-proxy:
 	- podman rm certbot
 	podman run \
 		--rm \
@@ -102,8 +108,8 @@ certbot-issue-proxy-a:
 		docker.io/certbot/certbot:v5.3.1 certonly \
  		--webroot \
 		--webroot-path=/app/acme \
-		-d ${PROXY_A_URL}.${BASE_URL} \
-		-d www.${PROXY_A_URL}.${BASE_URL} \
+		-d ${PROXY_NAME}.${BASE_URL} \
+		-d www.${PROXY_NAME}.${BASE_URL} \
 		--email postmaster@${BASE_URL} \
 		--agree-tos \
 		--no-eff-email
@@ -130,6 +136,7 @@ certbot-issue-open-webui:
 		--no-eff-email
 
 certbot-renew:
+	- $(MAKE) start-nginx-certbot
 	- podman rm certbot
 	podman run \
 		--rm \
@@ -142,3 +149,4 @@ certbot-renew:
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
 		-v ./deployment/data/letsencrypt/acme:/app/acme \
 		docker.io/certbot/certbot:v5.3.1 renew
+	- $(MAKE) stop-nginx-certbot

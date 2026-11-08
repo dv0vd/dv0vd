@@ -36,6 +36,10 @@ stop-nginx:
 	- podman stop nginx
 	- podman rm nginx
 
+stop-nginx-certbot:
+	- podman stop nginx-certbot
+	- podman rm nginx-certbot
+
 stop-db:
 	- $(MAKE) stop-mongo-demo
 	- $(MAKE) stop-postgres-demo

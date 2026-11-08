@@ -201,7 +201,7 @@ help:
 	$(call print-help,outline-delete-key [id],delete outline vpn client key)
 	$(call print-help,generate-xray-private-key,generate VLESS + XTLS / Reality private key)
 	$(call print-help,generate-xray-short-id,generate VLESS + XTLS / Reality shortId)
-	$(call print-help,certbot-issue,issue Lets enctypt certificates)
+	$(call print-help,certbot-issue-lite,issue Lets enctypt certificates for proxy host)
 	$(call print-help,certbot-issue-website,issue Lets enctypt certificate for website)
 	$(call print-help,certbot-issue-ntfy,issue Lets enctypt certificate for ntfy)
 	$(call print-help,certbot-issue-livekit,issue Lets enctypt certificate for livekit)

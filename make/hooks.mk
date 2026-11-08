@@ -8,5 +8,8 @@ on-startup:
 	- $(MAKE) logs-clear
 	- rm -rf /var/tmp/*
 	- systemctl set-property podman-group.slice MemoryMax=${PODMAN_MEMORY_LIMIT} CPUQuota=${PODMAN_CPUS}
-	- $(MAKE) restart-containers
+	- $(MAKE) podman-cleanup
+	- $(MAKE) podman-load-images
+	- $(MAKE) podman-create-network
 	- $(MAKE) certbot-renew
+	- $(MAKE) restart-containers
