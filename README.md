@@ -17,7 +17,6 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - outline-shadowbox_v1.12.3.tar
 - pihole_2025.08.0.tar
 - nineseconds-mtg_2.2.8.tar
-- kulikov0-whitelist-bypass-bot_v0.4.4.tar
 - teddysun_xray-25.10.15.tar
 - certbot_5.3.1.tar
 8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
