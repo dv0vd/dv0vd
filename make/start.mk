@@ -96,7 +96,7 @@ start-outline:
 		quay.io/outline/shadowbox:v1.12.3
 
 start-xray-vless-reality:
-	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_env.json > ./deployment/configs/xray-vless-reality/xray_config.json"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_env.json > ./deployment/configs/xray-vless-reality/xray.json"
 	- podman run \
 		-d \
 		--name xray-vless-reality \
