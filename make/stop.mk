@@ -1,7 +1,7 @@
 stop-containers:
 	- $(MAKE) stop-nginx
 	- $(MAKE) stop-outline
-	- $(MAKE) stop-stop-xray-vless-reality
+	- $(MAKE) stop-xray-vless-reality
 	- $(MAKE) stop-https-proxy
 	- $(MAKE) stop-socks4
 	- $(MAKE) stop-socks5
