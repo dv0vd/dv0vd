@@ -5,18 +5,17 @@ set -e # stop script on any error
 
 configure_nginx_lite() {
   log "Configuring nginx..."
-  htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
+  htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD
   openssl req -x509 -nodes -newkey rsa:2048 \
     -keyout /root/dv0vd/deployment/configs/nginx/nginx.key \
     -out /root/dv0vd/deployment/configs/nginx/nginx.crt \
-    -subj "/CN=localhost" &&
-  make -C /root/dv0vd certbot-issue
+    -subj "/CN=localhost"
   log "Nginx successfully configured"
 }
 
 configure_nginx_main() {
   log "Configuring nginx..."
-  htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD &&
+  htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD
   make -C /root/dv0vd certbot-issue
   log "Nginx successfully configured"
 }
@@ -104,14 +103,13 @@ generate_outline_server_config() {
 
 generate_mtproto_proxy_config() {
   log "Generating MTProto proxy configuration..."
-  
+  podman load < ./images/nineseconds-mtg_2.2.8.tar
   SECRET=$(make --silent --no-print-directory -C /root/dv0vd mtproto-generate-secret BASE_URL="$BASE_URL")
   cat <<EOF > ./configs/mtproto/mtg.toml
 secret = "$SECRET"
 bind-to = "0.0.0.0:3128"
 EOF
 
-  echo "$json" > ./deployment/configs/mtproto/mtg.toml
   log "MTProto proxy configuration successfully generated"
 }
 
