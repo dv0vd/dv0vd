@@ -105,7 +105,7 @@ generate_outline_server_config() {
 generate_mtproto_proxy_config() {
   log "Generating MTProto proxy configuration..."
   
-  SECRET=$(make --silent --no-print-directory -C .. mtproto-generate-secret BASE_URL="$BASE_URL")
+  SECRET=$(make --silent --no-print-directory -C /root/dv0vd mtproto-generate-secret BASE_URL="$BASE_URL")
   cat <<EOF > ./configs/mtproto/mtg.toml
 secret = "$SECRET"
 bind-to = "0.0.0.0:3128"
