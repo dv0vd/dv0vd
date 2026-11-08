@@ -160,7 +160,7 @@ start-nginx-lite:
 	--dns ${DNS2} \
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
-	-v ./deployment/configs/nginx/lite_env.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx/lite.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
