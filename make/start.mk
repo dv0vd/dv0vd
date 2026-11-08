@@ -155,7 +155,7 @@ start-nginx-lite:
 	- podman run \
 	-d \
 	--name nginx \
-	--network podman_network \
+	--network host \
 	--dns ${DNS1} \
 	--dns ${DNS2} \
 	--dns 1.1.1.1 \
