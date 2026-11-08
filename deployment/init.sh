@@ -3,6 +3,12 @@ set -e # stop script on any error
 
 
 
+configure_git() {
+  log "Configuring git..."
+  git config --local core.filemode false || true
+  log "Git successfully configured"
+}
+
 configure_nginx_lite() {
   log "Configuring nginx..."
   htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD
@@ -182,6 +188,7 @@ configure_email() {
 load_env
 set_timezone
 install_packages
+configure_git
 configure_dns
 configure_ssh
 configure_podman
