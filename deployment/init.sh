@@ -109,7 +109,7 @@ generate_outline_server_config() {
 
 generate_mtproto_proxy_config() {
   log "Generating MTProto proxy configuration..."
-  podman load < ./images/nineseconds-mtg_2.2.8.tar
+  podman load < ./deployment/images/nineseconds-mtg_2.2.8.tar
   SECRET=$(make --silent --no-print-directory -C /root/dv0vd mtproto-generate-secret BASE_URL="$BASE_URL")
   cat <<EOF > ./configs/mtproto/mtg.toml
 secret = "$SECRET"
