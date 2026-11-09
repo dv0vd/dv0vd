@@ -161,7 +161,7 @@ start-nginx-lite:
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
 	-v ./deployment/configs/nginx/lite.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
