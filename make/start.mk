@@ -11,7 +11,7 @@ start-containers:
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-outline
-	- $(MAKE) start-nginx-lite
+	- $(MAKE) start-nginx-proxy
 
 start-socks4:
 	- podman run \
@@ -148,7 +148,7 @@ start-nginx:
 	--cgroup-parent=/podman-group.slice \
 	docker.io/nginx:1.27.3
 
-start-nginx-lite:
+start-nginx-proxy:
 	- bash ./deployment/scripts/render_nginx_lite.sh
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log

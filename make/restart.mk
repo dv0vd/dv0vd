@@ -20,7 +20,7 @@ restart-doh-server: stop-doh-server start-doh-server
 
 restart-nginx: stop-nginx start-nginx
 
-restart-nginx-lite: stop-nginx start-nginx-lite
+restart-nginx-proxy: stop-nginx start-nginx-proxy
 
 restart-db:
 	- $(MAKE) stop-mongo-demo
