@@ -120,7 +120,7 @@ start-xray-vless-reality-gateway:
 		--dns ${DNS2} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
-		-v ./deployment/configs/xray-vless-reality/xray_config_gateway.json:/etc/xray/config.json:ro \
+		-v ./deployment/configs/xray-vless-reality/gateway.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
@@ -133,7 +133,7 @@ start-xray-vless-reality-whitelist-bypass:
 		--name xray-vless-reality-whitelist-bypass \
 		--network whitelist_bypass_network \
 		--ip 10.89.10.2 \
-		-v ./deployment/configs/xray-vless-reality/xray_config_whitelist_bypass.json:/etc/xray/config.json:ro \
+		-v ./deployment/configs/xray-vless-reality/whitelist_bypass.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
