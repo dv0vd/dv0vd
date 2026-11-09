@@ -29,8 +29,6 @@ configure_ssh() {
   touch /etc/ssh/sshd_config.d/00-dv0vd.conf
   echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config.d/00-dv0vd.conf
   echo Port $SSH_PORT >> /etc/ssh/sshd_config.d/00-dv0vd.conf
-  envsubst < ./deployment/configs/ssh/ssh_env.conf > /root/.ssh/config
-  chmod 600 /root/.ssh/config
   log "SSH successfully generated"
 }
 
