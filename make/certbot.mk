@@ -1,4 +1,4 @@
-certbot-issue-lite:
+certbot-issue-proxies:
 	- set -a; . ./.env; set +a
 	PROXY_NAME=
 	for entry in $$PROXIES; do

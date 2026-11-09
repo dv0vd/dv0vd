@@ -12,7 +12,7 @@ configure_git() {
 configure_nginx_lite() {
   log "Configuring nginx..."
   htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD
-  make -C /root/dv0vd certbot-issue-lite
+  make -C /root/dv0vd certbot-issue-proxies
   log "Nginx successfully configured"
 }
 
