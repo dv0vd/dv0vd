@@ -34,10 +34,7 @@ configure_ssh() {
 
 configure_outline() {
   log "Configuring Outline VPN..."
-  openssl req -x509 -nodes -newkey rsa:2048 \
-    -keyout /root/dv0vd/deployment/configs/outline/outline.key \
-    -out /root/dv0vd/deployment/configs/outline/outline.crt \
-    -subj "/CN=localhost"
+  bash ./deployment/scripts/copy_outline_certs.sh
   generate_outline_server_config
   log "Outline VPN successfully configured"
 }
