@@ -82,6 +82,7 @@ help:
 	$(call print-help,restart-https-proxy,restart https proxy server)
 	$(call print-help,restart-outline,restart outline vpn)
 	$(call print-help,restart-xray-vless-reality,restart VLESS + XTLS / Reality)
+	$(call print-help,restart-xray-vless-reality-gateway,restart VLESS + XTLS / Reality for gateway host)
 	$(call print-help,restart-xray-vless-reality-whitelist-bypass,restart VLESS + XTLS / Reality whitelist bypass)
 	$(call print-help,restart-nginx,restart nginx server)
 	$(call print-help,restart-nginx-lite,restart nginx server on the lite host)

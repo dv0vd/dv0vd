@@ -12,6 +12,8 @@ restart-outline: stop-outline start-outline
 
 restart-xray-vless-reality: stop-xray-vless-reality start-xray-vless-reality
 
+restart-xray-vless-reality-gateway: stop-xray-vless-reality-gateway start-xray-vless-reality-gateway
+
 restart-xray-vless-reality-whitelist-bypass: stop-xray-vless-reality-whitelist-bypass start-xray-vless-reality-whitelist-bypass
 
 restart-pihole: stop-pihole start-pihole
