@@ -162,7 +162,7 @@ start-nginx:
 	--cgroup-parent=/podman-group.slice \
 	docker.io/nginx:1.27.3
 
-start-nginx-lite:
+start-nginx-proxy:
 	- bash ./deployment/scripts/render_nginx_lite.sh
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
