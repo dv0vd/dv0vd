@@ -107,7 +107,7 @@ start-xray-vless-reality:
 		--dns ${DNS2} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
-		-v ./deployment/configs/xray-vless-reality/xray_config.json:/etc/xray/config.json:ro \
+		-v ./deployment/configs/xray-vless-reality/xray.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
