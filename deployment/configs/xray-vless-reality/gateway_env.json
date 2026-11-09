@@ -20,11 +20,11 @@
         "security": "reality",
         "realitySettings": {
           "show": true,
-          "dest": "$PROXY_MAIN_URL.$BASE_URL:443",
+          "dest": "$BASE_URL:443",
           "xver": 0,
           "serverNames": [
-            "www.$PROXY_MAIN_URL.$BASE_URL",
-            "$PROXY_MAIN_URL.$BASE_URL"
+            "www.$BASE_URL",
+            "$BASE_URL"
           ],
           "privateKey": "$XRAY_VLESS_REALITY_PRIVATE_KEY",
           "minClientVer": "",
