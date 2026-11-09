@@ -4,7 +4,7 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 
 ## Getting started  
 1) Update packages index: `apt update`.
-2) Install git: `apt install git`.
+2) Install git: `apt install git -y`.
 3) Clone repo: `git clone -c core.filemode=false https://github.com/dv0vd/dv0vd.git`.
 4) Go to the project directory: `cd ./dv0vd`
 5) Go to the `gateway` branch: `git switch gateway`.
