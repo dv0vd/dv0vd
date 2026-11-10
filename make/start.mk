@@ -188,7 +188,7 @@ start-nginx-proxy:
 	docker.io/nginx:1.27.3
 
 start-nginx-gateway:
-	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/gateway_env.conf > ./deployment/configs/nginx/gateway.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$GATEWAY_URL' < ./deployment/configs/nginx/gateway_env.conf > ./deployment/configs/nginx/gateway.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
