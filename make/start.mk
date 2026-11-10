@@ -4,11 +4,14 @@ start-containers:
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
-	- $(MAKE) start-doh-server
-	- $(MAKE) start-whitelist-bypass
-	- $(MAKE) start-xray-vless-reality-gateway
-	- $(MAKE) start-xray-vless-reality-whitelist-bypass
-	- $(MAKE) start-nginx-gateway
+	- $(MAKE) start-pihole
+	- $(MAKE) start-mtproto
+	- $(MAKE) start-socks5
+	- $(MAKE) start-socks4
+	- $(MAKE) start-https-proxy
+	- $(MAKE) start-xray-vless-reality
+	- $(MAKE) start-outline
+	- $(MAKE) start-nginx-proxy
 
 start-socks4:
 	- podman run \
