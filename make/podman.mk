@@ -2,7 +2,7 @@ podman-cleanup:
 	podman system reset -f
 
 podman-create-network:
-	podman network create --ipv6 podman_network
+	podman network create --ipv6 --disable-dns podman_network
 
 podman-create-whitelist-bypass-network:
 	podman network create --subnet 10.89.10.0/24 whitelist_bypass_network

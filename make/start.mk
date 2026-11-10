@@ -194,8 +194,7 @@ start-nginx-gateway:
 	- podman run \
 	-d \
 	--name nginx \
-	--network podman_network \
-	-p 443:443 \
+	--network host \
 	-v ./deployment/configs/nginx/gateway.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
