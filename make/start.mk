@@ -194,7 +194,7 @@ start-nginx-gateway:
 	- podman run \
 	-d \
 	--name nginx \
-	--network host \
+	--network podman_network \
 	--dns ${DNS1} \
 	--dns ${DNS2} \
 	--dns 1.1.1.1 \
