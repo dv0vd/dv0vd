@@ -196,5 +196,4 @@ configure_dns
 configure_ssh
 configure_podman
 configure_nginx_gateway
-configure_outline
 finish

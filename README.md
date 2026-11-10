@@ -12,12 +12,7 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 7) Copy Podman images to `./deployment/images`:
 - nginx_1.27.3.tar
 - kulikov0-whitelist-bypass-bot_v0.4.4.tar
-- outline-shadowbox_v1.12.3.tar
-- pihole_2025.08.0.tar
 - teddysun_xray-25.10.15.tar
 - certbot_5.3.1.tar
 - satishweb-doh-server_v2.3.10-alpine.tar
-- dv0vd-https-proxy_1.2.0.tar
-- dv0vd-socks4_1.1.3.tar
-- dv0vd-socks5_1.1.1.tar
 8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
