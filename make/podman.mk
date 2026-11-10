@@ -8,8 +8,8 @@ podman-create-whitelist-bypass-network:
 	podman network create --subnet 10.89.10.0/24 whitelist_bypass_network
 
 podman-pull-images:
-	podman pull docker.io/certbot/docker.io/nginx:1.27.3
-	podman pull docker.io/certbot/docker.io/teddysun/xray:25.10.15
+	podman pull docker.io/nginx:1.27.3
+	podman pull docker.io/teddysun/xray:25.10.15
 	podman pull docker.io/certbot/certbot:v5.3.1
 	podman pull docker.io/satishweb/doh-server:v2.3.10-alpine
 	podman pull ghcr.io/kulikov0/whitelist-bypass-bot:v0.4.4
