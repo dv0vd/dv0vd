@@ -4,8 +4,14 @@ start-containers:
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
+	- $(MAKE) start-pihole
+	- $(MAKE) start-socks5
+	- $(MAKE) start-socks4
+	- $(MAKE) start-https-proxy
+	- $(MAKE) start-outline
 	- $(MAKE) start-doh-server
 	- $(MAKE) start-whitelist-bypass
+	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-xray-vless-reality-gateway
 	- $(MAKE) start-xray-vless-reality-whitelist-bypass
 	- $(MAKE) start-nginx-gateway
@@ -24,7 +30,7 @@ start-socks4:
 		--memory=${SOCKS4_MEMORY} \
 		--cpus=${SOCKS5_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/dv0vd/socks4
+		docker.io/dv0vd/socks4:1.1.3
 
 start-socks5:
 	-@ rm ./deployment/data/socks5/logs/danted.log
@@ -45,7 +51,7 @@ start-socks5:
 		--memory=${SOCKS5_MEMORY} \
 		--cpus=${SOCKS5_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/dv0vd/socks5
+		docker.io/dv0vd/socks5:1.1.1
 
 start-https-proxy:
 	- podman run \
@@ -63,11 +69,12 @@ start-https-proxy:
 		--memory=${HTTPS_PROXY_MEMORY} \
 		--cpus=${HTTPS_PROXY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/dv0vd/https-proxy
+		docker.io/dv0vd/https-proxy:1.2.0
 
 start-outline:
 	- mkdir ./deployment/data/outline/data/persisted-state
 	- cp -f ./deployment/configs/outline/shadowbox_server_config.json ./deployment/data/outline/data/persisted-state/shadowbox_server_config.json
+	- bash ./deployment/scripts/copy_outline_certs.sh
 	- podman run \
 		-d \
 		--name outline \
@@ -103,7 +110,7 @@ start-xray-vless-reality:
 		--dns ${DNS2} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
-		-v ./deployment/configs/xray-vless-reality/xray_config.json:/etc/xray/config.json:ro \
+		-v ./deployment/configs/xray-vless-reality/xray.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
@@ -175,7 +182,7 @@ start-nginx-proxy:
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
 	-v ./deployment/configs/nginx/lite.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
