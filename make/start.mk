@@ -276,6 +276,7 @@ start-doh-server:
 		-d \
 		--name doh-server \
 		--network podman_network \
+		-p 127.0.0.1:8053:8053 \
 		-e UPSTREAM_DNS_SERVER="udp:${DNS1}:53,udp:${DNS2}:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
