@@ -9,10 +9,4 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 4) Go to the project directory: `cd ./dv0vd`
 5) Go to the `gateway` branch: `git switch gateway`.
 6) Configure the `.env` file.
-7) Copy Podman images to `./deployment/images`:
-- nginx_1.27.3.tar
-- kulikov0-whitelist-bypass-bot_v0.4.4.tar
-- teddysun_xray-25.10.15.tar
-- certbot_5.3.1.tar
-- satishweb-doh-server_v2.3.10-alpine.tar
-8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
+7) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.

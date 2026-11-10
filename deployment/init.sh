@@ -57,6 +57,7 @@ configure_podman() {
   systemctl enable podman
   systemctl start podman
   podman system prune --all -f
+  make -C /root/dv0vd podman-pull-images
   make -C /root/dv0vd podman-load-images
   make -C /root/dv0vd podman-create-network
   systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS
