@@ -241,7 +241,7 @@ start-doh-server:
 		--name doh-server \
 		--network podman_network \
 		-p 127.0.0.1:8053:8053 \
-		-e UPSTREAM_DNS_SERVER="udp:${DNS_1}:53,udp:${DNS_2}:53,udp:${DNS_3}:53,udp:${DNS_RU}:53" \
+		-e UPSTREAM_DNS_SERVER="udp:${DNS_RU}:53,udp:${DNS_1}:53,udp:${DNS_2}:53,udp:${DNS_3}:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
@@ -516,12 +516,6 @@ start-rustdesk:
 		--name rustdesk-relay \
 		-p ${RUSTDESK_RELAY_PORT}:21117 \
 		--network podman_network \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns ${DNS_RU} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/data/rustdesk:/root \
 		--restart unless-stopped \
 		--memory=${RUSTDESK_RELAY_MEMORY} \
