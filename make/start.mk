@@ -210,18 +210,18 @@ start-pihole:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/pihole/pihole:2025.08.0
 
-start-doh-server-gateway:
+start-doh-server:
 	- podman run \
 		-d \
 		--name doh-server \
 		--network podman_network \
 		-p 127.0.0.1:8053:8053 \
-		-e UPSTREAM_DNS_SERVER="udp:${DNS_RU}:53,udp:77.88.8.8:53" \
+		-e UPSTREAM_DNS_SERVER="udp:${PUBLIC_IP}:53,udp:1.1.1.1:53,udp:8.8.8.8:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
 		-e DOH_SERVER_TIMEOUT="1" \
-		-e DOH_SERVER_TRIES="2" \
+		-e DOH_SERVER_TRIES="3" \
 		--restart unless-stopped \
 		--memory=${DOH_SERVER_MEMORY} \
 		--cpus=${DOH_SERVER_CPUS} \
