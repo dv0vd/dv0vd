@@ -2,10 +2,10 @@ podman-cleanup:
 	podman system reset -f
 
 podman-create-network:
-	podman network create --ipv6 --disable-dns podman_network
+	podman network create --ipv6 --disable-dns --interface-name podman-main podman_network
 
 podman-create-whitelist-bypass-network:
-	podman network create --subnet 10.89.10.0/24 --disable-dns whitelist_bypass_network
+	podman network create --subnet 10.89.10.0/24 --disable-dns --interface-name podman-wlb whitelist_bypass_network
 
 podman-pull-images:
 	podman pull docker.io/nginx:1.27.3
