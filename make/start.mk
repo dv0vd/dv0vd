@@ -1,10 +1,6 @@
 start-containers:
-	- echo "nameserver ${DNS_1}" > /etc/resolv.conf
-	- echo "nameserver ${DNS_2}" >> /etc/resolv.conf
-	- echo "nameserver ${DNS_3}" >> /etc/resolv.conf
-	- echo "nameserver ${DNS_RU}" >> /etc/resolv.conf
-	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
-	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+	- echo "nameserver ${DNS_RU}" > /etc/resolv.conf
+	- echo "nameserver 77.88.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) start-doh-server-gateway
 	- $(MAKE) start-whitelist-bypass
@@ -99,13 +95,6 @@ start-xray-vless-reality-gateway:
 		--name xray-vless-reality-gateway \
 		--network podman_network \
 		-p ${XRAY_VLESS_REALITY_PORT}:443 \
-		--dns ${DNS_RU} \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns 77.88.8.8 \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/configs/xray-vless-reality/gateway.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
@@ -118,13 +107,6 @@ start-xray-vless-reality-whitelist-bypass:
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
 		--network whitelist_bypass_network \
-		--dns ${DNS_RU} \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns 77.88.8.8 \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		--ip 10.89.10.2 \
 		-v ./deployment/configs/xray-vless-reality/whitelist_bypass.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
@@ -160,13 +142,6 @@ start-nginx-gateway:
 	-d \
 	--name nginx \
 	--network host \
-	--dns ${DNS_RU} \
-	--dns ${DNS_1} \
-	--dns ${DNS_2} \
-	--dns ${DNS_3} \
-	--dns 77.88.8.8 \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
 	-v ./deployment/configs/nginx/gateway.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
