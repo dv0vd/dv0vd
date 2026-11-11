@@ -228,6 +228,24 @@ start-doh-server-gateway:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/satishweb/doh-server:v2.3.10-alpine
 
+start-doh-server-gateway:
+	- podman run \
+		-d \
+		--name doh-server \
+		--network podman_network \
+		-p 127.0.0.1:8053:8053 \
+		-e UPSTREAM_DNS_SERVER="udp:${DNS_RU}:53,udp:77.88.8.8:53" \
+		-e DOH_HTTP_PREFIX="/dns-query" \
+		-e DEBUG="1" \
+		-e DOH_SERVER_VERBOSE="true" \
+		-e DOH_SERVER_TIMEOUT="1" \
+		-e DOH_SERVER_TRIES="2" \
+		--restart unless-stopped \
+		--memory=${DOH_SERVER_MEMORY} \
+		--cpus=${DOH_SERVER_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/satishweb/doh-server:v2.3.10-alpine
+
 start-mongo-demo:
 	- podman run \
 	-d \
