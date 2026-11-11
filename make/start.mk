@@ -144,8 +144,8 @@ start-xray-vless-reality-whitelist-bypass:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/teddysun/xray:25.10.15
 
-start-nginx:
-	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_lite_env.conf > ./deployment/configs/nginx/nginx.conf"
+start-nginx-proxy:
+	- bash ./deployment/scripts/render_nginx_lite.sh
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -156,10 +156,10 @@ start-nginx:
 	--dns ${DNS2} \
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
-	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
 	-v ./src:/app:ro \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
