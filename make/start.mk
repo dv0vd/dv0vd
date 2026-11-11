@@ -1,6 +1,6 @@
 start-containers:
-	- echo "nameserver ${DNS1}" > /etc/resolv.conf
-	- echo "nameserver ${DNS2}" >> /etc/resolv.conf
+	- echo "nameserver ${DNS_1}" > /etc/resolv.conf
+	- echo "nameserver ${DNS_2}" >> /etc/resolv.conf
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
@@ -18,8 +18,10 @@ start-socks4:
 		-d \
 		--name socks4 \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-p ${SOCKS4_PORT}:1080 \
@@ -36,8 +38,10 @@ start-socks5:
 		-d \
 		--name socks5 \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-p ${SOCKS5_PORT}:1080 \
@@ -55,12 +59,14 @@ start-https-proxy:
 		-d \
 		--name https-proxy \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
-		-e DNS1=${DNS1} \
-		-e DNS2=${DNS2} \
+		-e DNS_1=${DNS_1} \
+		-e DNS_2=${DNS_2} \
 		-p ${HTTPS_PROXY_PORT}:3128 \
 		--restart unless-stopped \
 		--memory=${HTTPS_PROXY_MEMORY} \
@@ -76,8 +82,10 @@ start-outline:
 		-d \
 		--name outline \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/data/outline/data:/root/shadowbox \
@@ -103,8 +111,10 @@ start-xray-vless-reality:
 		--name xray-vless-reality \
 		--network podman_network \
 		-p ${XRAY_VLESS_REALITY_PORT}:443 \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/configs/xray-vless-reality/xray.json:/etc/xray/config.json:ro \
@@ -120,8 +130,10 @@ start-xray-vless-reality-gateway:
 		--name xray-vless-reality-gateway \
 		--network podman_network \
 		-p ${XRAY_VLESS_REALITY_PORT}:443 \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_RU} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/configs/xray-vless-reality/gateway.json:/etc/xray/config.json:ro \
@@ -136,8 +148,10 @@ start-xray-vless-reality-whitelist-bypass:
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
 		--network whitelist_bypass_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_RU} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		--ip 10.89.10.2 \
@@ -155,34 +169,12 @@ start-nginx-proxy:
 	-d \
 	--name nginx \
 	--network host \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
+	--dns ${DNS_1} \
+	--dns ${DNS_2} \
+	--dns ${DNS_3} \
+	--dns ${DNS_RU} \
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
-	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
-	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
-	-v ./deployment/data/nginx/logs:/var/log/nginx \
-	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
-	-v ./src:/app:ro \
-	--restart unless-stopped \
-	--memory=${NGINX_MEMORY} \
-	--cpus=${NGINX_CPUS} \
-	--cgroup-parent=/podman-group.slice \
-	docker.io/nginx:1.27.3
-
-start-nginx-proxy:
-	- bash ./deployment/scripts/render_nginx_lite.sh
-	-@ rm ./deployment/data/nginx/logs/access.log
-	-@ rm ./deployment/data/nginx/logs/error.log
-	- podman run \
-	-d \
-	--name nginx \
-	--network host \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
-	-v ./deployment/configs/nginx/lite.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
@@ -202,6 +194,12 @@ start-nginx-gateway:
 	-d \
 	--name nginx \
 	--network host \
+	--dns ${DNS_RU} \
+	--dns ${DNS_1} \
+	--dns ${DNS_2} \
+	--dns ${DNS_3} \
+	--dns 1.1.1.1 \
+	--dns 8.8.8.8 \
 	-v ./deployment/configs/nginx/gateway.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
@@ -222,8 +220,10 @@ start-nginx-certbot:
 	-d \
 	--name nginx-certbot \
 	--network host \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
+	--dns ${DNS_1} \
+	--dns ${DNS_2} \
+	--dns ${DNS_3} \
+	--dns ${DNS_RU} \
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
 	-v ./deployment/configs/nginx/certbot.conf:/etc/nginx/nginx.conf:ro \
@@ -261,8 +261,10 @@ start-pihole:
 		-d \
 		--name pihole \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-p 53:53/tcp \
@@ -283,8 +285,14 @@ start-doh-server:
 		-d \
 		--name doh-server \
 		--network podman_network \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		-p 127.0.0.1:8053:8053 \
-		-e UPSTREAM_DNS_SERVER="udp:${DNS1}:53,udp:${DNS2}:53" \
+		-e UPSTREAM_DNS_SERVER="udp:${DNS_1}:53,udp:${DNS_2}:53,udp:${DNS_3}:53,udp:${DNS_RU}:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
@@ -426,6 +434,12 @@ start-coturn:
 		-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
 		--network host \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--memory=${COTURN_MEMORY} \
 		--cpus=${COTURN_CPUS} \
 		--cgroup-parent=/podman-group.slice \
@@ -436,6 +450,12 @@ start-ntfy:
 		-d \
 		--name ntfy \
 		--network podman_network \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		-v ./deployment/data/ntfy:/var/lib/ntfy \
 		-e NTFY_BASE_URL=https://${NTFY_URL}.${BASE_URL} \
 		-e NTFY_CACHE_FILE=/var/lib/ntfy/cache.db \
@@ -445,10 +465,6 @@ start-ntfy:
 		-e NTFY_BEHIND_PROXY=true \
 		-e NTFY_ATTACHMENT_CACHE_DIR=/var/lib/ntfy/attachments \
 		-e NTFY_ENABLE_LOGIN=false \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${NTFY_MEMORY} \
 		--cpus=${NTFY_CPUS} \
@@ -495,6 +511,12 @@ start-matrix-rtc:
 		-e LIVEKIT_SECRET=${LIVEKIT_API_SECRET} \
 		-e LIVEKIT_FULL_ACCESS_HOMESERVERS=${BASE_URL} \
 		--network podman_network \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${MATRIX_RTC_MEMORY} \
 		--cpus=${MATRIX_RTC_CPUS} \
@@ -508,6 +530,12 @@ start-email:
 		-d \
 		--name email \
 		--network podman_network \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		-e OVERRIDE_HOSTNAME=mail.${BASE_URL} \
 		-e TZ=UTC \
 		-e ENABLE_AMAVIS=0 \
@@ -549,6 +577,12 @@ start-rustdesk:
 		-d \
 		--name rustdesk-id \
 		--network podman_network \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		-v ./deployment/data/rustdesk:/root \
 		-p 21115:21115 \
 		-p ${RUSTDESK_ID_PORT}:21116 \
@@ -563,6 +597,12 @@ start-rustdesk:
 		--name rustdesk-relay \
 		-p ${RUSTDESK_RELAY_PORT}:21117 \
 		--network podman_network \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		-v ./deployment/data/rustdesk:/root \
 		--restart unless-stopped \
 		--memory=${RUSTDESK_RELAY_MEMORY} \
@@ -577,8 +617,10 @@ start-mtproto:
 		-v ./deployment/configs/mtproto/mtg.toml:/config.toml \
 		-p ${MTPROTO_PORT}:3128 \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		--restart unless-stopped \
@@ -599,8 +641,10 @@ start-whitelist-bypass:
 		-e UPSTREAM_SOCKS=10.89.10.2:1080 \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network whitelist_bypass_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_RU} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		--ip 10.89.10.3 \
@@ -639,6 +683,12 @@ start-sip:
 		-p ${SIP_PORT}:5061/tcp \
 		-p ${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}:${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}/udp \
 		--network podman_network \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${SIP_MEMORY} \
 		--cpus=${SIP_CPUS} \
@@ -652,6 +702,12 @@ start-open-webui:
 		-e AIOHTTP_CLIENT_TIMEOUT=600 \
 		-v ./deployment/data/open-webui:/app/backend/data \
 		--network podman_network \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--memory=${OPEN_WEBUI_MEMORY} \
 		--cpus=${OPEN_WEBUI_CPUS} \
 		--cgroup-parent=/podman-group.slice \

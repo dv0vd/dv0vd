@@ -15,8 +15,10 @@ certbot-issue-gateway:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_RU} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
@@ -37,8 +39,10 @@ certbot-issue-website:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
@@ -58,8 +62,10 @@ certbot-issue-email:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
@@ -79,8 +85,10 @@ certbot-issue-ntfy:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
@@ -100,8 +108,10 @@ certbot-issue-livekit:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
@@ -121,8 +131,10 @@ certbot-issue-proxy:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
@@ -142,8 +154,10 @@ certbot-issue-open-webui:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
@@ -164,8 +178,10 @@ certbot-renew:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
+		--dns ${DNS_1} \
+		--dns ${DNS_2} \
+		--dns ${DNS_3} \
+		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
