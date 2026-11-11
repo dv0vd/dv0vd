@@ -1,5 +1,6 @@
 stop-containers:
 	- $(MAKE) stop-nginx
+	- $(MAKE) stop-doh-server
 	- $(MAKE) stop-outline
 	- $(MAKE) stop-xray-vless-reality
 	- $(MAKE) stop-https-proxy

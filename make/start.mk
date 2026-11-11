@@ -1,6 +1,9 @@
 start-containers:
-	- echo "nameserver ${DNS_RU}" > /etc/resolv.conf
-	- echo "nameserver 77.88.8.8" >> /etc/resolv.conf
+	- echo "nameserver ${DNS_1}" > /etc/resolv.conf
+	- echo "nameserver ${DNS_2}" >> /etc/resolv.conf
+	- echo "nameserver ${DNS_3}" >> /etc/resolv.conf
+	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) start-pihole
 	- $(MAKE) start-mtproto
@@ -9,6 +12,7 @@ start-containers:
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-outline
+	- $(MAKE) start-doh-server
 	- $(MAKE) start-nginx-proxy
 
 start-socks4:
@@ -212,6 +216,24 @@ start-pihole:
 		--shm-size=${PIHOLE_SHM_SIZE} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/pihole/pihole:2025.08.0
+
+start-doh-server:
+	- podman run \
+		-d \
+		--name doh-server \
+		--network podman_network \
+		-p 127.0.0.1:8053:8053 \
+		-e UPSTREAM_DNS_SERVER="udp:${PUBLIC_ID}:53,udp:1.1.1.1:53,udp:8.8.8.8:53" \
+		-e DOH_HTTP_PREFIX="/dns-query" \
+		-e DEBUG="1" \
+		-e DOH_SERVER_VERBOSE="true" \
+		-e DOH_SERVER_TIMEOUT="1" \
+		-e DOH_SERVER_TRIES="3" \
+		--restart unless-stopped \
+		--memory=${DOH_SERVER_MEMORY} \
+		--cpus=${DOH_SERVER_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/satishweb/doh-server:v2.3.10-alpine
 
 start-doh-server-gateway:
 	- podman run \

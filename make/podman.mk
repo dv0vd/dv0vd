@@ -17,6 +17,7 @@ podman-pull-images:
 	podman pull quay.io/outline/shadowbox:v1.12.3
 	podman pull docker.io/nginx:1.27.3
 	podman pull docker.io/certbot/certbot:v5.3.1
+	podman save docker.io/satishweb/doh-server:v2.3.10-alpine > ./deployment/images/satishweb-doh-server.tar
 
 	podman save docker.io/teddysun/xray:25.10.15 > ./deployment/images/teddysun-xray.tar
 	podman save docker.io/nginx:1.27.3 > ./deployment/images/nginx.tar
@@ -27,6 +28,7 @@ podman-pull-images:
 	podman save docker.io/dv0vd/socks4:1.1.3 > ./deployment/images/dv0vd-socks4.tar
 	podman save docker.io/dv0vd/https-proxy:1.2.0 > ./deployment/images/dv0vd-https-proxy.tar
 	podman save quay.io/outline/shadowbox:v1.12.3 > ./deployment/images/outline-shadowbox.tar
+	podman load < ./deployment/images/satishweb-doh-server.tar
 
 podman-load-images:
 	podman load < ./deployment/images/dv0vd-https-proxy.tar
