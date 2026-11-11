@@ -118,6 +118,7 @@ generate_mtproto_proxy_config() {
   cat <<EOF > ./deployment/configs/mtproto/mtg.toml
 secret = "$SECRET"
 bind-to = "0.0.0.0:3128"
+public-ipv4 = "$PUBLIC_IP" 
 EOF
 
   log "MTProto proxy configuration successfully generated"
