@@ -136,6 +136,10 @@ start-xray-vless-reality-whitelist-bypass:
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
 		--network whitelist_bypass_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--ip 10.89.10.2 \
 		-v ./deployment/configs/xray-vless-reality/whitelist_bypass.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
@@ -143,8 +147,8 @@ start-xray-vless-reality-whitelist-bypass:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/teddysun/xray:25.10.15
 
-start-nginx:
-	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/nginx_lite_env.conf > ./deployment/configs/nginx/nginx.conf"
+start-nginx-proxy:
+	- bash ./deployment/scripts/render_nginx_lite.sh
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -155,10 +159,10 @@ start-nginx:
 	--dns ${DNS2} \
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
-	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
 	-v ./src:/app:ro \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
@@ -191,17 +195,13 @@ start-nginx-proxy:
 	docker.io/nginx:1.27.3
 
 start-nginx-gateway:
-	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/gateway_env.conf > ./deployment/configs/nginx/gateway.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$GATEWAY_URL' < ./deployment/configs/nginx/gateway_env.conf > ./deployment/configs/nginx/gateway.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
 	-d \
 	--name nginx \
 	--network host \
-	--dns ${DNS1} \
-	--dns ${DNS2} \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
 	-v ./deployment/configs/nginx/gateway.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
@@ -283,6 +283,7 @@ start-doh-server:
 		-d \
 		--name doh-server \
 		--network podman_network \
+		-p 127.0.0.1:8053:8053 \
 		-e UPSTREAM_DNS_SERVER="udp:${DNS1}:53,udp:${DNS2}:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
@@ -598,12 +599,16 @@ start-whitelist-bypass:
 		-e UPSTREAM_SOCKS=10.89.10.2:1080 \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network whitelist_bypass_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--ip 10.89.10.3 \
 		--restart unless-stopped \
 		--memory=${WHITELIST_BYPASS_MEMORY} \
 		--cpus=${WHITELIST_BYPASS_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		ghcr.io/kulikov0/whitelist-bypass-bot:v0.4.4
+		ghcr.io/kulikov0/whitelist-bypass-bot:v0.5.1
 
 start-sip:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/transport_env.conf > ./deployment/configs/sip/pjsip.d/transport.conf"

@@ -19,7 +19,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "PROXY_MAIN_URL.$BASE_URL",
+            "address": "$PROXY_MAIN_URL.$BASE_URL",
             "port": "$XRAY_VLESS_REALITY_PORT",
             "users": [
               {
