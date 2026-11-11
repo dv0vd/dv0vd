@@ -89,6 +89,7 @@ help:
 	$(call print-help,restart-nginx-gateway,restart nginx server on the gateway host)
 	$(call print-help,restart-pihole,restart Pi-hole)
 	$(call print-help,restart-doh-server,restart DoH server)
+	$(call print-help,restart-doh-server-gateway,restart DoH server on gateway host)
 	$(call print-help,restart-ntfy,restart ntfy server)
 	$(call print-help,restart-livekit,restart LiveKit server)
 	$(call print-help,restart-livekit-redis,restart Redis for LiveKit server)
