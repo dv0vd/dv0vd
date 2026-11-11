@@ -1,5 +1,5 @@
 start-containers:
-	- echo "nameserver ${DNS_RU}" >> /etc/resolv.conf
+	- echo "nameserver ${DNS_RU}" > /etc/resolv.conf
 	- echo "nameserver 77.88.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) start-doh-server-gateway
