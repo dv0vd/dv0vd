@@ -173,11 +173,11 @@ configure_dns() {
   log "Configuring DNS..."
   touch /etc/resolv.conf || true
   echo "nameserver ${DNS_1}" > /etc/resolv.conf
-	echo "nameserver ${DNS_2}" >> /etc/resolv.conf
-	echo "nameserver ${DNS_3}" >> /etc/resolv.conf
-	echo "nameserver ${DNS_RU}" >> /etc/resolv.conf
-	echo "nameserver 1.1.1.1" >> /etc/resolv.conf
-	echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+  echo "nameserver ${DNS_2}" >> /etc/resolv.conf
+  echo "nameserver ${DNS_3}" >> /etc/resolv.conf
+  echo "nameserver ${DNS_RU}" >> /etc/resolv.conf
+  echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+  echo "nameserver 8.8.8.8" >> /etc/resolv.conf
   log "DNS successfully configured"
 }
 
