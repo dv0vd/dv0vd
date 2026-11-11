@@ -159,7 +159,7 @@ start-xray-vless-reality-whitelist-bypass:
 		docker.io/teddysun/xray:25.10.15
 
 start-nginx-proxy:
-	- bash ./deployment/scripts/render_nginx_lite.sh
+	- bash ./deployment/scripts/render_nginx_proxy.sh
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -172,7 +172,8 @@ start-nginx-proxy:
 	--dns ${DNS_RU} \
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
-	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
+	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \

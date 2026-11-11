@@ -13,4 +13,4 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 - cookies-yandex.json
 - cookies-vk.json
 - cookies-bitrix.json
-8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
+8) Run the initialization script `chmod +x ./deployment/scripts/_init.sh && ./deployment/scripts/_init.sh`.
