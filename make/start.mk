@@ -133,6 +133,10 @@ start-xray-vless-reality-whitelist-bypass:
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
 		--network whitelist_bypass_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--ip 10.89.10.2 \
 		-v ./deployment/configs/xray-vless-reality/whitelist_bypass.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
