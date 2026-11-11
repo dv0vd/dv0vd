@@ -85,10 +85,10 @@ ip6tables -A FORWARD -p tcp -m set --match-set blocked_nets_v6 src -j REJECT --r
 ip6tables -A FORWARD -p udp -m set --match-set blocked_nets_v6 src -j REJECT --reject-with icmp6-adm-prohibited
 
 # allow podman
-iptables -A FORWARD -o podman1 -j ACCEPT
-iptables -A FORWARD -i podman1 -j ACCEPT
-ip6tables -A FORWARD -o podman1 -j ACCEPT
-ip6tables -A FORWARD -i podman1 -j ACCEPT
+iptables -A FORWARD -i podman-main -j ACCEPT
+iptables -A FORWARD -o podman-main -j ACCEPT
+ip6tables -A FORWARD -i podman-main -j ACCEPT
+ip6tables -A FORWARD -o podman-main -j ACCEPT
 
 # allow icmp
 iptables -A INPUT -p icmp --icmp-type 8 -m limit --limit 10/s -j ACCEPT # echo request with limit for the whole server
