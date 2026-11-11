@@ -16,7 +16,7 @@ configure_nginx_gateway() {
   log "Nginx successfully configured"
 }
 
-configure_nginx_proxy() {
+configure_nginx_lite() {
   log "Configuring nginx..."
   htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD
   make -C /root/dv0vd certbot-issue-proxies
@@ -196,7 +196,5 @@ configure_git
 configure_dns
 configure_ssh
 configure_podman
-configure_nginx_proxy
-configure_outline
-generate_mtproto_proxy_config
+configure_nginx_gateway
 finish

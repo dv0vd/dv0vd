@@ -7,6 +7,10 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 2) Install git: `apt install git -y`.
 3) Clone repo: `git clone -c core.filemode=false https://github.com/dv0vd/dv0vd.git`.
 4) Go to the project directory: `cd ./dv0vd`
-5) Go to the `proxy` branch: `git switch proxy`.
+5) Go to the `gateway` branch: `git switch gateway`.
 6) Configure the `.env` file.
-7) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
+7) Copy cookies for Whitelist Bypass service to `./deployment/configs/whitelist-bypass`:
+- cookies-yandex.json
+- cookies-vk.json
+- cookies-bitrix.json
+8) Run the initialization script `chmod +x ./deployment/init.sh && ./deployment/init.sh`.
