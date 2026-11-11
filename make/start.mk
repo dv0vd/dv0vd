@@ -283,10 +283,10 @@ start-doh-server:
 		-d \
 		--name doh-server \
 		--network podman_network \
+		--dns ${DNS_RU} \
 		--dns ${DNS_1} \
 		--dns ${DNS_2} \
 		--dns ${DNS_3} \
-		--dns ${DNS_RU} \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		-p 127.0.0.1:8053:8053 \
