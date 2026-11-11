@@ -175,7 +175,7 @@ start-nginx-proxy:
 	--dns ${DNS_RU} \
 	--dns 1.1.1.1 \
 	--dns 8.8.8.8 \
-	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/proxy.conf:ro \
+	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
