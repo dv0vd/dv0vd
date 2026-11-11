@@ -592,6 +592,10 @@ start-whitelist-bypass:
 		-e UPSTREAM_SOCKS=10.89.10.2:1080 \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network whitelist_bypass_network \
+		--dns ${DNS1} \
+		--dns ${DNS2} \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--ip 10.89.10.3 \
 		--restart unless-stopped \
 		--memory=${WHITELIST_BYPASS_MEMORY} \
