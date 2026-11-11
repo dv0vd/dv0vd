@@ -2,7 +2,6 @@ start-containers:
 	- echo "nameserver ${DNS_1}" > /etc/resolv.conf
 	- echo "nameserver ${DNS_2}" >> /etc/resolv.conf
 	- echo "nameserver ${DNS_3}" >> /etc/resolv.conf
-	- echo "nameserver ${DNS_RU}" >> /etc/resolv.conf
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
@@ -13,6 +12,7 @@ start-containers:
 	- $(MAKE) start-https-proxy
 	- $(MAKE) start-xray-vless-reality
 	- $(MAKE) start-outline
+	- $(MAKE) start-doh-server
 	- $(MAKE) start-nginx-proxy
 
 start-socks4:
@@ -102,13 +102,6 @@ start-xray-vless-reality-gateway:
 		--name xray-vless-reality-gateway \
 		--network podman_network \
 		-p ${XRAY_VLESS_REALITY_PORT}:443 \
-		--dns ${DNS_RU} \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns 77.88.8.8 \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/configs/xray-vless-reality/gateway.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
@@ -121,13 +114,6 @@ start-xray-vless-reality-whitelist-bypass:
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
 		--network whitelist_bypass_network \
-		--dns ${DNS_RU} \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns 77.88.8.8 \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		--ip 10.89.10.2 \
 		-v ./deployment/configs/xray-vless-reality/whitelist_bypass.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
@@ -163,13 +149,6 @@ start-nginx-gateway:
 	-d \
 	--name nginx \
 	--network host \
-	--dns ${DNS_RU} \
-	--dns ${DNS_1} \
-	--dns ${DNS_2} \
-	--dns ${DNS_3} \
-	--dns 77.88.8.8 \
-	--dns 1.1.1.1 \
-	--dns 8.8.8.8 \
 	-v ./deployment/configs/nginx/gateway.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
@@ -244,12 +223,30 @@ start-doh-server:
 		--name doh-server \
 		--network podman_network \
 		-p 127.0.0.1:8053:8053 \
-		-e UPSTREAM_DNS_SERVER="udp:${DNS_RU}:53,udp:${DNS_1}:53,udp:${DNS_2}:53,udp:${DNS_3}:53" \
+		-e UPSTREAM_DNS_SERVER="udp:${PUBLIC_IP}:53,udp:1.1.1.1:53,udp:8.8.8.8:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
-		-e DOH_SERVER_TIMEOUT="2" \
+		-e DOH_SERVER_TIMEOUT="1" \
 		-e DOH_SERVER_TRIES="3" \
+		--restart unless-stopped \
+		--memory=${DOH_SERVER_MEMORY} \
+		--cpus=${DOH_SERVER_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/satishweb/doh-server:v2.3.10-alpine
+
+start-doh-server-gateway:
+	- podman run \
+		-d \
+		--name doh-server \
+		--network podman_network \
+		-p 127.0.0.1:8053:8053 \
+		-e UPSTREAM_DNS_SERVER="udp:${DNS_RU}:53,udp:77.88.8.8:53" \
+		-e DOH_HTTP_PREFIX="/dns-query" \
+		-e DEBUG="1" \
+		-e DOH_SERVER_VERBOSE="true" \
+		-e DOH_SERVER_TIMEOUT="1" \
+		-e DOH_SERVER_TRIES="2" \
 		--restart unless-stopped \
 		--memory=${DOH_SERVER_MEMORY} \
 		--cpus=${DOH_SERVER_CPUS} \

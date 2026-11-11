@@ -20,6 +20,8 @@ restart-pihole: stop-pihole start-pihole
 
 restart-doh-server: stop-doh-server start-doh-server
 
+restart-doh-server-gateway: stop-doh-server start-doh-server-gateway
+
 restart-nginx: stop-nginx start-nginx
 
 restart-nginx-gateway: stop-nginx start-nginx-gateway
