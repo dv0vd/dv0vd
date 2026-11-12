@@ -6,6 +6,7 @@ restore:
 	- $(MAKE) open-webui-restore-from-storage-vps
 	- $(MAKE) synapse-restore-from-storage-vps
 	- mkdir -p ./deployment/data/synapse/data/media_store
+	- $(MAKE) restore-clean-data
 	- cp -a ./deployment/restore/open-webui/. ./deployment/data/open-webui/
 	- cp -a ./deployment/restore/rustdesk/. ./deployment/data/rustdesk/
 	- cp -a ./deployment/restore/email/configs/. ./deployment/data/email/configs/
@@ -20,3 +21,6 @@ restore:
 
 restore-clean:
 	find ./deployment/restore -mindepth 2 ! -name '.gitignore' -delete
+
+restore-clean-data:
+	find ./deployment/data/open-webui ./deployment/data/rustdesk ./deployment/data/email/configs ./deployment/data/email/data ./deployment/data/email/logs ./deployment/data/email/state ./deployment/data/synapse/data/media_store ./deployment/data/postgres-synapse/backups -mindepth 1 ! -name '.gitignore' -delete
