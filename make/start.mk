@@ -1,20 +1,3 @@
-start-containers:
-	- echo "nameserver ${DNS_1}" > /etc/resolv.conf
-	- echo "nameserver ${DNS_2}" >> /etc/resolv.conf
-	- echo "nameserver ${DNS_3}" >> /etc/resolv.conf
-	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
-	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
-	- $(MAKE) start-pihole
-	- $(MAKE) start-mtproto
-	- $(MAKE) start-socks5
-	- $(MAKE) start-socks4
-	- $(MAKE) start-https-proxy
-	- $(MAKE) start-xray-vless-reality
-	- $(MAKE) start-outline
-	- $(MAKE) start-doh-server
-	- $(MAKE) start-nginx-proxy
-
 start-socks4:
 	- podman run \
 		-d \
@@ -141,6 +124,26 @@ start-nginx-proxy:
 	--cgroup-parent=/podman-group.slice \
 	docker.io/nginx:1.27.3
 
+start-nginx-proxy:
+	- bash ./deployment/scripts/render_nginx_proxy.sh
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
+	- podman run \
+	-d \
+	--name nginx \
+	--network host \
+	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
+	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+	-v ./src:/app:ro \
+	--restart unless-stopped \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
+	--cgroup-parent=/podman-group.slice \
+	docker.io/nginx:1.27.3
+
 start-nginx-gateway:
 	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$GATEWAY_URL' < ./deployment/configs/nginx/gateway_env.conf > ./deployment/configs/nginx/gateway.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
@@ -168,7 +171,8 @@ start-nginx-certbot:
 	- podman run \
 	-d \
 	--name nginx-certbot \
-	--network host \
+	--network podman_network \
+	-p 80:80 \
 	-v ./deployment/configs/nginx/certbot.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
@@ -279,13 +283,14 @@ start-postgres-demo:
 
 start-postgres-synapse:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/postgres/synapse_env.sql > ./deployment/configs/postgres/synapse.sql"
-	- mkdir ./deployment/data/postgres-synapse/data
+	- mkdir -p ./deployment/data/postgres-synapse/data
 	- podman run \
 	-d \
 	--name postgres-synapse \
 	-v ./deployment/configs/postgres/synapse.sql:/docker-entrypoint-initdb.d/synapse.sql \
 	-v ./deployment/data/postgres-synapse/data:/var/lib/postgresql/data \
 	-v ./deployment/data/postgres-synapse/backups:/backups \
+	-e PGDATA=/var/lib/postgresql/data/pgdata \
 	-e POSTGRES_USER=${SYNAPSE_DB_USERNAME} \
 	-e POSTGRES_PASSWORD=${SYNAPSE_DB_PASSWORD} \
 	-p 127.0.0.1:${SYNAPSE_DB_HOST_PORT}:${SYNAPSE_DB_PORT} \
@@ -297,8 +302,8 @@ start-postgres-synapse:
 	docker.io/postgres:15.14-alpine
 
 start-db:
-	- $(MAKE) start-mongo-demo
-	- $(MAKE) start-postgres-demo
+# 	- $(MAKE) start-mongo-demo
+# 	- $(MAKE) start-postgres-demo
 	- $(MAKE) start-postgres-synapse
 
 start-demo:
@@ -600,4 +605,4 @@ start-open-webui:
 		--memory=${OPEN_WEBUI_MEMORY} \
 		--cpus=${OPEN_WEBUI_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		ghcr.io/open-webui/open-webui:v0.11.3
+		ghcr.io/open-webui/open-webui:v0.13.3-slim
