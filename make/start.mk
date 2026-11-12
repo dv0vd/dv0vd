@@ -176,7 +176,8 @@ start-nginx-certbot:
 	- podman run \
 	-d \
 	--name nginx-certbot \
-	--network host \
+	--network podman_network \
+	-p 80:80 \
 	-v ./deployment/configs/nginx/certbot.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
