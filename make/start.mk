@@ -608,4 +608,4 @@ start-open-webui:
 		--memory=${OPEN_WEBUI_MEMORY} \
 		--cpus=${OPEN_WEBUI_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		ghcr.io/open-webui/open-webui:v0.11.3-slim
+		ghcr.io/open-webui/open-webui:v0.13.3-slim
