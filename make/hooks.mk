@@ -34,7 +34,6 @@ on-startup-proxy:
 	- $(MAKE) podman-cleanup
 	- $(MAKE) podman-load-images
 	- $(MAKE) podman-create-network-proxy
-	- $(MAKE) podman-create-whitelist-bypass-network
 	- $(MAKE) certbot-renew
 	- $(MAKE) restart-containers-proxy
 
@@ -50,7 +49,6 @@ on-startup-gateway:
 	- systemctl set-property podman-group.slice MemoryMax=${PODMAN_MEMORY_LIMIT} CPUQuota=${PODMAN_CPUS}
 	- $(MAKE) podman-cleanup
 	- $(MAKE) podman-load-images
-	- $(MAKE) podman-create-network
-	- $(MAKE) podman-create-whitelist-bypass-network
+	- $(MAKE) podman-create-network-gateway
 	- $(MAKE) certbot-renew
 	- $(MAKE) restart-containers-gateway
