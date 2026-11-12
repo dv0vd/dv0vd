@@ -24,7 +24,7 @@ on-startup:
 on-startup-proxy:
 	- systemctl disable fail2ban
 	- $(MAKE) stop-fail2ban
-	- $(MAKE) iptables-apply-rules
+	- $(MAKE) iptables-apply-rules-proxy
 	- shutdown -r 0:00
 	- $(MAKE) fail2ban-configure
 	- $(MAKE) start-fail2ban
@@ -40,7 +40,7 @@ on-startup-proxy:
 on-startup-gateway:
 	- systemctl disable fail2ban
 	- $(MAKE) stop-fail2ban
-	- $(MAKE) iptables-apply-rules
+	- $(MAKE) iptables-apply-rules-gateway
 	- shutdown -r 0:00
 	- $(MAKE) fail2ban-configure
 	- $(MAKE) start-fail2ban
