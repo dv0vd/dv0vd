@@ -36,7 +36,7 @@ on-startup-proxy:
 	- $(MAKE) podman-create-network
 	- $(MAKE) podman-create-whitelist-bypass-network
 	- $(MAKE) certbot-renew
-	- $(MAKE) restart-containers
+	- $(MAKE) restart-containers-proxy
 
 on-startup-gateway:
 	- systemctl disable fail2ban
@@ -53,4 +53,4 @@ on-startup-gateway:
 	- $(MAKE) podman-create-network
 	- $(MAKE) podman-create-whitelist-bypass-network
 	- $(MAKE) certbot-renew
-	- $(MAKE) restart-containers
+	- $(MAKE) restart-containers-gateway
