@@ -5,19 +5,19 @@ init-demo:
 	$(MAKE) init-gazprombank-startups
 
 init-lagoona:
-	mkdir ./demo
+	mkdir -p ./demo
 	cd ./demo && git clone https://github.com/dv0vd/demo-lagoona.git
 
 init-evklid:
-	mkdir ./demo
+	mkdir -p ./demo
 	cd ./demo && git clone https://github.com/dv0vd/demo-evklid.git
 
 init-gazprombank-auth:
-	mkdir ./demo
+	mkdir -p ./demo
 	cd ./demo && git clone https://github.com/dv0vd/demo-gazprombank-auth.git
 
 init-gazprombank-startups:
-	mkdir ./demo
+	mkdir -p ./demo
 	cd ./demo && git clone https://github.com/dv0vd/demo-gazprombank-startups.git
 
 refresh-demo:
