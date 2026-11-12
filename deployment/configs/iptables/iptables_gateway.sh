@@ -85,10 +85,11 @@ ip6tables -A FORWARD -p tcp -m set --match-set blocked_nets_v6 src -j REJECT --r
 ip6tables -A FORWARD -p udp -m set --match-set blocked_nets_v6 src -j REJECT --reject-with icmp6-adm-prohibited
 
 # allow podman
-iptables -A FORWARD -o podman1 -j ACCEPT
-iptables -A FORWARD -i podman1 -j ACCEPT
-ip6tables -A FORWARD -o podman1 -j ACCEPT
-ip6tables -A FORWARD -i podman1 -j ACCEPT
+iptables -A FORWARD -i podman-main -j ACCEPT
+iptables -A FORWARD -o podman-main -j ACCEPT
+iptables -A FORWARD -i podman-wlb -j ACCEPT
+ip6tables -A FORWARD -i podman-main -j ACCEPT
+ip6tables -A FORWARD -o podman-main -j ACCEPT
 
 # allow icmp
 iptables -A INPUT -p icmp --icmp-type 8 -m limit --limit 10/s -j ACCEPT # echo request with limit for the whole server
@@ -96,15 +97,13 @@ iptables -A OUTPUT -p icmp --icmp-type 0 -m limit --limit 10/s -j ACCEPT # echo 
 ip6tables -A INPUT -p ipv6-icmp --icmpv6-type 128 -m limit --limit 10/s -j ACCEPT # echo request with limit for the whole server
 ip6tables -A OUTPUT -p ipv6-icmp --icmpv6-type 129 -m limit --limit 10/s -j ACCEPT # echo reply with limit for the whole server
 
-# allow DNS
-iptables -A INPUT -p udp --dport 53 -j ACCEPT
-iptables -A INPUT -p tcp --dport 53 -j ACCEPT
-ip6tables -A INPUT -p udp --dport 53 -j ACCEPT
-ip6tables -A INPUT -p tcp --dport 53 -j ACCEPT
-
 # allow SSH
 iptables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT
 ip6tables -A INPUT -p tcp --dport $SSH_PORT -j ACCEPT
+
+# allow http
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT 
+ip6tables -A INPUT -p tcp --dport 80 -j ACCEPT
 
 # allow https
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT 

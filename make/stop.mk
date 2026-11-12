@@ -1,25 +1,3 @@
-stop-containers:
-	- $(MAKE) stop-nginx
-	- $(MAKE) stop-demo
-	- $(MAKE) stop-synapse
-	- $(MAKE) stop-matrix-rtc
-	- $(MAKE) stop-livekit
-	- $(MAKE) stop-coturn
-	- $(MAKE) stop-rustdesk
-	- $(MAKE) stop-sip
-	- $(MAKE) stop-ntfy
-	- $(MAKE) stop-doh-server
-	- $(MAKE) stop-xray-vless-reality
-	- $(MAKE) stop-outline
-	- $(MAKE) stop-https-proxy
-	- $(MAKE) stop-socks4
-	- $(MAKE) stop-socks5
-	- $(MAKE) stop-mtproto
-	- $(MAKE) stop-livekit-redis
-	- $(MAKE) stop-db
-	- $(MAKE) stop-email
-	- $(MAKE) stop-open-webui
-
 stop-socks4:
 	- podman stop socks4
 	- podman rm socks4
@@ -36,6 +14,10 @@ stop-outline:
 	- podman stop outline
 	- podman rm outline
 
+stop-xray-vless-reality-gateway:
+	- podman stop xray-vless-reality-gateway
+	- podman rm xray-vless-reality-gateway
+
 stop-xray-vless-reality:
 	- podman stop xray-vless-reality
 	- podman rm xray-vless-reality
@@ -48,9 +30,13 @@ stop-nginx:
 	- podman stop nginx
 	- podman rm nginx
 
+stop-nginx-certbot:
+	- podman stop nginx-certbot
+	- podman rm nginx-certbot
+
 stop-db:
-	- $(MAKE) stop-mongo-demo
-	- $(MAKE) stop-postgres-demo
+# 	- $(MAKE) stop-mongo-demo
+# 	- $(MAKE) stop-postgres-demo
 	- $(MAKE) stop-postgres-synapse
 
 stop-mongo-demo:

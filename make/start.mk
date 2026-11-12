@@ -1,50 +1,14 @@
-start-containers:
-	- echo "nameserver ${DNS1}" > /etc/resolv.conf
-	- echo "nameserver ${DNS2}" >> /etc/resolv.conf
-	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
-	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
-	- $(MAKE) email-backup-to-storage-vps
-	- $(MAKE) start-email
-	- $(MAKE) start-open-webui
-	- $(MAKE) start-db
-	- $(MAKE) start-livekit-redis
-	- $(MAKE) start-mtproto
-	- $(MAKE) start-socks5
-	- $(MAKE) start-socks4
-	- $(MAKE) start-https-proxy
-	- $(MAKE) start-outline
-	- $(MAKE) start-xray-vless-reality
-	- $(MAKE) start-doh-server
-	- $(MAKE) start-ntfy
-	- $(MAKE) start-sip
-	- $(MAKE) rustdesk-backup-to-storage-vps
-	- $(MAKE) start-rustdesk
-	- $(MAKE) synapse-vacuum-clean
-	- $(MAKE) synapse-backup-database
-	- $(MAKE) synapse-backup-to-storage-vps
-	- $(MAKE) start-coturn
-	- $(MAKE) start-livekit
-	- $(MAKE) start-matrix-rtc
-	- $(MAKE) start-synapse
-	- $(MAKE) start-demo
-	- $(MAKE) start-nginx
-
 start-socks4:
 	- podman run \
 		-d \
 		--name socks4 \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-p ${SOCKS4_PORT}:1080 \
 		--restart unless-stopped \
 		--memory=${SOCKS4_MEMORY} \
 		--cpus=${SOCKS5_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/dv0vd/socks4
+		docker.io/dv0vd/socks4:1.1.3
 
 start-socks5:
 	-@ rm ./deployment/data/socks5/logs/danted.log
@@ -53,10 +17,6 @@ start-socks5:
 		-d \
 		--name socks5 \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-p ${SOCKS5_PORT}:1080 \
 		-e SOCKS_USERNAME=${SOCKS5_USERNAME} \
 		-e SOCKS_PASSWORD=${SOCKS5_PASSWORD} \
@@ -65,37 +25,30 @@ start-socks5:
 		--memory=${SOCKS5_MEMORY} \
 		--cpus=${SOCKS5_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/dv0vd/socks5
+		docker.io/dv0vd/socks5:1.1.1
 
 start-https-proxy:
 	- podman run \
 		-d \
 		--name https-proxy \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
-		-e DNS1=${DNS1} \
-		-e DNS2=${DNS2} \
+		-e DNS1=${DNS_1} \
+		-e DNS2=${DNS_2} \
 		-p ${HTTPS_PROXY_PORT}:3128 \
 		--restart unless-stopped \
 		--memory=${HTTPS_PROXY_MEMORY} \
 		--cpus=${HTTPS_PROXY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/dv0vd/https-proxy
+		docker.io/dv0vd/https-proxy:1.2.0
 
 start-outline:
 	- mkdir ./deployment/data/outline/data/persisted-state
 	- cp -f ./deployment/configs/outline/shadowbox_server_config.json ./deployment/data/outline/data/persisted-state/shadowbox_server_config.json
+	- bash ./deployment/scripts/copy_outline_certs.sh
 	- podman run \
 		-d \
 		--name outline \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/data/outline/data:/root/shadowbox \
 		-v ./deployment/configs/outline:/app \
 		-p 127.0.0.1:8081:8081 \
@@ -113,17 +66,39 @@ start-outline:
 		quay.io/outline/shadowbox:v1.12.3
 
 start-xray-vless-reality:
-	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_config_env.json > ./deployment/configs/xray-vless-reality/xray_config.json"
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_env.json > ./deployment/configs/xray-vless-reality/xray.json"
 	- podman run \
 		-d \
 		--name xray-vless-reality \
 		--network podman_network \
 		-p ${XRAY_VLESS_REALITY_PORT}:443 \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
-		-v ./deployment/configs/xray-vless-reality/xray_config.json:/etc/xray/config.json:ro \
+		-v ./deployment/configs/xray-vless-reality/xray.json:/etc/xray/config.json:ro \
+		--memory=${XRAY_VLESS_REALITY_MEMORY} \
+		--cpus=${XRAY_VLESS_REALITY_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/teddysun/xray:25.10.15
+
+start-xray-vless-reality-gateway:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/gateway_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/gateway.json"
+	- podman run \
+		-d \
+		--name xray-vless-reality-gateway \
+		--network podman_network \
+		-p ${XRAY_VLESS_REALITY_PORT}:443 \
+		-v ./deployment/configs/xray-vless-reality/gateway.json:/etc/xray/config.json:ro \
+		--memory=${XRAY_VLESS_REALITY_MEMORY} \
+		--cpus=${XRAY_VLESS_REALITY_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/teddysun/xray:25.10.15
+
+start-xray-vless-reality-whitelist-bypass:
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/whitelist_bypass.json"
+	- podman run \
+		-d \
+		--name xray-vless-reality-whitelist-bypass \
+		--network whitelist_bypass_network \
+		--ip 10.89.10.2 \
+		-v ./deployment/configs/xray-vless-reality/whitelist_bypass.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
@@ -167,8 +142,65 @@ start-nginx:
 	--cgroup-parent=/podman-group.slice \
 	docker.io/nginx:1.27.3
 
+start-nginx-proxy:
+	- bash ./deployment/scripts/render_nginx_proxy.sh
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
+	- podman run \
+	-d \
+	--name nginx \
+	--network host \
+	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
+	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+	-v ./src:/app:ro \
+	--restart unless-stopped \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
+	--cgroup-parent=/podman-group.slice \
+	docker.io/nginx:1.27.3
+
+start-nginx-gateway:
+	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$GATEWAY_URL' < ./deployment/configs/nginx/gateway_env.conf > ./deployment/configs/nginx/gateway.conf"
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
+	- podman run \
+	-d \
+	--name nginx \
+	--network host \
+	-v ./deployment/configs/nginx/gateway.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+	-v ./src:/app:ro \
+	--restart unless-stopped \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
+	--cgroup-parent=/podman-group.slice \
+	docker.io/nginx:1.27.3
+
+start-nginx-certbot:
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
+	- podman rm -f nginx-certbot
+	- podman run \
+	-d \
+	--name nginx-certbot \
+	--network podman_network \
+	-p 80:80 \
+	-v ./deployment/configs/nginx/certbot.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
+	--cgroup-parent=/podman-group.slice \
+	docker.io/nginx:1.27.3
+
 start-nginx-local:
-	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/local_main_env.conf > ./deployment/configs/nginx/local.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '' < ./deployment/configs/nginx/local_lite_env.conf > ./deployment/configs/nginx/local.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -182,7 +214,7 @@ start-nginx-local:
 	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
 	-v ./deployment/configs/pihole:/app/pihole:ro \
-	-p ${NGINX_LOCAL_PORT}:80 \
+	-p ${NGINX_LOCAL_PORT}:443 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
@@ -194,13 +226,9 @@ start-pihole:
 		-d \
 		--name pihole \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-p 53:53/tcp \
 		-p 53:53/udp \
-		-p 127.0.0.1:80:80 \
+		-p 127.0.0.1:8080:80 \
 		-e TZ=UTC \
 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
 		-v ./deployment/data/pihole/data:/etc/pihole \
@@ -216,12 +244,31 @@ start-doh-server:
 		-d \
 		--name doh-server \
 		--network podman_network \
-		-e UPSTREAM_DNS_SERVER="udp:${DNS1}:53,udp:${DNS2}:53" \
+		-p 127.0.0.1:8053:8053 \
+		-e UPSTREAM_DNS_SERVER="udp:${PUBLIC_IP}:53,udp:1.1.1.1:53,udp:8.8.8.8:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
-		-e DOH_SERVER_TIMEOUT="2" \
+		-e DOH_SERVER_TIMEOUT="1" \
 		-e DOH_SERVER_TRIES="3" \
+		--restart unless-stopped \
+		--memory=${DOH_SERVER_MEMORY} \
+		--cpus=${DOH_SERVER_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/satishweb/doh-server:v2.3.10-alpine
+
+start-doh-server-gateway:
+	- podman run \
+		-d \
+		--name doh-server \
+		--network podman_network \
+		-p 127.0.0.1:8053:8053 \
+		-e UPSTREAM_DNS_SERVER="udp:${DNS_RU}:53,udp:77.88.8.8:53" \
+		-e DOH_HTTP_PREFIX="/dns-query" \
+		-e DEBUG="1" \
+		-e DOH_SERVER_VERBOSE="true" \
+		-e DOH_SERVER_TIMEOUT="1" \
+		-e DOH_SERVER_TRIES="2" \
 		--restart unless-stopped \
 		--memory=${DOH_SERVER_MEMORY} \
 		--cpus=${DOH_SERVER_CPUS} \
@@ -254,13 +301,14 @@ start-postgres-demo:
 
 start-postgres-synapse:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/postgres/synapse_env.sql > ./deployment/configs/postgres/synapse.sql"
-	- mkdir ./deployment/data/postgres-synapse/data
+	- mkdir -p ./deployment/data/postgres-synapse/data
 	- podman run \
 	-d \
 	--name postgres-synapse \
 	-v ./deployment/configs/postgres/synapse.sql:/docker-entrypoint-initdb.d/synapse.sql \
 	-v ./deployment/data/postgres-synapse/data:/var/lib/postgresql/data \
 	-v ./deployment/data/postgres-synapse/backups:/backups \
+	-e PGDATA=/var/lib/postgresql/data/pgdata \
 	-e POSTGRES_USER=${SYNAPSE_DB_USERNAME} \
 	-e POSTGRES_PASSWORD=${SYNAPSE_DB_PASSWORD} \
 	-p 127.0.0.1:${SYNAPSE_DB_HOST_PORT}:${SYNAPSE_DB_PORT} \
@@ -272,8 +320,8 @@ start-postgres-synapse:
 	docker.io/postgres:15.14-alpine
 
 start-db:
-	- $(MAKE) start-mongo-demo
-	- $(MAKE) start-postgres-demo
+# 	- $(MAKE) start-mongo-demo
+# 	- $(MAKE) start-postgres-demo
 	- $(MAKE) start-postgres-synapse
 
 start-demo:
@@ -377,10 +425,6 @@ start-ntfy:
 		-e NTFY_BEHIND_PROXY=true \
 		-e NTFY_ATTACHMENT_CACHE_DIR=/var/lib/ntfy/attachments \
 		-e NTFY_ENABLE_LOGIN=false \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${NTFY_MEMORY} \
 		--cpus=${NTFY_CPUS} \
@@ -509,10 +553,6 @@ start-mtproto:
 		-v ./deployment/configs/mtproto/mtg.toml:/config.toml \
 		-p ${MTPROTO_PORT}:3128 \
 		--network podman_network \
-		--dns ${DNS1} \
-		--dns ${DNS2} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${MTPROTO_MEMORY} \
 		--cpus=${MTPROTO_CPUS} \
@@ -526,7 +566,6 @@ start-whitelist-bypass:
 		-e VK_TOKEN=${WHITELIST_BYPASS_VK_TOKEN} \
 		-e VK_GROUP_ID=${WHITELIST_BYPASS_VK_GROUP_ID} \
 		-e TM_COOKIES=/app/cookies-yandex.json \
-		-e WB_COOKIES=/app/cookies-wbstream.json \
 		-e VK_COOKIES=/app/cookies-vk.json \
 		-e BITRIX_COOKIES=/app/cookies-bitrix.json \
 		-e UPSTREAM_SOCKS=10.89.10.2:1080 \
@@ -537,7 +576,7 @@ start-whitelist-bypass:
 		--memory=${WHITELIST_BYPASS_MEMORY} \
 		--cpus=${WHITELIST_BYPASS_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		ghcr.io/kulikov0/whitelist-bypass-bot:v0.4.4
+		ghcr.io/kulikov0/whitelist-bypass-bot:v0.5.1
 
 start-sip:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/transport_env.conf > ./deployment/configs/sip/pjsip.d/transport.conf"
@@ -584,4 +623,4 @@ start-open-webui:
 		--memory=${OPEN_WEBUI_MEMORY} \
 		--cpus=${OPEN_WEBUI_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		ghcr.io/open-webui/open-webui:v0.11.3
+		ghcr.io/open-webui/open-webui:v0.13.3-slim

@@ -1,8 +1,5 @@
 restart-containers:
 	- $(MAKE) stop-containers
-	- $(MAKE) podman-cleanup
-	- $(MAKE) podman-load-images
-	- $(MAKE) podman-create-network
 	- $(MAKE) start-containers
 
 restart-socks4: stop-socks4 start-socks4
@@ -15,13 +12,21 @@ restart-outline: stop-outline start-outline
 
 restart-xray-vless-reality: stop-xray-vless-reality start-xray-vless-reality
 
+restart-xray-vless-reality-gateway: stop-xray-vless-reality-gateway start-xray-vless-reality-gateway
+
 restart-xray-vless-reality-whitelist-bypass: stop-xray-vless-reality-whitelist-bypass start-xray-vless-reality-whitelist-bypass
 
 restart-pihole: stop-pihole start-pihole
 
 restart-doh-server: stop-doh-server start-doh-server
 
+restart-doh-server-gateway: stop-doh-server start-doh-server-gateway
+
 restart-nginx: stop-nginx start-nginx
+
+restart-nginx-gateway: stop-nginx start-nginx-gateway
+
+restart-nginx-proxy: stop-nginx start-nginx-proxy
 
 restart-db:
 	- $(MAKE) stop-mongo-demo
