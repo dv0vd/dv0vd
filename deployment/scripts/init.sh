@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e # stop script on any error
-
+source ./deployment/scripts/init_common.sh
 
 
 load_env
