@@ -32,7 +32,7 @@ on-startup-proxy:
 	- rm -rf /var/tmp/*
 	- systemctl set-property podman-group.slice MemoryMax=${PODMAN_MEMORY_LIMIT} CPUQuota=${PODMAN_CPUS}
 	- $(MAKE) podman-cleanup
-	- $(MAKE) podman-load-images
+	- $(MAKE) podman-load-images-proxy
 	- $(MAKE) podman-create-network-proxy
 	- $(MAKE) certbot-renew
 	- $(MAKE) restart-containers-proxy
@@ -48,7 +48,7 @@ on-startup-gateway:
 	- rm -rf /var/tmp/*
 	- systemctl set-property podman-group.slice MemoryMax=${PODMAN_MEMORY_LIMIT} CPUQuota=${PODMAN_CPUS}
 	- $(MAKE) podman-cleanup
-	- $(MAKE) podman-load-images
+	- $(MAKE) podman-load-images-gateway
 	- $(MAKE) podman-create-network-gateway
 	- $(MAKE) certbot-renew
 	- $(MAKE) restart-containers-gateway
