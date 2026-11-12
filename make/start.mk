@@ -295,6 +295,7 @@ start-postgres-synapse:
 	-v ./deployment/configs/postgres/synapse.sql:/docker-entrypoint-initdb.d/synapse.sql \
 	-v ./deployment/data/postgres-synapse/data:/var/lib/postgresql/data \
 	-v ./deployment/data/postgres-synapse/backups:/backups \
+	-e PGDATA=/var/lib/postgresql/data/pgdata \
 	-e POSTGRES_USER=${SYNAPSE_DB_USERNAME} \
 	-e POSTGRES_PASSWORD=${SYNAPSE_DB_PASSWORD} \
 	-p 127.0.0.1:${SYNAPSE_DB_HOST_PORT}:${SYNAPSE_DB_PORT} \
