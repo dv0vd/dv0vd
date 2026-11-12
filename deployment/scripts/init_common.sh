@@ -144,6 +144,7 @@ install_packages() {
   apt install -y jq # for outline json config generation
   apt install -y uuid-runtime # for outline json config generation
   apt install dnsutils -y # for dig
+  apt install rclone -y
   #apt install -y telnet &&
   log "Packages successfully installed"
 }
