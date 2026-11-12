@@ -1,6 +1,6 @@
 podman-pull-images:
 	podman pull ghcr.io/docker-mailserver/docker-mailserver:15.1.0
-	podman pull ghcr.io/open-webui/open-webui:v0.11.3
+	podman pull ghcr.io/open-webui/open-webui:v0.13.3-slim
 # 	podman pull docker.io/mongo:7.0.16
 	podman pull docker.io/postgres:15.14-alpine
 	podman pull docker.io/redis:8.4.0-alpine
@@ -18,7 +18,7 @@ podman-pull-images:
 # 	podman pull docker.io/dv0vd/demo-todo-manager:1.1.1
 
 	podman save ghcr.io/docker-mailserver/docker-mailserver:15.1.0 > ./deployment/images/docker-mailserver.tar
-	podman save ghcr.io/open-webui/open-webui:v0.11.3 > ./deployment/images/open-webui.tar
+	podman save ghcr.io/open-webui/open-webui:v0.13.3-slim > ./deployment/images/open-webui.tar
 # 	podman save docker.io/mongo:7.0.16 > ./deployment/images/mongo.tar
 	podman save docker.io/postgres:15.14-alpine > ./deployment/images/postgres.tar
 	podman save docker.io/redis:8.4.0-alpine > ./deployment/images/redis.tar
