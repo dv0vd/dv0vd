@@ -28,3 +28,4 @@ include ./make/mtproto.mk
 include ./make/containers.mk
 include ./make/images.mk
 include ./make/open-webui.mk
+include ./make/restore.mk
