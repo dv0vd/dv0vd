@@ -175,6 +175,7 @@ set_timezone() {
 
 configure_dns() {
   log "Configuring DNS..."
+  rm -f /etc/resolv.conf
   echo "nameserver ${DNS_1}" > /etc/resolv.conf
   echo "nameserver ${DNS_2}" >> /etc/resolv.conf
   echo "nameserver ${DNS_3}" >> /etc/resolv.conf
