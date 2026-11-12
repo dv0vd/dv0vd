@@ -10,7 +10,8 @@ podman-create-network-proxy:
 	podman network create --ipv6 --disable-dns --interface-name podman-main podman_network
 
 # --interface-name >= Debian 13
-podman-create-whitelist-bypass-network:
+podman-create-network-gateway:
+	podman network create --subnet 10.89.10.0/24 --disable-dns --interface-name podman-wlb whitelist_bypass_network
 	podman network create --subnet 10.89.10.0/24 --disable-dns --interface-name podman-wlb whitelist_bypass_network
 
 podman-info:
