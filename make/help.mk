@@ -198,6 +198,8 @@ help:
 	$(call print-help,synapse-restore-from-storage-vps,restore synapse database and media store from storage vps)
 	$(call print-help,rustdesk-backup-to-storage-vps,backup RustDesk to storage vps)
 	$(call print-help,rustdesk-restore-from-storage-vps,restore RustDesk from storage vps)
+	$(call print-help,open-webui-backup-to-storage-vps,backup Open WebUI to storage vps)
+	$(call print-help,open-webui-restore-from-storage-vps,restore Open WebUI from storage vps)
 	$(call print-help,email-init,init email server)
 	$(call print-help,email-create-user [username],create email user)
 	$(call print-help,email-delete-user [username],delete email user)
