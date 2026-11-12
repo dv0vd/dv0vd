@@ -16,5 +16,9 @@ rclone-configure:
 	mkdir -p /root/.config/rclone
 	bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/rclone/rclone_env.conf > /root/.config/rclone/rclone.conf"
 
+ssh-generate-config:
+	echo 'PasswordAuthentication no' > /etc/ssh/sshd_config.d/00-dv0vd.conf
+	echo "Port ${SSH_PORT}" >> /etc/ssh/sshd_config.d/00-dv0vd.conf
+
 sip-debug:
 	podman exec -it sip asterisk -rx "pjsip set logger on"

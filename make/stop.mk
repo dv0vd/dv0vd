@@ -1,10 +1,3 @@
-stop-containers:
-	- $(MAKE) stop-nginx
-	- $(MAKE) stop-xray-vless-reality-whitelist-bypass
-	- $(MAKE) stop-xray-vless-reality-gateway
-	- $(MAKE) stop-whitelist-bypass
-	- $(MAKE) stop-doh-server
-
 stop-socks4:
 	- podman stop socks4
 	- podman rm socks4
@@ -42,8 +35,8 @@ stop-nginx-certbot:
 	- podman rm nginx-certbot
 
 stop-db:
-	- $(MAKE) stop-mongo-demo
-	- $(MAKE) stop-postgres-demo
+# 	- $(MAKE) stop-mongo-demo
+# 	- $(MAKE) stop-postgres-demo
 	- $(MAKE) stop-postgres-synapse
 
 stop-mongo-demo:

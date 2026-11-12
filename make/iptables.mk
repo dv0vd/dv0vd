@@ -23,5 +23,13 @@ ip6tables-rules-mangle:
 	ip6tables -t mangle -vnL
 
 iptables-apply-rules:
+	bash -c 'set -a; . .env; set +a; envsubst "\$$SSH_PORT" < ./deployment/configs/iptables/iptables_main.sh > ./deployment/configs/iptables/iptables.sh'
+	chmod +x ./deployment/configs/iptables/iptables.sh && ./deployment/configs/iptables/iptables.sh
+
+iptables-apply-rules-proxy:
+	bash -c 'set -a; . .env; set +a; envsubst "\$$SSH_PORT" < ./deployment/configs/iptables/iptables_proxy.sh > ./deployment/configs/iptables/iptables.sh'
+	chmod +x ./deployment/configs/iptables/iptables.sh && ./deployment/configs/iptables/iptables.sh
+
+iptables-apply-rules-gateway:
 	bash -c 'set -a; . .env; set +a; envsubst "\$$SSH_PORT" < ./deployment/configs/iptables/iptables_gateway.sh > ./deployment/configs/iptables/iptables.sh'
 	chmod +x ./deployment/configs/iptables/iptables.sh && ./deployment/configs/iptables/iptables.sh

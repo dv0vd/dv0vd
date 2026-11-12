@@ -26,6 +26,7 @@ synapse-backup-database:
 	- rm ./deployment/data/postgres-synapse/backups/2.dump
 
 synapse-restore-database:
+	podman exec -it postgres-synapse sh -c 'i=0; while [ $$i -lt 60 ]; do pg_isready -h 127.0.0.1 -U ${SYNAPSE_DB_USERNAME} -d ${SYNAPSE_DB_NAME} >/dev/null 2>&1 && exit 0; i=$$((i+1)); sleep 1; done; exit 1'
 	podman exec -it postgres-synapse sh -c 'pg_restore -U ${SYNAPSE_DB_USERNAME} -v -d ${SYNAPSE_DB_NAME} < /backups/0.dump'
 
 synapse-backup-to-storage-vps:

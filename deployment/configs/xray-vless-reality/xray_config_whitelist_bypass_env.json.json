@@ -1,0 +1,46 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": 1080,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "$BASE_URL",
+            "port": "$XRAY_VLESS_REALITY_WHITELIST_BYPASS_PORT",
+            "users": [
+              {
+                "id": "$XRAY_VLESS_REALITY_UUID",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "$BASE_URL",
+          "fingerprint": "random",
+          "publicKey": "$XRAY_VLESS_REALITY_PUBLIC_KEY",
+          "shortId": "$XRAY_VLESS_REALITY_USER0"
+        }
+      }
+    }
+  ]
+}

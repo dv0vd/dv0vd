@@ -2,6 +2,14 @@ restart-containers:
 	- $(MAKE) stop-containers
 	- $(MAKE) start-containers
 
+restart-containers-proxy:
+	- $(MAKE) stop-containers-proxy
+	- $(MAKE) start-containers-proxy
+
+restart-containers-gateway:
+	- $(MAKE) stop-containers-gateway
+	- $(MAKE) start-containers-gateway
+
 restart-socks4: stop-socks4 start-socks4
 
 restart-socks5: stop-socks5 start-socks5

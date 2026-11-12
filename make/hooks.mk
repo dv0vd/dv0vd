@@ -2,6 +2,7 @@ on-startup:
 	- systemctl disable fail2ban
 	- $(MAKE) stop-fail2ban
 	- $(MAKE) iptables-apply-rules
+	- $(MAKE) ssh-generate-config
 	- shutdown -r 0:00
 	- $(MAKE) fail2ban-configure
 	- $(MAKE) start-fail2ban
@@ -11,6 +12,43 @@ on-startup:
 	- $(MAKE) podman-cleanup
 	- $(MAKE) podman-load-images
 	- $(MAKE) podman-create-network
-	- $(MAKE) podman-create-whitelist-bypass-network
 	- $(MAKE) certbot-renew
+	- $(MAKE) stop-containers
+	- $(MAKE) email-backup-to-storage-vps
+	- $(MAKE) rustdesk-backup-to-storage-vps
+	- $(MAKE) synapse-vacuum-clean
+	- $(MAKE) synapse-backup-database
+	- $(MAKE) synapse-backup-to-storage-vps
 	- $(MAKE) restart-containers
+
+on-startup-proxy:
+	- systemctl disable fail2ban
+	- $(MAKE) stop-fail2ban
+	- $(MAKE) iptables-apply-rules-proxy
+	- shutdown -r 0:00
+	- $(MAKE) fail2ban-configure
+	- $(MAKE) start-fail2ban
+	- $(MAKE) logs-clear
+	- rm -rf /var/tmp/*
+	- systemctl set-property podman-group.slice MemoryMax=${PODMAN_MEMORY_LIMIT} CPUQuota=${PODMAN_CPUS}
+	- $(MAKE) podman-cleanup
+	- $(MAKE) podman-load-images
+	- $(MAKE) podman-create-network-proxy
+	- $(MAKE) certbot-renew
+	- $(MAKE) restart-containers-proxy
+
+on-startup-gateway:
+	- systemctl disable fail2ban
+	- $(MAKE) stop-fail2ban
+	- $(MAKE) iptables-apply-rules-gateway
+	- shutdown -r 0:00
+	- $(MAKE) fail2ban-configure
+	- $(MAKE) start-fail2ban
+	- $(MAKE) logs-clear
+	- rm -rf /var/tmp/*
+	- systemctl set-property podman-group.slice MemoryMax=${PODMAN_MEMORY_LIMIT} CPUQuota=${PODMAN_CPUS}
+	- $(MAKE) podman-cleanup
+	- $(MAKE) podman-load-images
+	- $(MAKE) podman-create-network-gateway
+	- $(MAKE) certbot-renew
+	- $(MAKE) restart-containers-gateway

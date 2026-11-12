@@ -1,8 +1,4 @@
 #!/bin/bash
-set -e # stop script on any error
-
-
-
 configure_git() {
   log "Configuring git..."
   git config --local core.filemode false || true
@@ -16,7 +12,7 @@ configure_nginx_gateway() {
   log "Nginx successfully configured"
 }
 
-configure_nginx_lite() {
+configure_nginx_proxy() {
   log "Configuring nginx..."
   htpasswd -cb /root/dv0vd/deployment/configs/nginx/.htpasswd $NGINX_BASIC_AUTH_USERNAME $NGINX_BASIC_AUTH_PASSWORD
   make -C /root/dv0vd certbot-issue-proxies
@@ -33,9 +29,16 @@ configure_nginx_main() {
 configure_ssh() {
   log "Configuring SSH..."
   echo "$SSH_PUBLIC_KEY" >> /root/.ssh/authorized_keys
-  touch /etc/ssh/sshd_config.d/00-dv0vd.conf
-  echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config.d/00-dv0vd.conf
-  echo Port $SSH_PORT >> /etc/ssh/sshd_config.d/00-dv0vd.conf
+  make -C /root/dv0vd ssh-generate-config
+  log "SSH successfully generated"
+}
+
+configure_ssh_main() {
+  log "Configuring SSH..."
+  echo "$SSH_PUBLIC_KEY" >> /root/.ssh/authorized_keys
+  make -C /root/dv0vd ssh-generate-config
+  envsubst < ./deployment/configs/ssh/ssh_env.conf > /root/.ssh/config
+  chmod 600 /root/.ssh/config
   log "SSH successfully generated"
 }
 
@@ -66,6 +69,41 @@ configure_podman() {
   log "Podman successfully configured"
 }
 
+configure_podman_proxy() {
+  log "Configuring Podman..."
+  # apt install -y pipx && 
+  # pipx install podman-compose &&
+  # pipx ensurepath &&
+  systemctl enable podman
+  systemctl start podman
+  podman system prune --all -f
+  make -C /root/dv0vd podman-pull-images-proxy
+  make -C /root/dv0vd podman-load-images-proxy
+  make -C /root/dv0vd podman-create-network-proxy
+  systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS
+  systemctl stop systemd-resolved || true # required for Pi-hole 
+  systemctl disable systemd-resolved || true # required for Pi-hole
+  log "Podman successfully configured"
+}
+
+configure_podman_gateway() {
+  log "Configuring Podman..."
+  # apt install -y pipx && 
+  # pipx install podman-compose &&
+  # pipx ensurepath &&
+  systemctl enable podman
+  systemctl start podman
+  podman system prune --all -f
+  make -C /root/dv0vd podman-pull-images-gateway
+  make -C /root/dv0vd podman-load-images-gateway
+  make -C /root/dv0vd podman-create-network-gateway
+  make -C /root/dv0vd podman-create-whitelist-bypass-network
+  systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS
+  systemctl stop systemd-resolved || true # required for Pi-hole 
+  systemctl disable systemd-resolved || true # required for Pi-hole
+  log "Podman successfully configured"
+}
+
 configure_rclone() {
   log "Configuring rclone..."
   mkdir -p /root/.config/rclone
@@ -80,6 +118,26 @@ finish() {
   log "Configuring rc.local autostart..."
   rm /etc/rc.local -f
   cp /root/dv0vd/deployment/configs/linux/rc.local /etc/rc.local
+  chmod a+x /etc/rc.local
+  log "rc.local autostart successfully configured"
+  log "Initialization finished. Rebooting now..."
+  reboot
+}
+
+finish_proxy() {
+  log "Configuring rc.local autostart..."
+  rm /etc/rc.local -f
+  cp /root/dv0vd/deployment/configs/linux/proxy_rc.local /etc/rc.local
+  chmod a+x /etc/rc.local
+  log "rc.local autostart successfully configured"
+  log "Initialization finished. Rebooting now..."
+  reboot
+}
+
+finish_gateway() {
+  log "Configuring rc.local autostart..."
+  rm /etc/rc.local -f
+  cp /root/dv0vd/deployment/configs/linux/gateway_rc.local /etc/rc.local
   chmod a+x /etc/rc.local
   log "rc.local autostart successfully configured"
   log "Initialization finished. Rebooting now..."
@@ -135,12 +193,14 @@ install_packages() {
   apt install -y apache2-utils # for nginx basic auth
   apt install -y fail2ban
   apt install -y podman
+  apt install -y rclone
   apt install -y iptables
   apt install -y ipset # for iptables
   apt install -y gettext # for envsubst
   apt install -y jq # for outline json config generation
   apt install -y uuid-runtime # for outline json config generation
-  apt install dnsutils # for dig
+  apt install dnsutils -y # for dig
+  apt install rclone -y
   #apt install -y telnet &&
   log "Packages successfully installed"
 }
@@ -172,13 +232,9 @@ set_timezone() {
 
 configure_dns() {
   log "Configuring DNS..."
-  touch /etc/resolv.conf || true
+  rm -f /etc/resolv.conf
   echo "nameserver ${DNS_1}" > /etc/resolv.conf
-  echo "nameserver ${DNS_2}" >> /etc/resolv.conf
-  echo "nameserver ${DNS_3}" >> /etc/resolv.conf
-  echo "nameserver ${DNS_RU}" >> /etc/resolv.conf
   echo "nameserver 1.1.1.1" >> /etc/resolv.conf
-  echo "nameserver 8.8.8.8" >> /etc/resolv.conf
   log "DNS successfully configured"
 }
 
@@ -189,15 +245,3 @@ configure_email() {
   make -C /root/dv0vd email-create-user username=catch-all
   log "Email server successfully configured"
 }
-
-
-
-load_env
-set_timezone
-install_packages
-configure_git
-configure_dns
-configure_ssh
-configure_podman
-configure_nginx_gateway
-finish

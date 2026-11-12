@@ -1,0 +1,5 @@
+#!/bin/bash
+export PATH=$PATH:/root/.local/bin
+cd /root/dv0vd
+make on-startup-gateway > /var/log/on-startup.log
+exit 0
