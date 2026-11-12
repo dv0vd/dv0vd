@@ -42,7 +42,7 @@ start-https-proxy:
 		docker.io/dv0vd/https-proxy:1.2.0
 
 start-outline:
-	- mkdir ./deployment/data/outline/data/persisted-state
+	- mkdir -p ./deployment/data/outline/data/persisted-state
 	- cp -f ./deployment/configs/outline/shadowbox_server_config.json ./deployment/data/outline/data/persisted-state/shadowbox_server_config.json
 	- bash ./deployment/scripts/copy_outline_certs.sh
 	- podman run \
