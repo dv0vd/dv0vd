@@ -21,7 +21,7 @@ start-containers:
 	- $(MAKE) start-livekit
 	- $(MAKE) start-matrix-rtc
 	- $(MAKE) start-synapse
-	- $(MAKE) start-demo
+# 	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
 
 stop-containers:
