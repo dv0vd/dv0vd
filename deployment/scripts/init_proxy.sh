@@ -10,8 +10,8 @@ install_packages
 configure_git
 configure_dns
 configure_ssh
-configure_podman
+configure_podman_proxy
 configure_nginx_proxy
 configure_outline
 generate_mtproto_proxy_config
-finish
+finish_proxy

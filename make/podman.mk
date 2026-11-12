@@ -3,6 +3,10 @@ podman-cleanup:
 
 # --interface-name >= Debian 13
 podman-create-network:
+	podman network create --ipv6 --interface-name podman-main podman_network
+
+# --interface-name >= Debian 13
+podman-create-network-proxy:
 	podman network create --ipv6 --disable-dns --interface-name podman-main podman_network
 
 # --interface-name >= Debian 13

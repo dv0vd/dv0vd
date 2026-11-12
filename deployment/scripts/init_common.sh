@@ -69,6 +69,41 @@ configure_podman() {
   log "Podman successfully configured"
 }
 
+configure_podman_proxy() {
+  log "Configuring Podman..."
+  # apt install -y pipx && 
+  # pipx install podman-compose &&
+  # pipx ensurepath &&
+  systemctl enable podman
+  systemctl start podman
+  podman system prune --all -f
+  make -C /root/dv0vd podman-pull-images-proxy
+  make -C /root/dv0vd podman-load-images-proxy
+  make -C /root/dv0vd podman-create-network-proxy
+  systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS
+  systemctl stop systemd-resolved || true # required for Pi-hole 
+  systemctl disable systemd-resolved || true # required for Pi-hole
+  log "Podman successfully configured"
+}
+
+configure_podman_gateway() {
+  log "Configuring Podman..."
+  # apt install -y pipx && 
+  # pipx install podman-compose &&
+  # pipx ensurepath &&
+  systemctl enable podman
+  systemctl start podman
+  podman system prune --all -f
+  make -C /root/dv0vd podman-pull-images-gateway
+  make -C /root/dv0vd podman-load-images-gateway
+  make -C /root/dv0vd podman-create-network-gateway
+  make -C /root/dv0vd podman-create-whitelist-bypass-network
+  systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS
+  systemctl stop systemd-resolved || true # required for Pi-hole 
+  systemctl disable systemd-resolved || true # required for Pi-hole
+  log "Podman successfully configured"
+}
+
 configure_rclone() {
   log "Configuring rclone..."
   mkdir -p /root/.config/rclone
@@ -83,6 +118,26 @@ finish() {
   log "Configuring rc.local autostart..."
   rm /etc/rc.local -f
   cp /root/dv0vd/deployment/configs/linux/rc.local /etc/rc.local
+  chmod a+x /etc/rc.local
+  log "rc.local autostart successfully configured"
+  log "Initialization finished. Rebooting now..."
+  reboot
+}
+
+finish_proxy() {
+  log "Configuring rc.local autostart..."
+  rm /etc/rc.local -f
+  cp /root/dv0vd/deployment/configs/linux/proxy_rc.local /etc/rc.local
+  chmod a+x /etc/rc.local
+  log "rc.local autostart successfully configured"
+  log "Initialization finished. Rebooting now..."
+  reboot
+}
+
+finish_gateway() {
+  log "Configuring rc.local autostart..."
+  rm /etc/rc.local -f
+  cp /root/dv0vd/deployment/configs/linux/gateway_rc.local /etc/rc.local
   chmod a+x /etc/rc.local
   log "rc.local autostart successfully configured"
   log "Initialization finished. Rebooting now..."

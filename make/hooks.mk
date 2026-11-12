@@ -14,3 +14,37 @@ on-startup:
 	- $(MAKE) podman-create-network
 	- $(MAKE) certbot-renew
 	- $(MAKE) restart-containers
+
+on-startup-proxy:
+	- systemctl disable fail2ban
+	- $(MAKE) stop-fail2ban
+	- $(MAKE) iptables-apply-rules
+	- shutdown -r 0:00
+	- $(MAKE) fail2ban-configure
+	- $(MAKE) start-fail2ban
+	- $(MAKE) logs-clear
+	- rm -rf /var/tmp/*
+	- systemctl set-property podman-group.slice MemoryMax=${PODMAN_MEMORY_LIMIT} CPUQuota=${PODMAN_CPUS}
+	- $(MAKE) podman-cleanup
+	- $(MAKE) podman-load-images
+	- $(MAKE) podman-create-network
+	- $(MAKE) podman-create-whitelist-bypass-network
+	- $(MAKE) certbot-renew
+	- $(MAKE) restart-containers
+
+on-startup-gateway:
+	- systemctl disable fail2ban
+	- $(MAKE) stop-fail2ban
+	- $(MAKE) iptables-apply-rules
+	- shutdown -r 0:00
+	- $(MAKE) fail2ban-configure
+	- $(MAKE) start-fail2ban
+	- $(MAKE) logs-clear
+	- rm -rf /var/tmp/*
+	- systemctl set-property podman-group.slice MemoryMax=${PODMAN_MEMORY_LIMIT} CPUQuota=${PODMAN_CPUS}
+	- $(MAKE) podman-cleanup
+	- $(MAKE) podman-load-images
+	- $(MAKE) podman-create-network
+	- $(MAKE) podman-create-whitelist-bypass-network
+	- $(MAKE) certbot-renew
+	- $(MAKE) restart-containers

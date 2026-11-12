@@ -10,6 +10,6 @@ install_packages
 configure_git
 configure_dns
 configure_ssh
-configure_podman
+configure_podman_gateway
 configure_nginx_gateway
-finish
+finish_gateway
