@@ -38,7 +38,7 @@ podman-pull-images:
 podman-load-images:
 	podman load < ./deployment/images/docker-mailserver.tar
 	podman load < ./deployment/images/open-webui.tar
-	podman load < ./deployment/images/mongo.tar
+# 	podman load < ./deployment/images/mongo.tar
 	podman load < ./deployment/images/postgres.tar
 	podman load < ./deployment/images/redis.tar
 	podman load < ./deployment/images/ntfy.tar
@@ -50,7 +50,7 @@ podman-load-images:
 	podman load < ./deployment/images/livekit-server.tar
 	podman load < ./deployment/images/matrix-rtc.tar
 	podman load < ./deployment/images/synapse.tar
-	podman load < ./deployment/images/demo-timers.tar
-	podman load < ./deployment/images/demo-skillnotes.tar
-	podman load < ./deployment/images/demo-todo-manager.tar
+# 	podman load < ./deployment/images/demo-timers.tar
+# 	podman load < ./deployment/images/demo-skillnotes.tar
+# 	podman load < ./deployment/images/demo-todo-manager.tar
 
