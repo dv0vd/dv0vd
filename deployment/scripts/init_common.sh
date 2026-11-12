@@ -230,6 +230,7 @@ set_timezone() {
   log "Timezone successfully set"
 }
 
+# /etc/resolv.conf has limit for 3 nameservers
 configure_dns() {
   log "Configuring DNS..."
   rm -f /etc/resolv.conf
