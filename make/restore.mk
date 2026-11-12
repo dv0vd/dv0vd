@@ -23,4 +23,4 @@ restore-clean:
 	find ./deployment/restore -mindepth 2 ! -name '.gitignore' -delete
 
 restore-clean-data:
-	find ./deployment/data/open-webui ./deployment/data/rustdesk ./deployment/data/email/configs ./deployment/data/email/data ./deployment/data/email/logs ./deployment/data/email/state ./deployment/data/synapse/data/media_store ./deployment/data/postgres-synapse/backups -mindepth 1 ! -name '.gitignore' -delete
+	find ./deployment/data/open-webui ./deployment/data/rustdesk ./deployment/data/email/configs ./deployment/data/email/data ./deployment/data/email/logs ./deployment/data/email/state ./deployment/data/postgres-synapse/data ./deployment/data/postgres-synapse/backups ./deployment/data/synapse/data/media_store -mindepth 1 ! -name '.gitignore' -delete
