@@ -104,20 +104,25 @@ start-xray-vless-reality-whitelist-bypass:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/teddysun/xray:25.10.15
 
-start-nginx-proxy:
-	- bash ./deployment/scripts/render_nginx_proxy.sh
+start-nginx:
+	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_URL \$$MTPROTO_URL \$$OPEN_WEBUI_URL' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
 	-d \
 	--name nginx \
-	--network host \
-	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/configs/nginx/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
-	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
+	--network podman_network \
+	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx:/deployment/nginx:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
-	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+	-v ./demo:/demo:ro \
 	-v ./src:/app:ro \
+	-v ./deployment/configs/pihole:/app/pihole:ro \
+	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
+	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+	-p 80:80 \
+	-p 443:443 \
+	-p 8448:8448 \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
@@ -576,7 +581,7 @@ start-sip:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/109_env.conf > ./deployment/configs/sip/pjsip.d/109.conf"
 	-@ rm ./deployment/data/sip/logs/*
 	- touch ./deployment/data/sip/logs/messages
-	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/fullchain.pem ./deployment/data/sip/certs/fullchain.pem
+	- cat ./deployment/data/letsencrypt/data/live/${BASE_URL}/cert.pem ./deployment/data/letsencrypt/data/live/${BASE_URL}/chain.pem > ./deployment/data/sip/certs/fullchain.pem
 	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/privkey.pem ./deployment/data/sip/certs/privkey.pem
 	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/chain.pem ./deployment/data/sip/certs/chain.pem
 	- chmod 644 ./deployment/data/sip/certs/fullchain.pem ./deployment/data/sip/certs/privkey.pem ./deployment/data/sip/certs/chain.pem
