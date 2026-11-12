@@ -35,8 +35,8 @@ stop-nginx-certbot:
 	- podman rm nginx-certbot
 
 stop-db:
-	- $(MAKE) stop-mongo-demo
-	- $(MAKE) stop-postgres-demo
+# 	- $(MAKE) stop-mongo-demo
+# 	- $(MAKE) stop-postgres-demo
 	- $(MAKE) stop-postgres-synapse
 
 stop-mongo-demo:

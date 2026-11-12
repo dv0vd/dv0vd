@@ -307,8 +307,8 @@ start-postgres-synapse:
 	docker.io/postgres:15.14-alpine
 
 start-db:
-	- $(MAKE) start-mongo-demo
-	- $(MAKE) start-postgres-demo
+# 	- $(MAKE) start-mongo-demo
+# 	- $(MAKE) start-postgres-demo
 	- $(MAKE) start-postgres-synapse
 
 start-demo:
