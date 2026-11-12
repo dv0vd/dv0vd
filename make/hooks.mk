@@ -13,6 +13,12 @@ on-startup:
 	- $(MAKE) podman-load-images
 	- $(MAKE) podman-create-network
 	- $(MAKE) certbot-renew
+	- $(MAKE) stop-containers
+	- $(MAKE) email-backup-to-storage-vps
+	- $(MAKE) rustdesk-backup-to-storage-vps
+	- $(MAKE) synapse-vacuum-clean
+	- $(MAKE) synapse-backup-database
+	- $(MAKE) synapse-backup-to-storage-vps
 	- $(MAKE) restart-containers
 
 on-startup-proxy:
