@@ -18,6 +18,7 @@ restore:
 	- $(MAKE) start-postgres-synapse
 	- $(MAKE) synapse-restore-database
 	- $(MAKE) stop-postgres-synapse
+	- $(MAKE) synapse-init
 
 restore-clean:
 	find ./deployment/restore -mindepth 2 ! -name '.gitignore' -delete
