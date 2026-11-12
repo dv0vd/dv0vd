@@ -178,6 +178,7 @@ help:
 	$(call print-help,disable-ipv6,disable-ipv6)
 	$(call print-help,disk-usage [path],get disk usage)
 	$(call print-help,rclone-configure,configure rclone)
+	$(call print-help,ssh-generate-config,generate ssh server config)
 	$(call print-help,init-demo,clone demo projects and install dependencies)
 	$(call print-help,init-lagoona,clone lagoona demo project and install dependencies)
 	$(call print-help,init-evklid,clone evklid demo project and install dependencies)
