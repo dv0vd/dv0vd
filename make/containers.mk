@@ -1,9 +1,6 @@
 start-containers:
 	- echo "nameserver ${DNS_1}" > /etc/resolv.conf
-	- echo "nameserver ${DNS_2}" >> /etc/resolv.conf
-	- echo "nameserver ${DNS_3}" >> /etc/resolv.conf
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
-	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) start-email
 	- $(MAKE) start-open-webui
@@ -21,10 +18,7 @@ start-containers:
 
 start-containers-proxy:
 	- echo "nameserver ${DNS_1}" > /etc/resolv.conf
-	- echo "nameserver ${DNS_2}" >> /etc/resolv.conf
-	- echo "nameserver ${DNS_3}" >> /etc/resolv.conf
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
-	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- $(MAKE) start-pihole
 	- $(MAKE) start-mtproto
