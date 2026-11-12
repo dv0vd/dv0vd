@@ -1,3 +1,12 @@
+certbot-issue:
+	- $(MAKE) start-nginx-certbot
+	- $(MAKE) certbot-issue-website
+	- $(MAKE) certbot-issue-email
+	- $(MAKE) certbot-issue-ntfy
+	- $(MAKE) certbot-issue-livekit
+	- $(MAKE) certbot-issue-open-webui
+	- $(MAKE) stop-nginx-certbot
+
 certbot-issue-proxies:
 	- set -a; . ./.env; set +a
 	PROXY_NAME=
@@ -15,12 +24,6 @@ certbot-issue-gateway:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS_RU} \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
 		-v ./deployment/data/letsencrypt/acme:/app/acme \
 		docker.io/certbot/certbot:v5.3.1 certonly \
@@ -39,12 +42,6 @@ certbot-issue-website:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns ${DNS_RU} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
 		-v ./deployment/data/letsencrypt/acme:/app/acme \
 		docker.io/certbot/certbot:v5.3.1 certonly \
@@ -62,12 +59,6 @@ certbot-issue-email:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns ${DNS_RU} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
 		-v ./deployment/data/letsencrypt/acme:/app/acme \
 		docker.io/certbot/certbot:v5.3.1 certonly \
@@ -85,12 +76,6 @@ certbot-issue-ntfy:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns ${DNS_RU} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
 		-v ./deployment/data/letsencrypt/acme:/app/acme \
 		docker.io/certbot/certbot:v5.3.1 certonly \
@@ -108,12 +93,6 @@ certbot-issue-livekit:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns ${DNS_RU} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
 		-v ./deployment/data/letsencrypt/acme:/app/acme \
 		docker.io/certbot/certbot:v5.3.1 certonly \
@@ -131,12 +110,6 @@ certbot-issue-proxy:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns ${DNS_RU} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
 		-v ./deployment/data/letsencrypt/acme:/app/acme \
 		docker.io/certbot/certbot:v5.3.1 certonly \
@@ -154,12 +127,6 @@ certbot-issue-open-webui:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns ${DNS_RU} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
 		-v ./deployment/data/letsencrypt/acme:/app/acme \
 		docker.io/certbot/certbot:v5.3.1 certonly \
@@ -178,12 +145,6 @@ certbot-renew:
 		--rm \
 		--name certbot \
 		--network podman_network \
-		--dns ${DNS_1} \
-		--dns ${DNS_2} \
-		--dns ${DNS_3} \
-		--dns ${DNS_RU} \
-		--dns 1.1.1.1 \
-		--dns 8.8.8.8 \
 		-v ./deployment/data/letsencrypt/data:/etc/letsencrypt \
 		-v ./deployment/data/letsencrypt/acme:/app/acme \
 		docker.io/certbot/certbot:v5.3.1 renew

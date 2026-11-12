@@ -1,20 +1,3 @@
-start-containers:
-	- echo "nameserver ${DNS_1}" > /etc/resolv.conf
-	- echo "nameserver ${DNS_2}" >> /etc/resolv.conf
-	- echo "nameserver ${DNS_3}" >> /etc/resolv.conf
-	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
-	- echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
-	- $(MAKE) start-pihole
-	- $(MAKE) start-mtproto
-	- $(MAKE) start-socks5
-	- $(MAKE) start-socks4
-	- $(MAKE) start-https-proxy
-	- $(MAKE) start-xray-vless-reality
-	- $(MAKE) start-outline
-	- $(MAKE) start-doh-server
-	- $(MAKE) start-nginx-proxy
-
 start-socks4:
 	- podman run \
 		-d \
@@ -120,6 +103,31 @@ start-xray-vless-reality-whitelist-bypass:
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
 		docker.io/teddysun/xray:25.10.15
+
+start-nginx:
+	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_URL \$$MTPROTO_URL \$$OPEN_WEBUI_URL' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
+	-@ rm ./deployment/data/nginx/logs/access.log
+	-@ rm ./deployment/data/nginx/logs/error.log
+	- podman run \
+	-d \
+	--name nginx \
+	--network podman_network \
+	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
+	-v ./deployment/configs/nginx:/deployment/nginx:ro \
+	-v ./deployment/data/nginx/logs:/var/log/nginx \
+	-v ./demo:/demo:ro \
+	-v ./src:/app:ro \
+	-v ./deployment/configs/pihole:/app/pihole:ro \
+	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
+	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+	-p 80:80 \
+	-p 443:443 \
+	-p 8448:8448 \
+	--restart unless-stopped \
+	--memory=${NGINX_MEMORY} \
+	--cpus=${NGINX_CPUS} \
+	--cgroup-parent=/podman-group.slice \
+	docker.io/nginx:1.27.3
 
 start-nginx-proxy:
 	- bash ./deployment/scripts/render_nginx_proxy.sh

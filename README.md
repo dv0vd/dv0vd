@@ -7,6 +7,6 @@ Personal website presenting portfolio, technical skills, interests, and contact 
 2) Install git: `apt install git -y`.
 3) Clone repo: `git clone -c core.filemode=false https://github.com/dv0vd/dv0vd.git`.
 4) Go to the project directory: `cd ./dv0vd`
-5) Go to the `proxy` branch: `git switch proxy`.
-6) Configure the `.env` file.
-7) Run the initialization script `chmod +x ./deployment/scripts/_init.sh && ./deployment/scripts/_init.sh`.
+5) Configure the `.env` file.
+6) Copy `storage-vps` SSH private key to `/root/.ssh/vps-storage` for storage vps backups.
+7) Run the initialization script `chmod +x ./deployment/scripts/init.sh && ./deployment/scripts/init.sh`.
