@@ -288,7 +288,7 @@ start-postgres-demo:
 
 start-postgres-synapse:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/postgres/synapse_env.sql > ./deployment/configs/postgres/synapse.sql"
-	- mkdir ./deployment/data/postgres-synapse/data
+	- mkdir -p ./deployment/data/postgres-synapse/data
 	- podman run \
 	-d \
 	--name postgres-synapse \
