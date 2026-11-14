@@ -269,7 +269,7 @@ start-doh-server-gateway:
 		--name doh-server \
 		--network podman_network \
 		-p 127.0.0.1:8053:8053 \
-		-e UPSTREAM_DNS_SERVER="udp:127.0.0.1:53,udp:${DNS_RU}:53,udp:77.88.8.8:53" \
+		-e UPSTREAM_DNS_SERVER="udp:pihole:53,udp:${DNS_RU}:53,udp:77.88.8.8:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
