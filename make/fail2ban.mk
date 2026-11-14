@@ -4,6 +4,7 @@ fail2ban-configure:
 	cp ./deployment/configs/fail2ban/fail2ban.local /etc/fail2ban/fail2ban.local
 	cp ./deployment/configs/fail2ban/filters/danted.conf /etc/fail2ban/filter.d
 	cp ./deployment/configs/fail2ban/filters/nginx-bad-request.local /etc/fail2ban/filter.d
+	cp ./deployment/configs/fail2ban/filters/nginx-limit-req.local /etc/fail2ban/filter.d
 	cp ./deployment/configs/fail2ban/filters/nginx-not-found.local /etc/fail2ban/filter.d
 	cp ./deployment/configs/fail2ban/filters/nginx-redirected.local /etc/fail2ban/filter.d
 	mkdir -p ./deployment/data/nginx && touch ./deployment/data/nginx/logs/error.log
