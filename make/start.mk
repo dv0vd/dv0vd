@@ -226,6 +226,25 @@ start-pihole:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/pihole/pihole:2025.08.0
 
+start-pihole-gateway:
+	- rm deployment/data/pihole/data/pihole-FTL.db*
+	- podman run \
+		-d \
+		--name pihole \
+		--network podman_network \
+		-p 127.0.0.1:53:53/tcp \
+		-p 127.0.0.1:53:53/udp \
+		-p 127.0.0.1:8080:80 \
+		-e TZ=UTC \
+		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
+		-v ./deployment/data/pihole/data:/etc/pihole \
+		--restart unless-stopped \
+		--memory=${PIHOLE_MEMORY} \
+		--cpus=${PIHOLE_CPUS} \
+		--shm-size=${PIHOLE_SHM_SIZE} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/pihole/pihole:2025.08.0
+
 start-doh-server:
 	- podman run \
 		-d \
@@ -237,7 +256,7 @@ start-doh-server:
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
 		-e DOH_SERVER_TIMEOUT="1" \
-		-e DOH_SERVER_TRIES="3" \
+		-e DOH_SERVER_TRIES="1" \
 		--restart unless-stopped \
 		--memory=${DOH_SERVER_MEMORY} \
 		--cpus=${DOH_SERVER_CPUS} \
@@ -250,12 +269,12 @@ start-doh-server-gateway:
 		--name doh-server \
 		--network podman_network \
 		-p 127.0.0.1:8053:8053 \
-		-e UPSTREAM_DNS_SERVER="udp:${DNS_RU}:53,udp:77.88.8.8:53" \
+		-e UPSTREAM_DNS_SERVER="udp:127.0.0.1:53,udp:${DNS_RU}:53,udp:77.88.8.8:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
 		-e DOH_SERVER_TIMEOUT="1" \
-		-e DOH_SERVER_TRIES="2" \
+		-e DOH_SERVER_TRIES="1" \
 		--restart unless-stopped \
 		--memory=${DOH_SERVER_MEMORY} \
 		--cpus=${DOH_SERVER_CPUS} \

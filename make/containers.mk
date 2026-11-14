@@ -34,6 +34,7 @@ start-containers-gateway:
 	- echo "nameserver ${DNS_RU}" > /etc/resolv.conf
 	- echo "nameserver 77.88.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
+	- $(MAKE) start-pihole-gateway
 	- $(MAKE) start-doh-server-gateway
 	- $(MAKE) start-whitelist-bypass
 	- $(MAKE) start-xray-vless-reality-gateway
@@ -61,6 +62,7 @@ stop-containers-gateway:
 	- $(MAKE) stop-xray-vless-reality-gateway
 	- $(MAKE) stop-whitelist-bypass
 	- $(MAKE) stop-doh-server
+	- $(MAKE) stop-pihole
 
 stop-containers-proxy:
 	- $(MAKE) stop-nginx
