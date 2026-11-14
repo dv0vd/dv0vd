@@ -232,8 +232,6 @@ start-pihole-gateway:
 		-d \
 		--name pihole \
 		--network podman_network \
-		-p 127.0.0.1:53:53/tcp \
-		-p 127.0.0.1:53:53/udp \
 		-p 127.0.0.1:8080:80 \
 		-e TZ=UTC \
 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
