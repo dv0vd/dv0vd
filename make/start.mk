@@ -71,12 +71,12 @@ start-xray-vless-reality:
 		-d \
 		--name xray-vless-reality \
 		--network podman_network \
-		-p 127.0.0.1:${XRAY_VLESS_REALITY_PORT}:443 \
+		-p ${XRAY_VLESS_REALITY_PORT}:443 \
 		-v ./deployment/configs/xray-vless-reality/xray.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/teddysun/xray:25.10.15
+		docker.io/teddysun/xray:26.6.27
 
 start-xray-vless-reality-gateway:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/gateway_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/gateway.json"
@@ -89,7 +89,7 @@ start-xray-vless-reality-gateway:
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/teddysun/xray:25.10.15
+		docker.io/teddysun/xray:26.6.27
 
 start-xray-vless-reality-whitelist-bypass:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/whitelist_bypass.json"
@@ -102,7 +102,7 @@ start-xray-vless-reality-whitelist-bypass:
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/teddysun/xray:25.10.15
+		docker.io/teddysun/xray:26.6.27
 
 start-nginx:
 	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_URL \$$MTPROTO_URL \$$OPEN_WEBUI_URL' < ./deployment/configs/nginx/main_env.conf > ./deployment/configs/nginx/nginx.conf"
