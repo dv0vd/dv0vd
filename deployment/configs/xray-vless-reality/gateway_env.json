@@ -80,6 +80,7 @@
         "grpcSettings": {
           "serviceName": "grpc-dv0vd",
           "idle_timeout": 60,
+          "multiMode": true,
           "health_check_timeout": 20,
           "permit_without_stream": true
         }
