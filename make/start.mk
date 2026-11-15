@@ -232,6 +232,8 @@ start-pihole-gateway:
 		-d \
 		--name pihole \
 		--network podman_network \
+		-p 127.0.0.1:53:53/tcp \
+		-p 127.0.0.1:53:53/udp \
 		-p 127.0.0.1:8080:80 \
 		-e TZ=UTC \
 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
@@ -266,6 +268,7 @@ start-doh-server-gateway:
 		-d \
 		--name doh-server \
 		--network podman_network \
+		-p 127.0.0.1:8053:8053 \
 		-e UPSTREAM_DNS_SERVER="udp:pihole:53,udp:${DNS_RU}:53,udp:77.88.8.8:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
