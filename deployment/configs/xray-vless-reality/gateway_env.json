@@ -65,21 +65,16 @@
             "users": [
               {
                 "id": "$XRAY_VLESS_REALITY_UUID",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
+                "encryption": "none"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "raw",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "$BASE_URL",
-          "fingerprint": "random",
-          "publicKey": "$XRAY_VLESS_REALITY_PUBLIC_KEY",
-          "shortId": "$XRAY_VLESS_REALITY_USER0"
+        "network": "ws",
+        "wsSettings": {
+          "path": "/api/v1/status"
         }
       }
     }
