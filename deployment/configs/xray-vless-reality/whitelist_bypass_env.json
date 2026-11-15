@@ -37,7 +37,8 @@
           "serverName": "$PROXY_MAIN_URL.$BASE_URL"
         },
         "grpcSettings": {
-          "serviceName": "grpc-dv0vd"
+          "serviceName": "grpc-dv0vd",
+          "multiMode": true
         }
       }
     }
