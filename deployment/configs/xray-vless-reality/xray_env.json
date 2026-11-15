@@ -16,20 +16,9 @@
       },
       "streamSettings": {
         "network": "xhttp",
-        "sockopt": {
-          "trustedXForwardedFor": [
-            "X-Real-IP"
-          ]
-        },
         "xhttpSettings": {
           "path": "/v2/events",
-          "mode": "auto",
-          "xPaddingBytes": "100-1000",
-          "xPaddingObfsMode": true,
-          "xPaddingKey": "ts",
-          "xPaddingHeader": "Referer",
-          "xPaddingPlacement": "queryInHeader",
-          "xPaddingMethod": "tokenish"
+          "mode": "auto"
         }
       },
       "sniffing": {
