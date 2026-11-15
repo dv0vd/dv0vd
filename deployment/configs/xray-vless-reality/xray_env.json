@@ -16,6 +16,11 @@
       },
       "streamSettings": {
         "network": "xhttp",
+        "sockopt": {
+          "trustedXForwardedFor": [
+            "X-Real-IP"
+          ]
+        },
         "xhttpSettings": {
           "path": "/v2/events",
           "mode": "auto",
