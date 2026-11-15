@@ -72,16 +72,17 @@
         ]
       },
       "streamSettings": {
-        "network": "grpc",
+        "network": "xhttp",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "$PROXY_MAIN_URL.$BASE_URL"
+          "serverName": "$PROXY_MAIN_URL.$BASE_URL",
+          "alpn": [
+            "h2"
+          ]
         },
-        "grpcSettings": {
-          "serviceName": "grpc-dv0vd",
-          "idle_timeout": 3600,
-          "health_check_timeout": 20,
-          "permit_without_stream": true
+        "xhttpSettings": {
+          "path": "/grpc-dv0vd",
+          "mode": "stream-up"
         }
       }
     }

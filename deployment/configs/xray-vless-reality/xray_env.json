@@ -15,9 +15,10 @@
         "decryption": "none"
       },
       "streamSettings": {
-        "network": "grpc",
-        "grpcSettings": {
-          "serviceName": "grpc-dv0vd"
+        "network": "xhttp",
+        "xhttpSettings": {
+          "path": "/grpc-dv0vd",
+          "mode": "auto"
         }
       },
       "sniffing": {
