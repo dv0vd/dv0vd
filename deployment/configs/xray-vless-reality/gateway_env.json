@@ -27,7 +27,7 @@
             "$BASE_URL"
           ],
           "privateKey": "$XRAY_VLESS_REALITY_PRIVATE_KEY",
-          "minClientVer": "1.0.0",
+          "minClientVer": "0.0.0",
           "maxClientVer": "",
           "maxTimeDiff": 0,
           "shortIds": [
