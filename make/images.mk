@@ -109,3 +109,4 @@ podman-load-images-gateway:
 	podman load < ./deployment/images/certbot.tar
 	podman load < ./deployment/images/satishweb-doh-server.tar
 	podman load < ./deployment/images/kulikov0-whitelist-bypass-bot.tar
+	podman load < ./deployment/images/pihole.tar
