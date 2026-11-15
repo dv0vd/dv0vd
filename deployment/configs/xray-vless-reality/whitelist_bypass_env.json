@@ -24,7 +24,8 @@
             "users": [
               {
                 "id": "$XRAY_VLESS_REALITY_UUID",
-                "encryption": "none"
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
@@ -32,16 +33,12 @@
       },
       "streamSettings": {
         "network": "raw",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "$PROXY_MAIN_URL.$BASE_URL",
-          "alpn": [
-            "http/1.1"
-          ]
-        },
-        "sockopt": {
-          "tcpKeepAliveIdle": 60,
-          "tcpKeepAliveInterval": 15
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "$BASE_URL",
+          "fingerprint": "random",
+          "publicKey": "$XRAY_VLESS_REALITY_PUBLIC_KEY",
+          "shortId": "$XRAY_VLESS_REALITY_USER0"
         }
       }
     }
