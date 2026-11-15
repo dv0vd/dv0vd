@@ -15,9 +15,9 @@
         "decryption": "none"
       },
       "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/api/v1/status"
+        "network": "grpc",
+        "grpcSettings": {
+          "serviceName": "grpc-dv0vd"
         }
       },
       "sniffing": {

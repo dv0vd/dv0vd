@@ -71,7 +71,6 @@ start-xray-vless-reality:
 		-d \
 		--name xray-vless-reality \
 		--network podman_network \
-		-p ${XRAY_VLESS_REALITY_PORT}:443 \
 		-v ./deployment/configs/xray-vless-reality/xray.json:/etc/xray/config.json:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
