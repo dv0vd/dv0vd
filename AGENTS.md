@@ -83,8 +83,7 @@
 ## Git Commit Messages
 - Follow Conventional Commits.
 - Include a scope when reasonably identifiable, for example: `feat(auth): added token refresh`.
-- Use a single short sentence without detailed descriptions or bullet lists.
-- Use the past tense.
+- One short sentence in past tense only — no detailed descriptions, bullet lists, or additional context.
 
 # Ignored Files and Directories
 Do not analyze or modify the following unless the task explicitly requires them:

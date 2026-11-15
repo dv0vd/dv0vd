@@ -17,8 +17,14 @@
       "streamSettings": {
         "network": "xhttp",
         "xhttpSettings": {
-          "path": "/grpc-dv0vd",
-          "mode": "auto"
+          "path": "/v2/events",
+          "mode": "auto",
+          "xPaddingBytes": "100-1000",
+          "xPaddingObfsMode": true,
+          "xPaddingKey": "ts",
+          "xPaddingHeader": "Referer",
+          "xPaddingPlacement": "queryInHeader",
+          "xPaddingMethod": "tokenish"
         }
       },
       "sniffing": {

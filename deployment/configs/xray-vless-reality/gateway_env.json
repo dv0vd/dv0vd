@@ -19,7 +19,7 @@
         "network": "raw",
         "security": "reality",
         "realitySettings": {
-          "show": true,
+          "show": false,
           "dest": "$BASE_URL:443",
           "xver": 0,
           "serverNames": [
@@ -74,15 +74,42 @@
       "streamSettings": {
         "network": "xhttp",
         "security": "tls",
+        "finalmask": {
+          "tcp": [
+            {
+              "type": "fragment",
+              "settings": {
+                "packets": "tlshello",
+                "lengths": [
+                  "1-2",
+                  "3-5",
+                  "5-10",
+                  "6-10"
+                ],
+                "delays": [
+                  "1-3"
+                ],
+                "maxSplit": "25-32"
+              }
+            }
+          ]
+        },
         "tlsSettings": {
           "serverName": "$PROXY_MAIN_URL.$BASE_URL",
+          "fingerprint": "firefox",
           "alpn": [
             "h2"
           ]
         },
         "xhttpSettings": {
-          "path": "/grpc-dv0vd",
-          "mode": "stream-up"
+          "path": "/v2/events",
+          "mode": "stream-up",
+          "xPaddingBytes": "100-1000",
+          "xPaddingObfsMode": true,
+          "xPaddingKey": "ts",
+          "xPaddingHeader": "Referer",
+          "xPaddingPlacement": "queryInHeader",
+          "xPaddingMethod": "tokenish"
         }
       }
     }
