@@ -34,7 +34,10 @@
         "network": "raw",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "$PROXY_MAIN_URL.$BASE_URL"
+          "serverName": "$PROXY_MAIN_URL.$BASE_URL",
+          "alpn": [
+            "http/1.1"
+          ]
         },
         "sockopt": {
           "tcpKeepAliveIdle": 60,

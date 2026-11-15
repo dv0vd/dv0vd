@@ -18,6 +18,9 @@
         "network": "raw",
         "security": "tls",
         "tlsSettings": {
+          "alpn": [
+            "http/1.1"
+          ],
           "certificates": [
             {
               "certificateFile": "/app/letsencrypt/certificates/live/$PROXY_MAIN_URL.$BASE_URL/fullchain.pem",
