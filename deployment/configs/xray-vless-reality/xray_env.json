@@ -15,10 +15,9 @@
         "decryption": "none"
       },
       "streamSettings": {
-        "network": "xhttp",
-        "xhttpSettings": {
-          "path": "/v2/events",
-          "mode": "auto"
+        "network": "websocket",
+        "wsSettings": {
+          "path": "/v2/events"
         }
       },
       "sniffing": {

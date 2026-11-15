@@ -31,17 +31,16 @@
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "websocket",
         "security": "tls",
         "tlsSettings": {
           "serverName": "$PROXY_MAIN_URL.$BASE_URL",
           "alpn": [
-            "h2"
+            "http/1.1"
           ]
         },
-        "xhttpSettings": {
-          "path": "/v2/events",
-          "mode": "packet-up"
+        "wsSettings": {
+          "path": "/v2/events"
         }
       }
     }
