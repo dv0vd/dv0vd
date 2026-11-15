@@ -104,12 +104,19 @@
         "xhttpSettings": {
           "path": "/v2/events",
           "mode": "stream-up",
+          "xmux": {
+            "maxConcurrency": 8
+          },
           "xPaddingBytes": "100-1000",
           "xPaddingObfsMode": true,
           "xPaddingKey": "ts",
           "xPaddingHeader": "Referer",
           "xPaddingPlacement": "queryInHeader",
           "xPaddingMethod": "tokenish"
+        },
+        "sockopt": {
+          "tcpKeepAliveIdle": 60,
+          "tcpKeepAliveInterval": 15
         }
       }
     }
