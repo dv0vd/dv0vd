@@ -82,7 +82,7 @@
         },
         "xhttpSettings": {
           "path": "/v2/events",
-          "mode": "stream-up"
+          "mode": "packet-up"
         }
       }
     }
