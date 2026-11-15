@@ -41,6 +41,10 @@
         },
         "wsSettings": {
           "path": "/v2/events"
+        },
+        "sockopt": {
+          "tcpKeepAliveIdle": 60,
+          "tcpKeepAliveInterval": 15
         }
       }
     }
