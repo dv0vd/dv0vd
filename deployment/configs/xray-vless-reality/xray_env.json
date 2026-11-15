@@ -15,9 +15,15 @@
         "decryption": "none"
       },
       "streamSettings": {
-        "network": "websocket",
-        "wsSettings": {
-          "path": "/v2/events"
+        "network": "raw",
+        "security": "tls",
+        "tlsSettings": {
+          "certificates": [
+            {
+              "certificateFile": "/app/letsencrypt/certificates/live/$PROXY_MAIN_URL.$BASE_URL/fullchain.pem",
+              "keyFile": "/app/letsencrypt/certificates/live/$PROXY_MAIN_URL.$BASE_URL/privkey.pem"
+            }
+          ]
         }
       },
       "sniffing": {
