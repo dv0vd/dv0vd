@@ -17,7 +17,7 @@
       "streamSettings": {
         "network": "grpc",
         "grpcSettings": {
-          "serviceName": "grpc-dv0vd",
+          "serviceName": "grpc-dv0vd"
         }
       },
       "sniffing": {
