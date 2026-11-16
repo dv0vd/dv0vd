@@ -1,82 +1,93 @@
-## Execution Policy
-- Do not get stuck in loops: the same tool call may be retried no more than once.
-- Failure of an individual read, search, or edit operation does not mean the entire task must stop.
-- After a failure, continue with other independent files or use another built-in tool.
-- Stop the task only when a correct result cannot be produced without the failed step.
-- Do not treat system `Skipped` results, UI cancellations, or temporary tool failures as user refusal.
+# Execution Policy
+
+## Rule Priority
+- Explicit user instructions for the current task take priority over this file.
+- Explicit user approval overrides the restriction only for the specifically approved command or action.
+- All other restrictions remain in effect.
+- This override never applies to the Secrets rule: `.env` and credential files are never read, regardless of task instructions.
+
+## ## Secrets
+- Never read or print `.env`, secret, key, or credential files, even partially. This rule is absolute and has no exceptions, including task requirements, `Rule Priority`, and the Ignored Files list.
+- If configuration is needed, ask the user for the specific value instead of reading the file.
+
+## User Approval
+- Explicit approval is required only for commands listed under Code Execution, bulk operations under Long Operations, and genuinely dangerous or irreversible actions.
+- Built-in file reading, searching, creation, editing, and deletion within the agreed plan are performed without additional approval.
+- After receiving explicit approval, execute the approved action immediately; do not request confirmation again or extend approval to other actions.
+- A skipped or canceled system prompt is not user refusal; continue the task by an alternative method.
 - Only an explicit user message prohibiting an action counts as refusal.
-### User Authorization
-- Explicit authorization is required only for commands listed under Code Execution and for genuinely dangerous or irreversible operations.
-- Built-in file reading, searching, creation, editing, and deletion within the agreed plan should be performed without additional authorization.
 - If the user explicitly rejects a specific command, do not request it again or suggest an equivalent shell command.
-- A skipped or canceled system prompt does not prohibit continuing the task by an alternative method.
-### Code Execution
-Prefer static file analysis.
-Do not run the following without explicit user authorization:
-- `php`
-- `artisan`
-- `composer`
-- `node`
-- `npm`
-- `pnpm`
-- `yarn`
-- `bun`
-- `git`
-### Task Completion
-- An incomplete focus chain item is not a reason to wait or stop.
-- For static verification, use files already read and the project's built-in search.
-- Do not run commands, tests, or builds if they require separate authorization.
-- If full verification is unavailable, perform the available checks, explicitly state the limitations, and complete the task.
-- After verification, always update the focus chain and mark completed items.
-- Do not leave the task waiting solely because the result cannot be confirmed with a tool.
-### Shell
+
+## Failures and Retries
+- Do not get stuck in loops.
+- If an action, command, or tool call fails, hangs, is skipped, or is canceled, retry the identical call (same tool, same arguments) at most once.
+- Never re-attempt the same operation after any other step in between, and do not vary wording ("Actually...", "Wait...") to bypass this rule — it is still a retry.
+- After a failed or skipped attempt, if a built-in file reading, searching, creation, editing, or deletion tool can perform the action, use it instead.
+- Do not use shell commands (`cp`, `mv`, `rm`, `mkdir`, `touch`, `find`, `cat`) for file operations available through built-in tools.
+- If no built-in alternative exists, skip that step and continue with all independent parts of the task; state the limitation explicitly in one line.
+- Stop only if the failed or skipped step genuinely blocks correctness of the entire result.
+- Do not treat system `Skipped` results, UI cancellations, or temporary tool failures as user refusal.
+
+## Code Execution
+- Prefer static file analysis over running code.
+- Do not run the following without explicit user approval:
+  - `php`
+  - `artisan`
+  - `composer`
+  - `node`
+  - `npm`
+  - `pnpm`
+  - `yarn`
+  - `bun`
+  - `git`
+
+## Shell
+- Use only simple, one-off commands.
 - Use `rg` instead of `grep -R` to search the project.
-- Run every recursive command with an explicit `timeout 10s` limit.
-- Limit searches to specific directories and exclude paths listed under `Ignore`.
+- Limit searches to specific directories and exclude paths listed under Ignored Files.
+- Set an explicit `timeout 10s` limit on every recursive command.
 - If a command times out, do not repeat it: narrow the search scope or use built-in file search.
 - Do not use:
   - loops (`for`, `while`, `until`);
-  - multiline shell scripts;
+  - multi-line shell scripts;
   - complex pipelines;
   - bulk file processing.
-### Skipped Tool Calls
-- `Skipped` is a system tool result, not a user refusal and not a reason to stop the task.
-- After `Skipped`, continue immediately without waiting for the user.
-- Do not repeat the skipped shell command or suggest an equivalent shell command.
-- If the action can be performed with built-in file reading, searching, creation, editing, or deletion tools, use them.
-- Do not use shell commands (`cp`, `mv`, `rm`, `mkdir`, `touch`, `find`) for file operations available through built-in tools.
-- If there is no built-in alternative, skip that step and continue with all independent parts of the task.
-- Stop only if the skipped step genuinely blocks correct implementation; state the reason explicitly.
-### Long Operations
-- Before bulk changes, show the plan and request authorization only once.
+
+## Task Completion
+- An incomplete focus chain item is not a reason to wait or stop.
+- For static verification, use files already read and the project's built-in search.
+- Do not run commands, tests, or builds if they require separate approval.
+- If full verification is unavailable, perform the available checks, state the limitations, and complete the task.
+- After verification, update the focus chain and mark completed items.
+- Do not leave the task waiting solely because the result cannot be confirmed with a tool.
+
+## Long Operations
+- Before bulk changes or large-scale searches, show a concise plan with the expected scope and request approval once.
 - Once the plan is approved, perform all reads, searches, creations, edits, and deletions within it without further requests.
 - Do not stop between approved stages unless the next step expands the scope.
 - If some changes cannot be applied, continue with independent changes and list the unapplied files at the end.
-### Hanging Tools
-- If a tool hangs or fails, do not retry the identical call more than once.
-- Try a smaller change, reread the file, or use another built-in method.
-- If the second attempt fails, skip that specific file and continue with the remaining independent steps.
-- Stop only if the skipped file blocks correctness of the entire implementation.
-## General Principles
+
+# Development Principles
 - Make minimal changes.
-- Follow the project's existing patterns.
+- Follow existing project patterns.
 - Reuse existing code before writing new code.
-- Do not create new abstractions unless necessary.
-- Do not suggest refactoring outside the task scope.
+- Do not introduce new abstractions unless necessary.
+- Do not refactor outside the task scope.
 - Do not add comments unless necessary.
-- Code must be testable.
-- Show only modified and relevant code fragments.
-- Respond at a senior developer level.
-- Do not explain basic concepts.
-- If several solutions exist, provide a concise list without unnecessary explanation.
-- Sort entities alphabetically only when doing so does not affect meaning, contracts, or execution order.
-- Git commit messages must:
-  - follow Conventional Commits;
-  - include a `scope` when possible, for example `feat(auth): ...`;
-  - consist of one short sentence;
-  - contain no detailed description or bulleted lists.
-  ## Ignore
-Do not analyze or consider the following directories and files unless the task is explicitly related to them:
+- Keep code testable.
+- Show only relevant changed fragments.
+- Answer at senior level without explaining basic concepts.
+- If multiple solutions exist, provide a short list without unnecessary detail.
+- Sort entities alphabetically only when it does not affect meaning, contracts, dependencies, or execution order.
+
+## Git Commit Messages
+- Follow Conventional Commits.
+- Include a scope when reasonably identifiable, for example: `feat(auth): added token refresh`.
+- One short sentence in past tense only — no detailed descriptions, bullet lists, or additional context.
+
+# Ignored Files and Directories
+Do not analyze or modify the following unless the task explicitly requires them:
+- `.env`
 - `node_modules/`
 - `vendor/`
 - `dist/`
