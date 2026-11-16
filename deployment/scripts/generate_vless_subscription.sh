@@ -5,7 +5,9 @@ set -a
 . ./.env
 set +a
 
-echo "" > ./deployment/data/nginx/vless_subscription.txt
+# `:` — встроенная команда-ноуп (аналог `true`): не делает ничего, всегда возвращает код 0;
+# `> file` — редирект stdout: __создаёт файл, если его нет, или усечает до нуля байт, если уже существует__.
+: > ./deployment/data/nginx/vless_subscription.txt
 
 for item in ${PROXIES:-}; do
   name="${item%%=*}"
