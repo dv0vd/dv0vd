@@ -46,7 +46,7 @@
   "observatory": {
     "subjectSelector": [],
     "probeURL": "https://gateway.dv0vd.dev/health",
-    "probeInterval": "60s",
+    "probeInterval": "15s",
     "enableConcurrency": true
   }
 }
