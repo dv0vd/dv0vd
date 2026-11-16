@@ -63,7 +63,7 @@ jq -c \
   '($outbounds | map(select(.protocol == "vless") | .tag)) as $proxies
    | .outbounds = $outbounds
    | .routing.balancers[0].selector = $proxies
-   | .routing.balancers[0].fallbackTag = "direct"
+   | .routing.balancers[0].fallbackTag = $proxies[0]
    | .observatory.subjectSelector = $proxies' \
   ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json \
   > ./deployment/configs/xray-vless-reality/whitelist_bypass.json
