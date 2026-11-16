@@ -91,7 +91,7 @@ start-xray-vless-reality-gateway:
 		docker.io/teddysun/xray:26.6.27
 
 start-xray-vless-reality-whitelist-bypass:
-# 	- bash ./deployment/scripts/render_xray_whitelist_bypass.sh
+	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/whitelist_bypass.json"
 	- podman run \
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
