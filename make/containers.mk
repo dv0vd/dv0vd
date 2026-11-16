@@ -1,7 +1,10 @@
 start-containers:
-	- echo "nameserver ${DNS_1}" > /etc/resolv.conf
+	- chattr -i /etc/resolv.conf
+	- echo "nameserver ${PUBLIC_IP}" > /etc/resolv.conf
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
+	- chattr +i /etc/resolv.conf
+	- $(MAKE) start-pihole
 	- $(MAKE) start-email
 	- $(MAKE) start-open-webui
 	- $(MAKE) start-db
@@ -17,28 +20,27 @@ start-containers:
 	- $(MAKE) start-nginx
 
 start-containers-proxy:
-	- echo "nameserver ${DNS_1}" > /etc/resolv.conf
+	- chattr -i /etc/resolv.conf
+	- echo "nameserver ${PUBLIC_IP}" > /etc/resolv.conf
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
+	- chattr +i /etc/resolv.conf
 	- $(MAKE) start-pihole
-	- $(MAKE) start-mtproto
-	- $(MAKE) start-socks5
-	- $(MAKE) start-socks4
-	- $(MAKE) start-https-proxy
 	- $(MAKE) start-xray-vless-reality
-	- $(MAKE) start-outline
 	- $(MAKE) start-doh-server
 	- $(MAKE) start-nginx-proxy
 
 start-containers-gateway:
-	- echo "nameserver 127.0.0.1" > /etc/resolv.conf
-	- echo "nameserver ${DNS_RU}" > /etc/resolv.conf
+	- chattr -i /etc/resolv.conf
+	- echo "nameserver ${PROXY_GATEWAY_IP}" > /etc/resolv.conf
+	- echo "nameserver ${DNS_RU}" >> /etc/resolv.conf
 	- echo "nameserver 77.88.8.8" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
-	- $(MAKE) start-pihole-gateway
+	- chattr +i /etc/resolv.conf
+	- $(MAKE) start-pihole
 	- $(MAKE) start-doh-server-gateway
 	- $(MAKE) start-whitelist-bypass
-	- $(MAKE) start-xray-vless-reality-gateway
+# 	- $(MAKE) start-xray-vless-reality-gateway
 	- $(MAKE) start-xray-vless-reality-whitelist-bypass
 	- $(MAKE) start-nginx-gateway
 
@@ -56,11 +58,12 @@ stop-containers:
 	- $(MAKE) stop-db
 	- $(MAKE) stop-open-webui
 	- $(MAKE) stop-email
+	- $(MAKE) stop-pihole
 
 stop-containers-gateway:
 	- $(MAKE) stop-nginx
 	- $(MAKE) stop-xray-vless-reality-whitelist-bypass
-	- $(MAKE) stop-xray-vless-reality-gateway
+# 	- $(MAKE) stop-xray-vless-reality-gateway
 	- $(MAKE) stop-whitelist-bypass
 	- $(MAKE) stop-doh-server
 	- $(MAKE) stop-pihole
@@ -68,10 +71,5 @@ stop-containers-gateway:
 stop-containers-proxy:
 	- $(MAKE) stop-nginx
 	- $(MAKE) stop-doh-server
-	- $(MAKE) stop-outline
 	- $(MAKE) stop-xray-vless-reality
-	- $(MAKE) stop-https-proxy
-	- $(MAKE) stop-socks4
-	- $(MAKE) stop-socks5
-	- $(MAKE) stop-mtproto
 	- $(MAKE) stop-pihole

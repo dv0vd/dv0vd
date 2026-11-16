@@ -32,8 +32,6 @@ start-https-proxy:
 		-d \
 		--name https-proxy \
 		--network podman_network \
-		-e DNS1=${DNS_1} \
-		-e DNS2=${DNS_2} \
 		-p ${HTTPS_PROXY_PORT}:3128 \
 		--restart unless-stopped \
 		--memory=${HTTPS_PROXY_MEMORY} \
@@ -151,6 +149,7 @@ start-nginx-proxy:
 	docker.io/nginx:1.27.3
 
 start-nginx-gateway:
+	- bash ./deployment/scripts/generate_vless_subscription.sh
 	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$GATEWAY_URL' < ./deployment/configs/nginx/gateway_env.conf > ./deployment/configs/nginx/gateway.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
@@ -164,6 +163,7 @@ start-nginx-gateway:
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
 	-v ./src:/app:ro \
+	-v ./deployment/data/nginx/vless_subscription.txt:/var/www/vless_subscription.txt:ro \
 	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
@@ -209,25 +209,6 @@ start-nginx-local:
 	docker.io/nginx:1.27.3
 
 start-pihole:
-	- rm deployment/data/pihole/data/pihole-FTL.db*
-	- podman run \
-		-d \
-		--name pihole \
-		--network podman_network \
-		-p 53:53/tcp \
-		-p 53:53/udp \
-		-p 127.0.0.1:8080:80 \
-		-e TZ=UTC \
-		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
-		-v ./deployment/data/pihole/data:/etc/pihole \
-		--restart unless-stopped \
-		--memory=${PIHOLE_MEMORY} \
-		--cpus=${PIHOLE_CPUS} \
-		--shm-size=${PIHOLE_SHM_SIZE} \
-		--cgroup-parent=/podman-group.slice \
-		docker.io/pihole/pihole:2025.08.0
-
-start-pihole-gateway:
 	- rm deployment/data/pihole/data/pihole-FTL.db*
 	- podman run \
 		-d \

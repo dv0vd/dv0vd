@@ -234,7 +234,7 @@ set_timezone() {
 configure_dns() {
   log "Configuring DNS..."
   rm -f /etc/resolv.conf
-  echo "nameserver ${DNS_1}" > /etc/resolv.conf
+  echo "nameserver ${DNS_MAIN}" > /etc/resolv.conf
   echo "nameserver 1.1.1.1" >> /etc/resolv.conf
   log "DNS successfully configured"
 }
