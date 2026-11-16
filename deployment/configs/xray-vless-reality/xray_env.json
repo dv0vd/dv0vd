@@ -1,6 +1,6 @@
 {
   "log": {
-    "loglevel": "warning"
+    "loglevel": "debug"
   },
   "inbounds": [
     {
@@ -44,13 +44,6 @@
             "$XRAY_VLESS_REALITY_USER10"
           ]
         }
-      },
-      "sniffing": {
-        "enabled": true,
-        "destOverride": [
-          "http",
-          "tls"
-        ]
       }
     }
   ],
@@ -58,10 +51,6 @@
     {
       "protocol": "freedom",
       "tag": "direct"
-    },
-    {
-      "protocol": "blackhole",
-      "tag": "block"
     }
   ]
 }
