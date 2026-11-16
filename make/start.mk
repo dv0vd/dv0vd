@@ -73,10 +73,11 @@ start-xray-vless-reality:
 		--network podman_network \
 		-p ${XRAY_VLESS_REALITY_PORT}:443 \
 		-v ./deployment/configs/xray-vless-reality/xray.json:/etc/xray/config.json:ro \
+		-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/teddysun/xray:25.10.15
+		docker.io/teddysun/xray:26.6.27
 
 start-xray-vless-reality-gateway:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/gateway_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/gateway.json"
@@ -89,7 +90,7 @@ start-xray-vless-reality-gateway:
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/teddysun/xray:25.10.15
+		docker.io/teddysun/xray:26.6.27
 
 start-xray-vless-reality-whitelist-bypass:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/whitelist_bypass.json"
@@ -102,10 +103,10 @@ start-xray-vless-reality-whitelist-bypass:
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		docker.io/teddysun/xray:25.10.15
+		docker.io/teddysun/xray:26.6.27
 
 start-nginx:
-	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_URL \$$MTPROTO_URL \$$OPEN_WEBUI_URL' < ./deployment/configs/nginx/nginx_main_env.conf > ./deployment/configs/nginx/nginx.conf"
+	- bash -c "set -a; . .env; set +a; envsubst '\$$BASE_URL \$$NTFY_URL \$$LIVEKIT_URL \$$MTPROTO_URL \$$OPEN_WEBUI_URL' < ./deployment/configs/nginx/main_env.conf > ./deployment/configs/nginx/nginx.conf"
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
@@ -226,6 +227,25 @@ start-pihole:
 		--cgroup-parent=/podman-group.slice \
 		docker.io/pihole/pihole:2025.08.0
 
+start-pihole-gateway:
+	- rm deployment/data/pihole/data/pihole-FTL.db*
+	- podman run \
+		-d \
+		--name pihole \
+		--network podman_network \
+		-p 53:53/tcp \
+		-p 53:53/udp \
+		-p 127.0.0.1:8080:80 \
+		-e TZ=UTC \
+		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
+		-v ./deployment/data/pihole/data:/etc/pihole \
+		--restart unless-stopped \
+		--memory=${PIHOLE_MEMORY} \
+		--cpus=${PIHOLE_CPUS} \
+		--shm-size=${PIHOLE_SHM_SIZE} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/pihole/pihole:2025.08.0
+
 start-doh-server:
 	- podman run \
 		-d \
@@ -237,7 +257,7 @@ start-doh-server:
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
 		-e DOH_SERVER_TIMEOUT="1" \
-		-e DOH_SERVER_TRIES="3" \
+		-e DOH_SERVER_TRIES="1" \
 		--restart unless-stopped \
 		--memory=${DOH_SERVER_MEMORY} \
 		--cpus=${DOH_SERVER_CPUS} \
@@ -250,12 +270,12 @@ start-doh-server-gateway:
 		--name doh-server \
 		--network podman_network \
 		-p 127.0.0.1:8053:8053 \
-		-e UPSTREAM_DNS_SERVER="udp:${DNS_RU}:53,udp:77.88.8.8:53" \
+		-e UPSTREAM_DNS_SERVER="udp:${PUBLIC_IP}:53,udp:${DNS_RU}:53,udp:77.88.8.8:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
 		-e DOH_SERVER_TIMEOUT="1" \
-		-e DOH_SERVER_TRIES="2" \
+		-e DOH_SERVER_TRIES="1" \
 		--restart unless-stopped \
 		--memory=${DOH_SERVER_MEMORY} \
 		--cpus=${DOH_SERVER_CPUS} \
