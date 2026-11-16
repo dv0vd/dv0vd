@@ -19,7 +19,7 @@
       {
         "type": "field",
         "domain": [
-          "firefox-portal-detection.com"
+          "gateway.dv0vd.dev"
         ],
         "outboundTag": "direct"
       },
@@ -45,7 +45,7 @@
   },
   "observatory": {
     "subjectSelector": [],
-    "probeURL": "http://firefox-portal-detection.com/generate_204",
+    "probeURL": "https://gateway.dv0vd.dev/health",
     "probeInterval": "60s",
     "enableConcurrency": true
   }
