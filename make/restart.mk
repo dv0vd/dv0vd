@@ -26,8 +26,6 @@ restart-xray-vless-reality-whitelist-bypass: stop-xray-vless-reality-whitelist-b
 
 restart-pihole: stop-pihole start-pihole
 
-restart-pihole-gateway: stop-pihole start-pihole-gateway
-
 restart-doh-server: stop-doh-server start-doh-server
 
 restart-doh-server-gateway: stop-doh-server start-doh-server-gateway
