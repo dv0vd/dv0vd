@@ -5,14 +5,19 @@ set -a
 . ./.env
 set +a
 
-PROXY_NAME=""
-for entry in ${PROXIES:-}; do
-  p="${entry%%=*}"
-  ip="${entry#*=}"
-  if [ "${ip}" = "${PUBLIC_IP}" ]; then
-    PROXY_NAME="${p}"
-    break
-  fi
-done
+if [ "${PUBLIC_IP}" = "${PROXY_RU_IP}" ]; then
+  PROXY_NAME="ru"
+else
+  PROXY_NAME=""
+  for entry in ${PROXIES:-}; do
+    p="${entry%%=*}"
+    ip="${entry#*=}"
+    if [ "${ip}" = "${PUBLIC_IP}" ]; then
+      PROXY_NAME="${p}"
+      break
+    fi
+  done
+fi
 
 PROXY_NAME="${PROXY_NAME}" envsubst '$PROXY_NAME $BASE_URL' < ./deployment/configs/nginx/conf.d/proxy_env.conf > ./deployment/configs/nginx/conf.d/proxy.conf
+
