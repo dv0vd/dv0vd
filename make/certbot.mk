@@ -9,14 +9,20 @@ certbot-issue:
 
 certbot-issue-proxies:
 	- set -a; . ./.env; set +a
-	PROXY_NAME=
-	for entry in $$PROXIES; do
-		p=$${entry%%=*}; ip=$${entry#*=}
-		if [ "$$ip" = "$$PUBLIC_IP" ]; then PROXY_NAME=$$p; break; fi
-	done
-	- $(MAKE) start-nginx-certbot
-	- $(MAKE) certbot-issue-proxy PROXY_NAME=$$PROXY_NAME
-	- $(MAKE) stop-nginx-certbot
+	- if [ "${PUBLIC_IP}" = "${PROXY_RU_IP}" ]; then \
+		$(MAKE) start-nginx-certbot; \
+		$(MAKE) certbot-issue-proxy PROXY_NAME=ru; \
+		$(MAKE) stop-nginx-certbot; \
+	else \
+		PROXY_NAME=""; \
+		for entry in $$PROXIES; do \
+			p=$${entry%%=*}; ip=$${entry#*=} ; \
+			if [ "$$ip" = "$$PUBLIC_IP" ]; then PROXY_NAME=$$p; break; fi; \
+		done; \
+		$(MAKE) start-nginx-certbot; \
+		$(MAKE) certbot-issue-proxy PROXY_NAME=$$PROXY_NAME; \
+		$(MAKE) stop-nginx-certbot; \
+	fi
 
 certbot-issue-gateway:
 	- $(MAKE) start-nginx-certbot

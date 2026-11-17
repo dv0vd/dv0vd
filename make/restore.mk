@@ -15,6 +15,7 @@ restore:
 	- cp -a ./deployment/restore/email/state/. ./deployment/data/email/state/
 	- cp -a ./deployment/restore/synapse/. ./deployment/data/synapse/data/media_store/
 	- cp -a ./deployment/restore/postgres-synapse/. ./deployment/data/postgres-synapse/backups/
+	- chmod -R 777 ./deployment/data/open-webui ./deployment/data/rustdesk ./deployment/data/email ./deployment/data/synapse ./deployment/data/postgres-synapse
 	- $(MAKE) start-postgres-synapse
 	- $(MAKE) synapse-restore-database
 	- $(MAKE) stop-postgres-synapse
