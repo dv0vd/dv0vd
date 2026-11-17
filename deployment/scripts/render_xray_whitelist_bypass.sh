@@ -22,7 +22,10 @@ done
 OUTBOUNDS='[{"tag": "blackhole", "protocol": "blackhole", "settings": {}}]'
 
 for name in $NAMES; do
+  # Префикс node- обязателен: selector/subjectSelector в Xray матчатся по ПРЕФИКСУ.
+  # Без него тег ноды "d" попадает и в "direct", и leastPing выбирает direct (он быстрее).
   OUTBOUNDS=$(jq -c \
+    --arg tag "node-$name" \
     --arg name "$name" \
     --arg address "$name.$BASE_URL" \
     --argjson port "$XRAY_VLESS_REALITY_PORT" \
@@ -31,7 +34,7 @@ for name in $NAMES; do
     --arg pbk "$XRAY_VLESS_REALITY_PUBLIC_KEY" \
     --arg sid "$XRAY_VLESS_REALITY_USER0" \
     '. + [{
-      "tag": $name,
+      "tag": $tag,
       "protocol": "vless",
       "settings": {
         "vnext": [{
@@ -65,5 +68,6 @@ envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | j
    | .outbounds = $outbounds
    | .routing.balancers[0].selector = $proxies
    | .routing.balancers[0].fallbackTag = "blackhole"
+   | .routing.rules += [{"type": "field", "network": "tcp,udp", "outboundTag": "blackhole"}]
    | .observatory.subjectSelector = $proxies' \
   > ./deployment/configs/xray-vless-reality/whitelist_bypass.json
