@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e # stop script on any error
+set -e # stop on any error
 
 set -a
 . ./.env
@@ -58,12 +58,11 @@ done
 
 OUTBOUNDS=$(jq -c '. + [{"tag": "direct", "protocol": "freedom", "settings": {}}]' <<<"$OUTBOUNDS")
 
-jq -c \
+envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | jq -c \
   --argjson outbounds "$OUTBOUNDS" \
   '($outbounds | map(select(.protocol == "vless") | .tag)) as $proxies
    | .outbounds = $outbounds
    | .routing.balancers[0].selector = $proxies
    | .routing.balancers[0].fallbackTag = $proxies[0]
    | .observatory.subjectSelector = $proxies' \
-  ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json \
   > ./deployment/configs/xray-vless-reality/whitelist_bypass.json
