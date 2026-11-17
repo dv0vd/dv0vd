@@ -53,13 +53,13 @@ podman-pull-images-gateway:
 	podman pull docker.io/teddysun/xray:26.6.27
 	podman pull docker.io/certbot/certbot:v5.3.1
 	podman pull docker.io/satishweb/doh-server:v2.3.10-alpine
-	podman pull ghcr.io/kulikov0/whitelist-bypass-bot:v0.5.1
+	podman pull ghcr.io/kulikov0/whitelist-bypass-bot:v0.5.2
 	podman pull docker.io/pihole/pihole:2025.08.0
 	podman save docker.io/nginx:1.27.3 > ./deployment/images/nginx.tar
 	podman save docker.io/teddysun/xray:26.6.27 > ./deployment/images/teddysun-xray.tar
 	podman save docker.io/certbot/certbot:v5.3.1 > ./deployment/images/certbot.tar
 	podman save docker.io/satishweb/doh-server:v2.3.10-alpine > ./deployment/images/satishweb-doh-server.tar
-	podman save ghcr.io/kulikov0/whitelist-bypass-bot:v0.5.1 > ./deployment/images/kulikov0-whitelist-bypass-bot.tar
+	podman save ghcr.io/kulikov0/whitelist-bypass-bot:v0.5.2 > ./deployment/images/kulikov0-whitelist-bypass-bot.tar
 	podman save docker.io/pihole/pihole:2025.08.0 > ./deployment/images/pihole.tar
 
 podman-load-images:
