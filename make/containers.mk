@@ -1,6 +1,6 @@
 start-containers:
 	- chattr -i /etc/resolv.conf
-	- echo "nameserver ${PUBLIC_IP}" > /etc/resolv.conf
+	- echo "nameserver ${DNS_MAIN}" > /etc/resolv.conf
 	- echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 	- echo "options timeout:1 attempts:1" >> /etc/resolv.conf
 	- chattr +i /etc/resolv.conf
