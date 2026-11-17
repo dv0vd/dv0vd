@@ -57,12 +57,15 @@ for name in $NAMES; do
 done
 
 OUTBOUNDS=$(jq -c '. + [{"tag": "direct", "protocol": "freedom", "settings": {}}]' <<<"$OUTBOUNDS")
+OUTBOUNDS=$(jq -c '. + [{"tag": "blackhole", "protocol": "blackhole", "settings": {}}]' <<<"$OUTBOUNDS")
 
+# Сначала заменяем переменные окружения в шаблоне, затем применяем логику маршрутизации и балансировки
 envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | jq -c \
   --argjson outbounds "$OUTBOUNDS" \
   '($outbounds | map(select(.protocol == "vless") | .tag)) as $proxies
    | .outbounds = $outbounds
    | .routing.balancers[0].selector = $proxies
-   | .routing.balancers[0].fallbackTag = $proxies[0]
+   | .routing.balancers[0].fallbackTag = "blackhole"
+   | .routing.rules += [{"type": "field", "outboundTag": "blackhole"}]
    | .observatory.subjectSelector = $proxies' \
   > ./deployment/configs/xray-vless-reality/whitelist_bypass.json
