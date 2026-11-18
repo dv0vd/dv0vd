@@ -22,5 +22,8 @@ enter-coturn:
 enter-sip:
 	podman exec -it sip bash
 
+enter-whitelist-bypass:
+	podman exec -it whitelist-bypass bash
+
 enter-xray-vless-reality-whitelist-bypass:
 	podman exec -it xray-vless-reality-whitelist-bypass bash

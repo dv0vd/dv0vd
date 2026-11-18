@@ -91,7 +91,8 @@ start-xray-vless-reality-gateway:
 		docker.io/teddysun/xray:26.6.27
 
 start-xray-vless-reality-whitelist-bypass:
-	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/whitelist_bypass.json"
+	- bash ./deployment/scripts/render_xray_whitelist_bypass.sh
+# 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | sed -E 's/\"port\": \"([0-9]+)\"/\"port\": \1/' > ./deployment/configs/xray-vless-reality/whitelist_bypass.json"
 	- podman run \
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
@@ -556,6 +557,7 @@ start-whitelist-bypass:
 		-e TM_COOKIES=/app/cookies-yandex.json \
 		-e VK_COOKIES=/app/cookies-vk.json \
 		-e BITRIX_COOKIES=/app/cookies-bitrix.json \
+		-e BLINK_COOKIES=/app/cookies-blink.json \
 		-e UPSTREAM_SOCKS=10.89.10.2:1080 \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network whitelist_bypass_network \
@@ -564,7 +566,7 @@ start-whitelist-bypass:
 		--memory=${WHITELIST_BYPASS_MEMORY} \
 		--cpus=${WHITELIST_BYPASS_CPUS} \
 		--cgroup-parent=/podman-group.slice \
-		ghcr.io/kulikov0/whitelist-bypass-bot:v0.5.1
+		ghcr.io/kulikov0/whitelist-bypass-bot:v0.5.2
 
 start-sip:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/sip/pjsip.d/transport_env.conf > ./deployment/configs/sip/pjsip.d/transport.conf"
