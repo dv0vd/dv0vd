@@ -43,10 +43,14 @@
       }
     ]
   },
-  "observatory": {
+  "burstObservatory": {
     "subjectSelector": [],
-    "probeUrl": "https://$GATEWAY_URL.$BASE_URL/health",
-    "probeInterval": "15s",
-    "enableConcurrency": true
+    "pingConfig": {
+      "destination": "https://$GATEWAY_URL.$BASE_URL/health",
+      "interval": "10s",
+      "sampling": 5,
+      "timeout": "10s",
+      "httpMethod": "GET"
+    }
   }
 }
