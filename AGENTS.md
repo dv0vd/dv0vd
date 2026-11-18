@@ -85,7 +85,8 @@
 - Use imperative mood: `feat(auth): add token refresh`, `fix(api): handle empty payload`.
 - Subject: hard limit 50 chars, never exceed.
 - One short sentence, lowercase after the colon, no trailing period.
-- No body, no footer, no bullet lists.
+- Output ONLY the subject line. No body, no description, no bullet lists, no code fences.
+- The message is a single line: `type(scope): subject`.
 
 # Ignored Files and Directories
 Do not analyze or modify the following unless the task explicitly requires them:
