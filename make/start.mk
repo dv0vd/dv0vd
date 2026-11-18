@@ -549,6 +549,7 @@ start-mtproto:
 		docker.io/nineseconds/mtg:2.2.8 run /config.toml
 
 start-whitelist-bypass:
+	- chmod -R 777 ./deployment/configs/whitelist-bypass
 	- podman run \
 		-d \
 		--name whitelist-bypass \

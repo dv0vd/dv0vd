@@ -69,5 +69,5 @@ envsubst < ./deployment/configs/xray-vless-reality/whitelist_bypass_env.json | j
    | .routing.balancers[0].selector = $proxies
    | .routing.balancers[0].fallbackTag = "blackhole"
    | .routing.rules += [{"type": "field", "network": "tcp,udp", "outboundTag": "blackhole"}]
-   | .observatory.subjectSelector = $proxies' \
+   | .burstObservatory.subjectSelector = $proxies' \
   > ./deployment/configs/xray-vless-reality/whitelist_bypass.json
