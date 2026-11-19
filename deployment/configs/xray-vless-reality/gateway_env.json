@@ -60,8 +60,8 @@
       "settings": {
         "vnext": [
           {
-            "address": "$PROXY_MAIN_URL.$BASE_URL",
-            "port": "$XRAY_VLESS_REALITY_PORT",
+            "address": "$XRAY_URL.$PROXY_MAIN_URL.$BASE_URL",
+            "port": "443",
             "users": [
               {
                 "id": "$XRAY_VLESS_REALITY_UUID",
@@ -76,7 +76,7 @@
         "network": "raw",
         "security": "reality",
         "realitySettings": {
-          "serverName": "$BASE_URL",
+          "serverName": "$XRAY_URL.$PROXY_MAIN_URL.$BASE_URL",
           "fingerprint": "random",
           "publicKey": "$XRAY_VLESS_REALITY_PUBLIC_KEY",
           "shortId": "$XRAY_VLESS_REALITY_USER0"
