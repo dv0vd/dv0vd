@@ -27,6 +27,7 @@ logpath  = %(nginx_access_log)s
 
 [nginx-bad-request]
 enabled = true
+maxretry = 100
 logpath = %(nginx_access_log)s
 
 [nginx-not-found]
