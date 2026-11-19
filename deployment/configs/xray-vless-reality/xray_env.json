@@ -24,7 +24,8 @@
           "xver": 0,
           "serverNames": [
             "www.$BASE_URL",
-            "$BASE_URL"
+            "$BASE_URL",
+            "$XRAY_URL.$PROXY_NAME.$BASE_URL"
           ],
           "privateKey": "$XRAY_VLESS_REALITY_PRIVATE_KEY",
           "minClientVer": "",

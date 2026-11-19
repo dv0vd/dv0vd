@@ -64,12 +64,12 @@ start-outline:
 		quay.io/outline/shadowbox:v1.12.3
 
 start-xray-vless-reality:
-	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/xray-vless-reality/xray_env.json > ./deployment/configs/xray-vless-reality/xray.json"
+	- bash ./deployment/scripts/render_xray_vless_reality.sh
 	- podman run \
 		-d \
 		--name xray-vless-reality \
 		--network podman_network \
-		-p ${XRAY_VLESS_REALITY_PORT}:443 \
+		-p 127.0.0.1:${XRAY_VLESS_REALITY_PORT}:443 \
 		-v ./deployment/configs/xray-vless-reality/xray.json:/etc/xray/config.json:ro \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
@@ -133,12 +133,14 @@ start-nginx-proxy:
 	- bash ./deployment/scripts/render_nginx_proxy.sh
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
+	-@ rm ./deployment/data/nginx/logs/stream.log
 	- podman run \
 	-d \
 	--name nginx \
 	--network host \
 	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
+	-v ./deployment/configs/nginx/conf.d/stream.conf:/etc/nginx/conf.d/stream.conf:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
