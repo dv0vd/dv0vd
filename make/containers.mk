@@ -22,8 +22,8 @@ start-containers:
 start-containers-proxy:
 	- chattr -i /etc/resolv.conf
 	- if [ "${PUBLIC_IP}" = "${PROXY_RU_IP}" ]; then \
-		echo "nameserver ${PROXY_RU_IP}" >> /etc/resolv.conf; \
-		echo "nameserver ${PROXY_GATEWAY_IP}" > /etc/resolv.conf; \
+		echo "nameserver ${PROXY_RU_IP}" > /etc/resolv.conf; \
+		echo "nameserver ${PROXY_GATEWAY_IP}" >> /etc/resolv.conf; \
 		echo "nameserver 77.88.8.8" >> /etc/resolv.conf; \
 	else \
 		echo "nameserver ${PUBLIC_IP}" > /etc/resolv.conf; \
