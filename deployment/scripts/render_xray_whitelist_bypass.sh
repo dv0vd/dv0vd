@@ -27,10 +27,10 @@ for name in $NAMES; do
   OUTBOUNDS=$(jq -c \
     --arg tag "node-$name" \
     --arg name "$name" \
-    --arg address "$name.$BASE_URL" \
-    --argjson port "$XRAY_VLESS_REALITY_PORT" \
+    --arg address "$XRAY_URL.$name.$BASE_URL" \
+    --argjson port 443 \
     --arg uuid "$XRAY_VLESS_REALITY_UUID" \
-    --arg base "$BASE_URL" \
+    --arg server_name "$BASE_URL" \
     --arg pbk "$XRAY_VLESS_REALITY_PUBLIC_KEY" \
     --arg sid "$XRAY_VLESS_REALITY_USER0" \
     '. + [{
@@ -51,7 +51,7 @@ for name in $NAMES; do
         "network": "raw",
         "security": "reality",
         "realitySettings": {
-          "serverName": $base,
+          "serverName": $server_name,
           "fingerprint": "random",
           "publicKey": $pbk,
           "shortId": $sid
