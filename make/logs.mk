@@ -31,6 +31,9 @@ logs-nginx-access:
 logs-nginx-error:
 	tail -f -n +1 deployment/data/nginx/logs/error.log
 
+logs-nginx-stream:
+	tail -f -n +1 deployment/data/nginx/logs/stream.log
+
 logs-mongo-demo:
 	podman logs -f mongo-demo
 
