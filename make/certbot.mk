@@ -122,7 +122,6 @@ certbot-issue-proxy:
  		--webroot \
 		--webroot-path=/app/acme \
 		-d ${PROXY_NAME}.${BASE_URL} \
-		-d ${XRAY_URL}.${PROXY_NAME}.${BASE_URL} \
 		-d www.${PROXY_NAME}.${BASE_URL} \
 		--email postmaster@${BASE_URL} \
 		--agree-tos \
