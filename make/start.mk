@@ -69,7 +69,7 @@ start-xray-vless-reality:
 		-d \
 		--name xray-vless-reality \
 		--network podman_network \
-		-p ${XRAY_VLESS_REALITY_PORT}:443 \
+		-p 127.0.0.1:${XRAY_VLESS_REALITY_PORT}:443 \
 		-v ./deployment/configs/xray-vless-reality/xray.json:/etc/xray/config.json:ro \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
@@ -139,6 +139,7 @@ start-nginx-proxy:
 	--network host \
 	-v ./deployment/configs/nginx/proxy.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/configs/nginx/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro \
+	-v ./deployment/configs/nginx/conf.d/stream.conf:/etc/nginx/conf.d/stream.conf:ro \
 	-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
