@@ -133,6 +133,7 @@ start-nginx-proxy:
 	- bash ./deployment/scripts/render_nginx_proxy.sh
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
+	-@ rm ./deployment/data/nginx/logs/stream.log
 	- podman run \
 	-d \
 	--name nginx \
