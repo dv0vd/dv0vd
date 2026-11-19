@@ -11,5 +11,5 @@ set +a
 
 for item in ${PROXIES:-}; do
   name="${item%%=*}"
-  echo "vless://${XRAY_VLESS_REALITY_UUID}@${XRAY_URL}.${name}.${BASE_URL}:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=reality&sni=${XRAY_URL}.${name}.${BASE_URL}&fp=firefox&pbk=${XRAY_VLESS_REALITY_PUBLIC_KEY}&sid=${XRAY_VLESS_REALITY_USER1}" >> ./deployment/data/nginx/vless_subscription.txt
+  echo "vless://${XRAY_VLESS_REALITY_UUID}@${XRAY_URL}.${name}.${BASE_URL}:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=reality&sni=${BASE_URL}&fp=firefox&pbk=${XRAY_VLESS_REALITY_PUBLIC_KEY}&sid=${XRAY_VLESS_REALITY_USER1}" >> ./deployment/data/nginx/vless_subscription.txt
 done
