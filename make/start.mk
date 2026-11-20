@@ -254,7 +254,7 @@ start-doh-server-gateway:
 		--name doh-server \
 		--network podman_network \
 		-p 127.0.0.1:8053:8053 \
-		-e UPSTREAM_DNS_SERVER="udp:${PUBLIC_IP}:53,udp:${PROXY_RU_IP}:53,udp:77.88.8.8:53" \
+		-e UPSTREAM_DNS_SERVER="udp:${PROXY_GATEWAY_IP}:53,udp:${PROXY_RU_IP}:53,udp:77.88.8.8:53" \
 		-e DOH_HTTP_PREFIX="/dns-query" \
 		-e DEBUG="1" \
 		-e DOH_SERVER_VERBOSE="true" \
