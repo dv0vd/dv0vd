@@ -26,7 +26,7 @@ enabled  = true
 logpath  = %(nginx_access_log)s
 
 [nginx-bad-request]
-enabled = true
+enabled = false
 maxretry = 100
 logpath = %(nginx_access_log)s
 
