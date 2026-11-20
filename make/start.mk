@@ -390,6 +390,7 @@ start-synapse:
 
 start-coturn:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/coturn/turnserver_env.conf > ./deployment/configs/coturn/turnserver.conf"
+	- bash ./deployment/scripts/free_ports.sh ${COTURN_PORT}-${COTURN_PORT} ${COTURN_TLS_PORT}-${COTURN_TLS_PORT} ${COTURN_MIN_PORT}-${COTURN_MAX_PORT}
 	- podman run \
 		-d \
 		--name coturn \
@@ -435,6 +436,7 @@ start-livekit-redis:
 
 start-livekit:
 	- bash -c "set -a; . .env; set +a; envsubst < ./deployment/configs/livekit/livekit_env.yaml > ./deployment/configs/livekit/livekit.yaml"
+	- bash ./deployment/scripts/free_ports.sh ${LIVEKIT_TURN_UDP_PORT}-${LIVEKIT_TURN_UDP_PORT} ${LIVEKIT_TURN_TCP_PORT}-${LIVEKIT_TURN_TCP_PORT} ${LIVEKIT_FALLBACK_PORT}-${LIVEKIT_FALLBACK_PORT} ${LIVEKIT_MIN_PORT}-${LIVEKIT_MAX_PORT} ${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT}
 	- podman run \
 		-d \
 		--name livekit \
@@ -591,6 +593,7 @@ start-sip:
 	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/privkey.pem ./deployment/data/sip/certs/privkey.pem
 	- cp -Lf ./deployment/data/letsencrypt/data/live/${BASE_URL}/chain.pem ./deployment/data/sip/certs/chain.pem
 	- chmod 644 ./deployment/data/sip/certs/fullchain.pem ./deployment/data/sip/certs/privkey.pem ./deployment/data/sip/certs/chain.pem
+	- bash ./deployment/scripts/free_ports.sh ${SIP_PORT}-${SIP_PORT} ${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}
 	- podman run \
 		-d \
 		--name sip \
