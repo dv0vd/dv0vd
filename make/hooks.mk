@@ -2,6 +2,7 @@ on-startup:
 	- systemctl disable fail2ban
 	- $(MAKE) stop-fail2ban
 	- $(MAKE) iptables-apply-rules
+	- $(MAKE) reserve-ports
 	- $(MAKE) ssh-generate-config
 	- shutdown -r 0:00
 	- $(MAKE) fail2ban-configure

@@ -22,3 +22,7 @@ ssh-generate-config:
 
 sip-debug:
 	podman exec -it sip asterisk -rx "pjsip set logger on"
+
+reserve-ports:
+	- bash -c "set -a; . .env; set +a; envsubst '\$$LIVEKIT_TURN_UDP_PORT \$$LIVEKIT_TURN_TCP_PORT \$$LIVEKIT_FALLBACK_PORT \$$LIVEKIT_MIN_PORT \$$LIVEKIT_MAX_PORT \$$LIVEKIT_TURN_MIN_PORT \$$LIVEKIT_TURN_MAX_PORT \$$COTURN_PORT \$$COTURN_TLS_PORT \$$COTURN_MIN_PORT \$$COTURN_MAX_PORT \$$SIP_PORT \$$SIP_RTP_MIN_PORT \$$SIP_RTP_MAX_PORT' < ./deployment/configs/linux/sysctl_env.conf > /etc/sysctl.d/99-dv0vd.conf"
+	- sysctl -p /etc/sysctl.d/99-dv0vd.conf
