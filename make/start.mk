@@ -72,6 +72,7 @@ start-xray-vless-reality:
 		-p 127.0.0.1:${XRAY_VLESS_REALITY_PORT}:443 \
 		-v ./deployment/configs/xray-vless-reality/xray.json:/etc/xray/config.json:ro \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+		--restart unless-stopped \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
@@ -85,6 +86,7 @@ start-xray-vless-reality-gateway:
 		--network podman_network \
 		-p ${XRAY_VLESS_REALITY_PORT}:443 \
 		-v ./deployment/configs/xray-vless-reality/gateway.json:/etc/xray/config.json:ro \
+		--restart unless-stopped \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
@@ -99,6 +101,7 @@ start-xray-vless-reality-whitelist-bypass:
 		--network whitelist_bypass_network \
 		--ip 10.89.10.2 \
 		-v ./deployment/configs/xray-vless-reality/whitelist_bypass.json:/etc/xray/config.json:ro \
+		--restart unless-stopped \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
 		--cpus=${XRAY_VLESS_REALITY_CPUS} \
 		--cgroup-parent=/podman-group.slice \
@@ -185,6 +188,7 @@ start-nginx-certbot:
 	-v ./deployment/configs/nginx/certbot.conf:/etc/nginx/nginx.conf:ro \
 	-v ./deployment/data/nginx/logs:/var/log/nginx \
 	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
+	--restart unless-stopped \
 	--memory=${NGINX_MEMORY} \
 	--cpus=${NGINX_CPUS} \
 	--cgroup-parent=/podman-group.slice \
@@ -383,6 +387,7 @@ start-synapse:
 	-v ./deployment/configs/synapse:/config \
 	-e SYNAPSE_CONFIG_DIR=/config \
 	--network podman_network \
+	--restart unless-stopped \
 	--memory=${SYNAPSE_APP_MEMORY} \
 	--cpus=${SYNAPSE_APP_CPUS} \
 	--cgroup-parent=/podman-group.slice \
@@ -398,6 +403,7 @@ start-coturn:
 		-v ./deployment/configs/coturn/turnserver.conf:/etc/coturn/turnserver.conf \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
 		--network host \
+		--restart unless-stopped \
 		--memory=${COTURN_MEMORY} \
 		--cpus=${COTURN_CPUS} \
 		--cgroup-parent=/podman-group.slice \
@@ -441,6 +447,7 @@ start-livekit:
 		-d \
 		--name livekit \
 		--network podman_network \
+		--sysctl net.ipv4.ip_local_reserved_ports=${LIVEKIT_TURN_UDP_PORT},${LIVEKIT_TURN_TCP_PORT},${LIVEKIT_FALLBACK_PORT},${LIVEKIT_MIN_PORT}-${LIVEKIT_MAX_PORT},${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT} \
 		-v ./deployment/configs/livekit/livekit.yaml:/app/livekit.yaml:ro \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
 		-p ${LIVEKIT_TURN_UDP_PORT}:${LIVEKIT_TURN_UDP_PORT}/udp \
@@ -603,6 +610,7 @@ start-sip:
 		-p ${SIP_PORT}:5061/tcp \
 		-p ${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}:${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}/udp \
 		--network podman_network \
+		--sysctl net.ipv4.ip_local_reserved_ports=${SIP_PORT},${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT} \
 		--restart unless-stopped \
 		--memory=${SIP_MEMORY} \
 		--cpus=${SIP_CPUS} \
@@ -616,6 +624,7 @@ start-open-webui:
 		-e AIOHTTP_CLIENT_TIMEOUT=600 \
 		-v ./deployment/data/open-webui:/app/backend/data \
 		--network podman_network \
+		--restart unless-stopped \
 		--memory=${OPEN_WEBUI_MEMORY} \
 		--cpus=${OPEN_WEBUI_CPUS} \
 		--cgroup-parent=/podman-group.slice \
