@@ -63,6 +63,7 @@ configure_podman() {
   make -C /root/dv0vd podman-pull-images
   make -C /root/dv0vd podman-load-images
   make -C /root/dv0vd podman-create-network
+  make -C /root/dv0vd reserve-ports
   systemctl set-property podman-group.slice MemoryMax=$PODMAN_MEMORY_LIMIT CPUQuota=$PODMAN_CPUS
   systemctl stop systemd-resolved || true # required for Pi-hole 
   systemctl disable systemd-resolved || true # required for Pi-hole
