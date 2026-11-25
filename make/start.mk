@@ -99,7 +99,7 @@ start-xray-vless-reality-whitelist-bypass:
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
 		--network whitelist_bypass_network \
-		--ip 10.0.1.1 \
+		--ip 10.0.1.3 \
 		-v ./deployment/configs/xray-vless-reality/whitelist_bypass.json:/etc/xray/config.json:ro \
 		--restart unless-stopped \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
@@ -242,7 +242,7 @@ start-pihole-main:
 		-d \
 		--name pihole \
 		--network pihole_network \
-		--ip 10.0.2.1 \
+		--ip 10.0.2.3 \
 		-e TZ=UTC \
 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
 		-v ./deployment/data/pihole/data:/etc/pihole \
@@ -589,7 +589,7 @@ start-whitelist-bypass:
 		-e VK_COOKIES=/app/cookies-vk.json \
 		-e BITRIX_COOKIES=/app/cookies-bitrix.json \
 		-e BLINK_COOKIES=/app/cookies-blink.json \
-		-e UPSTREAM_SOCKS=10.0.1.1:1080 \
+		-e UPSTREAM_SOCKS=10.0.1.3:1080 \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network whitelist_bypass_network \
 		--ip 10.0.1.2 \
@@ -644,7 +644,7 @@ start-open-webui:
 		-v ./deployment/data/open-webui:/app/backend/data \
 		--network pihole_network \
 		--ip 10.0.2.2 \
-		--dns 10.0.2.1 \
+		--dns 10.0.2.3 \
 		--dns 1.1.1.1 \
 		--dns 8.8.8.8 \
 		--restart unless-stopped \
