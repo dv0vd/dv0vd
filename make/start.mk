@@ -99,7 +99,7 @@ start-xray-vless-reality-whitelist-bypass:
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
 		--network whitelist_bypass_network \
-		--ip 10.89.10.2 \
+		--ip 10.0.1.1 \
 		-v ./deployment/configs/xray-vless-reality/whitelist_bypass.json:/etc/xray/config.json:ro \
 		--restart unless-stopped \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
@@ -223,6 +223,24 @@ start-pihole:
 		--network podman_network \
 		-p 53:53/tcp \
 		-p 53:53/udp \
+		-p 127.0.0.1:8080:80 \
+		-e TZ=UTC \
+		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
+		-v ./deployment/data/pihole/data:/etc/pihole \
+		--restart unless-stopped \
+		--memory=${PIHOLE_MEMORY} \
+		--cpus=${PIHOLE_CPUS} \
+		--shm-size=${PIHOLE_SHM_SIZE} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/pihole/pihole:2025.08.0
+
+start-pihole-main:
+	- rm deployment/data/pihole/data/pihole-FTL.db*
+	- podman run \
+		-d \
+		--name pihole \
+		--network pihole_network \
+		--ip 10.0.2.1 \
 		-p 127.0.0.1:8080:80 \
 		-e TZ=UTC \
 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
@@ -570,10 +588,10 @@ start-whitelist-bypass:
 		-e VK_COOKIES=/app/cookies-vk.json \
 		-e BITRIX_COOKIES=/app/cookies-bitrix.json \
 		-e BLINK_COOKIES=/app/cookies-blink.json \
-		-e UPSTREAM_SOCKS=10.89.10.2:1080 \
+		-e UPSTREAM_SOCKS=10.0.1.1:1080 \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network whitelist_bypass_network \
-		--ip 10.89.10.3 \
+		--ip 10.0.1.2 \
 		--restart unless-stopped \
 		--memory=${WHITELIST_BYPASS_MEMORY} \
 		--cpus=${WHITELIST_BYPASS_CPUS} \
@@ -623,7 +641,9 @@ start-open-webui:
 		--name open-webui \
 		-e AIOHTTP_CLIENT_TIMEOUT=600 \
 		-v ./deployment/data/open-webui:/app/backend/data \
-		--network podman_network \
+		--network pihole_network \
+		--ip 10.0.2.2 \
+		--dns 10.0.2.1 \
 		--restart unless-stopped \
 		--memory=${OPEN_WEBUI_MEMORY} \
 		--cpus=${OPEN_WEBUI_CPUS} \

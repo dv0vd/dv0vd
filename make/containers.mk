@@ -16,6 +16,7 @@ start-containers:
 	- $(MAKE) start-livekit
 	- $(MAKE) start-matrix-rtc
 	- $(MAKE) start-synapse
+	- $(MAKE) start-pihole-main
 # 	- $(MAKE) start-demo
 	- $(MAKE) start-nginx
 
