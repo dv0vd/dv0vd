@@ -244,7 +244,6 @@ help:
 	$(call print-help,certbot-issue-livekit,issue Lets encrypt certificate for livekit)
 	$(call print-help,certbot-issue-email,issue Lets encrypt certificate for email)
 	$(call print-help,certbot-issue-open-webui,issue Lets encrypt certificate for Open WebUI)
-	$(call print-help,certbot-issue-pihole,issue Lets encrypt certificate for Pi-hole)
 	$(call print-help,certbot-renew,renew Lets encrypt certificates)
 	$(call print-help,mtproto-get-link,get MTProto proxy connection link)
 	$(call print-help,mtproto-generate-secret,generate MTProto proxy secret key)
