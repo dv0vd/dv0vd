@@ -123,6 +123,7 @@ start-nginx:
 		-v ./deployment/configs/pihole:/app/pihole:ro \
 		-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+		-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
 		-p 80:80 \
 		-p 443:443 \
 		-p 8448:8448 \
