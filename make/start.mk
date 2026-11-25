@@ -644,6 +644,8 @@ start-open-webui:
 		--network pihole_network \
 		--ip 10.0.2.2 \
 		--dns 10.0.2.1 \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${OPEN_WEBUI_MEMORY} \
 		--cpus=${OPEN_WEBUI_CPUS} \
