@@ -112,25 +112,26 @@ start-nginx:
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
-	-d \
-	--name nginx \
-	--network podman_network \
-	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/configs/nginx:/deployment/nginx:ro \
-	-v ./deployment/data/nginx/logs:/var/log/nginx \
-	-v ./demo:/demo:ro \
-	-v ./src:/app:ro \
-	-v ./deployment/configs/pihole:/app/pihole:ro \
-	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
-	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
-	-p 80:80 \
-	-p 443:443 \
-	-p 8448:8448 \
-	--restart unless-stopped \
-	--memory=${NGINX_MEMORY} \
-	--cpus=${NGINX_CPUS} \
-	--cgroup-parent=/podman-group.slice \
-	docker.io/nginx:1.27.3
+		-d \
+		--name nginx \
+		--network podman_network \
+		-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
+		-v ./deployment/configs/nginx:/deployment/nginx:ro \
+		-v ./deployment/data/nginx/logs:/var/log/nginx \
+		-v ./demo:/demo:ro \
+		-v ./src:/app:ro \
+		-v ./deployment/configs/pihole:/app/pihole:ro \
+		-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
+		-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+		-p 80:80 \
+		-p 443:443 \
+		-p 8448:8448 \
+		--restart unless-stopped \
+		--memory=${NGINX_MEMORY} \
+		--cpus=${NGINX_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/nginx:1.27.3
+	- podman network connect pihole_network nginx
 
 start-nginx-proxy:
 	- bash ./deployment/scripts/render_nginx_proxy.sh
@@ -241,7 +242,6 @@ start-pihole-main:
 		--name pihole \
 		--network pihole_network \
 		--ip 10.0.2.1 \
-		-p 127.0.0.1:8080:80 \
 		-e TZ=UTC \
 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
 		-v ./deployment/data/pihole/data:/etc/pihole \
