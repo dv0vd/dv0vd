@@ -89,6 +89,8 @@ iptables -A FORWARD -i podman-main -j ACCEPT
 iptables -A FORWARD -o podman-main -j ACCEPT
 ip6tables -A FORWARD -i podman-main -j ACCEPT
 ip6tables -A FORWARD -o podman-main -j ACCEPT
+iptables -A FORWARD -i podman-phl -j ACCEPT
+iptables -A FORWARD -o podman-phl -j ACCEPT
 
 # allow icmp
 iptables -A INPUT -p icmp --icmp-type 8 -m limit --limit 10/s -j ACCEPT # echo request with limit for the whole server
