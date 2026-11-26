@@ -99,7 +99,7 @@ start-xray-vless-reality-whitelist-bypass:
 		-d \
 		--name xray-vless-reality-whitelist-bypass \
 		--network whitelist_bypass_network \
-		--ip 10.89.10.2 \
+		--ip 10.0.1.3 \
 		-v ./deployment/configs/xray-vless-reality/whitelist_bypass.json:/etc/xray/config.json:ro \
 		--restart unless-stopped \
 		--memory=${XRAY_VLESS_REALITY_MEMORY} \
@@ -112,25 +112,27 @@ start-nginx:
 	-@ rm ./deployment/data/nginx/logs/access.log
 	-@ rm ./deployment/data/nginx/logs/error.log
 	- podman run \
-	-d \
-	--name nginx \
-	--network podman_network \
-	-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-	-v ./deployment/configs/nginx:/deployment/nginx:ro \
-	-v ./deployment/data/nginx/logs:/var/log/nginx \
-	-v ./demo:/demo:ro \
-	-v ./src:/app:ro \
-	-v ./deployment/configs/pihole:/app/pihole:ro \
-	-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
-	-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
-	-p 80:80 \
-	-p 443:443 \
-	-p 8448:8448 \
-	--restart unless-stopped \
-	--memory=${NGINX_MEMORY} \
-	--cpus=${NGINX_CPUS} \
-	--cgroup-parent=/podman-group.slice \
-	docker.io/nginx:1.27.3
+		-d \
+		--name nginx \
+		--network podman_network \
+		-v ./deployment/configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
+		-v ./deployment/configs/nginx:/deployment/nginx:ro \
+		-v ./deployment/data/nginx/logs:/var/log/nginx \
+		-v ./demo:/demo:ro \
+		-v ./src:/app:ro \
+		-v ./deployment/configs/pihole:/app/pihole:ro \
+		-v ./deployment/data/letsencrypt/acme:/app/letsencrypt/acme:ro \
+		-v ./deployment/data/letsencrypt/data:/app/letsencrypt/certificates:ro \
+		-v ./deployment/configs/nginx/.htpasswd:/etc/nginx/.htpasswd:ro \
+		-p 80:80 \
+		-p 443:443 \
+		-p 8448:8448 \
+		--restart unless-stopped \
+		--memory=${NGINX_MEMORY} \
+		--cpus=${NGINX_CPUS} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/nginx:1.27.3
+	- podman network connect pihole_network nginx
 
 start-nginx-proxy:
 	- bash ./deployment/scripts/render_nginx_proxy.sh
@@ -224,6 +226,23 @@ start-pihole:
 		-p 53:53/tcp \
 		-p 53:53/udp \
 		-p 127.0.0.1:8080:80 \
+		-e TZ=UTC \
+		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
+		-v ./deployment/data/pihole/data:/etc/pihole \
+		--restart unless-stopped \
+		--memory=${PIHOLE_MEMORY} \
+		--cpus=${PIHOLE_CPUS} \
+		--shm-size=${PIHOLE_SHM_SIZE} \
+		--cgroup-parent=/podman-group.slice \
+		docker.io/pihole/pihole:2025.08.0
+
+start-pihole-main:
+	- rm deployment/data/pihole/data/pihole-FTL.db*
+	- podman run \
+		-d \
+		--name pihole \
+		--network pihole_network \
+		--ip 10.0.2.3 \
 		-e TZ=UTC \
 		-e FTLCONF_webserver_api_password=${PIHOLE_ADMIN_PASSWORD} \
 		-v ./deployment/data/pihole/data:/etc/pihole \
@@ -447,7 +466,7 @@ start-livekit:
 		-d \
 		--name livekit \
 		--network podman_network \
-		--sysctl net.ipv4.ip_local_reserved_ports=${LIVEKIT_TURN_UDP_PORT},${LIVEKIT_TURN_TCP_PORT},${LIVEKIT_FALLBACK_PORT},${LIVEKIT_MIN_PORT}-${LIVEKIT_MAX_PORT},${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT} \
+		--sysctl '"net.ipv4.ip_local_reserved_ports=${LIVEKIT_TURN_UDP_PORT},${LIVEKIT_TURN_TCP_PORT},${LIVEKIT_FALLBACK_PORT},${LIVEKIT_MIN_PORT}-${LIVEKIT_MAX_PORT},${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT}"' \
 		-v ./deployment/configs/livekit/livekit.yaml:/app/livekit.yaml:ro \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
 		-p ${LIVEKIT_TURN_UDP_PORT}:${LIVEKIT_TURN_UDP_PORT}/udp \
@@ -570,10 +589,10 @@ start-whitelist-bypass:
 		-e VK_COOKIES=/app/cookies-vk.json \
 		-e BITRIX_COOKIES=/app/cookies-bitrix.json \
 		-e BLINK_COOKIES=/app/cookies-blink.json \
-		-e UPSTREAM_SOCKS=10.89.10.2:1080 \
+		-e UPSTREAM_SOCKS=10.0.1.3:1080 \
 		-v ./deployment/configs/whitelist-bypass:/app \
 		--network whitelist_bypass_network \
-		--ip 10.89.10.3 \
+		--ip 10.0.1.2 \
 		--restart unless-stopped \
 		--memory=${WHITELIST_BYPASS_MEMORY} \
 		--cpus=${WHITELIST_BYPASS_CPUS} \
@@ -610,7 +629,7 @@ start-sip:
 		-p ${SIP_PORT}:5061/tcp \
 		-p ${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}:${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}/udp \
 		--network podman_network \
-		--sysctl net.ipv4.ip_local_reserved_ports=${SIP_PORT},${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT} \
+		--sysctl '"net.ipv4.ip_local_reserved_ports=${SIP_PORT},${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}"' \
 		--restart unless-stopped \
 		--memory=${SIP_MEMORY} \
 		--cpus=${SIP_CPUS} \
@@ -623,7 +642,11 @@ start-open-webui:
 		--name open-webui \
 		-e AIOHTTP_CLIENT_TIMEOUT=600 \
 		-v ./deployment/data/open-webui:/app/backend/data \
-		--network podman_network \
+		--network pihole_network \
+		--ip 10.0.2.2 \
+		--dns 10.0.2.3 \
+		--dns 1.1.1.1 \
+		--dns 8.8.8.8 \
 		--restart unless-stopped \
 		--memory=${OPEN_WEBUI_MEMORY} \
 		--cpus=${OPEN_WEBUI_CPUS} \

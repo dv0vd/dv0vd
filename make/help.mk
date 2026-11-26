@@ -96,6 +96,7 @@ help:
 	$(call print-help,restart-nginx-proxy,restart nginx server on the lite host)
 	$(call print-help,restart-nginx-gateway,restart nginx server on the gateway host)
 	$(call print-help,restart-pihole,restart Pi-hole)
+	$(call print-help,restart-pihole-main,restart Pi-hole on the main host)
 	$(call print-help,restart-doh-server,restart DoH server)
 	$(call print-help,restart-doh-server-gateway,restart DoH server on the gateway host)
 	$(call print-help,restart-ntfy,restart ntfy server)

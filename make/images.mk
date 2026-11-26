@@ -16,6 +16,7 @@ podman-pull-images:
 # 	podman pull docker.io/dv0vd/demo-timers:1.0.5
 # 	podman pull docker.io/dv0vd/demo-skillnotes:1.0.11
 # 	podman pull docker.io/dv0vd/demo-todo-manager:1.1.1
+	podman pull docker.io/pihole/pihole:2025.08.0
 
 	podman save ghcr.io/docker-mailserver/docker-mailserver:15.1.0 > ./deployment/images/docker-mailserver.tar
 	podman save ghcr.io/open-webui/open-webui:v0.13.3-slim > ./deployment/images/open-webui.tar
@@ -34,6 +35,7 @@ podman-pull-images:
 # 	podman save docker.io/dv0vd/demo-timers:1.0.5 > ./deployment/images/demo-timers.tar
 # 	podman save docker.io/dv0vd/demo-skillnotes:1.0.11 > ./deployment/images/demo-skillnotes.tar
 # 	podman save docker.io/dv0vd/demo-todo-manager:1.1.1 > ./deployment/images/demo-todo-manager.tar
+	podman save docker.io/pihole/pihole:2025.08.0 > ./deployment/images/pihole.tar
 
 podman-pull-images-proxy:
 	podman pull docker.io/pihole/pihole:2025.08.0
@@ -80,6 +82,7 @@ podman-load-images:
 # 	podman load < ./deployment/images/demo-timers.tar
 # 	podman load < ./deployment/images/demo-skillnotes.tar
 # 	podman load < ./deployment/images/demo-todo-manager.tar
+	podman load < ./deployment/images/pihole.tar
 
 podman-load-images-proxy:
 	podman load < ./deployment/images/nginx.tar
