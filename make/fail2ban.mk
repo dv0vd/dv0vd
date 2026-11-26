@@ -7,11 +7,11 @@ fail2ban-configure:
 	cp ./deployment/configs/fail2ban/filters/nginx-limit-req.local /etc/fail2ban/filter.d
 	cp ./deployment/configs/fail2ban/filters/nginx-not-found.local /etc/fail2ban/filter.d
 	cp ./deployment/configs/fail2ban/filters/nginx-redirected.local /etc/fail2ban/filter.d
-	mkdir -p ./deployment/data/nginx && touch ./deployment/data/nginx/logs/error.log
-	mkdir -p ./deployment/data/nginx && touch ./deployment/data/nginx/logs/access.log
-	mkdir -p ./deployment/data/socks5/logs && touch ./deployment/data/socks5/logs/danted.log
-	mkdir -p ./deployment/data/email/logs && touch ./deployment/data/email/logs/mail.log
-	mkdir -p ./deployment/data/sip/logs && touch ./deployment/data/sip/logs/messages
+	touch ./deployment/data/nginx/logs/error.log
+	touch ./deployment/data/nginx/logs/access.log
+	touch ./deployment/data/socks5/logs/danted.log
+	touch ./deployment/data/email/logs/mail.log
+	touch ./deployment/data/sip/logs/messages
 
 fail2ban-status:
 	fail2ban-client status

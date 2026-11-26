@@ -4,6 +4,8 @@ podman-cleanup:
 # --interface-name >= Debian 13
 podman-create-network:
 	podman network create --ipv6 --interface-name podman-main podman_network
+	podman network create --subnet 10.0.2.0/24 --disable-dns --interface-name podman-phl pihole_network
+
 
 # --interface-name >= Debian 13
 podman-create-network-proxy:
@@ -12,7 +14,7 @@ podman-create-network-proxy:
 # --interface-name >= Debian 13
 podman-create-network-gateway:
 	podman network create --ipv6 --disable-dns --interface-name podman-main podman_network
-	podman network create --subnet 10.89.10.0/24 --disable-dns --interface-name podman-wlb whitelist_bypass_network
+	podman network create --subnet 10.0.1.0/24 --disable-dns --interface-name podman-wlb whitelist_bypass_network
 
 podman-info:
 	podman ps -w 1
