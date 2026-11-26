@@ -91,6 +91,11 @@ ip6tables -A FORWARD -i podman-main -j ACCEPT
 ip6tables -A FORWARD -o podman-main -j ACCEPT
 iptables -A FORWARD -i podman-phl -j ACCEPT
 iptables -A FORWARD -o podman-phl -j ACCEPT
+# allow podman dns
+iptables -A INPUT -i podman-main -p udp --dport 53 -j ACCEPT
+iptables -A INPUT -i podman-main -p tcp --dport 53 -j ACCEPT
+ip6tables -A INPUT -i podman-main -p udp --dport 53 -j ACCEPT
+ip6tables -A INPUT -i podman-main -p tcp --dport 53 -j ACCEPT
 
 # allow icmp
 iptables -A INPUT -p icmp --icmp-type 8 -m limit --limit 10/s -j ACCEPT # echo request with limit for the whole server
