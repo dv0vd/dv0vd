@@ -466,7 +466,7 @@ start-livekit:
 		-d \
 		--name livekit \
 		--network podman_network \
-		--sysctl net.ipv4.ip_local_reserved_ports=${LIVEKIT_TURN_UDP_PORT},${LIVEKIT_TURN_TCP_PORT},${LIVEKIT_FALLBACK_PORT},${LIVEKIT_MIN_PORT}-${LIVEKIT_MAX_PORT},${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT} \
+		--sysctl '"net.ipv4.ip_local_reserved_ports=${LIVEKIT_TURN_UDP_PORT},${LIVEKIT_TURN_TCP_PORT},${LIVEKIT_FALLBACK_PORT},${LIVEKIT_MIN_PORT}-${LIVEKIT_MAX_PORT},${LIVEKIT_TURN_MIN_PORT}-${LIVEKIT_TURN_MAX_PORT}"' \
 		-v ./deployment/configs/livekit/livekit.yaml:/app/livekit.yaml:ro \
 		-v ./deployment/data/letsencrypt/data:/app/letsencrypt:ro \
 		-p ${LIVEKIT_TURN_UDP_PORT}:${LIVEKIT_TURN_UDP_PORT}/udp \
@@ -629,7 +629,7 @@ start-sip:
 		-p ${SIP_PORT}:5061/tcp \
 		-p ${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}:${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}/udp \
 		--network podman_network \
-		--sysctl net.ipv4.ip_local_reserved_ports=${SIP_PORT},${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT} \
+		--sysctl '"net.ipv4.ip_local_reserved_ports=${SIP_PORT},${SIP_RTP_MIN_PORT}-${SIP_RTP_MAX_PORT}"' \
 		--restart unless-stopped \
 		--memory=${SIP_MEMORY} \
 		--cpus=${SIP_CPUS} \
